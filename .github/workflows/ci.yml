@@ -1,0 +1,696 @@
+name: CI
+
+# Locks in the cross-platform setup work: this project must install and
+# type-check on both Windows (PowerShell, no POSIX shell) and Linux. A change
+# to a script, lifecycle hook, or the lockfile that re-breaks Windows will fail
+# here before it ships.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  setup:
+    name: install & typecheck (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      # Install pnpm globally, mirroring the documented setup path in
+      # docs/LAUNCH_READINESS.md (§2c/§2e) rather than relying on Corepack.
+      - name: Install pnpm
+        run: npm install -g pnpm@10
+
+      # --frozen-lockfile guarantees the committed pnpm-lock.yaml is used
+      # verbatim. This step exercises the Node-based `preinstall` guard and the
+      # husky `prepare` hook on both platforms.
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Type-check
+        run: pnpm run typecheck
+
+      # Cache Next.js's build cache (.next/cache) keyed on the lockfile plus the
+      # website source. A real `next build` is the only thing that catches
+      # server/client boundary errors, static-export misconfig, or missing
+      # build-time env that `tsc --noEmit` never sees — so it must stay fast
+      # enough to run on every push.
+      - name: Cache Next.js build
+        uses: actions/cache@v4
+        with:
+          path: artifacts/mythos-website/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('artifacts/mythos-website/**/*.{js,jsx,ts,tsx}') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-
+
+      # Required production build of the Next.js site. This is a first-class
+      # gate: a failure here on either ubuntu-latest or windows-latest fails the
+      # whole workflow, guaranteeing a deployable artifact is always producible.
+      - name: Build website
+        run: pnpm --filter @workspace/mythos-website build
+
+      # Required esbuild bundle of the API server (node ./build.mjs).
+      - name: Build API server
+        run: pnpm --filter @workspace/api-server build
+
+      # A green build does not prove the server boots. Start the freshly bundled
+      # API exactly as production does (node dist/index.mjs, NODE_ENV=production,
+      # PORT set) and confirm it answers its startup health probe. This catches a
+      # bad import, a top-level crash, or a broken route — none of which `tsc` or
+      # esbuild see. Linux-only: a background process + curl poll is reliable on
+      # the POSIX runner, and one OS satisfies the gate. The trap guarantees the
+      # server is killed even when the loop exits early.
+      - name: Smoke-test API server (boots & serves /api/healthz)
+        if: runner.os == 'Linux'
+        env:
+          NODE_ENV: production
+          PORT: "8080"
+        run: |
+          node artifacts/api-server/dist/index.mjs &
+          SERVER_PID=$!
+          trap "kill $SERVER_PID 2>/dev/null || true" EXIT
+          for i in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:8080/api/healthz | grep -q '"status":"ok"'; then
+              echo "API server is healthy"
+              exit 0
+            fi
+            if ! kill -0 "$SERVER_PID" 2>/dev/null; then
+              echo "::error::API server process exited before becoming healthy" >&2
+              exit 1
+            fi
+            sleep 1
+          done
+          echo "::error::API server did not answer /api/healthz within 30s" >&2
+          exit 1
+
+      # /api/healthz only proves the server boots — the two real user-facing
+      # endpoints (inquiry/contact + careers application) are never touched by
+      # that probe. A broken request schema, a bad route, or a regression in the
+      # send path would still ship green. This step POSTs a minimal valid payload
+      # to each and asserts a success response.
+      #
+      # No secret, no real email: a tiny local HTTP server stubs api.resend.com
+      # (via RESEND_API_BASE_URL). Because RESEND_API_KEY is set, the email lib
+      # always attempts the real send and, in production mode, returns 503 if the
+      # send fails — so an "ok":true response only happens when the request
+      # actually reached the (stubbed) Resend send. We also count the stub's hits
+      # to prove neither submission was silently dropped as spam before sending.
+      - name: Smoke-test form endpoints (valid sends; bad submissions rejected, not sent)
+        if: runner.os == 'Linux'
+        env:
+          NODE_ENV: production
+          PORT: "8080"
+          RESEND_API_KEY: ci-smoke-test-key
+          RESEND_API_BASE_URL: http://127.0.0.1:9090
+        run: |
+          set -euo pipefail
+
+          : > /tmp/resend-hits.log
+          node -e 'const{createServer}=require("node:http");const{appendFileSync}=require("node:fs");createServer((q,r)=>{let b="";q.on("data",c=>b+=c);q.on("end",()=>{appendFileSync("/tmp/resend-hits.log",q.method+" "+q.url+"\n");r.writeHead(200,{"Content-Type":"application/json"});r.end(JSON.stringify({id:"ci-smoke"}));});}).listen(9090,"127.0.0.1",()=>console.log("mock resend listening on 9090"));' &
+          MOCK_PID=$!
+
+          node artifacts/api-server/dist/index.mjs &
+          SERVER_PID=$!
+          trap "kill $SERVER_PID $MOCK_PID 2>/dev/null || true" EXIT
+
+          # Wait for the API to come up before posting.
+          for i in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:8080/api/healthz | grep -q '"status":"ok"'; then
+              break
+            fi
+            if ! kill -0 "$SERVER_PID" 2>/dev/null; then
+              echo "::error::API server exited before becoming healthy" >&2
+              exit 1
+            fi
+            sleep 1
+          done
+
+          # 1) Inquiry / contact form (JSON). renderedAt + honeypot are omitted so
+          # the request is NOT short-circuited by the anti-spam paths and instead
+          # reaches the real send.
+          inquiry_resp=$(curl -fsS -X POST http://127.0.0.1:8080/api/inquiries \
+            -H "Content-Type: application/json" \
+            -d '{"formType":"contact","inquiryType":"general","name":"CI Smoke","email":"ci@example.com","organization":"CI","role":"Tester","message":"CI smoke test of the inquiry endpoint."}')
+          echo "inquiry response: $inquiry_resp"
+          echo "$inquiry_resp" | grep -q '"ok":true' \
+            || { echo "::error::inquiry endpoint did not return ok:true" >&2; exit 1; }
+
+          # 2) Careers / open-talent form (multipart with a minimal valid PDF
+          # resume — the route content-sniffs the leading %PDF- magic bytes).
+          printf '%%PDF-1.4\n1 0 obj<<>>endobj\ntrailer<<>>\n%%%%EOF\n' > /tmp/resume.pdf
+          careers_resp=$(curl -fsS -X POST http://127.0.0.1:8080/api/careers/open-talent \
+            -F "firstName=CI" \
+            -F "lastName=Smoke" \
+            -F "email=ci@example.com" \
+            -F "location=Remote" \
+            -F "areaOfInterest=Engineering" \
+            -F "whyInterested=CI smoke test of the careers endpoint." \
+            -F "resume=@/tmp/resume.pdf;type=application/pdf")
+          echo "careers response: $careers_resp"
+          echo "$careers_resp" | grep -q '"ok":true' \
+            || { echo "::error::careers endpoint did not return ok:true" >&2; exit 1; }
+
+          # Both submissions must have actually reached the stubbed Resend send
+          # (i.e. were not dropped as spam before sending).
+          hits=$(wc -l < /tmp/resend-hits.log | tr -d ' ')
+          echo "resend stub received $hits request(s)"
+          if [ "$hits" -lt 2 ]; then
+            echo "::error::expected 2 Resend sends (inquiry + careers), got $hits" >&2
+            exit 1
+          fi
+          echo "Both form endpoints sent successfully"
+
+          # ---------------------------------------------------------------------
+          # Negative path: bad submissions must be REJECTED with a 4xx (a client
+          # error — not a 2xx "accepted", and not a 5xx crash) and must NOT reach
+          # the send path. A schema regression that quietly accepts garbage, or a
+          # route that 500s on a malformed/wrong-type payload, would otherwise
+          # ship green and produce junk/broken applicant emails — or none — in
+          # production. We assert the status code and prove the stub hit count is
+          # unchanged afterwards.
+          #
+          # Rate-limit budget: the limiter allows 5 requests per IP per window
+          # (shared across both routes, fresh per CI run). The 2 valid sends above
+          # plus the 3 checks below total exactly 5, so none is masked by a 429.
+          # Keep that ceiling in mind before adding more requests to this step.
+          hits_before_neg=$(wc -l < /tmp/resend-hits.log | tr -d ' ')
+
+          assert_4xx() {
+            local label="$1" status="$2" body="$3"
+            echo "$label -> HTTP $status: $body"
+            case "$status" in
+              4[0-9][0-9]) ;;
+              *)
+                echo "::error::$label should be rejected with a 4xx, got $status" >&2
+                exit 1
+                ;;
+            esac
+          }
+
+          # 1) Inquiry with an invalid payload: valid formType but empty name,
+          # malformed email, and empty message — exactly the shape a schema
+          # regression would wrongly wave through.
+          status=$(curl -s -o /tmp/neg.txt -w '%{http_code}' -X POST http://127.0.0.1:8080/api/inquiries \
+            -H "Content-Type: application/json" \
+            -d '{"formType":"contact","inquiryType":"general","name":"","email":"not-an-email","organization":"","role":"","message":""}')
+          assert_4xx "inquiry (invalid payload)" "$status" "$(cat /tmp/neg.txt)"
+
+          # 2) Careers submission with NO resume attached (resume is required).
+          status=$(curl -s -o /tmp/neg.txt -w '%{http_code}' -X POST http://127.0.0.1:8080/api/careers/open-talent \
+            -F "firstName=CI" \
+            -F "lastName=Smoke" \
+            -F "email=ci@example.com" \
+            -F "location=Remote" \
+            -F "areaOfInterest=Engineering" \
+            -F "whyInterested=CI negative test: missing resume.")
+          assert_4xx "careers (no resume)" "$status" "$(cat /tmp/neg.txt)"
+
+          # 3) Careers submission with a .pdf whose bytes are NOT a real PDF — a
+          # type-spoofed upload the magic-byte content sniff must reject.
+          printf 'this is plainly not a pdf, just text with a friendly name\n' > /tmp/fake-resume.pdf
+          status=$(curl -s -o /tmp/neg.txt -w '%{http_code}' -X POST http://127.0.0.1:8080/api/careers/open-talent \
+            -F "firstName=CI" \
+            -F "lastName=Smoke" \
+            -F "email=ci@example.com" \
+            -F "location=Remote" \
+            -F "areaOfInterest=Engineering" \
+            -F "whyInterested=CI negative test: spoofed resume bytes." \
+            -F "resume=@/tmp/fake-resume.pdf;type=application/pdf")
+          assert_4xx "careers (spoofed resume bytes)" "$status" "$(cat /tmp/neg.txt)"
+
+          # None of the three rejected submissions may have reached Resend.
+          hits_after_neg=$(wc -l < /tmp/resend-hits.log | tr -d ' ')
+          echo "resend stub hits before/after negative checks: $hits_before_neg / $hits_after_neg"
+          if [ "$hits_after_neg" -ne "$hits_before_neg" ]; then
+            echo "::error::a rejected submission still reached the Resend send path ($hits_before_neg -> $hits_after_neg)" >&2
+            exit 1
+          fi
+          echo "All bad submissions were rejected with 4xx and none were sent"
+
+      # An *oversized* resume is the one bad-submission family the step above does
+      # not cover, and it has a nastier failure mode: a regression in the multer
+      # fileSize limit (or its LIMIT_FILE_SIZE -> 400 translation) could either
+      # crash the route (5xx) or let a >10MB file through to Resend, which caps a
+      # message ~40MB and would silently fail to deliver the application. We post
+      # a resume just over the 10MB ceiling and assert a 4xx with no send.
+      #
+      # This runs in its OWN booted server (+ its own Resend stub) on purpose: a
+      # fresh process resets the per-IP rate limiter, so this request gets a clean
+      # budget and cannot be masked by a 429 from the 5 requests the previous step
+      # already spent on this IP. It also keeps that step at exactly its limit.
+      - name: Smoke-test careers endpoint (oversized resume rejected, not sent)
+        if: runner.os == 'Linux'
+        env:
+          NODE_ENV: production
+          PORT: "8080"
+          RESEND_API_KEY: ci-smoke-test-key
+          RESEND_API_BASE_URL: http://127.0.0.1:9090
+        run: |
+          set -euo pipefail
+
+          : > /tmp/resend-hits.log
+          node -e 'const{createServer}=require("node:http");const{appendFileSync}=require("node:fs");createServer((q,r)=>{let b="";q.on("data",c=>b+=c);q.on("end",()=>{appendFileSync("/tmp/resend-hits.log",q.method+" "+q.url+"\n");r.writeHead(200,{"Content-Type":"application/json"});r.end(JSON.stringify({id:"ci-smoke"}));});}).listen(9090,"127.0.0.1",()=>console.log("mock resend listening on 9090"));' &
+          MOCK_PID=$!
+
+          node artifacts/api-server/dist/index.mjs &
+          SERVER_PID=$!
+          trap "kill $SERVER_PID $MOCK_PID 2>/dev/null || true" EXIT
+
+          # Wait for the API to come up before posting.
+          for i in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:8080/api/healthz | grep -q '"status":"ok"'; then
+              break
+            fi
+            if ! kill -0 "$SERVER_PID" 2>/dev/null; then
+              echo "::error::API server exited before becoming healthy" >&2
+              exit 1
+            fi
+            sleep 1
+          done
+
+          # A resume one byte over the 10MB ceiling. Content is irrelevant: multer
+          # aborts on the fileSize limit while streaming, before any magic-byte
+          # check, so a plain oversized .pdf exercises the LIMIT_FILE_SIZE path.
+          head -c $((10 * 1024 * 1024 + 1)) /dev/zero > /tmp/big-resume.pdf
+
+          status=$(curl -s -o /tmp/big.txt -w '%{http_code}' -X POST http://127.0.0.1:8080/api/careers/open-talent \
+            -F "firstName=CI" \
+            -F "lastName=Smoke" \
+            -F "email=ci@example.com" \
+            -F "location=Remote" \
+            -F "areaOfInterest=Engineering" \
+            -F "whyInterested=CI negative test: oversized resume." \
+            -F "resume=@/tmp/big-resume.pdf;type=application/pdf")
+          echo "careers (oversized resume) -> HTTP $status: $(cat /tmp/big.txt)"
+
+          # Must be a client error (4xx) — not a 2xx "accepted" and not a 5xx
+          # crash. A fresh process means this is the first request for this IP, so
+          # a 429 cannot be the reason; the 4xx is the genuine size rejection.
+          case "$status" in
+            429)
+              echo "::error::oversized resume was rate-limited (429); expected a size rejection" >&2
+              exit 1
+              ;;
+            4[0-9][0-9]) ;;
+            *)
+              echo "::error::oversized resume should be rejected with a 4xx, got $status" >&2
+              exit 1
+              ;;
+          esac
+
+          # The oversized resume must never have reached the Resend send path.
+          hits=$(wc -l < /tmp/resend-hits.log | tr -d ' ')
+          echo "resend stub received $hits request(s)"
+          if [ "$hits" -ne 0 ]; then
+            echo "::error::oversized resume still reached the Resend send path ($hits hit(s))" >&2
+            exit 1
+          fi
+          echo "Oversized resume was rejected with 4xx and not sent"
+
+      # Anti-spam guards: a filled honeypot (company_website_confirm) or a
+      # too-fast submit (renderedAt within the ~2.5s human-minimum) must be
+      # SILENTLY dropped — the route returns 200 ok:true so the bot gets no
+      # signal, but it must NOT reach the send path. This is the deliberate
+      # inverse of the valid-send checks above: there the proof is "ok:true
+      # AND the stub was hit"; here it is "ok:true AND the stub was NOT hit". A
+      # regression that removed a guard would start emailing junk to the team
+      # while CI stayed green; one that became too aggressive would swallow real
+      # submissions. We assert both the 200 ok:true and a zero stub hit count.
+      #
+      # Its OWN booted server (+ its own Resend stub) on purpose: a fresh
+      # process resets the per-IP rate limiter, so these 2 requests get a clean
+      # budget (well under the 5/IP/window ceiling) and cannot be masked by a
+      # 429 from requests other steps spent on this IP.
+      - name: Smoke-test anti-spam guards (honeypot + too-fast dropped, not sent)
+        if: runner.os == 'Linux'
+        env:
+          NODE_ENV: production
+          PORT: "8080"
+          RESEND_API_KEY: ci-smoke-test-key
+          RESEND_API_BASE_URL: http://127.0.0.1:9090
+        run: |
+          set -euo pipefail
+
+          : > /tmp/resend-hits.log
+          node -e 'const{createServer}=require("node:http");const{appendFileSync}=require("node:fs");createServer((q,r)=>{let b="";q.on("data",c=>b+=c);q.on("end",()=>{appendFileSync("/tmp/resend-hits.log",q.method+" "+q.url+"\n");r.writeHead(200,{"Content-Type":"application/json"});r.end(JSON.stringify({id:"ci-smoke"}));});}).listen(9090,"127.0.0.1",()=>console.log("mock resend listening on 9090"));' &
+          MOCK_PID=$!
+
+          node artifacts/api-server/dist/index.mjs &
+          SERVER_PID=$!
+          trap "kill $SERVER_PID $MOCK_PID 2>/dev/null || true" EXIT
+
+          # Wait for the API to come up before posting.
+          for i in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:8080/api/healthz | grep -q '"status":"ok"'; then
+              break
+            fi
+            if ! kill -0 "$SERVER_PID" 2>/dev/null; then
+              echo "::error::API server exited before becoming healthy" >&2
+              exit 1
+            fi
+            sleep 1
+          done
+
+          assert_dropped() {
+            local label="$1" body="$2"
+            echo "$label -> $body"
+            echo "$body" | grep -q '"ok":true' \
+              || { echo "::error::$label should return ok:true (pretend success), got: $body" >&2; exit 1; }
+          }
+
+          # 1) Honeypot: a non-empty company_website_confirm. Otherwise a valid
+          # payload — only the hidden field marks it as a bot.
+          honeypot_resp=$(curl -fsS -X POST http://127.0.0.1:8080/api/inquiries \
+            -H "Content-Type: application/json" \
+            -d '{"formType":"contact","inquiryType":"general","name":"CI Spam","email":"spam@example.com","organization":"CI","role":"Bot","message":"CI honeypot drop test.","company_website_confirm":"http://bot.example.com"}')
+          assert_dropped "inquiry (honeypot)" "$honeypot_resp"
+
+          # 2) Too-fast: renderedAt = now, so elapsed time is well under the
+          # ~2.5s human minimum. Milliseconds since epoch via date.
+          now_ms=$(date +%s%3N)
+          toofast_resp=$(curl -fsS -X POST http://127.0.0.1:8080/api/inquiries \
+            -H "Content-Type: application/json" \
+            -d "{\"formType\":\"contact\",\"inquiryType\":\"general\",\"name\":\"CI Spam\",\"email\":\"spam@example.com\",\"organization\":\"CI\",\"role\":\"Bot\",\"message\":\"CI too-fast drop test.\",\"renderedAt\":$now_ms}")
+          assert_dropped "inquiry (submitted too fast)" "$toofast_resp"
+
+          # Neither dropped submission may have reached the Resend send path.
+          hits=$(wc -l < /tmp/resend-hits.log | tr -d ' ')
+          echo "resend stub received $hits request(s)"
+          if [ "$hits" -ne 0 ]; then
+            echo "::error::a spam submission reached the Resend send path ($hits hit(s)); a honeypot/timing guard is broken" >&2
+            exit 1
+          fi
+          echo "Both spam submissions returned ok:true and neither was sent"
+
+      # The careers / open-talent endpoint carries the SAME two anti-spam guards
+      # (filled company_website_confirm honeypot, or a too-fast renderedAt within
+      # the ~2.5s human minimum) as the inquiry endpoint, but it is multipart and
+      # requires a valid resume. The check above only exercises the JSON inquiry
+      # route; a regression that removed a careers guard would start emailing junk
+      # applications to the team while CI stayed green. This step is the careers
+      # mirror: each spam submission ships a minimal valid PDF resume alongside the
+      # honeypot/too-fast fields and must return 200 ok:true (pretend success, no
+      # bot signal) AND leave the Resend stub with zero hits (never sent).
+      #
+      # Its OWN booted server (+ its own Resend stub) on purpose: a fresh process
+      # resets the per-IP rate limiter, so these 2 requests get a clean budget
+      # (well under the 5/IP/window ceiling) and cannot be masked by a 429 from
+      # requests other steps spent on this IP.
+      - name: Smoke-test careers anti-spam guards (honeypot + too-fast dropped, not sent)
+        if: runner.os == 'Linux'
+        env:
+          NODE_ENV: production
+          PORT: "8080"
+          RESEND_API_KEY: ci-smoke-test-key
+          RESEND_API_BASE_URL: http://127.0.0.1:9090
+        run: |
+          set -euo pipefail
+
+          : > /tmp/resend-hits.log
+          node -e 'const{createServer}=require("node:http");const{appendFileSync}=require("node:fs");createServer((q,r)=>{let b="";q.on("data",c=>b+=c);q.on("end",()=>{appendFileSync("/tmp/resend-hits.log",q.method+" "+q.url+"\n");r.writeHead(200,{"Content-Type":"application/json"});r.end(JSON.stringify({id:"ci-smoke"}));});}).listen(9090,"127.0.0.1",()=>console.log("mock resend listening on 9090"));' &
+          MOCK_PID=$!
+
+          node artifacts/api-server/dist/index.mjs &
+          SERVER_PID=$!
+          trap "kill $SERVER_PID $MOCK_PID 2>/dev/null || true" EXIT
+
+          # Wait for the API to come up before posting.
+          for i in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:8080/api/healthz | grep -q '"status":"ok"'; then
+              break
+            fi
+            if ! kill -0 "$SERVER_PID" 2>/dev/null; then
+              echo "::error::API server exited before becoming healthy" >&2
+              exit 1
+            fi
+            sleep 1
+          done
+
+          assert_dropped() {
+            local label="$1" body="$2"
+            echo "$label -> $body"
+            echo "$body" | grep -q '"ok":true' \
+              || { echo "::error::$label should return ok:true (pretend success), got: $body" >&2; exit 1; }
+          }
+
+          # A valid PDF resume (the route content-sniffs the leading %PDF- magic).
+          # Spam is dropped AFTER multer parses but the multipart request must still
+          # carry a real resume to reach the guard branches the way a bot would.
+          printf '%%PDF-1.4\n1 0 obj<<>>endobj\ntrailer<<>>\n%%%%EOF\n' > /tmp/resume.pdf
+
+          # 1) Honeypot: a non-empty company_website_confirm. Otherwise a valid
+          # multipart payload (incl. a real PDF) — only the hidden field marks it
+          # as a bot.
+          honeypot_resp=$(curl -fsS -X POST http://127.0.0.1:8080/api/careers/open-talent \
+            -F "firstName=CI" \
+            -F "lastName=Spam" \
+            -F "email=spam@example.com" \
+            -F "location=Remote" \
+            -F "areaOfInterest=Engineering" \
+            -F "whyInterested=CI careers honeypot drop test." \
+            -F "company_website_confirm=http://bot.example.com" \
+            -F "resume=@/tmp/resume.pdf;type=application/pdf")
+          assert_dropped "careers (honeypot)" "$honeypot_resp"
+
+          # 2) Too-fast: renderedAt = now, so elapsed time is well under the
+          # ~2.5s human minimum. Milliseconds since epoch via date.
+          now_ms=$(date +%s%3N)
+          toofast_resp=$(curl -fsS -X POST http://127.0.0.1:8080/api/careers/open-talent \
+            -F "firstName=CI" \
+            -F "lastName=Spam" \
+            -F "email=spam@example.com" \
+            -F "location=Remote" \
+            -F "areaOfInterest=Engineering" \
+            -F "whyInterested=CI careers too-fast drop test." \
+            -F "renderedAt=$now_ms" \
+            -F "resume=@/tmp/resume.pdf;type=application/pdf")
+          assert_dropped "careers (submitted too fast)" "$toofast_resp"
+
+          # Neither dropped submission may have reached the Resend send path.
+          hits=$(wc -l < /tmp/resend-hits.log | tr -d ' ')
+          echo "resend stub received $hits request(s)"
+          if [ "$hits" -ne 0 ]; then
+            echo "::error::a careers spam submission reached the Resend send path ($hits hit(s)); a honeypot/timing guard is broken" >&2
+            exit 1
+          fi
+          echo "Both careers spam submissions returned ok:true and neither was sent"
+
+      # The deliberate inverse of the too-fast guard check above: a *legitimately
+      # slow* human submission (renderedAt set, but elapsed >= the ~2.5s minimum)
+      # must NOT be dropped — it has to reach the send path like any real
+      # application. The valid careers send in the earlier step omits renderedAt
+      # entirely, so it never exercises this branch; a regression that made the
+      # too-fast check fire on real (non-zero, old-enough) timestamps would start
+      # silently swallowing genuine applications as "submitted too fast" with no
+      # failing test. Here the proof is the mirror of the drop checks: "ok:true
+      # AND the stub WAS hit".
+      #
+      # This step ALSO guards the applicant's reply-to address. The careers route
+      # sets Reply-To from the applicant's email (buildOpenTalentEmail.replyTo ->
+      # sendEmail replyTo -> Resend "reply_to"), so the team can reply straight to
+      # the candidate. A regression that dropped or mangled replyTo would make
+      # every application un-repliable with no failing test. To catch it, the
+      # Resend stub here captures the full request body (not just method+url), and
+      # we assert the captured payload carries this applicant's exact address as
+      # "reply_to". We reuse this isolated, already-successful send rather than
+      # adding a request to the shared smoke step (which sits at the 5/IP/window
+      # rate-limit ceiling) — a fresh process gives this send a clean budget.
+      - name: Smoke-test careers endpoint (slow human not dropped; applicant reply-to preserved)
+        if: runner.os == 'Linux'
+        env:
+          NODE_ENV: production
+          PORT: "8080"
+          RESEND_API_KEY: ci-smoke-test-key
+          RESEND_API_BASE_URL: http://127.0.0.1:9090
+        run: |
+          set -euo pipefail
+
+          : > /tmp/resend-hits.log
+          : > /tmp/resend-bodies.log
+          # The stub records method+url (hit count) AND the full request body so
+          # we can assert what was actually sent to Resend (e.g. reply_to).
+          node -e 'const{createServer}=require("node:http");const{appendFileSync}=require("node:fs");createServer((q,r)=>{let b="";q.on("data",c=>b+=c);q.on("end",()=>{appendFileSync("/tmp/resend-hits.log",q.method+" "+q.url+"\n");appendFileSync("/tmp/resend-bodies.log",b+"\n");r.writeHead(200,{"Content-Type":"application/json"});r.end(JSON.stringify({id:"ci-smoke"}));});}).listen(9090,"127.0.0.1",()=>console.log("mock resend listening on 9090"));' &
+          MOCK_PID=$!
+
+          node artifacts/api-server/dist/index.mjs &
+          SERVER_PID=$!
+          trap "kill $SERVER_PID $MOCK_PID 2>/dev/null || true" EXIT
+
+          # Wait for the API to come up before posting.
+          for i in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:8080/api/healthz | grep -q '"status":"ok"'; then
+              break
+            fi
+            if ! kill -0 "$SERVER_PID" 2>/dev/null; then
+              echo "::error::API server exited before becoming healthy" >&2
+              exit 1
+            fi
+            sleep 1
+          done
+
+          # A valid PDF resume (the route content-sniffs the leading %PDF- magic).
+          printf '%%PDF-1.4\n1 0 obj<<>>endobj\ntrailer<<>>\n%%%%EOF\n' > /tmp/resume.pdf
+
+          # A distinctive applicant address so the reply_to assertion proves THIS
+          # applicant's email flowed through (not a hardcoded/team address). The
+          # route lowercases the email, so keep it lowercase to match verbatim.
+          applicant_email="slow.human.applicant@example.com"
+
+          # renderedAt well in the past: elapsed (now - renderedAt) clears the
+          # ~2.5s MIN_SUBMIT_MS with margin, so the too-fast guard must NOT fire.
+          rendered_at=$(( $(date +%s%3N) - 10000 ))
+          careers_resp=$(curl -fsS -X POST http://127.0.0.1:8080/api/careers/open-talent \
+            -F "firstName=CI" \
+            -F "lastName=Slow" \
+            -F "email=$applicant_email" \
+            -F "location=Remote" \
+            -F "areaOfInterest=Engineering" \
+            -F "whyInterested=CI smoke test: slow human submission with renderedAt." \
+            -F "renderedAt=$rendered_at" \
+            -F "resume=@/tmp/resume.pdf;type=application/pdf")
+          echo "careers (slow human) response: $careers_resp"
+          echo "$careers_resp" | grep -q '"ok":true' \
+            || { echo "::error::slow careers submission did not return ok:true" >&2; exit 1; }
+
+          # It must have actually reached the stubbed Resend send — i.e. it was
+          # NOT dropped as "submitted too fast" before sending.
+          hits=$(wc -l < /tmp/resend-hits.log | tr -d ' ')
+          echo "resend stub received $hits request(s)"
+          if [ "$hits" -lt 1 ]; then
+            echo "::error::slow careers submission was dropped before sending (0 Resend hits); the too-fast guard is firing on legitimate submissions" >&2
+            exit 1
+          fi
+          echo "Slow human careers submission reached the send path (not dropped)"
+
+          # The outgoing Resend payload must carry the applicant's address as
+          # "reply_to" so the team can reply directly to the candidate. Without
+          # this, a dropped/mangled replyTo would ship green and make every
+          # application un-repliable.
+          if ! grep -F "\"reply_to\":\"$applicant_email\"" /tmp/resend-bodies.log; then
+            echo "::error::careers send payload did not carry the applicant's reply_to address ($applicant_email)" >&2
+            echo "captured Resend bodies:" >&2
+            cat /tmp/resend-bodies.log >&2
+            exit 1
+          fi
+          echo "Careers send payload carried the applicant's reply_to address"
+
+      # Every careers smoke check above ships a PDF resume, so the DOC/DOCX accept
+      # paths — a large share of real applicants — are never exercised. A
+      # regression in the ZIP/OLE2 magic-byte sniff (hasValidResumeMagic: ZIP
+      # "PK\x03\x04" for .docx, OLE2 "D0 CF 11 E0" for legacy .doc) or in the
+      # extension/MIME allow-list (isAllowedResume) would start rejecting
+      # legitimate Word resumes while CI stayed green. This step posts a minimal
+      # valid .docx and a minimal valid legacy .doc and asserts each returns
+      # ok:true AND actually reached the (stubbed) Resend send.
+      #
+      # Its OWN booted server (+ its own Resend stub) on purpose: a fresh process
+      # resets the per-IP rate limiter, so these 2 requests get a clean budget
+      # (well under the 5/IP/window ceiling) and cannot be masked by a 429 from
+      # requests other steps spent on this IP.
+      - name: Smoke-test careers endpoint (valid Word .doc/.docx resume accepted & sent)
+        if: runner.os == 'Linux'
+        env:
+          NODE_ENV: production
+          PORT: "8080"
+          RESEND_API_KEY: ci-smoke-test-key
+          RESEND_API_BASE_URL: http://127.0.0.1:9090
+        run: |
+          set -euo pipefail
+
+          : > /tmp/resend-hits.log
+          node -e 'const{createServer}=require("node:http");const{appendFileSync}=require("node:fs");createServer((q,r)=>{let b="";q.on("data",c=>b+=c);q.on("end",()=>{appendFileSync("/tmp/resend-hits.log",q.method+" "+q.url+"\n");r.writeHead(200,{"Content-Type":"application/json"});r.end(JSON.stringify({id:"ci-smoke"}));});}).listen(9090,"127.0.0.1",()=>console.log("mock resend listening on 9090"));' &
+          MOCK_PID=$!
+
+          node artifacts/api-server/dist/index.mjs &
+          SERVER_PID=$!
+          trap "kill $SERVER_PID $MOCK_PID 2>/dev/null || true" EXIT
+
+          # Wait for the API to come up before posting.
+          for i in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:8080/api/healthz | grep -q '"status":"ok"'; then
+              break
+            fi
+            if ! kill -0 "$SERVER_PID" 2>/dev/null; then
+              echo "::error::API server exited before becoming healthy" >&2
+              exit 1
+            fi
+            sleep 1
+          done
+
+          # 1) A minimal valid .docx: an OOXML/Word document is a ZIP container, so
+          # the route content-sniffs the leading "PK\x03\x04" magic bytes. The body
+          # past the signature is irrelevant to the magic check.
+          printf 'PK\x03\x04 minimal valid docx (ZIP) resume for CI\n' > /tmp/resume.docx
+          docx_resp=$(curl -fsS -X POST http://127.0.0.1:8080/api/careers/open-talent \
+            -F "firstName=CI" \
+            -F "lastName=Docx" \
+            -F "email=ci.docx@example.com" \
+            -F "location=Remote" \
+            -F "areaOfInterest=Engineering" \
+            -F "whyInterested=CI smoke test: valid .docx resume." \
+            -F "resume=@/tmp/resume.docx;type=application/vnd.openxmlformats-officedocument.wordprocessingml.document")
+          echo "careers (.docx) response: $docx_resp"
+          echo "$docx_resp" | grep -q '"ok":true' \
+            || { echo "::error::careers endpoint rejected a valid .docx resume (expected ok:true)" >&2; exit 1; }
+
+          # 2) A minimal valid legacy .doc: an OLE2 compound file, sniffed by its
+          # leading "D0 CF 11 E0" magic bytes.
+          printf '\xd0\xcf\x11\xe0 minimal valid legacy doc (OLE2) resume for CI\n' > /tmp/resume.doc
+          doc_resp=$(curl -fsS -X POST http://127.0.0.1:8080/api/careers/open-talent \
+            -F "firstName=CI" \
+            -F "lastName=Doc" \
+            -F "email=ci.doc@example.com" \
+            -F "location=Remote" \
+            -F "areaOfInterest=Engineering" \
+            -F "whyInterested=CI smoke test: valid legacy .doc resume." \
+            -F "resume=@/tmp/resume.doc;type=application/msword")
+          echo "careers (.doc) response: $doc_resp"
+          echo "$doc_resp" | grep -q '"ok":true' \
+            || { echo "::error::careers endpoint rejected a valid legacy .doc resume (expected ok:true)" >&2; exit 1; }
+
+          # Both Word submissions must have actually reached the stubbed Resend send
+          # (i.e. were accepted, not rejected by a magic/allow-list regression).
+          hits=$(wc -l < /tmp/resend-hits.log | tr -d ' ')
+          echo "resend stub received $hits request(s)"
+          if [ "$hits" -lt 2 ]; then
+            echo "::error::expected 2 Resend sends (.docx + .doc), got $hits; a Word resume was wrongly rejected" >&2
+            exit 1
+          fi
+          echo "Valid .docx and .doc resumes were accepted and sent"
+
+      # The site ships as a static export (next.config.ts -> output: "export"),
+      # so production serves dist/public as static files (see artifact.toml:
+      # serve = "static"); `next start` does not apply. Mirror production: serve
+      # the build output and confirm the home route returns HTML. This catches an
+      # empty or broken export that still "built" successfully.
+      - name: Smoke-test website (serves home route)
+        if: runner.os == 'Linux'
+        run: |
+          test -f artifacts/mythos-website/dist/public/index.html
+          python3 -m http.server 4173 --directory artifacts/mythos-website/dist/public >/dev/null 2>&1 &
+          SERVER_PID=$!
+          trap "kill $SERVER_PID 2>/dev/null || true" EXIT
+          for i in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:4173/ | grep -qi '<html'; then
+              echo "Website served the home route"
+              exit 0
+            fi
+            sleep 1
+          done
+          echo "::error::Website did not serve the home route within 30s" >&2
+          exit 1

@@ -1,0 +1,311 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Mythos Brand Colors ────────────────────────────── */
+  --color-obsidian: #050505;
+  --color-graphite: #12100e;
+  --color-charcoal: #1a1713;
+  --color-bronze: #a66a32;
+  --color-antique-gold: #d6a14a;
+  --color-deep-copper: #7a3f1d;
+  --color-ivory: #f3e8d0;
+  --color-muted-stone: #9a8c78;
+  --color-ember: #ff9d3b;
+
+  /* ── Typography ─────────────────────────────────────── */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-dm-serif), ui-serif, Georgia, serif;
+
+  /* ── Radius ──────────────────────────────────────────── */
+  --radius: 0rem;
+}
+
+/* ── Reduced Motion ─────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--color-obsidian);
+    color: var(--color-ivory);
+    font-family: var(--font-sans);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    background-color: #a66a32;
+    color: #f3e8d0;
+  }
+
+  :focus-visible {
+    outline: 2px solid #a66a32;
+    outline-offset: 2px;
+  }
+
+  /* Remove default list styles when inside nav */
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* ── Cursor behavior ──────────────────────────────────────
+     Default cursor over all static content (headings, copy,
+     cards, badges, etc. inherit from body); pointer only for
+     interactive elements; text caret only for fillable fields.
+     Text selection is intentionally NOT disabled. */
+  html,
+  body {
+    cursor: default;
+  }
+
+  a,
+  button,
+  [role="button"],
+  summary,
+  select,
+  label[for],
+  input[type="checkbox"],
+  input[type="radio"],
+  input[type="file"],
+  input[type="submit"],
+  input[type="button"],
+  input[type="reset"],
+  .cursor-pointer {
+    cursor: pointer;
+  }
+
+  input:not([type]),
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="url"],
+  input[type="number"],
+  textarea,
+  [contenteditable="true"] {
+    cursor: text;
+  }
+
+  button:disabled,
+  [role="button"][aria-disabled="true"],
+  input:disabled,
+  select:disabled,
+  textarea:disabled {
+    cursor: not-allowed;
+  }
+}
+
+/* ── Motion polish utilities ────────────────────────────── */
+@layer utilities {
+  /* Premium bronze hover glow (CTAs, panels). */
+  .bronze-glow {
+    transition:
+      box-shadow 0.3s ease,
+      border-color 0.3s ease;
+  }
+  .bronze-glow:hover {
+    box-shadow:
+      0 0 24px rgba(166, 106, 50, 0.35),
+      0 0 4px rgba(166, 106, 50, 0.25);
+  }
+
+  /* Command-screen frame glow on hover (demo panel). */
+  .command-frame {
+    transition: box-shadow 0.4s ease;
+  }
+  .command-frame:hover {
+    box-shadow:
+      0 0 44px rgba(166, 106, 50, 0.22),
+      inset 0 0 30px rgba(12, 10, 8, 0.5);
+  }
+
+  /* Subtle breathing ember glow. */
+  .ember-soft-glow {
+    animation: ember-breathe 6s ease-in-out infinite;
+  }
+
+  /* Assurance-loop stage node (engraved glowing dot). */
+  .loop-node {
+    width: 0.85rem;
+    height: 0.85rem;
+    border-radius: 9999px;
+    background: radial-gradient(
+      circle,
+      var(--color-antique-gold) 0%,
+      var(--color-bronze) 55%,
+      rgba(166, 106, 50, 0.2) 100%
+    );
+    box-shadow:
+      0 0 0 4px rgba(166, 106, 50, 0.12),
+      0 0 14px rgba(166, 106, 50, 0.45);
+  }
+
+  /* Center connection pulse where the two engines meet. */
+  .engine-connect-pulse {
+    transform: translate(-50%, -50%);
+    animation: engine-connect-pulse 3.4s ease-in-out infinite;
+  }
+
+  /* Subtle per-route entry fade (app/template.tsx remounts this on every
+     navigation). Opacity-only by design: a transform here would break
+     position:sticky and GSAP/ScrollTrigger geometry. The reduced-motion rule
+     above neutralizes it for users who opt out. */
+  .route-fade-in {
+    animation: route-fade-in 0.18s ease-out both;
+  }
+}
+
+@keyframes ember-breathe {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes engine-connect-pulse {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(0.85);
+  }
+  50% {
+    opacity: 0.85;
+    transform: translate(-50%, -50%) scale(1.15);
+  }
+}
+
+@keyframes route-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ── Engine panels (Athena / Achilles) ── */
+/* Resting: a restrained "premium plate" — faint top edge light + subtle inner
+   shadow + a soft drop so the card lifts off the video. Hover/focus warms the
+   border, lifts the background, and adds a bronze (Athena) / ember (Achilles)
+   edge glow while keeping the inner-shadow plate feel. */
+.engine-panel {
+  box-shadow:
+    inset 0 1px 0 rgba(243, 232, 208, 0.05),
+    inset 0 0 38px rgba(0, 0, 0, 0.32),
+    0 16px 38px -26px rgba(0, 0, 0, 0.7);
+  transition:
+    box-shadow 0.45s ease,
+    border-color 0.3s ease,
+    background-color 0.3s ease;
+}
+.engine-panel[data-variant="athena"]:hover,
+.engine-panel[data-variant="athena"]:focus-within {
+  box-shadow:
+    inset 0 1px 0 rgba(243, 232, 208, 0.07),
+    inset 0 0 34px rgba(0, 0, 0, 0.3),
+    inset 0 0 26px rgba(166, 106, 50, 0.06),
+    0 0 30px -6px rgba(166, 106, 50, 0.32);
+}
+.engine-panel[data-variant="achilles"]:hover,
+.engine-panel[data-variant="achilles"]:focus-within {
+  box-shadow:
+    inset 0 1px 0 rgba(243, 232, 208, 0.07),
+    inset 0 0 34px rgba(0, 0, 0, 0.3),
+    inset 0 0 30px rgba(255, 157, 59, 0.08),
+    0 0 38px -6px rgba(255, 157, 59, 0.34);
+}
+
+/* ── Black Vault preloader ──────────────────────────────── */
+/* The loader is rendered in the initial HTML so it covers the hero on the very
+   first paint (no PNG flash). A pre-paint inline script (app/layout.tsx) adds
+   `vault-skip` to <html> for non-3D environments so they never paint it. */
+html.vault-skip .vault-overlay {
+  display: none !important;
+}
+
+@layer utilities {
+  .vault-spin-slow {
+    animation: vault-spin 40s linear infinite;
+  }
+  .vault-spin-med-rev {
+    animation: vault-spin 26s linear infinite reverse;
+  }
+  .vault-glow-pulse {
+    animation: vault-glow 3.6s ease-in-out infinite;
+  }
+  .vault-progress-track {
+    position: relative;
+    overflow: hidden;
+  }
+  .vault-progress-track::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 40%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(214, 161, 74, 0.9),
+      transparent
+    );
+    animation: vault-progress 1.8s ease-in-out infinite;
+  }
+}
+
+@keyframes vault-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes vault-glow {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes vault-progress {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(320%);
+  }
+}
