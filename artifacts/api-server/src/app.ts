@@ -3,6 +3,8 @@ import cors from "cors";
 import pinoHttp from "pino-http";
 import router from "./routes";
 import { logger } from "./lib/logger";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 const app: Express = express();
 
@@ -82,5 +84,18 @@ app.use(express.json({ limit: "32kb" }));
 app.use(express.urlencoded({ extended: true, limit: "32kb" }));
 
 app.use("/api", router);
+
+
+// Serve the exported website (Option A: one combined service).
+const here = path.dirname(fileURLToPath(import.meta.url));
+const siteDir = path.resolve(here, "../../mythos-website/dist/public");
+
+app.use(express.static(siteDir));
+
+// Anything that isn't an API route or a real file falls back to the
+// exported 404 page.
+app.use((req, res) => {
+  res.status(404).sendFile(path.join(siteDir, "404.html"));
+});
 
 export default app;
