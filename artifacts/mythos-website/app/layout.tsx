@@ -30,7 +30,7 @@ const dmSerifDisplay = DM_Serif_Display({
 const VAULT_PREPAINT_SCRIPT = `(function(){try{var m=window.matchMedia('(prefers-reduced-motion: reduce)').matches;var d=window.innerWidth>=1024;var g=false;try{var c=document.createElement('canvas');g=!!(c.getContext('webgl2')||c.getContext('webgl')||c.getContext('experimental-webgl'));}catch(e){}if(!(d&&!m&&g)){document.documentElement.classList.add('vault-skip');}}catch(e){document.documentElement.classList.add('vault-skip');}})();`;
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://mythosaisecurity.com"),
+  metadataBase: new URL("https://www.mythosaisecurity.com"),
   title: {
     template: "%s | Mythos AI Security",
     default: "Mythos AI Security | AI Deployment Assurance",

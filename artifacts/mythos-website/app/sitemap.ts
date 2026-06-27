@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { USE_CASE_DEEP_DIVES } from "@/data/useCaseDeepDives";
 
-const BASE_URL = "https://mythosaisecurity.com";
+const BASE_URL = "https://www.mythosaisecurity.com";
 
 // Public, indexable routes only. API routes live in the separate api-server
 // artifact and are intentionally excluded.
