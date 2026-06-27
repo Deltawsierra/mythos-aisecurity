@@ -95,6 +95,12 @@ app.use(express.static(siteDir));
 // Anything that isn't an API route or a real file falls back to the
 // exported 404 page.
 app.use((req, res) => {
+  // Unknown API path -> clean JSON, matching the app's { ok, error } shape.
+  if (req.path.startsWith("/api")) {
+    res.status(404).json({ ok: false, error: "Not found" });
+    return;
+  }
+  // Unknown page -> the exported 404 page.
   res.status(404).sendFile(path.join(siteDir, "404.html"));
 });
 
