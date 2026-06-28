@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mythosaisecurity.com/sitemap.xml
+Sitemap: https://www.mythosaisecurity.com/sitemap.xml
