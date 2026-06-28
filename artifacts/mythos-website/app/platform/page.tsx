@@ -163,7 +163,7 @@ export default function PlatformPage() {
             <p className={BODY}>
               Enterprise AI now touches internal data, routes requests through outside providers,
               retrieves context, calls tools, and triggers workflows. A traditional security
-              review looks at parts in isolation — it rarely shows how those pieces behave
+              review looks at parts in isolation, it rarely shows how those pieces behave
               together at the moment of deployment.
             </p>
           </ScrollReveal>

@@ -92,7 +92,7 @@ export default function UseCasesPage() {
               Explore where AI risk shows up.
             </h2>
             <p className={BODY}>
-              Filter by deployment type to see concrete scenarios — what the
+              Filter by deployment type to see concrete scenarios. What the
               system does, where it can go wrong, which Mythos project applies,
               and what an assessment produces. Open any scenario to review the
               detail.
@@ -149,7 +149,7 @@ export default function UseCasesPage() {
             <div className="mt-12 flex flex-col gap-5 border-t border-bronze/15 pt-8 sm:flex-row sm:items-center sm:justify-between">
               <p className="max-w-xl text-sm leading-relaxed text-muted-stone">
                 Want to see what a finished deliverable looks like? Walk through
-                an illustrative 12-page assurance evidence pack — fictional data,
+                an illustrative 12-page assurance evidence pack: fictional data,
                 for demonstration only.
               </p>
               <Button

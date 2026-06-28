@@ -33,7 +33,7 @@ const PROBLEMS = [
   {
     title: "Executives need proof, not assurances.",
     description:
-      "Security, compliance, and audit teams need evidence a system was validated — not a claim that someone believes it is fine.",
+      "Security, compliance, and audit teams need evidence a system was validated, not a claim that someone believes it is fine.",
   },
 ];
 
@@ -65,7 +65,7 @@ export default function HomePage() {
           sectionId="hero"
           badge="AI Deployment Assurance"
           headline="AI Deployment Assurance for Systems That Cannot Fail."
-          subline="Mythos validates high-risk AI workflows across data, routing, agents, controls, and evidence — before deployment and as systems change."
+          subline="Mythos validates high-risk AI workflows across data, routing, agents, controls, and evidence: before deployment and as systems change."
           backgroundSlot={<HeroBackgroundVideo />}
           visual={<HeroCrestStage fallbackSrc="/images/mythos-crest-main.png" />}
           minHeight="min-h-[76vh]"
@@ -86,7 +86,7 @@ export default function HomePage() {
               AI is shipping faster than teams can validate it.
             </h2>
             <p className="text-base leading-relaxed text-muted-stone">
-              Enterprise AI is becoming an execution layer — it reads data, routes requests,
+              Enterprise AI is becoming an execution layer. It reads data, routes requests,
               calls tools, and acts. Most teams put these systems into production before they
               can prove how they behave. Mythos closes the gap between how fast AI ships and
               how well it is validated.
@@ -164,7 +164,7 @@ export default function HomePage() {
                 src="/video/assurance-forge-loop.mp4"
                 poster="/images/assurance-forge-poster.png"
                 label="Assurance Forge · Mythos Chamber Preview"
-                description="Cinematic preview of the Mythos assurance forge — Athena and Achilles operating as a paired validation system inside the Mythos chamber."
+                description="Cinematic preview of the Mythos assurance forge: Athena and Achilles operating as a paired validation system inside the Mythos chamber."
                 controls={false}
                 autoPlay
               />
@@ -220,7 +220,7 @@ export default function HomePage() {
                 Defining the AI Deployment Assurance category.
               </h2>
               <p className="text-base leading-relaxed text-muted-stone max-w-lg">
-                AI agents are gaining access to data, tools, workflows, and approvals — and
+                AI agents are gaining access to data, tools, workflows, and approvals. Meaning
                 organizations need independent proof those systems are safe to operate. Mythos
                 turns that need into a repeatable model: scoped assessments that grow into
                 continuous assurance.

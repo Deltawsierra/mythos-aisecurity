@@ -20,7 +20,7 @@ import { CTA } from "@/lib/constants";
 export const metadata: Metadata = {
   title: "Example Report",
   description:
-    "See an illustrative Mythos AI Deployment Assurance Evidence Pack — a 12-page sample deliverable covering scope, methodology, findings, scenario testing, remediation, and a release readiness decision. Fictional data, for demonstration only.",
+    "See an illustrative Mythos AI Deployment Assurance Evidence Pack: a 12-page sample deliverable covering scope, methodology, findings, scenario testing, remediation, and a release readiness decision. Fictional data, for demonstration only.",
 };
 
 const EYEBROW =
@@ -84,7 +84,7 @@ export default function ExampleReportPage() {
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted-stone sm:text-lg">
               This is an illustrative, 12-page AI Deployment Assurance Evidence
-              Pack — the kind of report a Mythos assessment produces. Walk through
+              Pack. The kind of report a Mythos assessment produces. Walk through
               the scope, methodology, findings, scenario testing, remediation, and
               the final release decision, each explained in plain language.
             </p>
@@ -243,7 +243,7 @@ export default function ExampleReportPage() {
             </h2>
             <p className={`${BODY} mx-auto max-w-xl`}>
               A scoped Mythos assessment produces a report like this for your
-              actual AI system — mapped, tested, and reported against your
+              actual AI system; mapped, tested, and reported against your
               deployment, with a clear release recommendation at the end.
             </p>
             <div className="mt-9 flex flex-wrap justify-center gap-4">

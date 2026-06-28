@@ -55,7 +55,7 @@ export default function CareersPage() {
                     </p>
                     <p className="text-sm leading-relaxed text-muted-stone">
                       Your application is emailed directly to the Mythos hiring
-                      team — not stored on this website.
+                      team, not stored on this website.
                     </p>
                   </li>
                   <li className="border-l-2 border-ivory/15 pl-5">
@@ -64,7 +64,7 @@ export default function CareersPage() {
                     </p>
                     <p className="text-sm leading-relaxed text-muted-stone">
                       Research, engineering, security, product, operations, and
-                      early-career — there is a path for strong people.
+                      early-career, there is a path for strong people.
                     </p>
                   </li>
                   <li className="border-l-2 border-ivory/15 pl-5">

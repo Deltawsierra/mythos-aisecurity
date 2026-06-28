@@ -152,7 +152,7 @@ const ASSESSMENTS = [
   {
     title: "Agent Safety Assessment",
     description:
-      "For copilots, agents, and tool-using systems — focused on action boundaries and tool behavior under realistic conditions.",
+      "For copilots, agents, and tool-using systems; focused on action boundaries and tool behavior under realistic conditions.",
   },
   {
     title: "AI Data Exposure Assessment",

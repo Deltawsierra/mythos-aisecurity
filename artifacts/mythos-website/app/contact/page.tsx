@@ -28,7 +28,7 @@ const STEPS = [
   {
     title: "The right conversation path is selected.",
     description:
-      "Assessment, demo, investor, partnership, or general — routed to the right team.",
+      "Assessment, demo, investor, partnership, or general; routed to the right team.",
   },
   {
     title: "Scope, goals, and constraints are clarified.",
