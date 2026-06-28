@@ -37,17 +37,6 @@ const PROBLEMS = [
   },
 ];
 
-const CAPABILITIES = [
-  "AI Context Map",
-  "AI Route Map",
-  "Agent Behavior Test",
-  "Goal Hijack Test",
-  "Permission Boundary Test",
-  "RAG Leakage Test",
-  "Evidence Pack",
-  "Continuous AI Watch",
-];
-
 const MARKETS = [
   { title: "AI-Heavy SaaS", description: "Products shipping AI features and agents to customers at speed." },
   { title: "Finance & Insurance", description: "Regulated decisioning, claims, and fraud workflows under audit." },
@@ -65,7 +54,7 @@ export default function HomePage() {
           sectionId="hero"
           badge="AI Deployment Assurance"
           headline="AI Deployment Assurance for Systems That Cannot Fail."
-          subline="Mythos validates high-risk AI workflows across data, routing, agents, controls, and evidence: before deployment and as systems change."
+          subline="Mythos gives validation to AI workflows across data, routing, agents, controls, and evidence: before deployment, during testing, and as systems change."
           backgroundSlot={<HeroBackgroundVideo />}
           visual={<HeroCrestStage fallbackSrc="/images/mythos-crest-main.png" />}
           minHeight="min-h-[76vh]"
@@ -107,31 +96,6 @@ export default function HomePage() {
 
       {/* 3 · Athena + Achilles ────────────────────────────── */}
       <PlatformPairSection />
-
-      {/* 4 · Platform Capabilities ───────────────────────── */}
-      <section
-        data-section="capabilities"
-        className="py-20 lg:py-28 border-b border-ivory/5 bg-charcoal"
-      >
-        <Container>
-          <ScrollReveal className="mb-10">
-            <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.3em] text-bronze">
-              Capabilities
-            </p>
-            <h2 className="text-3xl font-normal leading-tight text-ivory lg:text-4xl">
-              From what AI can see to whether it stays safe.
-            </h2>
-          </ScrollReveal>
-          <StaggerReveal
-            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3"
-            stagger={0.06}
-          >
-            {CAPABILITIES.map((cap) => (
-              <FeatureCard key={cap} variant="capability" title={cap} />
-            ))}
-          </StaggerReveal>
-        </Container>
-      </section>
 
       {/* Why Mythos exists ────────────────────────────────── */}
       <WhyMythos />
@@ -202,52 +166,6 @@ export default function HomePage() {
               View Solutions
             </Button>
           </ScrollReveal>
-        </Container>
-      </section>
-
-      {/* 7 · Investor / Partner Preview ───────────────────── */}
-      <section
-        data-section="investors"
-        className="py-20 lg:py-28 border-b border-ivory/5 bg-charcoal"
-      >
-        <Container>
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            <ScrollReveal>
-              <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.3em] text-bronze">
-                Investors &amp; Partners
-              </p>
-              <h2 className="mb-5 text-3xl font-normal leading-tight text-ivory lg:text-4xl">
-                Defining the AI Deployment Assurance category.
-              </h2>
-              <p className="text-base leading-relaxed text-muted-stone max-w-lg">
-                AI agents are gaining access to data, tools, workflows, and approvals. Meaning
-                organizations need independent proof those systems are safe to operate. Mythos
-                turns that need into a repeatable model: scoped assessments that grow into
-                continuous assurance.
-              </p>
-            </ScrollReveal>
-            <StaggerReveal className="flex flex-col gap-4" stagger={0.12}>
-              <div className="border border-ivory/8 bg-graphite p-6">
-                <p className="mb-3 text-sm font-semibold text-ivory">Investor materials</p>
-                <p className="mb-5 text-sm text-muted-stone leading-relaxed">
-                  Request the Mythos investor overview for strategic context, market position,
-                  and platform vision.
-                </p>
-                <Button href="/investors" variant="primary" size="md">
-                  Request Investor Materials
-                </Button>
-              </div>
-              <div className="border border-ivory/8 bg-graphite p-6">
-                <p className="mb-3 text-sm font-semibold text-ivory">Partner with Mythos</p>
-                <p className="mb-5 text-sm text-muted-stone leading-relaxed">
-                  Strategic partnership, channel relationships, and technology integrations.
-                </p>
-                <Button href="/contact" variant="secondary" size="md">
-                  Contact Mythos
-                </Button>
-              </div>
-            </StaggerReveal>
-          </div>
         </Container>
       </section>
 
