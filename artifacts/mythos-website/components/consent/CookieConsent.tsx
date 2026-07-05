@@ -234,7 +234,7 @@ export function CookieConsent() {
               <ConsentToggle
                 id="consent-analytics"
                 title="Analytics"
-                description="Help us understand how the site is used so we can improve it. No analytics scripts load without your consent."
+                description="Help us understand how the site is used so we can improve it. No analytics cookies are set without your consent."
                 checked={draft.analytics}
                 onChange={(next) =>
                   setDraft((d) => ({ ...d, analytics: next }))

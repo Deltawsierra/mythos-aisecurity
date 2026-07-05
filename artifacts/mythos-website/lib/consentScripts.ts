@@ -1,25 +1,36 @@
 /**
- * Consent-gated third-party script scaffold.
+ * Consent-gated third-party integration for Google Analytics 4 (Consent Mode v2)
+ * and the LinkedIn Insight Tag.
  *
- * Nothing third-party loads until the visitor opts in to the relevant category.
- * No real measurement IDs are configured yet, so every loader below is a no-op
- * until you fill in the IDs. When you do, the consent UI already calls these on
- * every decision, so analytics/marketing will load only after opt-in.
+ * GA4 is loaded on every page from the root layout (see app/layout.tsx), but it
+ * starts with every consent signal defaulted to "denied". Under Consent Mode,
+ * that means GA sets no analytics cookies and sends only cookieless, aggregated
+ * pings until the visitor opts in. The functions below flip the GA consent
+ * signals via gtag('consent','update',...) as the visitor makes choices in the
+ * cookie UI — the tag itself is already present, so nothing needs to be injected
+ * for analytics.
  *
- * To go live:
- *   1. Set GA_MEASUREMENT_ID (e.g. "G-XXXXXXXXXX") to enable GA4 (analytics).
- *   2. Set LINKEDIN_PARTNER_ID (e.g. "1234567") to enable the LinkedIn Insight
- *      Tag (marketing).
- *   3. Confirm both are listed in /privacy and the cookie settings copy.
+ * The LinkedIn Insight Tag (marketing) is still fully load-gated: nothing loads
+ * until the visitor opts in to marketing, and only when a partner ID is set.
+ *
+ * To finish enabling LinkedIn:
+ *   1. Set LINKEDIN_PARTNER_ID (e.g. "1234567").
+ *   2. Confirm it is listed in /privacy and the cookie settings copy.
  */
 
-const GA_MEASUREMENT_ID = "G-NZ4W73J9MG";
+export const GA_MEASUREMENT_ID = "G-NZ4W73J9MG";
 const LINKEDIN_PARTNER_ID = "";
 
 const isDev = process.env.NODE_ENV !== "production";
 
-let analyticsLoaded = false;
 let marketingLoaded = false;
+
+/** The global gtag defined by the Consent Mode bootstrap in app/layout.tsx. */
+function getGtag(): ((...args: unknown[]) => void) | null {
+  if (typeof window === "undefined") return null;
+  const w = window as unknown as { gtag?: (...args: unknown[]) => void };
+  return typeof w.gtag === "function" ? w.gtag : null;
+}
 
 function injectScript(src: string, id: string, attrs: Record<string, string> = {}) {
   if (typeof document === "undefined") return;
@@ -33,46 +44,43 @@ function injectScript(src: string, id: string, attrs: Record<string, string> = {
 }
 
 export function enableAnalytics(): void {
-  if (!GA_MEASUREMENT_ID) {
+  if (!GA_MEASUREMENT_ID) return;
+  const gtag = getGtag();
+  if (!gtag) {
     if (isDev) {
       console.info(
-        "[consent] analytics granted — no GA_MEASUREMENT_ID configured; nothing loaded.",
+        "[consent] analytics granted before gtag was ready; it will apply on the next load.",
       );
     }
     return;
   }
-  if (analyticsLoaded) return;
-  analyticsLoaded = true;
-
-  injectScript(
-    `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`,
-    "ga4-loader",
-  );
-  const w = window as unknown as {
-    dataLayer?: unknown[];
-    gtag?: (...args: unknown[]) => void;
-    [key: string]: unknown;
-  };
-  w.dataLayer = w.dataLayer || [];
-  w.gtag = function gtag(...args: unknown[]) {
-    w.dataLayer!.push(args);
-  };
-  w.gtag("js", new Date());
-  // GA4 does not log or store IP addresses, so the legacy Universal Analytics
-  // `anonymize_ip` flag is a no-op here and is intentionally omitted to match
-  // the wording in /privacy.
-  w.gtag("config", GA_MEASUREMENT_ID);
+  // Upgrade GA from the denied default to full analytics (cookies + user-level
+  // measurement). GA4 does not log or store IP addresses, so no anonymize_ip
+  // flag is needed.
+  gtag("consent", "update", { analytics_storage: "granted" });
 }
 
 export function disableAnalytics(): void {
   if (!GA_MEASUREMENT_ID) return;
-  // Honored by gtag.js even after it has loaded.
-  (window as unknown as Record<string, unknown>)[
-    `ga-disable-${GA_MEASUREMENT_ID}`
-  ] = true;
+  const gtag = getGtag();
+  if (!gtag) return;
+  // Return GA to the cookieless, consent-denied state. Honored by gtag.js even
+  // after it has loaded.
+  gtag("consent", "update", { analytics_storage: "denied" });
 }
 
 export function enableMarketing(): void {
+  // Track the marketing choice through Google's advertising consent signals too,
+  // so Consent Mode stays accurate even though we do not run Google Ads today.
+  const gtag = getGtag();
+  if (gtag) {
+    gtag("consent", "update", {
+      ad_storage: "granted",
+      ad_user_data: "granted",
+      ad_personalization: "granted",
+    });
+  }
+
   if (!LINKEDIN_PARTNER_ID) {
     if (isDev) {
       console.info(
@@ -95,6 +103,14 @@ export function enableMarketing(): void {
 }
 
 export function disableMarketing(): void {
+  const gtag = getGtag();
+  if (gtag) {
+    gtag("consent", "update", {
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied",
+    });
+  }
   // The LinkedIn tag has no documented runtime kill switch; gating load is the
   // control. If it was loaded this session, a full reload clears it.
 }

@@ -212,8 +212,13 @@ export default function PrivacyPage() {
             ]}
           />
           <p className={`${BODY} mt-4`}>
-            Analytics cookies are optional and are not intended to load unless you
-            consent through our cookie controls.
+            Our Google Analytics tag loads on all pages, but it runs in a
+            consent-aware mode. Until you opt in through our cookie controls
+            &mdash; and if you decline, or your browser sends a Global Privacy
+            Control signal &mdash; it does not set analytics cookies and does not
+            collect information that identifies you; Google may still receive
+            limited anonymous, aggregated measurement signals that do not use
+            cookies. Analytics cookies are set only after you consent.
           </p>
           <p className={`${BODY} mt-3`}>
             Google states that Google Analytics 4 does not log or store IP

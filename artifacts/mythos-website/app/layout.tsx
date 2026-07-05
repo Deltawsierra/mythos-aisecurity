@@ -3,6 +3,7 @@ import { Inter, DM_Serif_Display } from "next/font/google";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { CookieConsent } from "@/components/consent/CookieConsent";
+import { GA_MEASUREMENT_ID } from "@/lib/consentScripts";
 import "./globals.css";
 
 const inter = Inter({
@@ -28,6 +29,17 @@ const dmSerifDisplay = DM_Serif_Display({
  * HeroPreloadProvider / lib/three.ts.
  */
 const VAULT_PREPAINT_SCRIPT = `(function(){try{var m=window.matchMedia('(prefers-reduced-motion: reduce)').matches;var d=window.innerWidth>=1024;var g=false;try{var c=document.createElement('canvas');g=!!(c.getContext('webgl2')||c.getContext('webgl')||c.getContext('experimental-webgl'));}catch(e){}if(!(d&&!m&&g)){document.documentElement.classList.add('vault-skip');}}catch(e){document.documentElement.classList.add('vault-skip');}})();`;
+
+
+/**
+ * Google Analytics 4 bootstrap with Consent Mode v2. Runs on every page load and
+ * loads the gtag.js tag immediately, but every consent signal defaults to
+ * "denied": GA sets no cookies and sends only cookieless, aggregated pings until
+ * the visitor opts in. CookieConsent then flips the signals with
+ * gtag('consent','update',...). Loading the tag up front (rather than only after
+ * opt-in) is what lets Google verify the tag and gives cookieless traffic data.
+ */
+const GA_BOOTSTRAP_SCRIPT = `(function(){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});gtag('js',new Date());gtag('config','${GA_MEASUREMENT_ID}');var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}';document.head.appendChild(s);})();`;
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.mythosaisecurity.com"),
@@ -72,6 +84,10 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body>
+                {/* Google Analytics 4 (Consent Mode v2). Loads on every page with all
+            consent signals denied by default; CookieConsent upgrades them on
+            opt-in. See GA_BOOTSTRAP_SCRIPT above. */}
+        <script dangerouslySetInnerHTML={{ __html: GA_BOOTSTRAP_SCRIPT }} />
         {/* Pre-paint guard: runs before the rest of <body> paints, so the vault
             loader never flashes for non-3D visitors. */}
         <script dangerouslySetInnerHTML={{ __html: VAULT_PREPAINT_SCRIPT }} />
