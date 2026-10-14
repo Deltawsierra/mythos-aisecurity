@@ -2,6 +2,7 @@ import { UNVERIFIED_CLAIMS } from "@/content/claims";
 import { PLATFORM_PAGES, type ScaffoldPage } from "@/content/platform";
 import { SOLUTION_PAGES } from "@/content/solutions";
 import { RESOURCE_PAGES } from "@/content/resources";
+import { HOME_PENDING_SECTIONS } from "@/content/home";
 
 /**
  * Everything that must be resolved before site-v2 merges to main: claims not
@@ -19,5 +20,6 @@ export function releaseBlockers(): string[] {
   return [
     ...UNVERIFIED_CLAIMS.map((claim) => `Unverified claim ${claim.id}: "${claim.text}"`),
     ...scaffolds.map((page) => `Scaffold page ${page.href}`),
+    ...HOME_PENDING_SECTIONS.map((section) => `Homepage section not built: ${section}`),
   ];
 }

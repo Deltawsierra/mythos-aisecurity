@@ -77,12 +77,32 @@ export type LifecycleStageId =
   | "prove"
   | "revalidate";
 
-export const LIFECYCLE: { id: LifecycleStageId; name: string }[] = [
-  { id: "discover", name: "Discover" },
-  { id: "understand", name: "Understand" },
-  { id: "test", name: "Test" },
-  { id: "prove", name: "Prove" },
-  { id: "revalidate", name: "Revalidate" },
+export const LIFECYCLE: { id: LifecycleStageId; name: string; summary: string }[] = [
+  {
+    id: "discover",
+    name: "Discover",
+    summary: "Map what exists — AI systems, routes, identities, data and the tools they can reach.",
+  },
+  {
+    id: "understand",
+    name: "Understand",
+    summary: "Establish what each system is authorized to do, and what evidence supports it.",
+  },
+  {
+    id: "test",
+    name: "Test",
+    summary: "Challenge behavior and authority: can the AI cause an effect it was not authorized to cause?",
+  },
+  {
+    id: "prove",
+    name: "Prove",
+    summary: "Turn results into claims, receipts and a deployment decision a human can verify.",
+  },
+  {
+    id: "revalidate",
+    name: "Revalidate",
+    summary: "When the system changes, retest what the change invalidated — and keep the evidence current.",
+  },
 ];
 
 export type EvidenceStateId =

@@ -64,11 +64,39 @@ MYTHOS_RELEASE_GATE=1 pnpm --filter @workspace/mythos-website build
 The build fails and lists every unverified claim and remaining scaffold page
 (`content/release.ts`). Normal builds are unaffected.
 
+## Phase 2 — homepage prototype (14 Oct 2026)
+
+Hero → dawn blend → Challenge → dusk blend → Assurance Lifecycle → final CTA
+(`app/page.tsx`, `components/home/*`, copy in `content/home.ts`).
+
+- **Hero:** Motion V1 temple loop at 1080p behind a column of shade; the poster
+  paints first and the headline animates in with CSS only. The five buyer
+  questions run along the bottom as the bridge into the Challenge.
+- **Challenge:** the cracked-marble sculpture under a bone wash on the left;
+  risk cards light a gold crack along their edge on hover.
+- **Lifecycle:** the page's one pinned sequence. Native scroll moves a gold
+  trace along the Batch 5 connector; medallions are inlined (`lib/inlineSvg.ts`)
+  so the active one can turn and its inner ring spin. Each stage is a button
+  that scrolls to its point. Phones get a vertical timeline.
+- **Motion:** `components/home/HomeMotion.tsx` reads `data-parallax`,
+  `data-drift`, `data-depth` and `data-reveal(-group)` from server-rendered
+  markup, plus one warm cursor light on desktop. Videos use
+  `components/media/LoopVideo.tsx` (poster first, tablet+ only, paused
+  offscreen, alpha overlays skipped on Safari).
+- **Reduced motion:** no videos, no pinning, no parallax; the lifecycle shows
+  all five stages with their summaries.
+- **Seams:** `SectionBlend` masks the band (not the art) and samples its colour
+  path on a smoothstep curve, so no edge shows where sections meet.
+- Retired with the old homepage: the 3D crest, `PageHero`, `PlatformPairSection`,
+  `WhyMythos`, the vault preloader shim and their orphaned helpers.
+
+Homepage sections still to build (tracked by the release gate via
+`HOME_PENDING_SECTIONS`): platform architecture, SPINE + assurance teams, What
+Mythos Produces, Industries.
+
 ## Not yet done
 
 - The old `/use-cases#what-mythos-produces` and `#how-engagement-starts` anchors
   should forward to `/outputs` and `/engagement` (Phase 9 redirects).
-- `components/motion/HeroPreloadProvider.tsx` is a shim for the legacy hero;
-  delete it when the Phase 2 homepage replaces HeroMotion / HeroCrest3D.
 - Existing pages (Home, Platform, Solutions, Pricing, Company, Investors,
   Careers, Trust, Contact, Use Cases, Example Report) still carry v1 copy.

@@ -18,9 +18,25 @@ export interface Claim {
   status: ClaimStatus;
   /** Where the wording came from, for the reviewer. */
   source: string;
+  /** Pages whose copy relies on this claim. */
+  usedIn?: string[];
 }
 
 export const CLAIMS: Claim[] = [
+  {
+    id: "economic-exposure.quantifies",
+    text: "quantifies the business exposure",
+    status: "unverified",
+    source: "Website blueprint, Oct 2026 — homepage hero body",
+    usedIn: ["/ (hero, lifecycle executive layer)"],
+  },
+  {
+    id: "spine.keeps-evidence-current",
+    text: "keeps the evidence current as the system changes",
+    status: "unverified",
+    source: "Website blueprint, Oct 2026 — homepage hero body",
+    usedIn: ["/ (hero, lifecycle Revalidate stage, final CTA)"],
+  },
   {
     id: "athena.scanner-count",
     text: "27 scanners",
