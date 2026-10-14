@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Hermes emblem">
+<defs>
+  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#E7C98B"/>
+    <stop offset="55%" stop-color="#C9A15B"/>
+    <stop offset="100%" stop-color="#7B592A"/>
+  </linearGradient>
+</defs>
+<rect width="512" height="512" fill="none"/>
+
+<circle cx="256" cy="256" r="194" fill="#111B24" stroke="url(#gold)" stroke-width="14"/>
+<circle cx="256" cy="256" r="160" fill="none" stroke="#806334" stroke-width="4"/>
+<path d="M236 101 H276 V365 H236 Z" fill="url(#gold)"/>
+<circle cx="256" cy="93" r="25" fill="none" stroke="url(#gold)" stroke-width="10"/>
+<path d="M256 172 C214 150 185 129 149 95 C145 133 164 169 207 195
+         C167 198 134 214 103 243 C146 250 186 239 228 211 Z"
+      fill="url(#gold)" stroke="#6A4A21" stroke-width="4"/>
+<path d="M256 172 C298 150 327 129 363 95 C367 133 348 169 305 195
+         C345 198 378 214 409 243 C366 250 326 239 284 211 Z"
+      fill="url(#gold)" stroke="#6A4A21" stroke-width="4"/>
+<path d="M234 233 C196 247 192 280 224 294 C255 307 278 320 275 346
+         C273 363 262 373 247 379" fill="none" stroke="#E6C582" stroke-width="9" stroke-linecap="round"/>
+<path d="M278 229 C316 243 320 276 288 290 C257 303 234 316 237 342
+         C239 359 250 369 265 375" fill="none" stroke="#B88339" stroke-width="8" stroke-linecap="round"/>
+
+</svg>

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Revalidate status icon">
+<defs>
+  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#E7C784"/>
+    <stop offset="50%" stop-color="#B98541"/>
+    <stop offset="100%" stop-color="#6F4D22"/>
+  </linearGradient>
+  <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+    <feGaussianBlur stdDeviation="5" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+</defs>
+<rect width="512" height="512" fill="none"/>
+
+<g id="status-revalidate" data-motion-part="status-root">
+  <circle cx="256" cy="256" r="196" fill="#101214" stroke="url(#gold)" stroke-width="12"/>
+  <circle cx="256" cy="256" r="160" fill="#171B1E" stroke="#6BA1D7" stroke-width="7" opacity=".92"/>
+  <circle id="status-revalidate-ring" data-motion-part="status-ring" cx="256" cy="256" r="134"
+          fill="none" stroke="#6BA1D7" stroke-width="4" stroke-dasharray="8 12" opacity=".6"/>
+  
+<circle cx="256" cy="256" r="84" fill="#162027" stroke="#6BA1D7" stroke-width="12"/>
+<path id="revalidate-arcs" data-motion-part="status-symbol"
+      d="M205 242 C212 209 236 190 265 190 C292 190 315 205 328 226
+         M307 204 L332 228 L302 236
+         M307 270 C300 303 276 322 247 322 C220 322 197 307 184 286
+         M205 308 L180 284 L210 276"
+      fill="none" stroke="#EFE6D4" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+
+</g>
+</svg>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" role="img" aria-label="Mythos Greek key border">
+<defs>
+  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#E8C985"/>
+    <stop offset="50%" stop-color="#B98541"/>
+    <stop offset="100%" stop-color="#6F4D22"/>
+  </linearGradient>
+</defs>
+
+<rect x="26" y="26" width="748" height="468" rx="20" fill="none" stroke="url(#gold)" stroke-width="6"/>
+<g id="greek-key-border" data-motion-part="ornament" fill="none" stroke="#8A6330" stroke-width="8">
+  <path d="M56 92 H150 V60 H208 V118 H266 V60 H324 V118 H382"/>
+  <path d="M418 118 H476 V60 H534 V118 H592 V60 H650 V92 H744"/>
+  <path d="M56 428 H150 V460 H208 V402 H266 V460 H324 V402 H382"/>
+  <path d="M418 402 H476 V460 H534 V402 H592 V460 H650 V428 H744"/>
+</g>
+<g fill="url(#gold)">
+  <path d="M44 44 h26 v26 h-26z"/><path d="M730 44 h26 v26 h-26z"/>
+  <path d="M44 450 h26 v26 h-26z"/><path d="M730 450 h26 v26 h-26z"/>
+</g>
+
+</svg>

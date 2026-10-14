@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 700" role="img" aria-label="White Team assurance path">
+<defs>
+  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#E7C784"/>
+    <stop offset="50%" stop-color="#B98541"/>
+    <stop offset="100%" stop-color="#6F4D22"/>
+  </linearGradient>
+  <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+    <feGaussianBlur stdDeviation="10" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+</defs>
+<rect width="100%" height="100%" fill="none"/>
+
+<g id="white-path" data-motion-part="team-path" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path id="white-path-base" d="M90 410 C220 410, 315 435, 440 410 C600 380, 690 250, 850 255 C1020 260, 1110 390, 1265 398 C1380 404, 1450 410, 1510 410" stroke="#5B4A34" stroke-width="14" opacity=".42"/>
+  <path id="white-path-active" d="M90 410 C220 410, 315 435, 440 410 C600 380, 690 250, 850 255 C1020 260, 1110 390, 1265 398 C1380 404, 1450 410, 1510 410" stroke="#ECE4D3" stroke-width="8" opacity=".95" filter="url(#softGlow)"/>
+  <path id="white-path-highlight" d="M90 410 C220 410, 315 435, 440 410 C600 380, 690 250, 850 255 C1020 260, 1110 390, 1265 398 C1380 404, 1450 410, 1510 410" stroke="url(#gold)" stroke-width="3" opacity=".85"/>
+</g>
+
+    <g fill="#ECE4D3" stroke="url(#gold)" stroke-width="5">
+      <circle cx="90" cy="410" r="20"/>
+      <circle cx="1510" cy="410" r="20"/>
+    </g>
+    
+</svg>

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="Evidence Pack">
+<defs>
+  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#E8C985"/>
+    <stop offset="52%" stop-color="#B98541"/>
+    <stop offset="100%" stop-color="#6F4D22"/>
+  </linearGradient>
+  <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
+    <feGaussianBlur stdDeviation="5" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+</defs>
+<rect width="100%" height="100%" fill="none"/>
+
+<g id="evidence-pack" data-motion-part="evidence-pack">
+  <rect x="160" y="210" width="440" height="540" rx="28" fill="#121618" stroke="#7E643B" stroke-width="12" transform="rotate(-7 380 480)"/>
+  <rect x="250" y="155" width="500" height="580" rx="30" fill="#181D21" stroke="url(#gold)" stroke-width="16"/>
+  <path d="M330 260 H660 M330 325 H660 M330 390 H580" stroke="#EFE6D4" stroke-width="15" stroke-linecap="round"/>
+  <g fill="none" stroke="#6B9ED1" stroke-width="9">
+    <circle cx="390" cy="520" r="46"/><circle cx="510" cy="520" r="46"/><circle cx="630" cy="520" r="46"/>
+    <line x1="436" y1="520" x2="464" y2="520"/><line x1="556" y1="520" x2="584" y2="520"/>
+  </g>
+  <path d="M378 650 L420 690 L502 604" fill="none" stroke="#5DA774" stroke-width="22"
+        stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="690" cy="678" r="84" fill="#101214" stroke="url(#gold)" stroke-width="12"/>
+  <path d="M650 679 L678 707 L734 644" fill="none" stroke="#5DA774" stroke-width="20"
+        stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+
+</svg>

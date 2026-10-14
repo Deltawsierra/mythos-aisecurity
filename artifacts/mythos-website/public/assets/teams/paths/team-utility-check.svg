@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="Utility retained assurance icon">
+<defs>
+  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#E7C784"/>
+    <stop offset="50%" stop-color="#B98541"/>
+    <stop offset="100%" stop-color="#6F4D22"/>
+  </linearGradient>
+  <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+    <feGaussianBlur stdDeviation="10" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+</defs>
+<rect width="100%" height="100%" fill="none"/>
+
+<g id="utility-check" data-motion-part="utility-check" transform="translate(512 512)">
+  <circle r="330" fill="#0D2016" stroke="url(#gold)" stroke-width="22"/>
+  <circle r="268" fill="none" stroke="#4E9E6A" stroke-width="14"/>
+  <path d="M0 212 V-80" stroke="url(#gold)" stroke-width="30" stroke-linecap="round"/>
+  <path d="M0 -35 C-54 -102 -121 -130 -195 -118 C-168 -26 -105 22 0 15"
+        fill="none" stroke="#4E9E6A" stroke-width="26" stroke-linecap="round"/>
+  <path d="M0 -96 C58 -166 130 -194 204 -182 C176 -88 110 -40 0 -47"
+        fill="none" stroke="#78C894" stroke-width="26" stroke-linecap="round"/>
+  <path d="M-125 180 L-45 260 L136 58" fill="none" stroke="#E9E3D7" stroke-width="36" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+
+</svg>

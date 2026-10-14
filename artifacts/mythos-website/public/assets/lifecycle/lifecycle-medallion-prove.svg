@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Prove assurance lifecycle medallion">
+<defs>
+  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#E2C17E"/>
+    <stop offset="45%" stop-color="#B98A45"/>
+    <stop offset="100%" stop-color="#73501F"/>
+  </linearGradient>
+  <radialGradient id="bronzeFace" cx="50%" cy="42%" r="62%">
+    <stop offset="0%" stop-color="#3A3025"/>
+    <stop offset="65%" stop-color="#1B1815"/>
+    <stop offset="100%" stop-color="#0B0B0C"/>
+  </radialGradient>
+  <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+    <feGaussianBlur stdDeviation="4" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+    <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#000000" flood-opacity=".45"/>
+  </filter>
+</defs>
+
+<rect width="512" height="512" fill="none"/>
+<g id="medallion" data-motion-part="medallion" filter="url(#shadow)">
+  <circle id="outer-ring" data-motion-part="outer-ring" cx="256" cy="256" r="206" fill="#0B0C0D" stroke="url(#gold)" stroke-width="12"/>
+  <circle cx="256" cy="256" r="187" fill="none" stroke="#5B4525" stroke-width="3"/>
+  <circle cx="256" cy="256" r="165" fill="url(#bronzeFace)" stroke="#9B7338" stroke-width="5"/>
+  <circle id="inner-ring" data-motion-part="inner-ring" cx="256" cy="256" r="137" fill="none" stroke="#70542B" stroke-width="3" stroke-dasharray="4 9"/>
+  <g id="relief" data-motion-part="relief">
+    
+<rect x="176" y="150" width="160" height="214" rx="14" fill="none" stroke="url(#gold)" stroke-width="9"/>
+<path d="M202 197 H310 M202 229 H310 M202 261 H284" stroke="#D9B66E" stroke-width="5" stroke-linecap="round"/>
+<circle cx="256" cy="314" r="34" fill="#1A1713" stroke="url(#gold)" stroke-width="7"/>
+<path d="M238 314 L250 326 L278 296" fill="none" stroke="#E5C884" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M256 348 L242 386 L256 378 L270 386 Z" fill="url(#gold)"/>
+
+  </g>
+  <g fill="url(#gold)">
+    <path d="M256 26 l10 26 26 10-26 10-10 26-10-26-26-10 26-10z"/>
+    <path d="M256 414 l10 26 26 10-26 10-10 26-10-26-26-10 26-10z"/>
+    <path d="M26 256 l26-10 10-26 10 26 26 10-26 10-10 26-10-26z"/>
+    <path d="M414 256 l26-10 10-26 10 26 26 10-26 10-10 26-10-26z"/>
+  </g>
+</g>
+</svg>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="Contradicted evidence state"><defs><linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#E8C985"/><stop offset="52%" stop-color="#B98541"/><stop offset="100%" stop-color="#6F4D22"/></linearGradient></defs><rect width="1024" height="1024" fill="none"/><circle cx="512" cy="512" r="330" fill="#101214" stroke="url(#gold)" stroke-width="18"/>
+<circle cx="512" cy="512" r="270" fill="#261515" stroke="#C85B50" stroke-width="10"/>
+<path d="M512 292 L690 374 V511 C690 623 624 712 512 768 C400 712 334 623 334 511 V374 Z" fill="#2A1717" stroke="url(#gold)" stroke-width="22"/>
+<path d="M420 420 L604 604 M604 420 L420 604" stroke="#EFE6D4" stroke-width="34" stroke-linecap="round"/>
+<path d="M512 308 V716" stroke="#C85B50" stroke-width="10" stroke-dasharray="18 16" opacity=".7"/>
+</svg>

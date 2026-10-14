@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2400 1200" role="img" aria-label="Mythos temple transition silhouette">
+<defs>
+  <linearGradient id="stone" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#252729" stop-opacity=".55"/>
+    <stop offset="100%" stop-color="#0D0F10" stop-opacity=".96"/>
+  </linearGradient>
+  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#6E4D23"/>
+    <stop offset="50%" stop-color="#D2A75D"/>
+    <stop offset="100%" stop-color="#6E4D23"/>
+  </linearGradient>
+</defs>
+<rect width="2400" height="1200" fill="none"/>
+<g transform="translate(520 380)">
+  <path d="M0 280 L680 40 L1360 280 Z" fill="url(#stone)" stroke="url(#gold)" stroke-width="8"/>
+  <rect x="110" y="280" width="1140" height="450" fill="url(#stone)"/>
+  <g fill="#1A1C1D" stroke="#6F5A36" stroke-width="5">
+    <rect x="190" y="300" width="72" height="390"/>
+    <rect x="345" y="300" width="72" height="390"/>
+    <rect x="500" y="300" width="72" height="390"/>
+    <rect x="655" y="300" width="72" height="390"/>
+    <rect x="810" y="300" width="72" height="390"/>
+    <rect x="965" y="300" width="72" height="390"/>
+    <rect x="1120" y="300" width="72" height="390"/>
+  </g>
+  <path d="M70 730 H1290" stroke="url(#gold)" stroke-width="10" opacity=".8"/>
+</g>
+<path d="M0 1020 C350 920,700 960,1040 915 C1470 858,1850 930,2400 845 V1200 H0 Z" fill="#0B0D0E" opacity=".95"/>
+</svg>

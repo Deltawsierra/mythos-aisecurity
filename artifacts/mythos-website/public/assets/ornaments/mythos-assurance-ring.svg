@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="Mythos assurance ring">
+<defs>
+  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#E8C985"/>
+    <stop offset="50%" stop-color="#B98541"/>
+    <stop offset="100%" stop-color="#6F4D22"/>
+  </linearGradient>
+</defs>
+
+<rect width="1024" height="1024" fill="none"/>
+<g id="assurance-ring" data-motion-part="assurance-ring" fill="none">
+  <circle cx="512" cy="512" r="376" stroke="url(#gold)" stroke-width="20"/>
+  <circle cx="512" cy="512" r="332" stroke="#8A6330" stroke-width="8" stroke-dasharray="12 18"/>
+  <circle cx="512" cy="512" r="270" stroke="#5D482A" stroke-width="5"/>
+  <path d="M512 136 A376 376 0 0 1 842 330" stroke="#E8C985" stroke-width="30" stroke-linecap="round"/>
+  <path d="M842 330 L802 300 L820 366 Z" fill="#E8C985" stroke="none"/>
+  <path d="M512 888 A376 376 0 0 1 182 694" stroke="#B98541" stroke-width="30" stroke-linecap="round"/>
+  <path d="M182 694 L222 724 L204 658 Z" fill="#B98541" stroke="none"/>
+</g>
+<circle cx="512" cy="512" r="34" fill="url(#gold)"/>
+
+</svg>

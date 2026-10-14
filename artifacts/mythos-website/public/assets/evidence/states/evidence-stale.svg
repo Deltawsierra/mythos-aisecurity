@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="Stale evidence state"><defs><linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#E8C985"/><stop offset="52%" stop-color="#B98541"/><stop offset="100%" stop-color="#6F4D22"/></linearGradient></defs><rect width="1024" height="1024" fill="none"/><circle cx="512" cy="512" r="330" fill="#101214" stroke="url(#gold)" stroke-width="18"/>
+<circle cx="512" cy="512" r="270" fill="#221C12" stroke="#D3A04B" stroke-width="10"/>
+<circle cx="512" cy="512" r="150" fill="#171A1C" stroke="url(#gold)" stroke-width="18"/>
+<path d="M512 405 V520 L592 565" fill="none" stroke="#EFE6D4" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M330 466 C352 358 442 290 548 302 C630 311 698 362 732 433" fill="none" stroke="#D3A04B" stroke-width="26" stroke-linecap="round"/>
+<path d="M683 377 L744 435 L672 454" fill="none" stroke="#D3A04B" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

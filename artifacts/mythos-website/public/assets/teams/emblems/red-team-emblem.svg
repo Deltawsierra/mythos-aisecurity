@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="Red Team emblem">
+<defs>
+  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#E5C67F"/>
+    <stop offset="52%" stop-color="#B98541"/>
+    <stop offset="100%" stop-color="#6F4D22"/>
+  </linearGradient>
+</defs>
+<rect width="1024" height="1024" fill="none"/>
+
+<circle cx="512" cy="512" r="398" fill="#111315" stroke="url(#gold)" stroke-width="28"/>
+<circle cx="512" cy="512" r="354" fill="none" stroke="#E0453E" stroke-width="16" opacity=".78"/>
+<circle cx="512" cy="512" r="316" fill="none" stroke="#6D542E" stroke-width="7" stroke-dasharray="8 18"/>
+<g fill="url(#gold)">
+  <path d="M512 72 l16 38 38 16-38 16-16 38-16-38-38-16 38-16z"/>
+  <path d="M512 844 l16 38 38 16-38 16-16 38-16-38-38-16 38-16z"/>
+  <path d="M72 512 l38-16 16-38 16 38 38 16-38 16-16 38-16-38z"/>
+  <path d="M844 512 l38-16 16-38 16 38 38 16-38 16-16 38-16-38z"/>
+</g>
+
+<circle cx="512" cy="512" r="220" fill="#241010" stroke="#E0453E" stroke-width="10" opacity=".95"/>
+<circle cx="512" cy="512" r="150" fill="none" stroke="#7F2924" stroke-width="9"/>
+<path d="M512 270 L551 455 L512 425 L473 455 Z" fill="url(#gold)"/>
+<path d="M512 425 V744" stroke="url(#gold)" stroke-width="32" stroke-linecap="round"/>
+<path d="M430 664 L512 744 L594 664" fill="none" stroke="url(#gold)" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="512" cy="512" r="60" fill="none" stroke="#E0453E" stroke-width="15"/>
+<circle cx="512" cy="512" r="18" fill="#E0453E"/>
+
+
+</svg>

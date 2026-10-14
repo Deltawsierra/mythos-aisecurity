@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="Mythos Assurance Receipt">
+<defs>
+  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#E8C985"/>
+    <stop offset="52%" stop-color="#B98541"/>
+    <stop offset="100%" stop-color="#6F4D22"/>
+  </linearGradient>
+  <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
+    <feGaussianBlur stdDeviation="5" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+</defs>
+<rect width="100%" height="100%" fill="none"/>
+
+<g id="assurance-receipt" data-motion-part="receipt">
+  <rect x="218" y="124" width="588" height="716" rx="32" fill="#181D21" stroke="url(#gold)" stroke-width="16"/>
+  <path d="M288 235 H730 M288 303 H730 M288 371 H650" stroke="#EFE6D4" stroke-width="16" stroke-linecap="round" opacity=".85"/>
+  <g stroke="#8B6734" stroke-width="7" fill="none">
+    <rect x="286" y="452" width="188" height="120" rx="14"/>
+    <rect x="516" y="452" width="214" height="120" rx="14"/>
+  </g>
+  <circle cx="640" cy="688" r="96" fill="#101214" stroke="url(#gold)" stroke-width="14"/>
+  <path d="M592 689 L625 722 L691 648" fill="none" stroke="#5DA774" stroke-width="24"
+        stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M312 686 H500" stroke="#92979C" stroke-width="12" stroke-linecap="round"/>
+  <path d="M312 734 H460" stroke="#92979C" stroke-width="12" stroke-linecap="round"/>
+</g>
+
+</svg>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="Achilles permission boundary ring">
+<defs>
+  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#E5C57E"/>
+    <stop offset="50%" stop-color="#B88743"/>
+    <stop offset="100%" stop-color="#6E4E25"/>
+  </linearGradient>
+  <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+    <feGaussianBlur stdDeviation="8" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+</defs>
+<rect width="1024" height="1024" fill="none"/>
+
+<g id="achilles-boundary-ring" data-motion-part="boundary-ring" fill="none">
+  <circle cx="512" cy="512" r="326" stroke="#61231E" stroke-width="20" opacity=".55"/>
+  <circle cx="512" cy="512" r="292" stroke="url(#gold)" stroke-width="9" stroke-dasharray="28 18"/>
+  <circle cx="512" cy="512" r="250" stroke="#A97638" stroke-width="3"/>
+  <path d="M512 132 L532 174 L578 180 L544 212 L552 258 L512 236 L472 258 L480 212 L446 180 L492 174 Z" fill="url(#gold)" stroke="none"/>
+  <g stroke="#C8964C" stroke-width="8" stroke-linecap="round"><path d="M252 512 H336"/><path d="M688 512 H772"/><path d="M512 252 V336"/><path d="M512 688 V772"/></g>
+</g>
+</svg>

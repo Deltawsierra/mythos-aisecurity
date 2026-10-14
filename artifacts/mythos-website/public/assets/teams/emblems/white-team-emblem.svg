@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="White Team emblem">
+<defs>
+  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#E5C67F"/>
+    <stop offset="52%" stop-color="#B98541"/>
+    <stop offset="100%" stop-color="#6F4D22"/>
+  </linearGradient>
+</defs>
+<rect width="1024" height="1024" fill="none"/>
+
+<circle cx="512" cy="512" r="398" fill="#111315" stroke="url(#gold)" stroke-width="28"/>
+<circle cx="512" cy="512" r="354" fill="none" stroke="#EFE7D7" stroke-width="16" opacity=".78"/>
+<circle cx="512" cy="512" r="316" fill="none" stroke="#6D542E" stroke-width="7" stroke-dasharray="8 18"/>
+<g fill="url(#gold)">
+  <path d="M512 72 l16 38 38 16-38 16-16 38-16-38-38-16 38-16z"/>
+  <path d="M512 844 l16 38 38 16-38 16-16 38-16-38-38-16 38-16z"/>
+  <path d="M72 512 l38-16 16-38 16 38 38 16-38 16-16 38-16-38z"/>
+  <path d="M844 512 l38-16 16-38 16 38 38 16-38 16-16 38-16-38z"/>
+</g>
+
+<circle cx="512" cy="512" r="222" fill="#211E18" stroke="#EFE7D7" stroke-width="10"/>
+<path d="M344 432 H680" stroke="url(#gold)" stroke-width="26" stroke-linecap="round"/>
+<path d="M384 432 V670 M460 432 V670 M564 432 V670 M640 432 V670" stroke="#E9DFCC" stroke-width="20"/>
+<path d="M320 690 H704" stroke="url(#gold)" stroke-width="30" stroke-linecap="round"/>
+<path d="M356 372 L512 282 L668 372 Z" fill="none" stroke="url(#gold)" stroke-width="28" stroke-linejoin="round"/>
+<circle cx="512" cy="548" r="74" fill="#111315" stroke="url(#gold)" stroke-width="18"/>
+<path d="M474 548 L504 578 L558 514" fill="none" stroke="#EFE7D7" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+
+
+</svg>

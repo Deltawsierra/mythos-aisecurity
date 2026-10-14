@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="Verified evidence state"><defs><linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#E8C985"/><stop offset="52%" stop-color="#B98541"/><stop offset="100%" stop-color="#6F4D22"/></linearGradient></defs><rect width="1024" height="1024" fill="none"/><circle cx="512" cy="512" r="330" fill="#101214" stroke="url(#gold)" stroke-width="18"/>
+<circle cx="512" cy="512" r="270" fill="#132118" stroke="#5DA774" stroke-width="10"/>
+<path d="M512 284 L690 366 V505 C690 627 622 720 512 775 C402 720 334 627 334 505 V366 Z" fill="#16251B" stroke="url(#gold)" stroke-width="22"/>
+<path d="M414 520 L482 588 L622 428" fill="none" stroke="#EFE6D4" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Warning status icon">
+<defs>
+  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#E7C784"/>
+    <stop offset="50%" stop-color="#B98541"/>
+    <stop offset="100%" stop-color="#6F4D22"/>
+  </linearGradient>
+  <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+    <feGaussianBlur stdDeviation="5" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+</defs>
+<rect width="512" height="512" fill="none"/>
+
+<g id="status-warning" data-motion-part="status-root">
+  <circle cx="256" cy="256" r="196" fill="#101214" stroke="url(#gold)" stroke-width="12"/>
+  <circle cx="256" cy="256" r="160" fill="#171B1E" stroke="#D6A24E" stroke-width="7" opacity=".92"/>
+  <circle id="status-warning-ring" data-motion-part="status-ring" cx="256" cy="256" r="134"
+          fill="none" stroke="#D6A24E" stroke-width="4" stroke-dasharray="8 12" opacity=".6"/>
+  
+<path id="warning-triangle" data-motion-part="status-symbol"
+      d="M256 165 L350 335 H162 Z" fill="#2B2114" stroke="#D6A24E" stroke-width="12" stroke-linejoin="round"/>
+<path d="M256 215 V277" stroke="#EFE6D4" stroke-width="18" stroke-linecap="round"/>
+<circle cx="256" cy="309" r="11" fill="#EFE6D4"/>
+
+</g>
+</svg>

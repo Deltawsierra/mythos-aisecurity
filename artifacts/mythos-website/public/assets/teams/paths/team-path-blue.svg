@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 700" role="img" aria-label="Blue Team assurance path">
+<defs>
+  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#E7C784"/>
+    <stop offset="50%" stop-color="#B98541"/>
+    <stop offset="100%" stop-color="#6F4D22"/>
+  </linearGradient>
+  <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+    <feGaussianBlur stdDeviation="10" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+</defs>
+<rect width="100%" height="100%" fill="none"/>
+
+<g id="blue-path" data-motion-part="team-path" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path id="blue-path-base" d="M90 475 C250 430, 305 505, 448 470 C580 438, 650 330, 810 340 C960 350, 1005 510, 1180 474 C1320 445, 1390 330, 1510 355" stroke="#5B4A34" stroke-width="14" opacity=".42"/>
+  <path id="blue-path-active" d="M90 475 C250 430, 305 505, 448 470 C580 438, 650 330, 810 340 C960 350, 1005 510, 1180 474 C1320 445, 1390 330, 1510 355" stroke="#5B9FE8" stroke-width="8" opacity=".95" filter="url(#softGlow)"/>
+  <path id="blue-path-highlight" d="M90 475 C250 430, 305 505, 448 470 C580 438, 650 330, 810 340 C960 350, 1005 510, 1180 474 C1320 445, 1390 330, 1510 355" stroke="url(#gold)" stroke-width="3" opacity=".85"/>
+</g>
+
+    <g fill="#5B9FE8" stroke="url(#gold)" stroke-width="5">
+      <circle cx="90" cy="475" r="20"/>
+      <circle cx="1510" cy="355" r="20"/>
+    </g>
+    
+</svg>

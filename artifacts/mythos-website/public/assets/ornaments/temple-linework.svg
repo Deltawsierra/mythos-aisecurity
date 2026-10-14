@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Mythos temple linework ornament">
+<defs>
+  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#E8C985"/>
+    <stop offset="50%" stop-color="#B98541"/>
+    <stop offset="100%" stop-color="#6F4D22"/>
+  </linearGradient>
+</defs>
+
+<rect width="1600" height="900" fill="none"/>
+<g id="temple-linework" data-motion-part="ornament" fill="none" stroke="url(#gold)" stroke-width="8" stroke-linejoin="round">
+  <path d="M300 310 L800 90 L1300 310 Z"/>
+  <path d="M350 310 H1250"/>
+  <path d="M410 310 V690 M540 310 V690 M670 310 V690 M930 310 V690 M1060 310 V690 M1190 310 V690"/>
+  <path d="M380 690 H1220"/>
+  <path d="M340 735 H1260"/>
+  <path d="M300 780 H1300"/>
+  <path d="M760 90 H840"/>
+  <circle cx="800" cy="90" r="18" fill="url(#gold)"/>
+</g>
+<g stroke="#8A6330" stroke-width="3" opacity=".55">
+  <path d="M430 350 H1170 M430 390 H1170 M430 650 H1170"/>
+</g>
+
+</svg>

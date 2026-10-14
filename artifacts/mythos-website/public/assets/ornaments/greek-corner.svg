@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Mythos Greek corner ornament">
+<defs>
+  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#E8C985"/>
+    <stop offset="50%" stop-color="#B98541"/>
+    <stop offset="100%" stop-color="#6F4D22"/>
+  </linearGradient>
+</defs>
+
+<rect width="512" height="512" fill="none"/>
+<g id="greek-corner" data-motion-part="ornament" fill="none" stroke="url(#gold)" stroke-width="12" stroke-linejoin="miter">
+  <path d="M58 438 V116 H380"/>
+  <path d="M100 438 V158 H338"/>
+  <path d="M142 438 V200 H296"/>
+  <path d="M186 438 V244 H252"/>
+</g>
+<path d="M58 116 L100 158 L142 200 L186 244" stroke="#8A6330" stroke-width="6" fill="none"/>
+<circle cx="58" cy="438" r="18" fill="url(#gold)"/>
+<circle cx="380" cy="116" r="18" fill="url(#gold)"/>
+
+</svg>

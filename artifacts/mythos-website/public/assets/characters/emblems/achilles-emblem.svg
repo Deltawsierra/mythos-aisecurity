@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Achilles emblem">
+<defs>
+  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#E7C98B"/>
+    <stop offset="55%" stop-color="#C9A15B"/>
+    <stop offset="100%" stop-color="#7B592A"/>
+  </linearGradient>
+</defs>
+<rect width="512" height="512" fill="none"/>
+
+<circle cx="256" cy="256" r="194" fill="#1A1412" stroke="url(#gold)" stroke-width="14"/>
+<circle cx="256" cy="256" r="162" fill="none" stroke="#704221" stroke-width="4"/>
+<path d="M159 183 C187 135 219 116 256 116 C293 116 325 135 353 183
+         L326 188 C303 160 281 149 256 149 C231 149 209 160 186 188 Z" fill="#7B241E"/>
+<path d="M180 177 C198 115 226 83 256 70 C286 83 314 115 332 177
+         L318 195 L307 339 L256 387 L205 339 L194 195 Z"
+      fill="url(#gold)" stroke="#65451F" stroke-width="6"/>
+<path d="M211 216 L246 227 L246 258 L208 246 Z" fill="#111214"/>
+<path d="M301 216 L266 227 L266 258 L304 246 Z" fill="#111214"/>
+<path d="M256 238 L239 331 L273 331 Z" fill="#111214"/>
+<path d="M214 347 L256 380 L298 347" fill="none" stroke="#6A4822" stroke-width="6"/>
+
+</svg>

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="Blue Team emblem">
+<defs>
+  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#E5C67F"/>
+    <stop offset="52%" stop-color="#B98541"/>
+    <stop offset="100%" stop-color="#6F4D22"/>
+  </linearGradient>
+</defs>
+<rect width="1024" height="1024" fill="none"/>
+
+<circle cx="512" cy="512" r="398" fill="#111315" stroke="url(#gold)" stroke-width="28"/>
+<circle cx="512" cy="512" r="354" fill="none" stroke="#5CA6F2" stroke-width="16" opacity=".78"/>
+<circle cx="512" cy="512" r="316" fill="none" stroke="#6D542E" stroke-width="7" stroke-dasharray="8 18"/>
+<g fill="url(#gold)">
+  <path d="M512 72 l16 38 38 16-38 16-16 38-16-38-38-16 38-16z"/>
+  <path d="M512 844 l16 38 38 16-38 16-16 38-16-38-38-16 38-16z"/>
+  <path d="M72 512 l38-16 16-38 16 38 38 16-38 16-16 38-16-38z"/>
+  <path d="M844 512 l38-16 16-38 16 38 38 16-38 16-16 38-16-38z"/>
+</g>
+
+<circle cx="512" cy="512" r="222" fill="#0C1A28" stroke="#5CA6F2" stroke-width="10"/>
+<path d="M512 280 L700 365 V505 C700 636 623 732 512 786
+         C401 732 324 636 324 505 V365 Z"
+      fill="#10263A" stroke="url(#gold)" stroke-width="24" stroke-linejoin="round"/>
+<path d="M512 349 V713 M391 453 H633" stroke="#5CA6F2" stroke-width="18" opacity=".75"/>
+<path d="M438 528 L494 584 L606 451" fill="none" stroke="#C8E6FF" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+
+
+</svg>

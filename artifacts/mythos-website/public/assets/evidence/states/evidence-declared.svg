@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="Declared evidence state"><defs><linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#E8C985"/><stop offset="52%" stop-color="#B98541"/><stop offset="100%" stop-color="#6F4D22"/></linearGradient></defs><rect width="1024" height="1024" fill="none"/><circle cx="512" cy="512" r="330" fill="#101214" stroke="url(#gold)" stroke-width="18"/>
+<circle cx="512" cy="512" r="270" fill="#1A1D20" stroke="#92979C" stroke-width="10" stroke-dasharray="12 18"/>
+<rect x="330" y="316" width="364" height="380" rx="24" fill="#181D21" stroke="#92979C" stroke-width="12"/>
+<path d="M390 402 H634 M390 470 H634 M390 538 H570" stroke="#EFE6D4" stroke-width="16" stroke-linecap="round"/>
+<path d="M390 620 H520" stroke="#92979C" stroke-width="14" stroke-linecap="round"/><circle cx="674" cy="660" r="52" fill="#92979C" opacity=".8"/>
+</svg>

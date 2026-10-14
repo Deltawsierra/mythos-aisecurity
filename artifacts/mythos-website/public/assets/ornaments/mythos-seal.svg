@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="Mythos assurance seal">
+<defs>
+  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#E8C985"/>
+    <stop offset="50%" stop-color="#B98541"/>
+    <stop offset="100%" stop-color="#6F4D22"/>
+  </linearGradient>
+</defs>
+
+<rect width="1024" height="1024" fill="none"/>
+<g id="mythos-seal" data-motion-part="seal">
+  <circle cx="512" cy="440" r="280" fill="#101214" stroke="url(#gold)" stroke-width="22"/>
+  <circle cx="512" cy="440" r="232" fill="none" stroke="#8A6330" stroke-width="8" stroke-dasharray="9 14"/>
+  <path d="M512 240 L560 372 L700 378 L590 465 L626 602 L512 524 L398 602 L434 465 L324 378 L464 372 Z" fill="url(#gold)"/>
+  <circle cx="512" cy="440" r="88" fill="#101214" stroke="#EFE6D4" stroke-width="8"/>
+  <path d="M472 441 L504 473 L566 400" fill="none" stroke="#EFE6D4" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M365 656 L318 890 L512 790 L706 890 L659 656" fill="url(#gold)" opacity=".92"/>
+</g>
+
+</svg>

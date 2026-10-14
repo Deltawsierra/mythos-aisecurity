@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="SPINE assurance graph node network">
+<defs>
+  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#E5C57E"/>
+    <stop offset="50%" stop-color="#B88743"/>
+    <stop offset="100%" stop-color="#6E4E25"/>
+  </linearGradient>
+  <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+    <feGaussianBlur stdDeviation="8" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+</defs>
+<rect width="1024" height="1024" fill="none"/>
+
+<g id="spine-node-network" data-motion-part="node-network" fill="none" stroke="#6EA7E6" stroke-width="5" opacity=".95">
+  <path d="M512 235 L326 345 L355 566 L512 710 L690 571 L704 348 Z"/>
+  <path d="M326 345 L512 426 L704 348 M355 566 L512 426 L690 571 M512 235 L512 426 L512 710"/>
+  <path d="M326 345 L212 488 L355 566 M704 348 L820 488 L690 571"/>
+  <g fill="#6EA7E6" stroke="#D7EBFF" stroke-width="3">
+    <circle cx="512" cy="235" r="14"/><circle cx="326" cy="345" r="14"/><circle cx="704" cy="348" r="14"/><circle cx="355" cy="566" r="14"/><circle cx="690" cy="571" r="14"/><circle cx="512" cy="710" r="14"/><circle cx="512" cy="426" r="20"/><circle cx="212" cy="488" r="12"/><circle cx="820" cy="488" r="12"/>
+  </g>
+</g>
+</svg>

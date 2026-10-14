@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 420" role="img" aria-label="Lifecycle column pedestal">
+<defs>
+  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#E2C17E"/>
+    <stop offset="45%" stop-color="#B98A45"/>
+    <stop offset="100%" stop-color="#73501F"/>
+  </linearGradient>
+  <radialGradient id="bronzeFace" cx="50%" cy="42%" r="62%">
+    <stop offset="0%" stop-color="#3A3025"/>
+    <stop offset="65%" stop-color="#1B1815"/>
+    <stop offset="100%" stop-color="#0B0B0C"/>
+  </radialGradient>
+  <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+    <feGaussianBlur stdDeviation="4" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+    <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#000000" flood-opacity=".45"/>
+  </filter>
+</defs>
+
+<rect width="700" height="420" fill="none"/>
+<g id="pedestal" data-motion-part="pedestal" filter="url(#shadow)">
+  <path d="M170 360 H530 L500 318 H200 Z" fill="#181716" stroke="#6F5129" stroke-width="4"/>
+  <path d="M215 318 H485 L462 280 H238 Z" fill="#24201B" stroke="#896532" stroke-width="4"/>
+  <rect x="252" y="138" width="196" height="142" rx="12" fill="url(#bronzeFace)" stroke="url(#gold)" stroke-width="6"/>
+  <path d="M238 138 H462 L442 104 H258 Z" fill="#1A1816" stroke="#7D5A2B" stroke-width="4"/>
+  <path d="M262 104 H438 L420 72 H280 Z" fill="#25211C" stroke="#8C6631" stroke-width="4"/>
+  <g stroke="#8B6632" stroke-width="5">
+    <line x1="286" y1="160" x2="286" y2="258"/>
+    <line x1="330" y1="160" x2="330" y2="258"/>
+    <line x1="374" y1="160" x2="374" y2="258"/>
+    <line x1="418" y1="160" x2="418" y2="258"/>
+  </g>
+  <path d="M168 360 H532" stroke="url(#gold)" stroke-width="6" stroke-linecap="round"/>
+</g>
+
+</svg>

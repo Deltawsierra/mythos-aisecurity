@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="Defense shield assurance icon">
+<defs>
+  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#E7C784"/>
+    <stop offset="50%" stop-color="#B98541"/>
+    <stop offset="100%" stop-color="#6F4D22"/>
+  </linearGradient>
+  <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+    <feGaussianBlur stdDeviation="10" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+</defs>
+<rect width="100%" height="100%" fill="none"/>
+
+<g id="defense-shield" data-motion-part="defense-shield" transform="translate(512 512)">
+  <circle r="330" fill="#0C1826" stroke="url(#gold)" stroke-width="22"/>
+  <circle r="278" fill="none" stroke="#5B9FE8" stroke-width="10" opacity=".75"/>
+  <path d="M0 -238 L202 -145 V18 C202 167 118 278 0 338 C-118 278 -202 167 -202 18 V-145 Z"
+        fill="#11263A" stroke="url(#gold)" stroke-width="28" stroke-linejoin="round"/>
+  <path d="M0 -164 V234 M-125 15 H125" stroke="#5B9FE8" stroke-width="22" opacity=".74"/>
+  <path d="M-92 57 L-24 125 L112 -42" fill="none" stroke="#D6ECFF" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+
+</svg>

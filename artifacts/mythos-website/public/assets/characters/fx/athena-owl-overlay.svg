@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="Athena owl motion overlay">
+<defs>
+  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#E5C57E"/>
+    <stop offset="50%" stop-color="#B88743"/>
+    <stop offset="100%" stop-color="#6E4E25"/>
+  </linearGradient>
+  <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+    <feGaussianBlur stdDeviation="8" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+</defs>
+<rect width="1024" height="1024" fill="none"/>
+
+<g id="athena-owl" data-motion-part="owl" fill="none" stroke="url(#gold)" stroke-width="16" stroke-linejoin="round">
+  <path d="M312 278 C370 205 447 192 512 245 C577 192 654 205 712 278 C670 292 643 329 635 370 C626 425 604 470 563 499 C548 510 531 521 512 531 C493 521 476 510 461 499 C420 470 398 425 389 370 C381 329 354 292 312 278 Z"/>
+  <path d="M394 356 C429 325 474 325 512 359 C550 325 595 325 630 356"/>
+  <circle cx="451" cy="385" r="30"/><circle cx="573" cy="385" r="30"/>
+  <path d="M512 396 L482 449 L542 449 Z"/>
+  <path d="M454 514 C470 552 490 578 512 598 C534 578 554 552 570 514"/>
+  <path d="M335 322 L257 240 M689 322 L767 240"/>
+</g>
+</svg>
