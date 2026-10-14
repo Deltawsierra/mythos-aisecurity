@@ -225,7 +225,7 @@ export default function UseCasesPage() {
         headline="Which AI deployment are you preparing to trust?"
         subline="Tell Mythos what you are building, connecting, or preparing to release. We will help identify the right assessment path."
         primaryCta={{ label: CTA.PRIMARY, href: "/contact" }}
-        secondaryCta={{ label: "Request Demo", href: "/demo" }}
+        secondaryCta={{ label: "Request Demo", href: "/contact?intent=demo" }}
       />
     </>
   );

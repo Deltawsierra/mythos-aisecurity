@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, DM_Serif_Display } from "next/font/google";
+import { Inter, Cormorant_Garamond } from "next/font/google";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { CookieConsent } from "@/components/consent/CookieConsent";
@@ -12,23 +12,14 @@ const inter = Inter({
   display: "swap",
 });
 
-const dmSerifDisplay = DM_Serif_Display({
-  weight: "400",
+const cormorant = Cormorant_Garamond({
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
   subsets: ["latin"],
-  variable: "--font-dm-serif",
+  variable: "--font-cormorant",
   display: "swap",
 });
 
-/**
- * Pre-paint guard for the "Opening the Black Vault" loader. Runs synchronously
- * before the body paints: on non-3D environments (mobile / tablet < 1024px,
- * reduced-motion, or no-WebGL) it tags <html> with `vault-skip` so CSS hides
- * the loader and those visitors see the hero immediately — with no flash. On
- * the desktop 3D path it does nothing, so the loader (rendered in the initial
- * HTML) covers the hero from the very first frame. Must mirror the detection in
- * HeroPreloadProvider / lib/three.ts.
- */
-const VAULT_PREPAINT_SCRIPT = `(function(){try{var m=window.matchMedia('(prefers-reduced-motion: reduce)').matches;var d=window.innerWidth>=1024;var g=false;try{var c=document.createElement('canvas');g=!!(c.getContext('webgl2')||c.getContext('webgl')||c.getContext('experimental-webgl'));}catch(e){}if(!(d&&!m&&g)){document.documentElement.classList.add('vault-skip');}}catch(e){document.documentElement.classList.add('vault-skip');}})();`;
 
 
 /**
@@ -58,16 +49,16 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/opengraph.jpg",
-        width: 1280,
-        height: 720,
-        alt: "Mythos AI Security",
+        url: "/assets/social/og-default.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Mythos AI Security — AI Deployment Assurance",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    images: ["/opengraph.jpg"],
+    images: ["/assets/social/og-default.jpg"],
   },
 };
 
@@ -79,7 +70,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${dmSerifDisplay.variable}`}
+      className={`${inter.variable} ${cormorant.variable}`}
       data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
@@ -88,13 +79,6 @@ export default function RootLayout({
             consent signals denied by default; CookieConsent upgrades them on
             opt-in. See GA_BOOTSTRAP_SCRIPT above. */}
         <script dangerouslySetInnerHTML={{ __html: GA_BOOTSTRAP_SCRIPT }} />
-        {/* Pre-paint guard: runs before the rest of <body> paints, so the vault
-            loader never flashes for non-3D visitors. */}
-        <script dangerouslySetInnerHTML={{ __html: VAULT_PREPAINT_SCRIPT }} />
-        <noscript>
-          {/* No JS → never trap the hero behind a loader that can't dismiss. */}
-          <style>{`.vault-overlay{display:none !important}`}</style>
-        </noscript>
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded focus:bg-bronze focus:px-4 focus:py-2 focus:text-ivory focus:text-sm"

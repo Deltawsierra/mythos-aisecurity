@@ -1,23 +1,57 @@
 @import "tailwindcss";
 
 @theme {
-  /* ── Mythos Brand Colors ────────────────────────────── */
+  /* ── Night field: obsidian deepens into navy ───────────
+     The v2 palette fuses the original obsidian world with the blueprint's
+     navy. Abyss is the midpoint used where the two blend. */
   --color-obsidian: #050505;
   --color-graphite: #12100e;
   --color-charcoal: #1a1713;
+  --color-abyss: #08121c;
+  --color-navy: #0b1f33;
+  --color-navy-raised: #15304a;
+
+  /* ── Day field: ivory parchment and bone ─────────────── */
+  --color-ivory: #f3e8d0;
+  --color-bone: #f5f0e7;
+  --color-marble: #ebe3d4;
+  --color-slate: #5d6872;
+  --color-muted-stone: #9a8c78;
+
+  /* ── Metals ─────────────────────────────────────────────
+     Bronze/gold carry accents on dark fields. On bone, small text uses
+     deep copper — bronze alone is under 4.5:1 there. */
   --color-bronze: #a66a32;
+  --color-bronze-light: #b8823f;
   --color-antique-gold: #d6a14a;
   --color-deep-copper: #7a3f1d;
-  --color-ivory: #f3e8d0;
-  --color-muted-stone: #9a8c78;
   --color-ember: #ff9d3b;
+
+  /* ── Evidence states (restrained semantic accents) ───── */
+  --color-state-declared: #8a93a0;
+  --color-state-observed: #5b8fc7;
+  --color-state-verified: #5e9e72;
+  --color-state-unknown: #9a9a9a;
+  --color-state-stale: #c99a3c;
+  --color-state-contradicted: #c0573f;
 
   /* ── Typography ─────────────────────────────────────── */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-dm-serif), ui-serif, Georgia, serif;
+  --font-display: var(--font-cormorant), ui-serif, Georgia, serif;
 
   /* ── Radius ──────────────────────────────────────────── */
   --radius: 0rem;
+}
+
+/* Surface-aware colours. A section sets data-surface and its children use
+   these utilities (text-fg, text-fg-muted, text-accent, border-rule, …) so one
+   component reads correctly on obsidian, navy or bone. */
+@theme inline {
+  --color-fg: var(--surface-fg);
+  --color-fg-muted: var(--surface-fg-muted);
+  --color-accent: var(--surface-accent);
+  --color-rule: var(--surface-rule);
+  --color-panel: var(--surface-panel);
 }
 
 /* ── Reduced Motion ─────────────────────────────────────── */
@@ -39,6 +73,39 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  :root,
+  [data-surface="obsidian"] {
+    --surface-bg: var(--color-obsidian);
+    --surface-fg: var(--color-ivory);
+    --surface-fg-muted: var(--color-muted-stone);
+    --surface-accent: var(--color-antique-gold);
+    --surface-rule: rgb(166 106 50 / 0.28);
+    --surface-panel: rgb(243 232 208 / 0.04);
+  }
+
+  [data-surface="navy"] {
+    --surface-bg: var(--color-navy);
+    --surface-fg: var(--color-ivory);
+    --surface-fg-muted: #a9a294;
+    --surface-accent: var(--color-antique-gold);
+    --surface-rule: rgb(184 130 63 / 0.32);
+    --surface-panel: rgb(243 232 208 / 0.05);
+  }
+
+  [data-surface="bone"] {
+    --surface-bg: var(--color-bone);
+    --surface-fg: var(--color-navy);
+    --surface-fg-muted: var(--color-slate);
+    --surface-accent: var(--color-deep-copper);
+    --surface-rule: rgb(166 106 50 / 0.35);
+    --surface-panel: #ffffff;
+  }
+
+  [data-surface] {
+    background-color: var(--surface-bg);
+    color: var(--surface-fg);
+  }
+
   body {
     background-color: var(--color-obsidian);
     color: var(--color-ivory);
@@ -52,8 +119,9 @@
   h5,
   h6 {
     font-family: var(--font-display);
-    line-height: 1.15;
-    letter-spacing: -0.01em;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.005em;
   }
 
   ::selection {
@@ -244,68 +312,25 @@
     0 0 38px -6px rgba(255, 157, 59, 0.34);
 }
 
-/* ── Black Vault preloader ──────────────────────────────── */
-/* The loader is rendered in the initial HTML so it covers the hero on the very
-   first paint (no PNG flash). A pre-paint inline script (app/layout.tsx) adds
-   `vault-skip` to <html> for non-3D environments so they never paint it. */
-html.vault-skip .vault-overlay {
-  display: none !important;
-}
-
+/* ── Cinematic surface blends ───────────────────────────── */
+/* The v2 rule: content has sections, the world does not. Hairline rules and
+   blends pick up the current surface's accent so the same markup reads on
+   obsidian, navy and bone. */
 @layer utilities {
-  .vault-spin-slow {
-    animation: vault-spin 40s linear infinite;
-  }
-  .vault-spin-med-rev {
-    animation: vault-spin 26s linear infinite reverse;
-  }
-  .vault-glow-pulse {
-    animation: vault-glow 3.6s ease-in-out infinite;
-  }
-  .vault-progress-track {
-    position: relative;
-    overflow: hidden;
-  }
-  .vault-progress-track::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 40%;
+  .mythos-rule {
+    height: 1px;
     background: linear-gradient(
       90deg,
       transparent,
-      rgba(214, 161, 74, 0.9),
+      var(--surface-rule) 22%,
+      var(--surface-rule) 78%,
       transparent
     );
-    animation: vault-progress 1.8s ease-in-out infinite;
   }
-}
 
-@keyframes vault-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes vault-glow {
-  0%,
-  100% {
-    opacity: 0.45;
-    transform: scale(0.96);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.05);
-  }
-}
-
-@keyframes vault-progress {
-  0% {
-    transform: translateX(-120%);
-  }
-  100% {
-    transform: translateX(320%);
+  /* Soft vertical fade used by SectionBlend art layers. */
+  .mask-fade-y {
+    -webkit-mask-image: linear-gradient(180deg, transparent, #000 30%, #000 70%, transparent);
+    mask-image: linear-gradient(180deg, transparent, #000 30%, #000 70%, transparent);
   }
 }

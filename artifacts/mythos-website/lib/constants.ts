@@ -6,7 +6,7 @@ export const CTA = {
   PRIMARY: "Request Assessment",
   PLATFORM: "Explore the Platform",
   INVESTOR: "Request Investor Materials",
-  DEMO: "Request Demo Video",
+  DEMO: "Request Demo",
   CONTACT: "Contact Mythos",
 } as const;
 

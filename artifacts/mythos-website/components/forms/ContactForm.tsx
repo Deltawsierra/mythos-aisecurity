@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 import { submitInquiry } from "@/lib/submitInquiry";
+import { INTENT_EVENT } from "@/lib/intent";
 import {
   INQUIRIES,
   INTENT_MAP,
@@ -63,7 +64,9 @@ export function ContactForm() {
   }, []);
 
   /* Preselect the inquiry type from a ?intent= query parameter. Runs after
-     mount so the SSR/initial render stays deterministic (assessment). */
+     mount so the SSR/initial render stays deterministic (assessment). CTAs
+     clicked while this form is already mounted announce their intent instead
+     (see lib/intent.ts). */
   useEffect(() => {
     const intent = new URLSearchParams(window.location.search)
       .get("intent")
@@ -71,6 +74,18 @@ export function ContactForm() {
     if (intent && INTENT_MAP[intent]) {
       setInquiryType(INTENT_MAP[intent]);
     }
+
+    const onIntent = (e: Event) => {
+      const next = (e as CustomEvent<string>).detail?.toLowerCase();
+      if (next && INTENT_MAP[next]) {
+        setInquiryType(INTENT_MAP[next]);
+        document
+          .getElementById("contact-form")
+          ?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    };
+    window.addEventListener(INTENT_EVENT, onIntent);
+    return () => window.removeEventListener(INTENT_EVENT, onIntent);
   }, []);
 
   /* Move focus to the confirmation when the form is submitted. */

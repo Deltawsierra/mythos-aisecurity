@@ -137,7 +137,7 @@ export function UseCasesHero() {
             <Button href="/contact" variant="primary" size="lg" className="bronze-glow">
               {CTA.PRIMARY}
             </Button>
-            <Button href="/demo" variant="secondary" size="lg">
+            <Button href="/contact?intent=demo" variant="secondary" size="lg">
               Request Demo
             </Button>
           </div>

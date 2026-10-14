@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import { IntentButton } from "@/components/forms/IntentButton";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
 import { StaggerReveal } from "@/components/motion/StaggerReveal";
@@ -111,9 +112,14 @@ export default function ContactPage() {
                 <Button href="#contact-form" variant="primary" size="lg">
                   Request Assessment
                 </Button>
-                <Button href="/demo" variant="secondary" size="lg">
+                <IntentButton
+                  intent="demo"
+                  href="/contact?intent=demo#contact-form"
+                  variant="secondary"
+                  size="lg"
+                >
                   Request Demo
-                </Button>
+                </IntentButton>
               </div>
               <p className="mt-8 text-[10px] font-semibold uppercase tracking-[0.28em] text-bronze/70">
                 All inquiries are reviewed confidentially

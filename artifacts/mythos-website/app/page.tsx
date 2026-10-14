@@ -7,7 +7,6 @@ import { HeroCrestStage } from "@/components/sections/HeroCrestStage";
 import { HeroBackgroundVideo } from "@/components/hero/HeroBackgroundVideo";
 import { VideoPanelPlaceholder } from "@/components/sections/VideoPanelPlaceholder";
 import { CinematicPageMotion } from "@/components/motion/CinematicPageMotion";
-import { HeroPreloadProvider } from "@/components/motion/HeroPreloadProvider";
 import { HeroMotion } from "@/components/motion/HeroMotion";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
 import { StaggerReveal } from "@/components/motion/StaggerReveal";
@@ -46,7 +45,6 @@ const MARKETS = [
 
 export default function HomePage() {
   return (
-    <HeroPreloadProvider>
     <CinematicPageMotion>
       {/* 1 · Hero ─────────────────────────────────────────── */}
       <HeroMotion>
@@ -229,14 +227,13 @@ export default function HomePage() {
               <Button href="/contact" variant="primary" size="lg">
                 Request Assessment
               </Button>
-              <Button href="/demo" variant="secondary" size="lg">
-                Request Demo Video
+              <Button href="/contact?intent=demo" variant="secondary" size="lg">
+                Request Demo
               </Button>
             </div>
           </ScrollReveal>
         </Container>
       </section>
     </CinematicPageMotion>
-    </HeroPreloadProvider>
   );
 }
