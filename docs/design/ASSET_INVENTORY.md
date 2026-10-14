@@ -5,7 +5,7 @@ Approved art for the v2 rebuild lives in `artifacts/mythos-website/public/assets
 `artifacts/mythos-website/content/media.ts`; use that manifest rather than
 hard-coding paths. Staged 14 Oct 2026 from the asset drops in Downloads:
 Batches 1–13, Motion V1–V3, Production Assets v1, Asset Fixes v2, Small Fixes
-Patch v3.
+Patch v3, Targeted Fixes v4.
 
 The current live site does not reference anything in `/assets/` yet.
 
@@ -28,7 +28,7 @@ The current live site does not reference anything in `/assets/` yet.
 | `transitions/` | Cloud, fog, dust, particle, haze, vignette layers + temple silhouette | Batch 10 |
 | `overlays/` | Atmospheric cloud, gold dust | Production v1 |
 | `textures/` | Footer stone | Batch 9 |
-| `social/` | Default Open Graph image (1200×630) | Fixes v2 |
+| `social/` | Open Graph images (1200×630): default, Economic Exposure, SPINE | Fixes v2 (default), Targeted Fixes v4 |
 
 Economic Exposure chart mockups are kept as design reference only in
 `docs/design/asset-reference/economic-exposure/`. The blueprint calls for native
@@ -84,12 +84,15 @@ frame visible and should not be used. Team posters and loops need no crop.
 | Motion V1 `hero-cloud-loop` | Almost no visible motion. |
 | Motion V1 `hero-waterfall-loop` | Crude shapes; the hero scene has no waterfall. |
 | Motion V2 `minotaur-engaged.webm` | 3.2 s instead of 5 s; visible jump at the loop point. |
+| v4 `minotaur-engaged.webm` | No jump now (3.0 s), but the last frame repeats the first and three mid-loop frames are held, so it stutters. |
 | Government / Mission card, hero, mobile crop | Depicts the US Capitol and flag. |
 | Industry mobile crops | Near-duplicates of the cards. |
 | Production v1 ornaments, lifecycle, social | Redundant or replaced in Fixes v2. |
-| Fixes v2 OG economic-exposure + SPINE | 1920×1080 instead of 1200×630. |
+| Fixes v2 OG economic-exposure + SPINE | 1920×1080 instead of 1200×630; replaced by the v4 re-exports. |
 | Fixes v2 OG platform | Lifecycle line omits "Understand". |
+| v4 OG platform | Lifecycle out of order ("Understand" first); the added dark panel has a hard edge across the statue's face. |
 | Fixes v2 square social image | Gold text over bright marble is hard to read. |
+| v4 square social image | Readable, but the text box covers the statue's eyes; sans-serif caps don't match the other OG headlines. |
 | Fixes v2 `IndustryHero.tsx` + CSS module | Rebuild in Tailwind as a server component; the baked heroes already include the blur. |
 | PNG fallbacks for SVGs (lifecycle, evidence states, laurel), SPINE cutout PNG, hero poster JPG | SVG/WebP versions cover every target browser. |
 
@@ -97,10 +100,12 @@ frame visible and should not be used. Team posters and loops need no crop.
 
 - Native 1080p render of the hero loop (current loop is an upscale; still carries
   a VP9 `alpha_mode` flag it doesn't need).
-- Re-export of `minotaur-engaged.webm` at 5 s.
+- `minotaur-engaged.webm` without the repeated final frame and the three held
+  mid-loop frames.
 - Government / Mission art without the Capitol.
-- Social images: either 1200×630 re-exports or code-generated OG images from the
-  crest and approved art.
+- Platform OG (lifecycle order Discover → Understand → Test → Prove → Revalidate,
+  blended panel) and square social image (text box off the face, serif headline),
+  or generate them in code from the crest and approved art.
 - Transparent VP9 overlays (`hero-light-overlay`, `cta-mist-overlay`) don't render
   transparently in Safari. Load them only where supported.
 - 3D GLBs (marble fragments, lifecycle medallion, SPINE core) — not produced.

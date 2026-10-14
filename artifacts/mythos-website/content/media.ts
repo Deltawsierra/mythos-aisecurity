@@ -215,4 +215,6 @@ export const DECISION_STATUS_ICONS = {
 
 export const SOCIAL_MEDIA = {
   ogDefault: poster("/assets/social/og-default.jpg", 1200, 630),
+  ogEconomicExposure: poster("/assets/social/og-economic-exposure.jpg", 1200, 630),
+  ogSpine: poster("/assets/social/og-spine.jpg", 1200, 630),
 } as const;
