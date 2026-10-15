@@ -150,6 +150,7 @@ export const PLATFORM_PAGES: ScaffoldPage[] = [
   {
     slug: "athena",
     href: "/platform/athena",
+    built: true,
     navLabel: "Athena",
     navDescription: "See the System — discovery, exposure and evidence.",
     eyebrow: "Athena",
@@ -189,6 +190,7 @@ export const PLATFORM_PAGES: ScaffoldPage[] = [
   {
     slug: "achilles",
     href: "/platform/achilles",
+    built: true,
     navLabel: "Achilles",
     navDescription: "Test the AI — behavior, tools, authority and effects.",
     eyebrow: "Achilles",

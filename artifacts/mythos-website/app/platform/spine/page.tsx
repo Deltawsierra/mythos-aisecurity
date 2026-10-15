@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { PageMotion } from "@/components/motion/PageMotion";
 import { InnerHero } from "@/components/sections/InnerHero";
@@ -8,6 +6,7 @@ import { HeroArt } from "@/components/sections/HeroArt";
 import { SectionBlend } from "@/components/sections/SectionBlend";
 import { SectionIntro } from "@/components/sections/SectionIntro";
 import { ClosingCta } from "@/components/sections/ClosingCta";
+import { NextLinks, type NextLink } from "@/components/sections/NextLinks";
 import { AssuranceGraph } from "@/components/platform/AssuranceGraph";
 import { EvidenceStates } from "@/components/platform/EvidenceStates";
 import { AuthorityChain } from "@/components/platform/AuthorityChain";
@@ -30,7 +29,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/platform/spine/" },
 };
 
-const NEXT = [
+const NEXT: NextLink[] = [
   {
     eyebrow: "Economic Exposure",
     title: "What a validated failure could mean financially",
@@ -240,22 +239,7 @@ export default function SpinePage() {
       <section data-surface="bone" aria-labelledby="next-title" className="border-t border-rule pb-24 pt-24">
         <Container>
           <SectionIntro id="next-title" eyebrow={c.next.eyebrow} title={c.next.title} />
-          <ul className="mt-10 grid gap-3 md:grid-cols-3" data-reveal-group>
-            {NEXT.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className="group flex h-full flex-col justify-between border border-rule bg-panel p-6 transition-[border-color,box-shadow] duration-500 hover:border-antique-gold/60 hover:shadow-[0_26px_50px_-30px_rgba(122,63,29,0.5)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bronze/60"
-                >
-                  <span>
-                    <span className="block text-[10px] font-semibold uppercase tracking-[0.22em] text-accent">{item.eyebrow}</span>
-                    <span className="mt-2 block font-display text-2xl leading-tight text-fg">{item.title}</span>
-                  </span>
-                  <ArrowRight size={16} aria-hidden="true" className="mt-6 text-accent transition-transform group-hover:translate-x-1" />
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <NextLinks items={NEXT} />
         </Container>
       </section>
 

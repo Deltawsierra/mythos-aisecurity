@@ -222,6 +222,18 @@ export const DECISION_STATUS_ICONS = {
   evidenceCurrent: "/assets/status/status-evidence-current.svg",
 } as const;
 
+/** Athena check-group medallions (gold on transparent, from AthenaPageAssets). */
+export const ATHENA_ICONS = {
+  surfaces: "/assets/athena/athena-surfaces.webp",
+  routes: "/assets/athena/athena-routes.webp",
+  identity: "/assets/athena/athena-identity.webp",
+  cloudPosture: "/assets/athena/athena-cloud-posture.webp",
+  pipeline: "/assets/athena/athena-pipeline.webp",
+  dataLifecycle: "/assets/athena/athena-data-lifecycle.webp",
+  personalContext: "/assets/athena/athena-personal-context.webp",
+  remediation: "/assets/athena/athena-remediation.webp",
+} as const;
+
 export const SOCIAL_MEDIA = {
   ogDefault: poster("/assets/social/og-default.jpg", 1200, 630),
   ogEconomicExposure: poster("/assets/social/og-economic-exposure.jpg", 1200, 630),

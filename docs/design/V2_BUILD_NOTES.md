@@ -97,9 +97,11 @@ Mythos Produces, Industries.
 ## Phase 3 — platform pages (started 14 Oct 2026)
 
 Built: **Platform Overview** (`app/platform/page.tsx`, copy in
-`content/platformOverview.ts`) and **SPINE** (`app/platform/spine/page.tsx`,
-copy in `content/spine.ts`). Still scaffolds: Athena, Achilles, Validation
-(Minotaur), Hermes, Economic Exposure, Evidence, Continuous Assurance.
+`content/platformOverview.ts`), **SPINE** (`app/platform/spine/page.tsx`,
+copy in `content/spine.ts`), **Athena** (`app/platform/athena/page.tsx`,
+`content/athena.ts`) and **Achilles** (`app/platform/achilles/page.tsx`,
+`content/achilles.ts`). Still scaffolds: Validation (Minotaur), Hermes,
+Economic Exposure, Evidence, Continuous Assurance.
 
 - **Shared pieces:** `InnerHero`, `HeroArt`, `SectionIntro`, `ClosingCta`
   (components/sections) and, in components/platform, `ArchitectureMap`
@@ -120,6 +122,24 @@ copy in `content/spine.ts`). Still scaffolds: Athena, Achilles, Validation
   "quantifies the business exposure" and probably needs the same treatment.
 - Illustrative numbers (loss range, receipt fields, authority example) are
   labeled as illustrative/fictional on the page.
+- **Athena / Achilles pieces:** `CharacterPanel` (poster → idle loop in view →
+  engaged loop on hover/focus, desktop with motion only), `SystemMap`
+  (illustrative system drawn in discovery waves, ending on an attested route and
+  an undeclared one), `GroupList` (native `<details>`), `DifferentialEvidence`,
+  `CoveragePanel`, `HandoffFlow`, `ChainFlow`, `ActionGate`; `NextLinks`
+  (components/sections) is now shared with SPINE.
+- **Athena claims:** checks are grouped by the question they answer because the
+  sources name no scanner families; the scanner count is registered but not
+  used in copy. Route/endpoint discovery is BUILD-NEW (the flagship scan was a
+  mock), differential evidence and the coverage manifest were not found in the
+  sources — both appear as illustrated concepts and are in the claims register.
+- **Achilles claims:** six capability families are built; MCP/tool integrity
+  and action/approval authority use "designed to". The Action Gate is not built
+  and internal docs warn against presenting assessment as runtime enforcement,
+  so the gate section shows what Achilles *tests* (should vs observed), with a
+  one-line forward note on the reference Action Gate. Rejected for copy: "32
+  scenarios" (training lessons, not a test corpus) and "six cross-channel chains"
+  (not found); cross-channel chains and release comparison use forward wording.
 - Retired: the v1 platform sections and the whole v1 3D pipeline
   (shield/spear/crest scenes, `lib/three.ts`).
 

@@ -29,6 +29,7 @@ The current live site does not reference anything in `/assets/` yet.
 | `overlays/` | Atmospheric cloud, gold dust | Production v1 |
 | `textures/` | Footer stone | Batch 9 |
 | `social/` | Open Graph images (1200×630): default, Economic Exposure, SPINE | Fixes v2 (default), Targeted Fixes v4 |
+| `athena/` | Eight gold check-group medallions (480×480 WebP, transparent outside the medallion) | AthenaPageAssets (1)–(8), staged 14 Oct 2026 |
 
 Economic Exposure chart mockups are kept as design reference only in
 `docs/design/asset-reference/economic-exposure/`. The blueprint calls for native
@@ -45,6 +46,13 @@ be checked against product terminology before reuse.
 - **Industry cards:** trimmed the neighbouring-card sliver and dark sheet gutter
   baked into the left edge (8.2–10% of width), plus the top/right gutter on
   Manufacturing. Re-encoded at WebP q90.
+- **Athena medallions:** the eight AthenaPageAssets PNGs were flood-filled from
+  the corners to remove the dark sheet (threshold 38; icons 1 and 6 re-cut at 6
+  where the fill leaked into the gold rim), cropped square and saved as 480×480
+  WebP. Mapping: 1 surfaces, 2 remediation, 3 cloud posture, 4 identity,
+  5 data lifecycle, 6 pipeline, 7 routes, 8 personal context. Typed as
+  `ATHENA_ICONS` in `content/media.ts`. The Achilles dashboard mockups from the
+  same drop were not used: they show real vendor/model names and invented metrics.
 - `ui/nav-arrow-right.svg` and `ui/nav-chevron-down.svg` use `currentColor`;
   inline them (or use as a CSS mask) so they take the text colour. As an `<img>`
   they render black.
