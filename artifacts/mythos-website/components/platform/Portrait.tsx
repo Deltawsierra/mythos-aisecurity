@@ -1,0 +1,21 @@
+import { CHARACTER_MEDIA, type ProjectId } from "@/content/media";
+import { cn } from "@/lib/utils";
+
+/** A character's face inside a gold medallion ring. Decorative. */
+export function Portrait({ project, className }: { project: ProjectId; className?: string }) {
+  const { poster, face } = CHARACTER_MEDIA[project];
+  return (
+    <span
+      aria-hidden="true"
+      className={cn(
+        "relative block aspect-square overflow-hidden rounded-full border-2 border-antique-gold/80 bg-obsidian shadow-[0_0_0_4px_rgba(5,5,5,0.85),0_0_0_5px_rgba(166,106,50,0.55),0_18px_40px_-14px_rgba(0,0,0,0.9)]",
+        className,
+      )}
+      style={{
+        backgroundImage: `url(${poster.src})`,
+        backgroundSize: `${face.zoom * 100}% auto`,
+        backgroundPosition: `${face.x}% ${face.y}%`,
+      }}
+    />
+  );
+}

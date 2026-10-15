@@ -23,6 +23,8 @@
      deep copper — bronze alone is under 4.5:1 there. */
   --color-bronze: #a66a32;
   --color-bronze-light: #b8823f;
+  /* Small text on dark surfaces: ≥ 4.5:1 on navy, abyss and obsidian. */
+  --color-bronze-bright: #c28b47;
   --color-antique-gold: #d6a14a;
   --color-deep-copper: #7a3f1d;
   --color-ember: #ff9d3b;
@@ -34,6 +36,11 @@
   --color-state-unknown: #9a9a9a;
   --color-state-stale: #c99a3c;
   --color-state-contradicted: #c0573f;
+  /* Text-weight variants for light surfaces (≥ 4.5:1 on bone and white). */
+  --color-state-verified-ink: #2f6b45;
+  --color-state-stale-ink: #85560f;
+  --color-state-contradicted-ink: #963825;
+  --color-state-observed-ink: #2d5c8c;
 
   /* ── Typography ─────────────────────────────────────── */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
@@ -510,5 +517,52 @@
   .lc-orb,
   .lc-connector {
     display: none !important;
+  }
+}
+
+/* ── Platform (v2) ──────────────────────────────────────── */
+
+/* Light travelling along a lit architecture link toward SPINE. */
+.arch-flow {
+  stroke-dasharray: 3 22;
+  animation: arch-flow 1.4s linear infinite;
+  filter: drop-shadow(0 0 4px rgb(255 226 168 / 0.9));
+}
+@keyframes arch-flow {
+  to {
+    stroke-dashoffset: -25;
+  }
+}
+
+/* The SPINE core breathes a few degrees, never spins. */
+.core-sway {
+  animation: core-sway 14s ease-in-out infinite;
+  transform-origin: 50% 52%;
+}
+@keyframes core-sway {
+  0%,
+  100% {
+    transform: rotate(-3deg) translateY(0);
+  }
+  50% {
+    transform: rotate(3deg) translateY(-8px);
+  }
+}
+
+/* A trace drawing itself through the assurance graph. */
+.graph-draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: graph-draw 1.4s cubic-bezier(0.16, 0.84, 0.24, 1) forwards;
+}
+@keyframes graph-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .graph-draw {
+    stroke-dashoffset: 0;
+    animation: none;
   }
 }

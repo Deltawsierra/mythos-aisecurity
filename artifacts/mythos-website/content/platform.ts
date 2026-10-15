@@ -169,6 +169,7 @@ export const PLATFORM_PAGES: ScaffoldPage[] = [
   {
     slug: "spine",
     href: "/platform/spine",
+    built: true,
     navLabel: "SPINE",
     navDescription: "Maintain the Truth — the assurance system of record.",
     eyebrow: "SPINE",
@@ -302,3 +303,158 @@ export const PLATFORM_PAGES: ScaffoldPage[] = [
 export function getPlatformPage(slug: string): ScaffoldPage | undefined {
   return PLATFORM_PAGES.find((page) => page.slug === slug);
 }
+
+/** The buyer briefing's five plain-English questions. */
+export const EXECUTIVE_QUESTIONS = [
+  "What exists?",
+  "What can it reach?",
+  "What can it do?",
+  "Can it be manipulated?",
+  "Can we prove the answer?",
+] as const;
+
+/** The deeper assurance dimensions underneath the five questions. */
+export const ASSURANCE_DIMENSIONS: { name: string; question: string }[] = [
+  { name: "Access", question: "What data, systems and tools can the AI actually reach?" },
+  { name: "Authority", question: "What is it permitted to do, and who granted that?" },
+  { name: "Behavior", question: "How does it act under normal use and under pressure?" },
+  { name: "Effects", question: "What actually happens downstream when it acts?" },
+  { name: "Economics", question: "What could a validated failure mean for the business?" },
+  { name: "Validity", question: "Is the evidence still current after the system changed?" },
+];
+
+/** Person → effect: the links SPINE keeps accountable for every action. */
+export const AUTHORITY_CHAIN: { name: string; question: string; example: string }[] = [
+  { name: "Person", question: "Who is accountable?", example: "Support lead" },
+  { name: "User", question: "Which identity asked?", example: "Her session" },
+  { name: "Agent", question: "Which AI acted?", example: "Support assistant" },
+  { name: "Policy", question: "Which rule allowed it?", example: "Refunds up to $500" },
+  { name: "Tool", question: "What did it call?", example: "payments.refund" },
+  { name: "Account", question: "Under whose credentials?", example: "Service account" },
+  { name: "Action", question: "What was requested?", example: "Refund $4,800" },
+  { name: "Effect", question: "What actually happened?", example: "Funds moved" },
+];
+
+/** What SPINE concludes for the illustrative chain above. */
+export const AUTHORITY_VERDICT = {
+  state: "contradicted" as const,
+  text: "The effect exceeded the policy that authorized it. SPINE marks the approval claim Contradicted and holds the deployment decision until it is fixed and retested.",
+};
+
+export type ArchitectureNodeId = ProjectId | "core";
+
+/** How the projects connect on the architecture map. */
+export const ARCHITECTURE_LINKS: {
+  from: ArchitectureNodeId;
+  to: ArchitectureNodeId;
+  label: string;
+  kind: "evidence" | "validation" | "extension";
+}[] = [
+  { from: "athena", to: "spine", label: "System state & findings", kind: "evidence" },
+  { from: "achilles", to: "spine", label: "Observed effects", kind: "evidence" },
+  { from: "spine", to: "achilles", label: "Claims to test", kind: "evidence" },
+  { from: "minotaur", to: "athena", label: "Validates", kind: "validation" },
+  { from: "minotaur", to: "spine", label: "Validates", kind: "validation" },
+  { from: "minotaur", to: "achilles", label: "Validates", kind: "validation" },
+  { from: "spine", to: "hermes", label: "Extends to physical AI", kind: "extension" },
+];
+
+export const MYTHOS_CORE = {
+  name: "Mythos Core",
+  tagline: "Shared trust and safety foundation",
+  role: "Trusted primitives underneath every engine: signed commands and outcomes, evidence chains, and a failsafe that can pause, stand down or terminate — under human authority, and without depending on the component being stopped.",
+} as const;
+
+export type OutputId =
+  | "claim"
+  | "receipt"
+  | "evidence-pack"
+  | "retest-proof"
+  | "decision"
+  | "coverage";
+
+/** What a customer receives, in plain English first. */
+export const OUTPUTS: { id: OutputId; name: string; plain: string; audience: string; icon: string }[] = [
+  {
+    id: "claim",
+    name: "Assurance Claim",
+    plain: "A specific statement about the system, with its evidence state.",
+    audience: "Security · Engineering",
+    icon: "/assets/evidence/states/evidence-verified.svg",
+  },
+  {
+    id: "receipt",
+    name: "Assurance Receipt",
+    plain: "A signed record of what was tested and found, that you can verify yourself.",
+    audience: "Audit · Procurement",
+    icon: "/assets/evidence/assurance-receipt.svg",
+  },
+  {
+    id: "evidence-pack",
+    name: "Evidence Pack",
+    plain: "The findings, proof and context behind a conclusion, ready for review.",
+    audience: "Risk · Compliance",
+    icon: "/assets/evidence/evidence-pack.svg",
+  },
+  {
+    id: "retest-proof",
+    name: "Retest Proof",
+    plain: "Evidence that the original failure was retested after the fix.",
+    audience: "Engineering · Release owner",
+    icon: "/assets/evidence/retest-proof.svg",
+  },
+  {
+    id: "decision",
+    name: "Deployment Decision",
+    plain: "An evidence-backed recommendation; your team makes the final call.",
+    audience: "Executives · Board",
+    icon: "/assets/evidence/deployment-decision-gate.svg",
+  },
+  {
+    id: "coverage",
+    name: "Coverage Manifest",
+    plain: "What was expected, observed, assessed — and what was not checked.",
+    audience: "Security · Audit",
+    icon: "/assets/evidence/policy-authority-chain.svg",
+  },
+];
+
+/** Deployment decision states (SPINE decision model). Humans own the release. */
+export const DECISION_STATES: { name: string; meaning: string; tone: "go" | "caution" | "stop" }[] = [
+  { name: "Ready", meaning: "Current evidence supports release within the assessed scope.", tone: "go" },
+  { name: "Ready with restrictions", meaning: "Supported, but only within stated limits.", tone: "go" },
+  { name: "Needs more evidence", meaning: "Open unknowns must be closed before a decision.", tone: "caution" },
+  { name: "Needs remediation", meaning: "Failures must be fixed and retested first.", tone: "caution" },
+  { name: "Not recommended", meaning: "The evidence does not support release.", tone: "stop" },
+  { name: "Paused", meaning: "Held while a change or incident is resolved.", tone: "stop" },
+];
+
+/** Evidence strength, strongest first. A claim is only as strong as its weakest evidence. */
+export const EVIDENCE_STRENGTH = [
+  "Technically verified",
+  "Configuration verified",
+  "Document supported",
+  "Contractually stated",
+  "Vendor asserted",
+  "Partially verified",
+  "Unknown",
+  "Not documented",
+] as const;
+
+/** Policy effects, most restrictive first. Any deny wins; an unknown input escalates. */
+export const POLICY_EFFECTS: { name: string; meaning: string }[] = [
+  { name: "Deny", meaning: "Blocked. Any deny wins." },
+  { name: "Escalate", meaning: "Sent to a human — including whenever an input is unknown." },
+  { name: "Allow with approval", meaning: "Permitted once a named approver signs off." },
+  { name: "Allow", meaning: "Permitted under the pinned policy version." },
+];
+
+/** Change intelligence, from a change to restored trust. */
+export const CHANGE_PIPELINE: { name: string; detail: string; state: EvidenceStateId | "change" | "retest" }[] = [
+  { name: "Verified", detail: "Claim: the support assistant cannot move funds without approval.", state: "verified" },
+  { name: "Change detected", detail: "A new tool is connected: payments.refund.", state: "change" },
+  { name: "Impact assessed", detail: "The change touches the approval boundary the claim relies on.", state: "observed" },
+  { name: "Invalidated", detail: "INVALIDATES closes the claim. It is now Stale and the decision is recalculated.", state: "stale" },
+  { name: "Minimal retest", detail: "Only the tests that cover the affected boundary run again.", state: "retest" },
+  { name: "Restored", detail: "Fresh evidence verifies the claim against the new configuration.", state: "verified" },
+];

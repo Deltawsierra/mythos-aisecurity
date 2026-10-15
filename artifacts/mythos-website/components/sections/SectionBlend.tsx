@@ -26,7 +26,7 @@ export type BlendArt = keyof typeof BLEND_ART;
 export interface BlendLayer {
   art: BlendArt;
   opacity?: number;
-  /** Horizontal scroll drift in px, applied by HomeMotion (data-drift). */
+  /** Horizontal scroll drift in px, applied by PageMotion (data-drift). */
   drift?: number;
   blend?: "normal" | "screen" | "multiply";
 }

@@ -39,6 +39,8 @@ export interface CharacterMedia {
    * measured per character and checked at every corner.
    */
   crop: MediaCrop;
+  /** Where the face sits in the poster (% of width/height) and how far to zoom for a portrait medallion. */
+  face: { x: number; y: number; zoom: number };
 }
 
 export interface TeamMedia {
@@ -111,6 +113,7 @@ export const CHARACTER_MEDIA: Record<ProjectId, CharacterMedia> = {
     idle: "/assets/characters/athena-idle.webm",
     engaged: "/assets/characters/athena-engaged.webm",
     crop: { left: 1, top: 1 },
+    face: { x: 52, y: 21, zoom: 3.2 },
   },
   spine: {
     poster: poster("/assets/characters/spine-poster.webp", 867, 1600),
@@ -118,6 +121,7 @@ export const CHARACTER_MEDIA: Record<ProjectId, CharacterMedia> = {
     engaged: "/assets/characters/spine-engaged.webm",
     emblem: "/assets/characters/emblems/spine-emblem.svg",
     crop: { left: 3.5, top: 1.5 },
+    face: { x: 52, y: 19, zoom: 3.2 },
   },
   achilles: {
     poster: poster("/assets/characters/achilles-poster.webp", 884, 1600),
@@ -125,12 +129,14 @@ export const CHARACTER_MEDIA: Record<ProjectId, CharacterMedia> = {
     engaged: "/assets/characters/achilles-engaged.webm",
     emblem: "/assets/characters/emblems/achilles-emblem.svg",
     crop: { left: 5, top: 2 },
+    face: { x: 60, y: 19, zoom: 3.2 },
   },
   minotaur: {
     poster: poster("/assets/characters/minotaur-poster.webp", 867, 1600),
     idle: "/assets/characters/minotaur-idle.webm",
     // minotaur-engaged.webm withheld: 3.2s instead of 5s, visible jump at the loop.
     crop: { left: 5.5, top: 2 },
+    face: { x: 64, y: 22, zoom: 3 },
   },
   hermes: {
     poster: poster("/assets/characters/hermes-poster.webp", 901, 1600),
@@ -138,6 +144,9 @@ export const CHARACTER_MEDIA: Record<ProjectId, CharacterMedia> = {
     engaged: "/assets/characters/hermes-engaged.webm",
     emblem: "/assets/characters/emblems/hermes-emblem.svg",
     crop: { left: 8.5, top: 2 },
+    // His face is at the poster's right edge (~93% across), so the portrait
+    // aligns right rather than centring it.
+    face: { x: 100, y: 23, zoom: 3.4 },
   },
 };
 

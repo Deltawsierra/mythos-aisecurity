@@ -2,13 +2,18 @@
 
 This directory is reserved for cinematic 3D scenes using Three.js, React Three Fiber, and Drei.
 
-## Approved use cases
+## Approved use cases (v2 blueprint, Section 4)
 
-- Mythos crest hero reveal
-- Athena + Achilles assurance-loop visualization
-- Platform architecture visual
-- Demo theater section
-- Final shield CTA section
+Only where real depth materially improves interaction:
+
+- SPINE Assurance Core (signature artifact on /platform/spine and the homepage)
+- Small cracked-marble fragments around the Challenge sculpture
+- One lifecycle medallion with interchangeable reliefs
+- Secondary, if performance allows: Achilles shield/spear, Hermes artifact
+
+None of these GLBs has been produced yet; the pages use the approved 2D art
+(see docs/design/ASSET_INVENTORY.md). The v1 crest, shield and spear scenes were
+retired in the v2 rebuild. Mobile and reduced-motion always get a poster.
 
 Do not make the entire site a WebGL canvas. 3D is a selective enhancement, not the default.
 

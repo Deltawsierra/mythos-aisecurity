@@ -55,7 +55,7 @@ export function SiteFooter() {
 
           {FOOTER_NAV.map((group) => (
             <div key={group.label}>
-              <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.25em] text-bronze">
+              <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.25em] text-bronze-bright">
                 {group.label}
               </p>
               <ul className="flex flex-col gap-3" role="list">

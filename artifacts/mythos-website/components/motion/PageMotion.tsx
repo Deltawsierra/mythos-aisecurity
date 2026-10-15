@@ -4,8 +4,8 @@ import { useRef, type ReactNode } from "react";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 
 /**
- * Homepage motion, driven by attributes on server-rendered markup so the
- * sections themselves stay server components:
+ * Page motion, driven by attributes on server-rendered markup so the sections
+ * themselves stay server components:
  *
  * - `data-parallax="8"`  scroll-scrubbed vertical drift, in % of the element
  * - `data-drift="60"`    scroll-scrubbed horizontal drift, in px (cloud layers)
@@ -17,7 +17,14 @@ import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
  * precise stop (no bounce), transform/opacity only. prefers-reduced-motion
  * skips all of it, leaving every element in its final, visible state.
  */
-export function HomeMotion({ children }: { children: ReactNode }) {
+export function PageMotion({
+  children,
+  cursorLight = true,
+}: {
+  children: ReactNode;
+  /** One warm cursor light for the page (desktop only). */
+  cursorLight?: boolean;
+}) {
   const scope = useRef<HTMLDivElement>(null);
   const lightRef = useRef<HTMLDivElement>(null);
 
@@ -113,6 +120,7 @@ export function HomeMotion({ children }: { children: ReactNode }) {
       {/* One warm cursor light for the whole page (desktop only). */}
       <div
         ref={lightRef}
+        hidden={!cursorLight}
         aria-hidden="true"
         className="pointer-events-none fixed left-0 top-0 z-[5] -ml-[300px] -mt-[300px] h-[600px] w-[600px] rounded-full opacity-0 mix-blend-screen"
         style={{

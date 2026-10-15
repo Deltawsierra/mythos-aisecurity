@@ -78,7 +78,7 @@ Hero → dawn blend → Challenge → dusk blend → Assurance Lifecycle → fin
   trace along the Batch 5 connector; medallions are inlined (`lib/inlineSvg.ts`)
   so the active one can turn and its inner ring spin. Each stage is a button
   that scrolls to its point. Phones get a vertical timeline.
-- **Motion:** `components/home/HomeMotion.tsx` reads `data-parallax`,
+- **Motion:** `components/motion/PageMotion.tsx` reads `data-parallax`,
   `data-drift`, `data-depth` and `data-reveal(-group)` from server-rendered
   markup, plus one warm cursor light on desktop. Videos use
   `components/media/LoopVideo.tsx` (poster first, tablet+ only, paused
@@ -94,7 +94,43 @@ Homepage sections still to build (tracked by the release gate via
 `HOME_PENDING_SECTIONS`): platform architecture, SPINE + assurance teams, What
 Mythos Produces, Industries.
 
+## Phase 3 — platform pages (started 14 Oct 2026)
+
+Built: **Platform Overview** (`app/platform/page.tsx`, copy in
+`content/platformOverview.ts`) and **SPINE** (`app/platform/spine/page.tsx`,
+copy in `content/spine.ts`). Still scaffolds: Athena, Achilles, Validation
+(Minotaur), Hermes, Economic Exposure, Evidence, Continuous Assurance.
+
+- **Shared pieces:** `InnerHero`, `HeroArt`, `SectionIntro`, `ClosingCta`
+  (components/sections) and, in components/platform, `ArchitectureMap`
+  (interactive), `AuthorityChain`, `EvidenceStates`, `ChangeFlow`,
+  `ExposurePreview`, `OutputsGrid`, `ProjectGrid`, `LifecycleStrip`,
+  `AssuranceGraph`, `SpineBlocks`, `Portrait`. `PageMotion` (formerly
+  HomeMotion) now drives motion on every v2 page.
+- **Vocabulary** follows the SPINE Technical Foundation Spec where it differs
+  from the blueprint: six decision states (Ready … Paused), the evidence-
+  strength ladder, policy effects (any deny wins; unknown escalates),
+  SUPERSEDES vs INVALIDATES, and the change pipeline.
+- **Claims:** every SPINE/platform capability is in `content/claims.ts` with a
+  `note` summarising what the internal docs say. Key conflicts the Master
+  Inventory must settle: the claims engine and INVALIDATES wiring, receipt
+  signing/verification, vendor/incident packs, coverage manifests.
+  **Economic Exposure is "specified only" in its 7 Oct spec**, so platform
+  pages use forward wording ("is designed to"); the homepage hero still says
+  "quantifies the business exposure" and probably needs the same treatment.
+- Illustrative numbers (loss range, receipt fields, authority example) are
+  labeled as illustrative/fictional on the page.
+- Retired: the v1 platform sections and the whole v1 3D pipeline
+  (shield/spear/crest scenes, `lib/three.ts`).
+
 ## Not yet done
+
+- **Contrast:** v1 pages still use `text-bronze` (3.8:1 on navy) and faded
+  `text-bronze/70` for small text. v2 components use `text-bronze-bright` on
+  dark surfaces and `text-state-*-ink` / `text-deep-copper` on light ones. Sweep
+  any v1 page that survives to launch (Phase 9 accessibility QA).
+- `public/models/` (6.5 MB of v1 GLBs) is no longer referenced on site-v2;
+  remove before launch unless the SPINE-core GLB work reuses it.
 
 - The old `/use-cases#what-mythos-produces` and `#how-engagement-starts` anchors
   should forward to `/outputs` and `/engagement` (Phase 9 redirects).

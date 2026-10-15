@@ -158,7 +158,7 @@ export function MegaMenu({
             {columns.map((column) => (
               <div key={column.heading}>
                 {wide && (
-                  <p className="mb-3 px-3 text-[10px] font-semibold uppercase tracking-[0.26em] text-bronze">
+                  <p className="mb-3 px-3 text-[10px] font-semibold uppercase tracking-[0.26em] text-bronze-bright">
                     {column.heading}
                   </p>
                 )}

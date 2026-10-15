@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { HomeMotion } from "@/components/home/HomeMotion";
+import { PageMotion } from "@/components/motion/PageMotion";
 import { HomeHero } from "@/components/home/HomeHero";
 import { ChallengeSection } from "@/components/home/ChallengeSection";
 import { LifecycleSection } from "@/components/home/LifecycleSection";
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
  */
 export default function HomePage() {
   return (
-    <HomeMotion>
+    <PageMotion>
       <HomeHero />
       <SectionBlend
         from="abyss"
@@ -44,6 +44,6 @@ export default function HomePage() {
       <LifecycleSection />
       <HomePendingSections />
       <FinalCta />
-    </HomeMotion>
+    </PageMotion>
   );
 }

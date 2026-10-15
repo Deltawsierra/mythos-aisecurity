@@ -100,7 +100,7 @@ export function HomeHero() {
           <ol className="grid grid-cols-1 gap-x-6 gap-y-3 py-7 sm:grid-cols-2 lg:flex lg:items-baseline lg:justify-between">
             {HOME_HERO.questions.map((question, index) => (
               <li key={question} className="flex items-baseline gap-3">
-                <span className="text-[10px] font-semibold tracking-[0.2em] text-bronze">
+                <span className="text-[10px] font-semibold tracking-[0.2em] text-bronze-bright">
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <span className="font-display text-xl italic text-ivory/90">{question}</span>

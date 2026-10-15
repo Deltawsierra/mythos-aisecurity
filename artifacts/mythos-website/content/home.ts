@@ -2,18 +2,14 @@
  * Homepage copy (blueprint Section 6). Capability statements here are also
  * entered in content/claims.ts so the launch gate covers them.
  */
+import { EXECUTIVE_QUESTIONS } from "@/content/platform";
+
 export const HOME_HERO = {
   eyebrow: "AI Deployment Assurance",
   headline: "Prove Your AI Is Ready to Operate.",
   body: "Mythos independently maps what AI can reach, tests what it can do, verifies what actually happens, quantifies the business exposure, and keeps the evidence current as the system changes.",
   /** The buyer briefing's five plain-English questions — the bridge out of the hero. */
-  questions: [
-    "What exists?",
-    "What can it reach?",
-    "What can it do?",
-    "Can it be manipulated?",
-    "Can we prove the answer?",
-  ],
+  questions: EXECUTIVE_QUESTIONS,
 } as const;
 
 export const HOME_CHALLENGE = {

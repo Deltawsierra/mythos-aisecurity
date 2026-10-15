@@ -179,7 +179,7 @@ export function LifecycleSequence({ stages, connectorSvg, copy }: LifecycleSeque
           </div>
 
           <div className="lc-live mx-auto mt-6 hidden max-w-2xl text-center lg:block" aria-live="polite">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.26em] text-bronze">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.26em] text-bronze-bright">
               Stage {active + 1} of {n}
             </p>
             <p key={`${current.id}-name`} className="lc-fade mt-2 font-display text-3xl text-fg">

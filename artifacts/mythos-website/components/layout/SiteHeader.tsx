@@ -361,7 +361,7 @@ export function SiteHeader() {
                         {node.columns.map((column) => (
                           <div key={column.heading} className="mb-2">
                             {node.columns!.length > 1 && (
-                              <p className="pb-1 pt-2 text-[9px] font-semibold uppercase tracking-[0.24em] text-bronze/80">
+                              <p className="pb-1 pt-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-bronze-bright">
                                 {column.heading}
                               </p>
                             )}
