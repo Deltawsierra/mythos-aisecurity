@@ -49,30 +49,40 @@ const platformPage = (slug: string): NavLeaf => {
   return { label: page.navLabel, href: page.href, description: page.navDescription };
 };
 
+const resource = (key: keyof typeof RESOURCE_PAGES, label?: string): NavLeaf => ({
+  label: label ?? RESOURCE_PAGES[key].navLabel,
+  href: RESOURCE_PAGES[key].href,
+  description: RESOURCE_PAGES[key].navDescription,
+});
+
+/**
+ * Launch Guide IA (Section 04): Platform | Products | Solutions | Resources |
+ * Company, with Get a Demo as the global CTA. Pricing stays a prominent
+ * secondary destination (Resources menu, drawer and footer). Only routes that
+ * exist are linked: Resources and Company sub-pages without real content are
+ * left out rather than shipped as empty libraries.
+ */
 export const PRIMARY_NAV: NavNode[] = [
   {
     label: "Platform",
     match: ["/platform"],
     columns: [
       {
-        heading: "The assurance system",
-        items: PROJECTS.map((p) => ({
-          label: p.id === "minotaur" ? "How Mythos Validates Itself" : p.name,
-          href: p.href,
-          description: p.id === "minotaur" ? "Minotaur — who tests the tester." : `${p.tagline}.`,
-        })),
-      },
-      {
-        heading: "How it works",
+        heading: "How assurance works",
         items: [
           {
             label: "Platform Overview",
             href: "/platform",
             description: "One assurance system for AI deployment.",
           },
-          platformPage("economic-exposure"),
+          {
+            label: "The Assurance Lifecycle",
+            href: "/platform#lifecycle-title",
+            description: "Discover, Understand, Test, Prove, Revalidate.",
+          },
           platformPage("evidence"),
           platformPage("continuous-assurance"),
+          platformPage("economic-exposure"),
         ],
       },
     ],
@@ -84,6 +94,27 @@ export const PRIMARY_NAV: NavNode[] = [
       image: SPINE_CORE_MEDIA.cutout.src,
       fit: "contain",
     },
+  },
+  {
+    label: "Products",
+    match: ["/platform/athena", "/platform/spine", "/platform/achilles", "/platform/validation", "/platform/hermes"],
+    columns: [
+      {
+        heading: "The Mythos family",
+        items: [
+          ...PROJECTS.map((p) => ({
+            label: p.id === "minotaur" ? "Minotaur · How Mythos Validates Itself" : p.name,
+            href: p.href,
+            description: p.id === "minotaur" ? "Test Mythos — our internal proving ground." : `${p.tagline}.`,
+          })),
+          {
+            label: "Mythos Core",
+            href: "/platform#architecture-title",
+            description: "The shared scope, authorization and governance foundation.",
+          },
+        ],
+      },
+    ],
   },
   {
     label: "Solutions",
@@ -124,64 +155,44 @@ export const PRIMARY_NAV: NavNode[] = [
   },
   {
     label: "Resources",
-    match: [
-      "/use-cases",
-      "/outputs",
-      "/example-report",
-      "/standards",
-      "/glossary",
-      "/engagement",
-      "/trust",
-    ],
+    match: ["/use-cases", "/outputs", "/example-report", "/standards", "/glossary", "/engagement", "/trust", "/pricing"],
     columns: [
       {
         heading: "Proof",
         items: [
           {
-            label: RESOURCE_PAGES.outputs.navLabel,
-            href: RESOURCE_PAGES.outputs.href,
-            description: RESOURCE_PAGES.outputs.navDescription,
-          },
-          {
             label: "Example Assurance Report",
             href: "/example-report",
-            description: "A sample deliverable, page by page.",
+            description: "A synthetic sample deliverable, page by page.",
           },
+          resource("outputs"),
           {
             label: "Trust & Security",
             href: "/trust",
             description: "Authorization, scope, data handling and disclosure.",
           },
-          {
-            label: RESOURCE_PAGES.engagement.navLabel,
-            href: RESOURCE_PAGES.engagement.href,
-            description: RESOURCE_PAGES.engagement.navDescription,
-          },
+          resource("standards"),
         ],
       },
       {
-        heading: "Learn",
+        heading: "Learn and buy",
         items: [
           {
             label: "Use Cases",
             href: "/use-cases",
             description: "Where AI deployment risk shows up, scenario by scenario.",
           },
+          resource("glossary"),
+          resource("engagement"),
           {
-            label: RESOURCE_PAGES.standards.navLabel,
-            href: RESOURCE_PAGES.standards.href,
-            description: RESOURCE_PAGES.standards.navDescription,
-          },
-          {
-            label: RESOURCE_PAGES.glossary.navLabel,
-            href: RESOURCE_PAGES.glossary.href,
-            description: RESOURCE_PAGES.glossary.navDescription,
+            label: "Pricing",
+            href: "/pricing",
+            description: "Scoped assessments and continuing assurance.",
           },
         ],
       },
     ],
   },
-  { label: "Pricing", href: "/pricing", match: ["/pricing"] },
   {
     label: "Company",
     match: ["/company", "/investors", "/careers", "/partnerships", "/contact"],
@@ -202,17 +213,13 @@ export const PRIMARY_NAV: NavNode[] = [
           {
             label: "Careers",
             href: "/careers",
-            description: "Help build the proving ground for operational AI.",
+            description: "Help build the systems that test AI.",
           },
-          {
-            label: RESOURCE_PAGES.partnerships.navLabel,
-            href: RESOURCE_PAGES.partnerships.href,
-            description: RESOURCE_PAGES.partnerships.navDescription,
-          },
+          resource("partnerships"),
           {
             label: "Contact",
             href: "/contact",
-            description: "Start the right conversation.",
+            description: "Start with a defined scope.",
           },
         ],
       },
@@ -230,21 +237,26 @@ export interface FooterGroup {
   items: NavItem[];
 }
 
+/** Footer clusters (Launch Guide Section 04). Legal and trust links sit in the base row. */
 export const FOOTER_NAV: FooterGroup[] = [
   {
     label: "Platform",
     items: [
       { label: "Platform Overview", href: "/platform" },
-      ...PROJECTS.map((p) => ({
-        label: p.id === "minotaur" ? "How Mythos Validates Itself" : p.name,
-        href: p.href,
-      })),
-      { label: "Economic Exposure", href: "/platform/economic-exposure" },
+      { label: "Evidence & Receipts", href: "/platform/evidence" },
       { label: "Continuous Assurance", href: "/platform/continuous-assurance" },
+      { label: "Economic Exposure", href: "/platform/economic-exposure" },
     ],
   },
   {
-    label: "Solutions",
+    label: "Products",
+    items: PROJECTS.map((p) => ({
+      label: p.id === "minotaur" ? "Minotaur" : p.name,
+      href: p.href,
+    })),
+  },
+  {
+    label: "Industries",
     items: [
       { label: "All Solutions", href: "/solutions" },
       ...SOLUTION_PAGES.map((s) => ({ label: s.navLabel, href: s.href })),
@@ -254,12 +266,10 @@ export const FOOTER_NAV: FooterGroup[] = [
     label: "Resources",
     items: [
       { label: "Use Cases", href: "/use-cases" },
-      { label: "What Mythos Produces", href: "/outputs" },
       { label: "Example Assurance Report", href: "/example-report" },
+      { label: "What Mythos Produces", href: "/outputs" },
       { label: "Standards & Control Mapping", href: "/standards" },
       { label: "Glossary", href: "/glossary" },
-      { label: "How Engagement Starts", href: "/engagement" },
-      { label: "Pricing", href: "/pricing" },
     ],
   },
   {
@@ -269,8 +279,16 @@ export const FOOTER_NAV: FooterGroup[] = [
       { label: "Investors", href: "/investors" },
       { label: "Careers", href: "/careers" },
       { label: "Partnerships", href: "/partnerships" },
-      { label: "Trust & Security", href: "/trust" },
       { label: "Contact", href: "/contact" },
+    ],
+  },
+  {
+    label: "Commercial",
+    items: [
+      { label: "Pricing", href: "/pricing" },
+      { label: "How Engagement Starts", href: "/engagement" },
+      { label: "Request an Assessment", href: "/contact" },
+      { label: "Get a Demo", href: "/contact?intent=demo" },
     ],
   },
 ];

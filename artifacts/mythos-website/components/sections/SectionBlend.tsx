@@ -1,12 +1,15 @@
 import { cn } from "@/lib/utils";
 
-export type Surface = "obsidian" | "abyss" | "navy" | "bone";
+export type Surface = "obsidian" | "charcoal" | "abyss" | "navy" | "bone" | "ivory" | "parchment";
 
-const SURFACE_COLOR: Record<Surface, string> = {
-  obsidian: "#050505",
-  abyss: "#08121c",
-  navy: "#0b1f33",
-  bone: "#f5f0e7",
+export const SURFACE_COLOR: Record<Surface, string> = {
+  obsidian: "#121517",
+  charcoal: "#161a1c",
+  abyss: "#141b22",
+  navy: "#152333",
+  bone: "#ede4d5",
+  ivory: "#ede4d5",
+  parchment: "#e2d3bd",
 };
 
 /** Batch 10 atmosphere layers, chosen by the light they sit in. */
@@ -19,6 +22,9 @@ const BLEND_ART = {
   "sunlight-haze": "/assets/transitions/transition-sunlight-haze.webp",
   "marble-dust": "/assets/transitions/transition-marble-dust.webp",
   "bronze-particles": "/assets/transitions/transition-bronze-particles.webp",
+  /* Luminous Olympus cloud layers (Batch 03 candidates). */
+  "cloud-valley": "/assets/olympus/cloud-valley.webp",
+  "atmospheric-cloud": "/assets/overlays/atmospheric-cloud.webp",
 } as const;
 
 export type BlendArt = keyof typeof BLEND_ART;
@@ -42,7 +48,7 @@ interface SectionBlendProps {
   className?: string;
 }
 
-const DARK: Surface[] = ["obsidian", "abyss", "navy"];
+const DARK: Surface[] = ["obsidian", "charcoal", "abyss", "navy"];
 
 type Rgb = [number, number, number];
 const hexToRgb = (hex: string): Rgb => [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16)) as Rgb;
@@ -67,8 +73,9 @@ function blendGradient(from: Surface, to: Surface): string {
   const a = SURFACE_COLOR[from];
   const b = SURFACE_COLOR[to];
   let path = [a, b];
-  if (DARK.includes(from) && to === "bone") path = [a, "#1c2229", "#5e5240", "#c9b893", b];
-  if (from === "bone" && DARK.includes(to)) path = [a, "#cdbd99", "#6a5c47", "#1d2530", b];
+  // Day and night meet through sunrise and dusk light, never through grey.
+  if (DARK.includes(from) && !DARK.includes(to)) path = [a, "#2a2520", "#6e5a40", "#d2b98d", b];
+  if (!DARK.includes(from) && DARK.includes(to)) path = [a, "#d6bf96", "#7a6446", "#2a2622", b];
   const keys = path.map(hexToRgb);
   const samples = 18;
   const stops = Array.from({ length: samples + 1 }, (_, i) => {

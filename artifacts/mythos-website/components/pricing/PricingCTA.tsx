@@ -8,7 +8,7 @@ export function PricingCTA() {
       className="relative overflow-hidden py-24 lg:py-36"
       style={{
         background:
-          "radial-gradient(ellipse 80% 70% at 50% 100%, rgba(26,23,19,0.85) 0%, #050505 55%)",
+          "radial-gradient(ellipse 80% 70% at 50% 100%, rgba(26,23,19,0.85) 0%, #121517 55%)",
       }}
       aria-labelledby="pricing-cta-heading"
     >
@@ -22,7 +22,7 @@ export function PricingCTA() {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(180deg, rgba(5,5,5,0.82) 0%, rgba(5,5,5,0.5) 40%, rgba(5,5,5,0.45) 62%, rgba(5,5,5,0.86) 100%)",
+            "linear-gradient(180deg, rgba(18,21,23,0.82) 0%, rgba(18,21,23,0.5) 40%, rgba(18,21,23,0.45) 62%, rgba(18,21,23,0.86) 100%)",
         }}
       />
       <div
@@ -30,7 +30,7 @@ export function PricingCTA() {
         className="absolute top-0 left-0 right-0 h-px"
         style={{
           background:
-            "linear-gradient(90deg, transparent, rgba(166,106,50,0.35) 25%, rgba(166,106,50,0.35) 75%, transparent)",
+            "linear-gradient(90deg, transparent, rgba(184,130,63,0.35) 25%, rgba(184,130,63,0.35) 75%, transparent)",
         }}
       />
       <Container className="relative z-10">

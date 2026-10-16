@@ -67,7 +67,7 @@ export function CharacterPanel({ project, className }: { project: ProjectId; cla
     <div ref={ref} className={cn("relative mx-auto w-full max-w-[24rem]", className)} aria-hidden="true" data-depth="10">
       <div
         className="absolute -inset-10 rounded-full opacity-70 blur-3xl"
-        style={{ background: "radial-gradient(circle, rgba(214,161,74,0.22) 0%, rgba(11,31,51,0.4) 50%, transparent 72%)" }}
+        style={{ background: "radial-gradient(circle, rgba(214,161,74,0.22) 0%, rgba(21,35,51,0.4) 50%, transparent 72%)" }}
       />
       <div
         className="relative overflow-hidden border border-bronze/30 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.9)]"
@@ -94,7 +94,7 @@ export function CharacterPanel({ project, className }: { project: ProjectId; cla
               />
             );
           })}
-        <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 60%, rgba(5,5,5,0.55) 100%)" }} />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 60%, rgba(18,21,23,0.55) 100%)" }} />
       </div>
       <div className="mythos-rule mt-5" />
     </div>

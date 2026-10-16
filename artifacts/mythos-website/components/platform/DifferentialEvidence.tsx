@@ -18,7 +18,7 @@ interface DifferentialEvidenceProps {
  */
 export function DifferentialEvidence({ control, test, verdict }: DifferentialEvidenceProps) {
   return (
-    <figure className="border border-rule bg-panel shadow-[0_24px_50px_-36px_rgba(11,31,51,0.5)]" data-reveal>
+    <figure className="border border-rule bg-panel shadow-[0_24px_50px_-36px_rgba(21,35,51,0.5)]" data-reveal>
       <div className="grid md:grid-cols-2">
         {[control, test].map((ex, i) => (
           <div key={ex.label} className={cn("p-6", i === 1 && "border-t border-rule md:border-l md:border-t-0")}>

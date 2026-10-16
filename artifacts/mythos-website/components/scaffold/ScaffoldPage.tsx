@@ -65,7 +65,7 @@ export function ScaffoldPage({ page, breadcrumbs, art, secondaryCta }: ScaffoldP
             {page.plannedSections.map((section, index) => (
               <li
                 key={section}
-                className="flex gap-5 border border-rule bg-panel p-6 shadow-[0_18px_40px_-34px_rgba(11,31,51,0.45)] lg:p-7"
+                className="flex gap-5 border border-rule bg-panel p-6 shadow-[0_18px_40px_-34px_rgba(21,35,51,0.45)] lg:p-7"
               >
                 <span className="font-display text-3xl leading-none text-accent">
                   {String(index + 1).padStart(2, "0")}

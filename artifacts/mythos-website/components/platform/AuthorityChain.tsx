@@ -81,7 +81,7 @@ export function AuthorityChain() {
 
       <div
         data-chain-verdict
-        className="mt-10 flex max-w-3xl items-start gap-4 border-l-2 border-state-contradicted bg-panel p-5 shadow-[0_18px_40px_-34px_rgba(11,31,51,0.45)]"
+        className="mt-10 flex max-w-3xl items-start gap-4 border-l-2 border-state-contradicted bg-panel p-5 shadow-[0_18px_40px_-34px_rgba(21,35,51,0.45)]"
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={EVIDENCE_STATE_ICONS[AUTHORITY_VERDICT.state]} alt="" aria-hidden="true" className="h-12 w-12 shrink-0" />

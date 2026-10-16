@@ -53,7 +53,7 @@ export default function ExampleReportPage() {
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(ellipse 70% 60% at 50% 8%, rgba(166,106,50,0.22), transparent 70%)",
+              "radial-gradient(ellipse 70% 60% at 50% 8%, rgba(184,130,63,0.22), transparent 70%)",
           }}
         />
         {/* Bottom vignette into next section */}
@@ -62,7 +62,7 @@ export default function ExampleReportPage() {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(180deg, rgba(5,5,5,0.4) 0%, transparent 30%, transparent 70%, rgba(5,5,5,0.9) 100%)",
+              "linear-gradient(180deg, rgba(18,21,23,0.4) 0%, transparent 30%, transparent 70%, rgba(18,21,23,0.9) 100%)",
           }}
         />
         <div
@@ -70,7 +70,7 @@ export default function ExampleReportPage() {
           className="absolute bottom-0 left-0 right-0 h-px"
           style={{
             background:
-              "linear-gradient(90deg, transparent, rgba(166,106,50,0.3) 30%, rgba(166,106,50,0.3) 70%, transparent)",
+              "linear-gradient(90deg, transparent, rgba(184,130,63,0.3) 30%, rgba(184,130,63,0.3) 70%, transparent)",
           }}
         />
 

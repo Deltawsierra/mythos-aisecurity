@@ -65,7 +65,7 @@ export default function PlatformPage() {
           </ol>
           <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3" data-reveal-group>
             {ASSURANCE_DIMENSIONS.map((d) => (
-              <li key={d.name} className="border border-rule bg-panel p-5 shadow-[0_18px_40px_-34px_rgba(11,31,51,0.45)]">
+              <li key={d.name} className="border border-rule bg-panel p-5 shadow-[0_18px_40px_-34px_rgba(21,35,51,0.45)]">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-accent">{d.name}</p>
                 <p className="mt-2 text-[15px] leading-relaxed text-fg">{d.question}</p>
               </li>

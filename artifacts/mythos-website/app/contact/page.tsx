@@ -74,7 +74,7 @@ export default function ContactPage() {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(180deg, rgba(5,5,5,0.5) 0%, rgba(5,5,5,0.36) 45%, rgba(5,5,5,0.72) 100%)",
+              "linear-gradient(180deg, rgba(18,21,23,0.5) 0%, rgba(18,21,23,0.36) 45%, rgba(18,21,23,0.72) 100%)",
           }}
         />
         <div
@@ -82,7 +82,7 @@ export default function ContactPage() {
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(ellipse 62% 58% at 50% 50%, rgba(5,5,5,0.5) 0%, transparent 72%)",
+              "radial-gradient(ellipse 62% 58% at 50% 50%, rgba(18,21,23,0.5) 0%, transparent 72%)",
           }}
         />
         {/* Bottom divider glow */}
@@ -91,7 +91,7 @@ export default function ContactPage() {
           className="absolute bottom-0 left-0 right-0 h-px"
           style={{
             background:
-              "linear-gradient(90deg, transparent, rgba(166,106,50,0.3) 30%, rgba(166,106,50,0.3) 70%, transparent)",
+              "linear-gradient(90deg, transparent, rgba(184,130,63,0.3) 30%, rgba(184,130,63,0.3) 70%, transparent)",
           }}
         />
 
@@ -147,7 +147,7 @@ export default function ContactPage() {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(90deg, rgba(5,5,5,0.82) 0%, rgba(5,5,5,0.55) 42%, rgba(5,5,5,0.5) 66%, rgba(5,5,5,0.62) 100%)",
+              "linear-gradient(90deg, rgba(18,21,23,0.82) 0%, rgba(18,21,23,0.55) 42%, rgba(18,21,23,0.5) 66%, rgba(18,21,23,0.62) 100%)",
           }}
         />
         {/* Vertical blend to soften the section seams */}
@@ -156,7 +156,7 @@ export default function ContactPage() {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(180deg, rgba(5,5,5,0.55) 0%, rgba(5,5,5,0.22) 24%, rgba(5,5,5,0.3) 74%, rgba(5,5,5,0.7) 100%)",
+              "linear-gradient(180deg, rgba(18,21,23,0.55) 0%, rgba(18,21,23,0.22) 24%, rgba(18,21,23,0.3) 74%, rgba(18,21,23,0.7) 100%)",
           }}
         />
         <Container className="relative z-10">

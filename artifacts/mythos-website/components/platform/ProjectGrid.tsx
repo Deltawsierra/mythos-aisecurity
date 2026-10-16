@@ -62,7 +62,7 @@ export function ProjectGrid() {
                 <span
                   aria-hidden="true"
                   className="absolute inset-0"
-                  style={{ background: "linear-gradient(180deg, transparent 50%, rgba(5,5,5,0.92) 100%)" }}
+                  style={{ background: "linear-gradient(180deg, transparent 50%, rgba(18,21,23,0.92) 100%)" }}
                 />
                 <span className="absolute inset-x-0 bottom-0 p-4">
                   <span className="block font-display text-3xl leading-none text-ivory">{p.name}</span>

@@ -26,7 +26,7 @@ export function CareersHero() {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(90deg, rgba(5,5,5,0.88) 0%, rgba(5,5,5,0.5) 26%, rgba(5,5,5,0.12) 52%, transparent 70%)",
+            "linear-gradient(90deg, rgba(18,21,23,0.88) 0%, rgba(18,21,23,0.5) 26%, rgba(18,21,23,0.12) 52%, transparent 70%)",
         }}
       />
       {/* Vertical wash: settle the nav at the top and fade into the page below. */}
@@ -35,7 +35,7 @@ export function CareersHero() {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(180deg, rgba(5,5,5,0.55) 0%, rgba(5,5,5,0.28) 42%, rgba(5,5,5,0.72) 100%)",
+            "linear-gradient(180deg, rgba(18,21,23,0.55) 0%, rgba(18,21,23,0.28) 42%, rgba(18,21,23,0.72) 100%)",
         }}
       />
       {/* Soft centered scrim: keep the headline legible over the tablet glow
@@ -45,7 +45,7 @@ export function CareersHero() {
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 58% 54% at 50% 52%, rgba(5,5,5,0.5) 0%, transparent 72%)",
+            "radial-gradient(ellipse 58% 54% at 50% 52%, rgba(18,21,23,0.5) 0%, transparent 72%)",
         }}
       />
       <div
@@ -53,7 +53,7 @@ export function CareersHero() {
         className="absolute bottom-0 left-0 right-0 h-px"
         style={{
           background:
-            "linear-gradient(90deg, transparent, rgba(166,106,50,0.3) 30%, rgba(166,106,50,0.3) 70%, transparent)",
+            "linear-gradient(90deg, transparent, rgba(184,130,63,0.3) 30%, rgba(184,130,63,0.3) 70%, transparent)",
         }}
       />
 

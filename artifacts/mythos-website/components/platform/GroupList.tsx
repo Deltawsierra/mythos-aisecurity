@@ -19,7 +19,7 @@ export function GroupList({ groups, columns = 2 }: { groups: Group[]; columns?: 
     <ul className={`grid items-start gap-3 ${cols}`} data-reveal-group>
       {groups.map((group, i) => (
         <li key={group.name}>
-          <details className="group border border-rule bg-panel shadow-[0_18px_40px_-34px_rgba(11,31,51,0.45)] open:border-antique-gold/60">
+          <details className="group border border-rule bg-panel shadow-[0_18px_40px_-34px_rgba(21,35,51,0.45)] open:border-antique-gold/60">
             <summary className="flex cursor-pointer list-none items-start gap-4 p-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-bronze/60 [&::-webkit-details-marker]:hidden">
               {group.icon ? (
                 // eslint-disable-next-line @next/next/no-img-element

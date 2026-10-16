@@ -13,7 +13,7 @@ export interface CoverageRow {
 export function CoveragePanel({ rows, unit, note }: { rows: CoverageRow[]; unit: string; note: string }) {
   const max = Math.max(...rows.map((r) => r.value));
   return (
-    <figure className="border border-rule bg-panel p-6 shadow-[0_24px_50px_-36px_rgba(11,31,51,0.5)] lg:p-8" data-reveal>
+    <figure className="border border-rule bg-panel p-6 shadow-[0_24px_50px_-36px_rgba(21,35,51,0.5)] lg:p-8" data-reveal>
       <figcaption className="flex items-baseline justify-between gap-4 text-[10px] font-semibold uppercase tracking-[0.22em]">
         <span className="text-accent">Coverage · {unit}</span>
         <span className="text-fg-muted">Illustrative</span>

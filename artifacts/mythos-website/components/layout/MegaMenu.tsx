@@ -19,7 +19,8 @@ interface MegaMenuProps {
 /**
  * Desktop mega menu. Opens on mouse hover, keyboard focus and click/tap; closes
  * on Escape (returning focus to the trigger), outside pointerdown, and when
- * focus leaves the group. ArrowDown on the trigger focuses the first link.
+ * focus leaves the group. ArrowDown on the trigger focuses the first link;
+ * inside the panel ArrowUp/ArrowDown, Home and End move between links.
  * Open state lives in SiteHeader so only one panel is ever visible.
  *
  * Multi-column menus span the header's nav width (the <li> stays static so the
@@ -72,6 +73,18 @@ export function MegaMenu({
     });
   };
 
+  const onPanelKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    const keys = ["ArrowDown", "ArrowUp", "Home", "End"];
+    if (!keys.includes(e.key)) return;
+    const links = Array.from(e.currentTarget.querySelectorAll<HTMLAnchorElement>("a[data-nav-item]"));
+    const index = links.indexOf(document.activeElement as HTMLAnchorElement);
+    if (index === -1) return;
+    e.preventDefault();
+    const next =
+      e.key === "Home" ? 0 : e.key === "End" ? links.length - 1 : (index + (e.key === "ArrowDown" ? 1 : -1) + links.length) % links.length;
+    links[next]?.focus();
+  };
+
   return (
     <li
       ref={containerRef}
@@ -95,8 +108,8 @@ export function MegaMenu({
         ref={triggerRef}
         type="button"
         className={cn(
-          "relative inline-flex items-center gap-1 py-2 text-[10px] font-semibold uppercase tracking-[0.2em] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bronze/60",
-          active || open ? "text-antique-gold" : "text-muted-stone hover:text-ivory",
+          "relative inline-flex items-center gap-1 py-2 text-[13px] font-medium tracking-[0.02em] transition-colors duration-200",
+          active || open ? "text-champagne" : "text-ivory/85 hover:text-ivory",
         )}
         aria-haspopup="true"
         aria-expanded={open}
@@ -129,6 +142,7 @@ export function MegaMenu({
       {/* Panel — the pt-3 bridge keeps the hover area contiguous. */}
       <div
         id={panelId}
+        onKeyDown={onPanelKeyDown}
         className={cn(
           "absolute top-full z-50 pt-3 transition-[opacity,transform,visibility] duration-200 ease-out",
           wide ? "inset-x-0" : "right-0 w-80",
@@ -138,10 +152,10 @@ export function MegaMenu({
         )}
       >
         <div
-          className="relative overflow-hidden border border-bronze/25 shadow-[0_30px_60px_-24px_rgba(0,0,0,0.9),0_0_36px_-14px_rgba(166,106,50,0.45)]"
+          className="relative overflow-hidden border border-bronze/30 shadow-[0_30px_60px_-24px_rgba(0,0,0,0.9),0_0_36px_-14px_rgba(208,164,90,0.35)]"
           style={{
             background:
-              "linear-gradient(135deg, #050505 0%, #08121c 55%, #0b1f33 100%)",
+              "radial-gradient(ellipse 60% 80% at 100% 0%, rgba(208,164,90,0.10), transparent 70%), linear-gradient(160deg, #1b1f22 0%, #161a1c 60%, #1d1a17 100%)",
           }}
         >
           <div className="mythos-rule absolute inset-x-0 top-0" aria-hidden="true" />
@@ -158,7 +172,7 @@ export function MegaMenu({
             {columns.map((column) => (
               <div key={column.heading}>
                 {wide && (
-                  <p className="mb-3 px-3 text-[10px] font-semibold uppercase tracking-[0.26em] text-bronze-bright">
+                  <p className="mb-3 px-3 text-[10px] font-semibold uppercase tracking-[0.26em] text-champagne/85">
                     {column.heading}
                   </p>
                 )}
@@ -171,12 +185,12 @@ export function MegaMenu({
                           href={item.href}
                           data-nav-item
                           aria-current={current ? "page" : undefined}
-                          className="group block px-3 py-2.5 transition-colors duration-150 hover:bg-ivory/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bronze/60"
+                          className="group block px-3 py-2.5 transition-colors duration-150 hover:bg-ivory/[0.05] focus-visible:bg-ivory/[0.05]"
                         >
                           <span
                             className={cn(
                               "flex items-center gap-2 text-[13px] font-medium",
-                              current ? "text-antique-gold" : "text-ivory group-hover:text-antique-gold",
+                              current ? "text-champagne" : "text-ivory group-hover:text-champagne",
                             )}
                           >
                             <span
@@ -205,7 +219,7 @@ export function MegaMenu({
               <Link
                 href={node.feature.href}
                 data-nav-item
-                className="group relative flex min-h-[15rem] flex-col justify-end overflow-hidden border border-bronze/20 p-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bronze/60"
+                className="group relative flex min-h-[15rem] flex-col justify-end overflow-hidden border border-bronze/25 p-5"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -226,8 +240,8 @@ export function MegaMenu({
                   style={{
                     background:
                       node.feature.fit === "contain"
-                        ? "radial-gradient(ellipse 70% 55% at 50% 38%, rgba(214,161,74,0.16), transparent 70%), linear-gradient(180deg, transparent 45%, rgba(5,5,5,0.9) 100%)"
-                        : "linear-gradient(180deg, rgba(5,5,5,0.05) 20%, rgba(5,5,5,0.92) 100%)",
+                        ? "radial-gradient(ellipse 70% 55% at 50% 38%, rgba(214,161,74,0.16), transparent 70%), linear-gradient(180deg, transparent 45%, rgba(18,21,23,0.9) 100%)"
+                        : "linear-gradient(180deg, rgba(18,21,23,0.05) 20%, rgba(18,21,23,0.92) 100%)",
                   }}
                 />
                 <div className="relative">

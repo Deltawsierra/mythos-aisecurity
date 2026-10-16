@@ -183,7 +183,7 @@ export function ContactForm() {
                   "group flex cursor-pointer flex-col gap-1.5 border p-4 transition-colors duration-150",
                   "focus-within:ring-2 focus-within:ring-bronze/60 focus-within:ring-offset-2 focus-within:ring-offset-obsidian",
                   selected
-                    ? "border-bronze bg-bronze/10 shadow-[0_0_0_1px_rgba(166,106,50,0.4)]"
+                    ? "border-bronze bg-bronze/10 shadow-[0_0_0_1px_rgba(184,130,63,0.4)]"
                     : "border-ivory/10 bg-charcoal hover:border-ivory/25",
                 )}
               >

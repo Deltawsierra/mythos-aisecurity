@@ -59,7 +59,7 @@ export function InnerHero({
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 70% 65% at 80% 18%, rgba(21,48,74,0.85) 0%, rgba(11,31,51,0.4) 45%, transparent 75%), radial-gradient(ellipse 55% 45% at 8% 100%, rgba(166,106,50,0.14) 0%, transparent 70%), linear-gradient(180deg, #050505 0%, #08121c 100%)",
+            "radial-gradient(ellipse 70% 65% at 80% 18%, rgba(31,48,67,0.85) 0%, rgba(21,35,51,0.4) 45%, transparent 75%), radial-gradient(ellipse 55% 45% at 8% 100%, rgba(184,130,63,0.14) 0%, transparent 70%), linear-gradient(180deg, #121517 0%, #141b22 100%)",
         }}
       />
       {sceneSrc && (
@@ -77,7 +77,7 @@ export function InnerHero({
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(180deg, transparent 60%, #08121c 100%), linear-gradient(90deg, rgba(5,5,5,0.94) 0%, rgba(8,18,28,0.86) 38%, rgba(8,18,28,0.35) 68%, rgba(8,18,28,0.15) 100%)",
+                "linear-gradient(180deg, transparent 60%, #141b22 100%), linear-gradient(90deg, rgba(18,21,23,0.94) 0%, rgba(20,27,34,0.86) 38%, rgba(20,27,34,0.35) 68%, rgba(20,27,34,0.15) 100%)",
             }}
           />
         </>

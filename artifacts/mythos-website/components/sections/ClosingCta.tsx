@@ -24,7 +24,7 @@ export function ClosingCta({
       <div
         aria-hidden="true"
         className="absolute inset-0"
-        style={{ background: "radial-gradient(ellipse 50% 70% at 50% 100%, rgba(166,106,50,0.16) 0%, transparent 70%)" }}
+        style={{ background: "radial-gradient(ellipse 50% 70% at 50% 100%, rgba(184,130,63,0.16) 0%, transparent 70%)" }}
       />
       <Container className="relative" >
         <div data-reveal-group>

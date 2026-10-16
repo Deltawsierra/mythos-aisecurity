@@ -61,7 +61,7 @@ export function CTASection({
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(90deg, rgba(5,5,5,0) 0%, rgba(5,5,5,0.5) 26%, rgba(5,5,5,0.82) 50%, rgba(5,5,5,0.5) 74%, rgba(5,5,5,0) 100%)",
+                "linear-gradient(90deg, rgba(18,21,23,0) 0%, rgba(18,21,23,0.5) 26%, rgba(18,21,23,0.82) 50%, rgba(18,21,23,0.5) 74%, rgba(18,21,23,0) 100%)",
             }}
           />
         </>

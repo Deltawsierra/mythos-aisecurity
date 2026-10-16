@@ -161,7 +161,7 @@ export default function CompanyPage() {
           className="absolute inset-0 hidden md:block"
           style={{
             background:
-              "linear-gradient(90deg, rgba(5,5,5,0.95) 0%, rgba(5,5,5,0.86) 32%, rgba(5,5,5,0.5) 62%, rgba(5,5,5,0.24) 100%)",
+              "linear-gradient(90deg, rgba(18,21,23,0.95) 0%, rgba(18,21,23,0.86) 32%, rgba(18,21,23,0.5) 62%, rgba(18,21,23,0.24) 100%)",
           }}
         />
         {/* Mobile vertical scrim */}
@@ -170,7 +170,7 @@ export default function CompanyPage() {
           className="absolute inset-0 md:hidden"
           style={{
             background:
-              "linear-gradient(180deg, rgba(5,5,5,0.74) 0%, rgba(5,5,5,0.6) 42%, rgba(5,5,5,0.9) 100%)",
+              "linear-gradient(180deg, rgba(18,21,23,0.74) 0%, rgba(18,21,23,0.6) 42%, rgba(18,21,23,0.9) 100%)",
           }}
         />
         {/* Bottom divider glow */}
@@ -179,7 +179,7 @@ export default function CompanyPage() {
           className="absolute bottom-0 left-0 right-0 h-px"
           style={{
             background:
-              "linear-gradient(90deg, transparent, rgba(166,106,50,0.3) 30%, rgba(166,106,50,0.3) 70%, transparent)",
+              "linear-gradient(90deg, transparent, rgba(184,130,63,0.3) 30%, rgba(184,130,63,0.3) 70%, transparent)",
           }}
         />
 
@@ -513,7 +513,7 @@ export default function CompanyPage() {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(180deg, rgba(5,5,5,0.82) 0%, rgba(5,5,5,0.5) 40%, rgba(5,5,5,0.45) 62%, rgba(5,5,5,0.86) 100%)",
+              "linear-gradient(180deg, rgba(18,21,23,0.82) 0%, rgba(18,21,23,0.5) 40%, rgba(18,21,23,0.45) 62%, rgba(18,21,23,0.86) 100%)",
           }}
         />
         <div
@@ -521,7 +521,7 @@ export default function CompanyPage() {
           className="absolute top-0 left-0 right-0 h-px"
           style={{
             background:
-              "linear-gradient(90deg, transparent, rgba(166,106,50,0.35) 25%, rgba(166,106,50,0.35) 75%, transparent)",
+              "linear-gradient(90deg, transparent, rgba(184,130,63,0.35) 25%, rgba(184,130,63,0.35) 75%, transparent)",
           }}
         />
         <Container className="relative z-10">

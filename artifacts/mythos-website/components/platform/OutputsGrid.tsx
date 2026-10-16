@@ -10,7 +10,7 @@ export function OutputsGrid() {
         {OUTPUTS.map((output) => (
           <li
             key={output.id}
-            className="group flex flex-col border border-rule bg-panel p-6 shadow-[0_18px_40px_-34px_rgba(11,31,51,0.45)] transition-[border-color,box-shadow] duration-500 hover:border-antique-gold/60 hover:shadow-[0_26px_50px_-30px_rgba(122,63,29,0.5)]"
+            className="group flex flex-col border border-rule bg-panel p-6 shadow-[0_18px_40px_-34px_rgba(21,35,51,0.45)] transition-[border-color,box-shadow] duration-500 hover:border-antique-gold/60 hover:shadow-[0_26px_50px_-30px_rgba(122,63,29,0.5)]"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img

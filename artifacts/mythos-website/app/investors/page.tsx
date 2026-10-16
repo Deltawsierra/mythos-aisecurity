@@ -164,7 +164,7 @@ export default function InvestorsPage() {
           className="absolute inset-0 hidden md:block"
           style={{
             background:
-              "linear-gradient(90deg, rgba(5,5,5,0.95) 0%, rgba(5,5,5,0.86) 32%, rgba(5,5,5,0.5) 60%, rgba(5,5,5,0.22) 100%)",
+              "linear-gradient(90deg, rgba(18,21,23,0.95) 0%, rgba(18,21,23,0.86) 32%, rgba(18,21,23,0.5) 60%, rgba(18,21,23,0.22) 100%)",
           }}
         />
         {/* Mobile top-to-bottom scrim */}
@@ -173,7 +173,7 @@ export default function InvestorsPage() {
           className="absolute inset-0 md:hidden"
           style={{
             background:
-              "linear-gradient(180deg, rgba(5,5,5,0.72) 0%, rgba(5,5,5,0.6) 42%, rgba(5,5,5,0.88) 100%)",
+              "linear-gradient(180deg, rgba(18,21,23,0.72) 0%, rgba(18,21,23,0.6) 42%, rgba(18,21,23,0.88) 100%)",
           }}
         />
         {/* Bottom divider glow */}
@@ -182,7 +182,7 @@ export default function InvestorsPage() {
           className="absolute bottom-0 left-0 right-0 h-px"
           style={{
             background:
-              "linear-gradient(90deg, transparent, rgba(166,106,50,0.3) 30%, rgba(166,106,50,0.3) 70%, transparent)",
+              "linear-gradient(90deg, transparent, rgba(184,130,63,0.3) 30%, rgba(184,130,63,0.3) 70%, transparent)",
           }}
         />
 
@@ -456,7 +456,7 @@ export default function InvestorsPage() {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(180deg, rgba(5,5,5,0.92) 0%, rgba(5,5,5,0.8) 40%, rgba(5,5,5,0.93) 100%)",
+              "linear-gradient(180deg, rgba(18,21,23,0.92) 0%, rgba(18,21,23,0.8) 40%, rgba(18,21,23,0.93) 100%)",
           }}
         />
         <div
@@ -464,7 +464,7 @@ export default function InvestorsPage() {
           className="absolute top-0 left-0 right-0 h-px"
           style={{
             background:
-              "linear-gradient(90deg, transparent, rgba(166,106,50,0.28) 30%, rgba(166,106,50,0.28) 70%, transparent)",
+              "linear-gradient(90deg, transparent, rgba(184,130,63,0.28) 30%, rgba(184,130,63,0.28) 70%, transparent)",
           }}
         />
 
@@ -621,7 +621,7 @@ export default function InvestorsPage() {
         className="relative overflow-hidden py-24 lg:py-36"
         style={{
           background:
-            "radial-gradient(ellipse 80% 70% at 50% 100%, rgba(26,23,19,0.85) 0%, #050505 55%)",
+            "radial-gradient(ellipse 80% 70% at 50% 100%, rgba(26,23,19,0.85) 0%, #121517 55%)",
         }}
         aria-labelledby="final-cta-heading"
       >
@@ -635,7 +635,7 @@ export default function InvestorsPage() {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(180deg, rgba(5,5,5,0.82) 0%, rgba(5,5,5,0.5) 40%, rgba(5,5,5,0.45) 62%, rgba(5,5,5,0.86) 100%)",
+              "linear-gradient(180deg, rgba(18,21,23,0.82) 0%, rgba(18,21,23,0.5) 40%, rgba(18,21,23,0.45) 62%, rgba(18,21,23,0.86) 100%)",
           }}
         />
         <div
@@ -643,7 +643,7 @@ export default function InvestorsPage() {
           className="absolute top-0 left-0 right-0 h-px"
           style={{
             background:
-              "linear-gradient(90deg, transparent, rgba(166,106,50,0.35) 25%, rgba(166,106,50,0.35) 75%, transparent)",
+              "linear-gradient(90deg, transparent, rgba(184,130,63,0.35) 25%, rgba(184,130,63,0.35) 75%, transparent)",
           }}
         />
         <Container className="relative z-10">

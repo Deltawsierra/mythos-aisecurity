@@ -24,7 +24,7 @@ export function UseCaseDeepDiveHero({ deepDive }: { deepDive: UseCaseDeepDive })
         className="absolute bottom-0 left-1/2 h-[60%] w-[90%] -translate-x-1/2"
         style={{
           background:
-            "radial-gradient(ellipse 60% 80% at 50% 100%, rgba(166,106,50,0.16), transparent 70%)",
+            "radial-gradient(ellipse 60% 80% at 50% 100%, rgba(184,130,63,0.16), transparent 70%)",
         }}
       />
 

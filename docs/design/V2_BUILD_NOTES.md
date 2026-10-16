@@ -143,6 +143,47 @@ Economic Exposure, Evidence, Continuous Assurance.
 - Retired: the v1 platform sections and the whole v1 3D pipeline
   (shield/spear/crest scenes, `lib/three.ts`).
 
+## Luminous Olympus base (16 Oct 2026)
+
+The Launch Guide (`Downloads/Mythos_Website_Launch_Guide.docx`, 16 Oct) replaced
+the 14 Oct navy/obsidian fusion with **Luminous Olympus**: warm ivory and
+parchment stone, charcoal as the dark anchor, bronze and gold as structure,
+navy only for technical depth. Rebuilt as the base before more Phase 3 pages.
+
+- **Palette** (`app/globals.css`): ivory #EDE4D5, parchment #E2D3BD, cream
+  #F5EFE4, charcoal #161A1C, bronze #B8823F, bronze deep #80511D, gold #D0A45A,
+  champagne #E5C58F, steel, muted navy #152333. Surfaces: `charcoal`
+  (alias `obsidian`), `navy`, `ivory` (alias `bone`), `parchment`. Old
+  hard-coded colours were remapped site-wide. Contrast: bronze and gold are
+  never text on ivory (2.6:1, 1.8:1); light surfaces use bronze deep (5.35:1);
+  gold buttons carry charcoal labels (7.6:1).
+- **Buttons**: gold pill primary, surface-aware outline pill secondary,
+  optional arrow. CTA label "Get a Demo".
+- **Continuous scenery**: `components/scenic/Scene.tsx` (painted planes +
+  readability scrim + `CloudBank` edges that dissolve into the next surface).
+  Bank heights and scrims use length units, not percentages, so tall phone
+  sections keep their copy in shade. Headlines can mark *accent* words
+  (`components/ui/Headline.tsx`); `.display-caps` sets carved capitals.
+- **Navigation**: Platform | Products | Solutions | Resources | Company + Get a
+  Demo; Pricing in Resources, the drawer utility row and the footer. Only
+  existing routes are linked. Mobile drawer: `inert` when closed, focus moves
+  in and is trapped, Escape and backdrop close, focus returns to the toggle,
+  44 px targets, closes when widened to desktop. Mega menus add
+  ArrowUp/ArrowDown/Home/End. Footer: Platform, Products, Industries,
+  Resources, Company, Commercial + trust/legal row.
+- **Homepage H01–H12** (copy in `content/home.ts`): guardian hero (Batch 04
+  Athena over the Batch 03 marble city — stand-in pending the Athena
+  decision), Challenge with Batch 02 icons, the marketing journey on the Batch
+  06/07 causeway (scroll or click; no pinning), the technical cycle crosswalk,
+  product family + Mythos Core, the SPINE claim-invalidation demo (synthetic
+  fixture F01), the five teams (definitions from the teaming guide — green is
+  the safe test range, not "operational utility"), business consequence
+  (forward wording), six sectors, native synthetic report pages, engagement
+  steps and the final vista. The pinned lifecycle and its CSS were removed.
+- **Open decisions**: logo (forged crest kept; Batch 01 monogram not used),
+  Athena art, headline softening on inner pages, missing RevB/RevC documents.
+  Inner pages pick up the palette but still use the Phase 3 layouts.
+
 ## Not yet done
 
 - **Contrast:** v1 pages still use `text-bronze` (3.8:1 on navy) and faded

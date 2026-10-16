@@ -19,7 +19,7 @@ export function EvidenceStates({ className }: { className?: string }) {
         <li
           key={state.id}
           className={cn(
-            "relative flex items-start gap-4 border border-rule bg-panel p-5 shadow-[0_18px_40px_-34px_rgba(11,31,51,0.45)] before:absolute before:inset-y-0 before:left-0 before:w-[3px]",
+            "relative flex items-start gap-4 border border-rule bg-panel p-5 shadow-[0_18px_40px_-34px_rgba(21,35,51,0.45)] before:absolute before:inset-y-0 before:left-0 before:w-[3px]",
             ACCENT[state.id],
           )}
         >

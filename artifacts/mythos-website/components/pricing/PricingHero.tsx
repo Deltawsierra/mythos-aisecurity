@@ -24,7 +24,7 @@ export function PricingHero() {
         className="absolute inset-0 hidden lg:block"
         style={{
           background:
-            "linear-gradient(90deg, rgba(5,5,5,0.96) 0%, rgba(5,5,5,0.9) 20%, rgba(5,5,5,0.72) 38%, rgba(5,5,5,0.42) 52%, rgba(5,5,5,0.14) 62%, rgba(5,5,5,0) 70%)",
+            "linear-gradient(90deg, rgba(18,21,23,0.96) 0%, rgba(18,21,23,0.9) 20%, rgba(18,21,23,0.72) 38%, rgba(18,21,23,0.42) 52%, rgba(18,21,23,0.14) 62%, rgba(18,21,23,0) 70%)",
         }}
       />
       {/* Mobile/tablet: all-over scrim so stacked copy stays readable. */}
@@ -33,7 +33,7 @@ export function PricingHero() {
         className="absolute inset-0 lg:hidden"
         style={{
           background:
-            "linear-gradient(180deg, rgba(5,5,5,0.92) 0%, rgba(5,5,5,0.82) 45%, rgba(5,5,5,0.92) 100%)",
+            "linear-gradient(180deg, rgba(18,21,23,0.92) 0%, rgba(18,21,23,0.82) 45%, rgba(18,21,23,0.92) 100%)",
         }}
       />
       {/* Bottom divider glow */}
@@ -42,7 +42,7 @@ export function PricingHero() {
         className="absolute bottom-0 left-0 right-0 h-px"
         style={{
           background:
-            "linear-gradient(90deg, transparent, rgba(166,106,50,0.25) 30%, rgba(166,106,50,0.25) 70%, transparent)",
+            "linear-gradient(90deg, transparent, rgba(184,130,63,0.25) 30%, rgba(184,130,63,0.25) 70%, transparent)",
         }}
       />
       <Container className="relative z-10 py-20 lg:py-28">

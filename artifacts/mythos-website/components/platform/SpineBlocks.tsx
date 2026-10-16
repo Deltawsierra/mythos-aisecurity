@@ -14,7 +14,7 @@ export function DecisionStates() {
   return (
     <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3" data-reveal-group>
       {DECISION_STATES.map((state) => (
-        <li key={state.name} className="border border-rule bg-panel p-5 shadow-[0_18px_40px_-34px_rgba(11,31,51,0.45)]">
+        <li key={state.name} className="border border-rule bg-panel p-5 shadow-[0_18px_40px_-34px_rgba(21,35,51,0.45)]">
           <span className={cn("inline-block border px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.2em]", TONE[state.tone])}>
             {state.name}
           </span>
@@ -29,7 +29,7 @@ export function DecisionStates() {
 export function EvidenceLadder() {
   const last = EVIDENCE_STRENGTH.length - 1;
   return (
-    <figure className="border border-rule bg-panel p-6 shadow-[0_18px_40px_-34px_rgba(11,31,51,0.45)]" data-reveal>
+    <figure className="border border-rule bg-panel p-6 shadow-[0_18px_40px_-34px_rgba(21,35,51,0.45)]" data-reveal>
       <figcaption className="flex items-baseline justify-between gap-4 text-[10px] font-semibold uppercase tracking-[0.22em] text-accent">
         <span>Evidence strength</span>
         <span className="text-fg-muted">Strongest → weakest</span>
@@ -64,7 +64,7 @@ export function EvidenceLadder() {
 export function UnknownCard() {
   const u = SPINE_COPY.claims.unknown;
   return (
-    <figure className="border border-rule bg-panel p-6 shadow-[0_18px_40px_-34px_rgba(11,31,51,0.45)]" data-reveal>
+    <figure className="border border-rule bg-panel p-6 shadow-[0_18px_40px_-34px_rgba(21,35,51,0.45)]" data-reveal>
       <figcaption className="flex items-center gap-3">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={EVIDENCE_STATE_ICONS.unknown} alt="" aria-hidden="true" className="h-11 w-11" />
@@ -106,7 +106,7 @@ export function PolicyEffects() {
 export function ReceiptCard() {
   return (
     <figure
-      className="relative overflow-hidden border border-antique-gold/40 bg-[#fffdf8] shadow-[0_40px_80px_-40px_rgba(11,31,51,0.55)]"
+      className="relative overflow-hidden border border-antique-gold/40 bg-[#fffdf8] shadow-[0_40px_80px_-40px_rgba(21,35,51,0.55)]"
       data-reveal
     >
       <div className="flex items-center justify-between gap-4 border-b border-rule bg-navy px-6 py-4 text-ivory">

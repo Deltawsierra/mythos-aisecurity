@@ -79,7 +79,7 @@ export default function SpinePage() {
           <SectionIntro id="why-title" eyebrow={c.why.eyebrow} title={c.why.title} lede={c.why.lede} />
           <ul className="mt-12 grid gap-3 lg:grid-cols-3" data-reveal-group>
             {c.why.pillars.map((pillar, i) => (
-              <li key={pillar.name} className="border border-rule bg-panel p-6 shadow-[0_18px_40px_-34px_rgba(11,31,51,0.45)]">
+              <li key={pillar.name} className="border border-rule bg-panel p-6 shadow-[0_18px_40px_-34px_rgba(21,35,51,0.45)]">
                 <span className="font-display text-4xl leading-none text-accent">{String(i + 1).padStart(2, "0")}</span>
                 <p className="mt-4 font-display text-2xl leading-tight text-fg">{pillar.name}</p>
                 <p className="mt-2 text-[15px] leading-relaxed text-fg-muted">{pillar.body}</p>
@@ -131,7 +131,7 @@ export default function SpinePage() {
           <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_1.2fr]">
             <EvidenceLadder />
             <div className="grid gap-6">
-              <div className="border-l-2 border-accent bg-panel p-6 shadow-[0_18px_40px_-34px_rgba(11,31,51,0.45)]" data-reveal>
+              <div className="border-l-2 border-accent bg-panel p-6 shadow-[0_18px_40px_-34px_rgba(21,35,51,0.45)]" data-reveal>
                 <p className="font-display text-2xl leading-tight text-fg">{c.claims.clocks.title}</p>
                 <p className="mt-2 text-[15px] leading-relaxed text-fg-muted">{c.claims.clocks.body}</p>
               </div>

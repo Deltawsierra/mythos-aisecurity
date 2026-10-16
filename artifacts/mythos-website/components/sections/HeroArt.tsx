@@ -21,7 +21,7 @@ export function HeroArt({ art }: { art: HeroArtSpec }) {
         <div
           className="absolute -inset-10 rounded-full opacity-70 blur-3xl"
           style={{
-            background: "radial-gradient(circle, rgba(214,161,74,0.22) 0%, rgba(11,31,51,0.4) 50%, transparent 72%)",
+            background: "radial-gradient(circle, rgba(214,161,74,0.22) 0%, rgba(21,35,51,0.4) 50%, transparent 72%)",
           }}
         />
         <div
@@ -30,7 +30,7 @@ export function HeroArt({ art }: { art: HeroArtSpec }) {
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={media.poster.src} alt="" style={cropStyle(media.crop)} />
-          <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 60%, rgba(5,5,5,0.55) 100%)" }} />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 60%, rgba(18,21,23,0.55) 100%)" }} />
         </div>
         <div className="mythos-rule mt-5" />
       </div>
@@ -42,7 +42,7 @@ export function HeroArt({ art }: { art: HeroArtSpec }) {
       <div
         className="absolute inset-0 rounded-full opacity-80 blur-3xl"
         style={{
-          background: "radial-gradient(circle, rgba(214,161,74,0.2) 0%, rgba(21,48,74,0.35) 50%, transparent 72%)",
+          background: "radial-gradient(circle, rgba(214,161,74,0.2) 0%, rgba(31,48,67,0.35) 50%, transparent 72%)",
         }}
       />
       {/* eslint-disable-next-line @next/next/no-img-element */}

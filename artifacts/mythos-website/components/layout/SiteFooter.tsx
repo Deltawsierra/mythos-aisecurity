@@ -5,65 +5,62 @@ import { FOOTER_NAV } from "@/content/navigation";
 import { CANONICAL } from "@/content/platform";
 import { SITE_FULL_NAME } from "@/lib/constants";
 
+/**
+ * The stable ground the world stands on (Launch Guide: footer clusters
+ * Platform, Products, Industries, Resources, Company, Commercial, plus
+ * trust and legal). Charcoal stone with a single bronze rule; no motion.
+ */
 export function SiteFooter() {
   const currentYear = new Date().getFullYear();
 
   return (
     <footer
+      data-surface="charcoal"
       className="relative overflow-hidden"
       role="contentinfo"
-      style={{ background: "linear-gradient(180deg, #0b1f33 0%, #08121c 38%, #050505 100%)" }}
+      style={{ background: "linear-gradient(180deg, #1a1d1f 0%, #161a1c 45%, #121517 100%)" }}
     >
-      {/* Stone texture, barely there, so the footer reads as the ground the
-          site stands on rather than a flat bar. */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-cover bg-center opacity-[0.18] mix-blend-luminosity"
+        className="absolute inset-0 bg-cover bg-center opacity-[0.16] mix-blend-luminosity"
         style={{ backgroundImage: "url(/assets/textures/footer-stone.webp)" }}
       />
       <div className="mythos-rule relative" aria-hidden="true" />
 
       <Container className="relative">
-        <div className="grid grid-cols-2 gap-10 py-16 md:grid-cols-3 lg:grid-cols-[1.4fr_repeat(4,1fr)] lg:py-20">
-          <div className="col-span-2 md:col-span-3 lg:col-span-1">
-            <Link
-              href="/"
-              className="group mb-5 inline-flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bronze/60"
-              aria-label="Mythos — home"
-            >
+        <div className="flex flex-col gap-8 border-b border-ivory/10 py-14 lg:flex-row lg:items-end lg:justify-between">
+          <div className="max-w-md">
+            <Link href="/" className="group mb-5 inline-flex items-center gap-3" aria-label="Mythos — home">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/footer-logo.png"
                 alt=""
-                width={44}
-                height={44}
+                width={48}
+                height={48}
                 style={{ display: "block" }}
-                className="opacity-85 transition-opacity duration-200 group-hover:opacity-100"
+                className="opacity-90 transition-opacity duration-200 group-hover:opacity-100"
               />
-              <span className="text-sm font-semibold uppercase tracking-[0.22em] text-ivory transition-colors duration-200 group-hover:text-antique-gold">
+              <span className="font-display text-2xl font-medium uppercase tracking-[0.2em] text-ivory transition-colors duration-200 group-hover:text-champagne">
                 Mythos
               </span>
             </Link>
-            <p className="max-w-xs font-display text-lg leading-snug text-ivory/90">
-              {CANONICAL.category} for AI systems with real data, real authority
-              and real consequences.
-            </p>
-            <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-stone">
-              {CANONICAL.decisionAuthority}
+            <p className="font-display text-xl leading-snug text-ivory/90">
+              {CANONICAL.category} for AI systems with real data, real authority and real consequences.
             </p>
           </div>
+          <p className="max-w-sm text-sm leading-relaxed text-fg-muted lg:text-right">{CANONICAL.decisionAuthority}</p>
+        </div>
 
+        <div className="grid grid-cols-2 gap-x-8 gap-y-10 py-12 sm:grid-cols-3 lg:grid-cols-6">
           {FOOTER_NAV.map((group) => (
             <div key={group.label}>
-              <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.25em] text-bronze-bright">
-                {group.label}
-              </p>
-              <ul className="flex flex-col gap-3" role="list">
+              <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.24em] text-champagne/85">{group.label}</p>
+              <ul className="flex flex-col gap-1" role="list">
                 {group.items.map((item) => (
                   <li key={`${group.label}-${item.href}`}>
                     <Link
                       href={item.href}
-                      className="text-sm text-muted-stone transition-colors duration-200 hover:text-ivory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bronze/60"
+                      className="inline-flex min-h-8 items-center text-sm text-fg-muted transition-colors duration-200 hover:text-ivory"
                     >
                       {item.label}
                     </Link>
@@ -74,24 +71,22 @@ export function SiteFooter() {
           ))}
         </div>
 
-        <div className="flex flex-col gap-4 border-t border-ivory/5 py-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-4 border-t border-ivory/10 py-6 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-5">
-            <p className="text-xs text-muted-stone/60">
+            <p className="text-xs text-fg-muted">
               &copy; {currentYear} {SITE_FULL_NAME}. All rights reserved.
             </p>
-            <nav className="flex items-center gap-5" aria-label="Legal">
-              <Link
-                href="/privacy"
-                className="text-xs text-muted-stone/70 transition-colors duration-200 hover:text-ivory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bronze/60"
-              >
+            <nav className="flex flex-wrap items-center gap-x-5 gap-y-2" aria-label="Trust and legal">
+              <Link href="/trust" className="text-xs text-fg-muted transition-colors duration-200 hover:text-ivory">
+                Trust & Security
+              </Link>
+              <Link href="/privacy" className="text-xs text-fg-muted transition-colors duration-200 hover:text-ivory">
                 Privacy
               </Link>
-              <CookieSettingsButton className="cursor-pointer text-xs text-muted-stone/70 transition-colors duration-200 hover:text-ivory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bronze/60" />
+              <CookieSettingsButton className="cursor-pointer text-xs text-fg-muted transition-colors duration-200 hover:text-ivory" />
             </nav>
           </div>
-          <p className="font-display text-sm italic text-antique-gold/70">
-            {CANONICAL.evidencePhilosophy}
-          </p>
+          <p className="font-display text-base italic text-champagne/80">{CANONICAL.evidencePhilosophy}</p>
         </div>
       </Container>
     </footer>

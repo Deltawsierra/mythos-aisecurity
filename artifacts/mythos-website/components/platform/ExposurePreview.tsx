@@ -34,7 +34,7 @@ const money = (v: number) => `$${v.toFixed(1)}M`;
 export function ExposurePreview({ compact = false }: { compact?: boolean }) {
   const { line, area } = curve();
   return (
-    <div className="grid gap-8 border border-rule bg-panel p-6 shadow-[0_24px_50px_-36px_rgba(11,31,51,0.5)] lg:grid-cols-[1.25fr_1fr] lg:p-9">
+    <div className="grid gap-8 border border-rule bg-panel p-6 shadow-[0_24px_50px_-36px_rgba(21,35,51,0.5)] lg:grid-cols-[1.25fr_1fr] lg:p-9">
       <figure>
         <figcaption className="mb-4 flex items-baseline justify-between gap-4">
           <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-accent">Modeled loss range · one validated scenario</span>
@@ -61,8 +61,8 @@ export function ExposurePreview({ compact = false }: { compact?: boolean }) {
             ] as const
           ).map(([label, v]) => (
             <g key={label}>
-              <line x1={X(v)} x2={X(v)} y1={18} y2={H} stroke="#0b1f33" strokeWidth={label === "P50" ? 1.5 : 1} strokeDasharray={label === "P50" ? undefined : "3 4"} />
-              <text x={X(v)} y={12} textAnchor="middle" className="hidden font-sans text-[11px] font-semibold sm:inline" fill="#0b1f33">
+              <line x1={X(v)} x2={X(v)} y1={18} y2={H} stroke="#152333" strokeWidth={label === "P50" ? 1.5 : 1} strokeDasharray={label === "P50" ? undefined : "3 4"} />
+              <text x={X(v)} y={12} textAnchor="middle" className="hidden font-sans text-[11px] font-semibold sm:inline" fill="#152333">
                 {label} {money(v)}
               </text>
             </g>

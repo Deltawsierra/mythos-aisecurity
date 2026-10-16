@@ -71,6 +71,52 @@ export const HERO_MEDIA = {
   lightOverlay: "/assets/hero/hero-light-overlay.webm",
 } as const;
 
+/**
+ * Luminous Olympus scenery (Launch Guide, 16 Oct). Batch 03 candidates at
+ * native size — no faux 4K. The panorama is cropped to drop banners painted
+ * with the unapproved Batch 01 monogram; its sun and mist layers share the
+ * crop. The Batch 04 Athena is a stand-in until the Athena decision is made.
+ */
+export const OLYMPUS_MEDIA = {
+  marbleCity: poster("/assets/olympus/marble-city.webp", 1672, 941),
+  cloudSea: poster("/assets/olympus/cloud-sea.webp", 1672, 941),
+  cloudValley: "/assets/olympus/cloud-valley.webp",
+  panorama: poster("/assets/olympus/panorama.webp", 1612, 809),
+  sunrays: "/assets/olympus/panorama-sunrays.webp",
+  mist: "/assets/olympus/panorama-mist.webp",
+  athena: poster("/assets/olympus/athena-guardian.webp", 1024, 1536),
+} as const;
+
+/**
+ * Batch 06 causeway layers on a shared 2048×1152 canvas (the placeholder
+ * colonnade is left out) and the Batch 07 journey medallions, registered at
+ * y = 666 on the bridge.
+ */
+export const CAUSEWAY_MEDIA = {
+  size: { width: 2048, height: 1152 },
+  layers: {
+    sky: "/assets/causeway/sky.webp",
+    mountains: "/assets/causeway/mountains.webp",
+    gorge: "/assets/causeway/gorge.webp",
+    bridge: "/assets/causeway/bridge.webp",
+    sunbeams: "/assets/causeway/sunbeams.webp",
+    mist: "/assets/causeway/mist.webp",
+  },
+  medallions: {
+    discover: "/assets/causeway/medallion-discover.svg",
+    understand: "/assets/causeway/medallion-understand.svg",
+    protect: "/assets/causeway/medallion-protect.svg",
+    respond: "/assets/causeway/medallion-respond.svg",
+    strengthen: "/assets/causeway/medallion-strengthen.svg",
+  },
+  halo: "/assets/causeway/medallion-halo.svg",
+  /** Medallion centres in canvas pixels (Batch 06/07 scene registration). */
+  centers: [218, 620, 1024, 1428, 1830],
+  centerY: 666,
+  /** The gold energy path through the five centres. */
+  path: "M217 666 C345 605 489 710 620 666S894 611 1024 666S1289 713 1428 666S1704 621 1830 666",
+} as const;
+
 export const CTA_MEDIA = {
   poster: poster("/assets/cta/cta-olympus-poster.avif", 1600, 667),
   loopWebm: "/assets/cta/cta-olympus-loop.webm",

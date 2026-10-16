@@ -91,10 +91,10 @@ export function ArchitectureMap() {
                 <path d="M0 0 L10 5 L0 10 z" fill="currentColor" />
               </marker>
               <linearGradient id="arch-core" x1="0" x2="1">
-                <stop offset="0" stopColor="#a66a32" stopOpacity="0" />
+                <stop offset="0" stopColor="#b8823f" stopOpacity="0" />
                 <stop offset="0.2" stopColor="#d6a14a" />
                 <stop offset="0.8" stopColor="#d6a14a" />
-                <stop offset="1" stopColor="#a66a32" stopOpacity="0" />
+                <stop offset="1" stopColor="#b8823f" stopOpacity="0" />
               </linearGradient>
             </defs>
 
@@ -120,7 +120,7 @@ export function ArchitectureMap() {
                 <g
                   key={`${link.from}>${link.to}`}
                   className={cn("transition-opacity duration-500", lit ? "opacity-100" : "opacity-30")}
-                  style={{ color: lit ? "#d6a14a" : "#a66a32" }}
+                  style={{ color: lit ? "#d6a14a" : "#b8823f" }}
                 >
                   <path
                     d={d}
@@ -140,7 +140,7 @@ export function ArchitectureMap() {
                     y={lp.y}
                     textAnchor="middle"
                     className="fill-current font-sans text-[13px] tracking-wide"
-                    style={{ fill: lit ? "#f3e8d0" : "#9a8c78" }}
+                    style={{ fill: lit ? "#ede4d5" : "#9a8c78" }}
                   >
                     {link.label}
                   </text>
@@ -175,7 +175,7 @@ export function ArchitectureMap() {
                   project={p.id}
                   className={cn(
                     "w-[56%] transition-[transform,box-shadow] duration-500 group-focus-visible:ring-2 group-focus-visible:ring-antique-gold",
-                    isActive && "scale-110 shadow-[0_0_0_4px_rgba(5,5,5,0.85),0_0_0_5px_rgba(214,161,74,0.9),0_0_40px_6px_rgba(214,161,74,0.35)]",
+                    isActive && "scale-110 shadow-[0_0_0_4px_rgba(18,21,23,0.85),0_0_0_5px_rgba(214,161,74,0.9),0_0_40px_6px_rgba(214,161,74,0.35)]",
                   )}
                 />
                 <span className="mt-3 font-display text-2xl leading-none text-ivory">{p.name}</span>

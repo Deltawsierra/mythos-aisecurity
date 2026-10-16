@@ -30,6 +30,9 @@ The current live site does not reference anything in `/assets/` yet.
 | `textures/` | Footer stone | Batch 9 |
 | `social/` | Open Graph images (1200×630): default, Economic Exposure, SPINE | Fixes v2 (default), Targeted Fixes v4 |
 | `athena/` | Eight gold check-group medallions (480×480 WebP, transparent outside the medallion) | AthenaPageAssets (1)–(8), staged 14 Oct 2026 |
+| `olympus/` | Marble city (1672×941), cloud sea, cloud layer (alpha), panorama (1612×809, cropped) + its sun and mist layers, Batch 04 Athena (1024×1536 alpha) | Batch 03 candidates, Batch 04 R4 source — staged 16 Oct 2026 |
+| `causeway/` | Batch 06 layers on a 2048×1152 canvas (sky, mountains, gorge, bridge, sunbeams, mist) + Batch 07 journey medallions, halo, energy path | Batches 06/07 Integrated R1 — staged 16 Oct 2026 |
+| `icons/` | 18 Batch 02 mono icons (currentColor strokes) | Batch 02 COMPLETE — staged 16 Oct 2026 |
 
 Economic Exposure chart mockups are kept as design reference only in
 `docs/design/asset-reference/economic-exposure/`. The blueprint calls for native
@@ -53,6 +56,14 @@ be checked against product terminology before reuse.
   5 data lifecycle, 6 pipeline, 7 routes, 8 personal context. Typed as
   `ATHENA_ICONS` in `content/media.ts`. The Achilles dashboard mockups from the
   same drop were not used: they show real vendor/model names and invented metrics.
+- **Luminous Olympus (16 Oct):** the Batch 03 panorama is cropped 330 px from
+  the left so the banners painted with the unapproved Batch 01 monogram don't
+  appear; its registered sun and mist layers share the crop. The Batch 06
+  placeholder colonnade (B06-04) is left out. The Batch 04 Athena is a
+  stand-in (different Athena from `characters/`, heeled sandals hidden in
+  clouds). Not staged: Batch 01 logo set (brand decision), Batch 03/04 parallax
+  layers (lasso cut-outs, ghosting), Batch 05 scene (overlay crosses the face;
+  current challenge art is better), Groups 08–10 code (reference only).
 - `ui/nav-arrow-right.svg` and `ui/nav-chevron-down.svg` use `currentColor`;
   inline them (or use as a CSS mask) so they take the text colour. As an `<img>`
   they render black.

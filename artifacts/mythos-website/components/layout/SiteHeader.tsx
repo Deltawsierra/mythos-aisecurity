@@ -22,6 +22,24 @@ function isNodeActive(pathname: string, node: NavNode): boolean {
   return (node.match ?? []).some((m) => matchesPath(pathname, m));
 }
 
+/** The most specific menu wins, so /platform/athena marks Products, not Platform. */
+function activeNodeLabel(pathname: string): string | null {
+  let best: { label: string; length: number } | null = null;
+  for (const node of PRIMARY_NAV) {
+    for (const m of node.match ?? []) {
+      if (matchesPath(pathname, m) && (!best || m.length > best.length)) best = { label: node.label, length: m.length };
+    }
+  }
+  return best?.label ?? null;
+}
+
+const FOCUSABLE = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+const UTILITY_LINKS = [
+  { label: "Pricing", href: "/pricing" },
+  { label: "Trust & Security", href: "/trust" },
+  { label: "Contact", href: "/contact" },
+];
+
 /** One open mega menu at a time, with a short grace period on mouse-out. */
 function useMenuState() {
   const [openLabel, setOpenLabel] = useState<string | null>(null);
@@ -55,35 +73,34 @@ function useMenuState() {
   return { openLabel, open, close, scheduleClose };
 }
 
+/**
+ * Global header (Launch Guide: Group 08/09 behaviour on the repo's own nav
+ * data). Transparent over the hero, charcoal once the page scrolls. The
+ * mobile drawer is a modal dialog: focus moves in and is trapped, Escape and
+ * the backdrop close it, focus returns to the toggle, and while closed it is
+ * `inert` so none of its links can be reached.
+ */
 export function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [openGroups, setOpenGroups] = useState<string[]>([]);
   const pathname = usePathname();
   const navRef = useRef<HTMLElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const wasOpen = useRef(false);
   const menu = useMenuState();
+  const activeLabel = activeNodeLabel(pathname);
 
   useGSAP(
     () => {
       const el = navRef.current;
       if (!el) return;
       const mm = gsap.matchMedia();
-      mm.add(
-        {
-          reduced: "(prefers-reduced-motion: reduce)",
-          normal: "(prefers-reduced-motion: no-preference)",
-        },
-        (ctx) => {
-          const reduced = !!ctx.conditions?.reduced;
-          gsap.from(el, {
-            autoAlpha: 0,
-            y: reduced ? 0 : -14,
-            duration: reduced ? 0.4 : 0.7,
-            ease: "power3.out",
-            clearProps: "transform",
-          });
-        },
-      );
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        gsap.from(el, { autoAlpha: 0, y: -12, duration: 0.7, ease: "power3.out", clearProps: "transform" });
+      });
       return () => mm.revert();
     },
     { scope: navRef },
@@ -104,24 +121,56 @@ export function SiteHeader() {
 
   // Auto-expand the mobile accordion group that contains the active route.
   useEffect(() => {
-    setOpenGroups(
-      PRIMARY_NAV.filter((n) => n.columns && isNodeActive(pathname, n)).map(
-        (n) => n.label,
-      ),
-    );
-  }, [pathname]);
+    setOpenGroups(activeLabel ? [activeLabel] : []);
+  }, [activeLabel]);
 
+  // Drawer: scroll lock, focus in on open, focus back to the toggle on close.
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
+    if (mobileOpen) closeRef.current?.focus();
+    else if (wasOpen.current) toggleRef.current?.focus();
+    wasOpen.current = mobileOpen;
     return () => {
       document.body.style.overflow = "";
     };
   }, [mobileOpen]);
 
+  // Drawer: Escape closes; Tab cycles inside; widening to desktop closes.
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        setMobileOpen(false);
+        return;
+      }
+      if (e.key !== "Tab" || !panelRef.current) return;
+      const items = Array.from(panelRef.current.querySelectorAll<HTMLElement>(FOCUSABLE)).filter(
+        (el) => !el.closest("[hidden]"),
+      );
+      if (!items.length) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    const desktop = window.matchMedia("(min-width: 1024px)");
+    const onWide = () => desktop.matches && setMobileOpen(false);
+    document.addEventListener("keydown", onKey);
+    desktop.addEventListener("change", onWide);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      desktop.removeEventListener("change", onWide);
+    };
+  }, [mobileOpen]);
+
   const toggleGroup = (label: string) =>
-    setOpenGroups((groups) =>
-      groups.includes(label) ? groups.filter((g) => g !== label) : [...groups, label],
-    );
+    setOpenGroups((groups) => (groups.includes(label) ? groups.filter((g) => g !== label) : [...groups, label]));
 
   const elevated = scrolled || menu.openLabel !== null;
 
@@ -129,56 +178,42 @@ export function SiteHeader() {
     <>
       <header
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-[background-color,backdrop-filter] duration-300",
-          elevated ? "backdrop-blur-xl" : "backdrop-blur-md",
+          "fixed left-0 right-0 top-0 z-50 transition-[background-color,backdrop-filter,box-shadow] duration-300",
+          elevated && "backdrop-blur-xl",
         )}
         style={{
           background: elevated
-            ? "linear-gradient(90deg, rgba(5,5,5,0.94) 0%, rgba(8,18,28,0.94) 60%, rgba(11,31,51,0.94) 100%)"
-            : "linear-gradient(90deg, rgba(5,5,5,0.72) 0%, rgba(8,18,28,0.62) 60%, rgba(11,31,51,0.55) 100%)",
+            ? "rgba(22,26,28,0.92)"
+            : "linear-gradient(180deg, rgba(18,21,23,0.78) 0%, rgba(18,21,23,0.35) 65%, rgba(18,21,23,0) 100%)",
+          boxShadow: elevated ? "0 18px 40px -30px rgba(0,0,0,0.9)" : "none",
         }}
         role="banner"
       >
         <div
-          className={cn(
-            "mythos-rule absolute inset-x-0 bottom-0 transition-opacity duration-300",
-            elevated ? "opacity-100" : "opacity-0",
-          )}
+          className={cn("mythos-rule absolute inset-x-0 bottom-0 transition-opacity duration-300", elevated ? "opacity-100" : "opacity-0")}
           aria-hidden="true"
         />
         <Container>
-          <nav
-            ref={navRef}
-            className="relative flex h-16 items-center justify-between gap-6 lg:h-20"
-            aria-label="Main navigation"
-          >
-            <Link
-              href="/"
-              className="group flex items-center gap-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bronze/60"
-              aria-label="Mythos — home"
-            >
+          <nav ref={navRef} className="relative flex h-16 items-center justify-between gap-6 lg:h-20" aria-label="Main navigation">
+            <Link href="/" className="group flex items-center gap-2.5" aria-label="Mythos — home">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/logo-icon-small.png"
                 alt=""
-                width={30}
-                height={30}
-                className="block h-7 w-7 shrink-0 opacity-90 transition-opacity duration-200 group-hover:opacity-100 lg:h-[30px] lg:w-[30px]"
+                width={32}
+                height={32}
+                className="block h-8 w-8 shrink-0 opacity-95 transition-opacity duration-200 group-hover:opacity-100"
                 aria-hidden="true"
               />
-              <span className="whitespace-nowrap text-[13px] font-semibold uppercase leading-none tracking-[0.22em] text-ivory transition-colors duration-200 group-hover:text-antique-gold sm:text-sm">
+              <span className="whitespace-nowrap font-display text-xl font-medium uppercase leading-none tracking-[0.2em] text-ivory transition-colors duration-200 group-hover:text-champagne">
                 {SITE_NAME}
               </span>
             </Link>
 
             {/* Desktop navigation */}
-            <ul
-              className="hidden h-full items-stretch gap-7 lg:flex xl:gap-9"
-              role="list"
-              aria-label="Site sections"
-            >
+            <ul className="hidden h-full items-stretch gap-8 lg:flex xl:gap-10" role="list" aria-label="Site sections">
               {PRIMARY_NAV.map((node) => {
-                const active = isNodeActive(pathname, node);
+                const active = activeLabel === node.label;
                 if (node.columns) {
                   return (
                     <MegaMenu
@@ -199,10 +234,10 @@ export function SiteHeader() {
                       href={node.href ?? "/"}
                       onPointerEnter={menu.close}
                       className={cn(
-                        "py-2 text-[10px] font-semibold uppercase tracking-[0.2em] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bronze/60",
-                        active ? "text-antique-gold" : "text-muted-stone hover:text-ivory",
+                        "py-2 text-[13px] font-medium tracking-[0.02em] transition-colors duration-200",
+                        active ? "text-champagne" : "text-ivory/85 hover:text-ivory",
                       )}
-                      aria-current={active ? "page" : undefined}
+                      aria-current={isNodeActive(pathname, node) ? "page" : undefined}
                     >
                       {node.label}
                     </Link>
@@ -211,13 +246,12 @@ export function SiteHeader() {
               })}
             </ul>
 
-            {/* Desktop CTAs */}
-            <div className="hidden items-center gap-3 lg:flex">
+            <div className="hidden items-center lg:flex">
               <Button
                 href={CTA_LINKS.demo}
-                variant="ghost"
+                variant="primary"
                 size="sm"
-                className="hidden xl:inline-flex"
+                arrow
                 onClick={() => {
                   track("cta_request_demo", { location: "header" });
                   announceIntent("demo");
@@ -225,27 +259,18 @@ export function SiteHeader() {
               >
                 {CTA.DEMO}
               </Button>
-              <Button
-                href={CTA_LINKS.assessment}
-                variant="primary"
-                size="sm"
-                className="bronze-glow"
-                onClick={() => track("cta_request_assessment", { location: "header" })}
-              >
-                {CTA.PRIMARY}
-              </Button>
             </div>
 
-            {/* Mobile toggle */}
             <button
+              ref={toggleRef}
               type="button"
-              className="flex h-10 w-10 items-center justify-center text-muted-stone transition-colors duration-150 hover:text-ivory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bronze/60 lg:hidden"
+              className="-mr-2 flex h-11 w-11 items-center justify-center text-ivory/85 transition-colors duration-150 hover:text-ivory lg:hidden"
               aria-expanded={mobileOpen}
               aria-controls="mobile-nav"
-              aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
-              onClick={() => setMobileOpen((v) => !v)}
+              aria-label="Open navigation menu"
+              onClick={() => setMobileOpen(true)}
             >
-              {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+              <Menu size={22} aria-hidden="true" />
             </button>
           </nav>
         </Container>
@@ -254,63 +279,51 @@ export function SiteHeader() {
       {/* ── Mobile drawer ──────────────────────────────────── */}
       <div
         className={cn(
-          "fixed inset-0 z-40 transition-opacity duration-300 lg:hidden",
+          "fixed inset-0 z-[60] transition-opacity duration-300 lg:hidden",
           mobileOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0",
         )}
-        aria-hidden={!mobileOpen}
+        inert={!mobileOpen}
       >
-        <div
-          className="absolute inset-0 bg-obsidian/75 backdrop-blur-sm"
-          onClick={() => setMobileOpen(false)}
-          aria-hidden="true"
-        />
+        <div className="absolute inset-0 bg-charcoal/70 backdrop-blur-sm" onClick={() => setMobileOpen(false)} aria-hidden="true" />
 
         <div
+          ref={panelRef}
           id="mobile-nav"
           role="dialog"
           aria-modal="true"
-          aria-label="Navigation menu"
+          aria-labelledby="mobile-nav-title"
           className={cn(
-            "absolute right-0 top-0 flex h-full w-80 max-w-[85vw] flex-col border-l border-bronze/15 transition-transform duration-300 ease-out",
+            "absolute right-0 top-0 flex h-full w-[22rem] max-w-[88vw] flex-col border-l border-bronze/25 shadow-[-30px_0_60px_-30px_rgba(0,0,0,0.8)] transition-transform duration-300 ease-out motion-reduce:transition-none",
             mobileOpen ? "translate-x-0" : "translate-x-full",
           )}
-          style={{ background: "linear-gradient(180deg, #050505 0%, #08121c 55%, #0b1f33 100%)" }}
+          style={{ background: "linear-gradient(180deg, #161a1c 0%, #1b1f22 60%, #221f1b 100%)" }}
         >
-          <div className="flex h-16 items-center justify-between border-b border-ivory/5 px-6">
-            <div className="flex items-center gap-2">
+          <div className="flex h-16 shrink-0 items-center justify-between border-b border-ivory/10 px-5">
+            <p id="mobile-nav-title" className="flex items-center gap-2.5 font-display text-lg uppercase tracking-[0.2em] text-ivory">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/images/logo-icon-small.png"
-                alt=""
-                width={22}
-                height={22}
-                style={{ display: "block" }}
-                className="opacity-80"
-                aria-hidden="true"
-              />
-              <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-muted-stone/70">
-                Navigation
-              </span>
-            </div>
+              <img src="/images/logo-icon-small.png" alt="" width={26} height={26} className="block" aria-hidden="true" />
+              Menu
+            </p>
             <button
+              ref={closeRef}
               type="button"
-              className="flex h-8 w-8 items-center justify-center text-muted-stone transition-colors hover:text-ivory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bronze/60"
+              className="-mr-2 flex h-11 w-11 items-center justify-center text-ivory/80 transition-colors hover:text-ivory"
               onClick={() => setMobileOpen(false)}
               aria-label="Close navigation menu"
             >
-              <X size={18} />
+              <X size={22} aria-hidden="true" />
             </button>
           </div>
 
-          <nav className="flex flex-1 flex-col overflow-y-auto p-6" aria-label="Mobile navigation">
+          <nav className="flex flex-1 flex-col overflow-y-auto overscroll-contain px-5 pb-6 pt-2" aria-label="Mobile navigation">
             <ul className="flex flex-col" role="list">
-              <li className="border-b border-ivory/5">
+              <li className="border-b border-ivory/10">
                 <Link
                   href="/"
                   onClick={() => setMobileOpen(false)}
                   className={cn(
-                    "block py-3.5 text-xs font-semibold uppercase tracking-[0.2em] transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bronze/60",
-                    pathname === "/" ? "text-antique-gold" : "text-muted-stone hover:text-ivory",
+                    "flex min-h-12 items-center text-[15px] font-medium",
+                    pathname === "/" ? "text-champagne" : "text-ivory/90 hover:text-ivory",
                   )}
                   aria-current={pathname === "/" ? "page" : undefined}
                 >
@@ -318,103 +331,104 @@ export function SiteHeader() {
                 </Link>
               </li>
               {PRIMARY_NAV.map((node) => {
-                const groupActive = isNodeActive(pathname, node);
+                const groupActive = activeLabel === node.label;
                 if (!node.columns) {
                   return (
-                    <li key={node.label} className="border-b border-ivory/5">
+                    <li key={node.label} className="border-b border-ivory/10">
                       <Link
                         href={node.href ?? "/"}
                         onClick={() => setMobileOpen(false)}
-                        className={cn(
-                          "block py-3.5 text-xs font-semibold uppercase tracking-[0.2em] transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bronze/60",
-                          groupActive ? "text-antique-gold" : "text-muted-stone hover:text-ivory",
-                        )}
-                        aria-current={groupActive ? "page" : undefined}
+                        className={cn("flex min-h-12 items-center text-[15px] font-medium", groupActive ? "text-champagne" : "text-ivory/90 hover:text-ivory")}
                       >
                         {node.label}
                       </Link>
                     </li>
                   );
                 }
-
                 const isOpen = openGroups.includes(node.label);
+                const groupId = `mobile-group-${node.label.toLowerCase()}`;
                 return (
-                  <li key={node.label} className="border-b border-ivory/5">
+                  <li key={node.label} className="border-b border-ivory/10">
                     <button
                       type="button"
                       className={cn(
-                        "flex w-full items-center justify-between py-3.5 text-xs font-semibold uppercase tracking-[0.2em] transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bronze/60",
-                        groupActive ? "text-antique-gold" : "text-muted-stone hover:text-ivory",
+                        "flex min-h-12 w-full items-center justify-between text-[15px] font-medium",
+                        groupActive ? "text-champagne" : "text-ivory/90 hover:text-ivory",
                       )}
                       aria-expanded={isOpen}
+                      aria-controls={groupId}
                       onClick={() => toggleGroup(node.label)}
                     >
                       {node.label}
-                      <ChevronDown
-                        size={16}
-                        aria-hidden="true"
-                        className={cn("transition-transform duration-200", isOpen && "rotate-180")}
-                      />
+                      <ChevronDown size={18} aria-hidden="true" className={cn("transition-transform duration-200", isOpen && "rotate-180")} />
                     </button>
-                    {isOpen && (
-                      <div className="mb-3 ml-1 border-l border-bronze/25 pl-4">
-                        {node.columns.map((column) => (
-                          <div key={column.heading} className="mb-2">
-                            {node.columns!.length > 1 && (
-                              <p className="pb-1 pt-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-bronze-bright">
-                                {column.heading}
-                              </p>
-                            )}
-                            <ul role="list" className="flex flex-col">
-                              {column.items.map((it) => {
-                                const active = pathname === it.href || pathname === `${it.href}/`;
-                                return (
-                                  <li key={it.href}>
-                                    <Link
-                                      href={it.href}
-                                      onClick={() => setMobileOpen(false)}
-                                      className={cn(
-                                        "block py-2 text-[13px] transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bronze/60",
-                                        active ? "text-antique-gold" : "text-ivory/80 hover:text-ivory",
-                                      )}
-                                      aria-current={active ? "page" : undefined}
-                                    >
-                                      {it.label}
-                                    </Link>
-                                  </li>
-                                );
-                              })}
-                            </ul>
-                          </div>
-                        ))}
-                      </div>
-                    )}
+                    <div id={groupId} hidden={!isOpen} className="mb-3 ml-1 border-l border-bronze/35 pl-4">
+                      {node.columns.map((column) => (
+                        <div key={column.heading} className="mb-1">
+                          {node.columns!.length > 1 && (
+                            <p className="pb-1 pt-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-champagne/80">{column.heading}</p>
+                          )}
+                          <ul role="list" className="flex flex-col">
+                            {column.items.map((it) => {
+                              const current = pathname === it.href || pathname === `${it.href}/`;
+                              return (
+                                <li key={it.href}>
+                                  <Link
+                                    href={it.href}
+                                    onClick={() => setMobileOpen(false)}
+                                    className={cn("flex min-h-11 items-center text-sm", current ? "text-champagne" : "text-ivory/80 hover:text-ivory")}
+                                    aria-current={current ? "page" : undefined}
+                                  >
+                                    {it.label}
+                                  </Link>
+                                </li>
+                              );
+                            })}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
                   </li>
                 );
               })}
             </ul>
 
-            <div className="mt-auto flex flex-col gap-3 border-t border-ivory/5 pt-6">
-              <Button
-                href={CTA_LINKS.assessment}
-                variant="primary"
-                size="md"
-                className="w-full justify-center"
-                onClick={() => track("cta_request_assessment", { location: "mobile_nav" })}
-              >
-                {CTA.PRIMARY}
-              </Button>
+            <ul className="mt-5 flex flex-wrap gap-x-5" role="list" aria-label="More">
+              {UTILITY_LINKS.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="flex min-h-11 items-center text-sm text-muted-stone hover:text-ivory"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-auto flex flex-col gap-3 pt-6">
               <Button
                 href={CTA_LINKS.demo}
-                variant="secondary"
+                variant="primary"
                 size="md"
-                className="w-full justify-center"
+                arrow
+                className="w-full"
                 onClick={() => {
                   track("cta_request_demo", { location: "mobile_nav" });
                   announceIntent("demo");
                 }}
               >
                 {CTA.DEMO}
+              </Button>
+              <Button
+                href={CTA_LINKS.assessment}
+                variant="secondary"
+                size="md"
+                className="w-full"
+                onClick={() => track("cta_request_assessment", { location: "mobile_nav" })}
+              >
+                {CTA.PRIMARY}
               </Button>
             </div>
           </nav>

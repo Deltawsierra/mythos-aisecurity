@@ -51,7 +51,7 @@ export function UseCasesHero() {
         className="absolute inset-0 hidden lg:block"
         style={{
           background:
-            "linear-gradient(90deg, rgba(5,5,5,0.93) 0%, rgba(5,5,5,0.82) 26%, rgba(5,5,5,0.5) 46%, rgba(5,5,5,0.16) 64%, rgba(5,5,5,0) 80%)",
+            "linear-gradient(90deg, rgba(18,21,23,0.93) 0%, rgba(18,21,23,0.82) 26%, rgba(18,21,23,0.5) 46%, rgba(18,21,23,0.16) 64%, rgba(18,21,23,0) 80%)",
         }}
       />
       {/* Mobile/tablet: gentle all-over scrim so stacked copy stays readable. */}
@@ -60,7 +60,7 @@ export function UseCasesHero() {
         className="absolute inset-0 lg:hidden"
         style={{
           background:
-            "linear-gradient(180deg, rgba(5,5,5,0.84) 0%, rgba(5,5,5,0.6) 42%, rgba(5,5,5,0.78) 100%)",
+            "linear-gradient(180deg, rgba(18,21,23,0.84) 0%, rgba(18,21,23,0.6) 42%, rgba(18,21,23,0.78) 100%)",
         }}
       />
       {/* Top + bottom cinematic vignette (blends under header, into next section). */}
@@ -69,7 +69,7 @@ export function UseCasesHero() {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(180deg, rgba(5,5,5,0.5) 0%, transparent 22%, transparent 68%, rgba(5,5,5,0.92) 100%)",
+            "linear-gradient(180deg, rgba(18,21,23,0.5) 0%, transparent 22%, transparent 68%, rgba(18,21,23,0.92) 100%)",
         }}
       />
       {/* Bronze radial glow near the arena floor. */}
@@ -78,7 +78,7 @@ export function UseCasesHero() {
         className="absolute bottom-0 left-1/2 h-[55%] w-[80%] -translate-x-1/2"
         style={{
           background:
-            "radial-gradient(ellipse 60% 70% at 50% 100%, rgba(166,106,50,0.32), transparent 70%)",
+            "radial-gradient(ellipse 60% 70% at 50% 100%, rgba(184,130,63,0.32), transparent 70%)",
         }}
       />
       {/* Ember motes. */}
@@ -94,7 +94,7 @@ export function UseCasesHero() {
               height: e.size,
               animationDelay: e.delay,
               background:
-                "radial-gradient(circle, rgba(255,200,120,0.95), rgba(166,106,50,0.4) 60%, transparent 75%)",
+                "radial-gradient(circle, rgba(255,200,120,0.95), rgba(184,130,63,0.4) 60%, transparent 75%)",
               boxShadow: "0 0 8px rgba(214,161,74,0.6)",
             }}
           />
@@ -106,7 +106,7 @@ export function UseCasesHero() {
         className="absolute bottom-0 left-0 right-0 h-px"
         style={{
           background:
-            "linear-gradient(90deg, transparent, rgba(166,106,50,0.3) 30%, rgba(166,106,50,0.3) 70%, transparent)",
+            "linear-gradient(90deg, transparent, rgba(184,130,63,0.3) 30%, rgba(184,130,63,0.3) 70%, transparent)",
         }}
       />
 
