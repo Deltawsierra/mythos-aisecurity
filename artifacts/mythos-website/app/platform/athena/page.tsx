@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
+import { Accent } from "@/components/ui/Headline";
 import { PageMotion } from "@/components/motion/PageMotion";
-import { InnerHero } from "@/components/sections/InnerHero";
-import { SectionBlend } from "@/components/sections/SectionBlend";
 import { SectionIntro } from "@/components/sections/SectionIntro";
-import { ClosingCta } from "@/components/sections/ClosingCta";
 import { NextLinks, type NextLink } from "@/components/sections/NextLinks";
-import { CharacterPanel } from "@/components/platform/CharacterPanel";
+import { ScenicHero } from "@/components/scenic/ScenicHero";
+import { Scene } from "@/components/scenic/Scene";
+import { ClosingVista } from "@/components/scenic/ClosingVista";
 import { SystemMap } from "@/components/platform/SystemMap";
 import { GroupList } from "@/components/platform/GroupList";
-import { DifferentialEvidence } from "@/components/platform/DifferentialEvidence";
 import { CoveragePanel } from "@/components/platform/CoveragePanel";
+import { CallTraces } from "@/components/platform/CallTraces";
+import { DifferentialEvidence } from "@/components/platform/DifferentialEvidence";
 import { HandoffFlow } from "@/components/platform/HandoffFlow";
 import {
   ATHENA_CHECKS,
@@ -19,20 +20,26 @@ import {
   ATHENA_COVERAGE,
   ATHENA_EXCHANGES,
   ATHENA_HANDOFF,
+  ATHENA_OUTPUTS,
+  ATHENA_REPLAY,
   ATHENA_RETEST,
+  ATHENA_TRACES,
 } from "@/content/athena";
+import { OLYMPUS_MEDIA } from "@/content/media";
+import { CTA_LINKS } from "@/content/navigation";
+import { CTA } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Athena — See the System",
+  title: "Athena — See Every Risk, Understand Every Exposure",
   description:
-    "Athena maps what exists around an AI system, what is exposed, where requests travel and what evidence proves it — with confidence on every finding and gaps reported as plainly as results.",
+    "Athena reveals how systems, identities, data, tools and models connect within an agreed scope — what is exposed, what is controlled, what was not checked, and where remediation is needed.",
   alternates: { canonical: "/platform/athena/" },
 };
 
 const NEXT: NextLink[] = [
   { eyebrow: "SPINE", title: "Where Athena's findings become claims", href: "/platform/spine" },
+  { eyebrow: "Use case", title: "AI agents with tools and actions", href: "/use-cases/ai-agent-tools-actions" },
   { eyebrow: "Example report", title: "What an assessment hands back", href: "/example-report" },
-  { eyebrow: "Use cases", title: "Where teams start with Athena", href: "/use-cases" },
 ];
 
 const CONFIDENCE_TONE: Record<string, string> = {
@@ -41,71 +48,112 @@ const CONFIDENCE_TONE: Record<string, string> = {
   Suspicious: "border-rule text-fg-muted",
 };
 
-/** Athena — See the System (blueprint Section 7). */
+const c = ATHENA_COPY;
+
+/** Athena — Launch Guide R03 (A01–A09). */
 export default function AthenaPage() {
-  const c = ATHENA_COPY;
   return (
     <PageMotion>
-      <InnerHero
+      {/* A01 — Athena left, copy right (Launch Guide framing). */}
+      <ScenicHero
         eyebrow={c.hero.eyebrow}
         headline={c.hero.headline}
-        lede={c.hero.lede}
+        lede={
+          <>
+            {c.hero.lede}
+            <span className="mt-3 block border-l border-champagne/50 pl-3 text-[15px] text-champagne/90">{c.hero.scope}</span>
+          </>
+        }
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Platform", href: "/platform" },
         ]}
         current="Athena"
-        secondaryCta={{ label: "See SPINE", href: "/platform/spine" }}
-        art={<CharacterPanel project="athena" />}
-      />
-
-      <SectionBlend
-        from="abyss"
-        to="navy"
-        layers={[
-          { art: "mountain-fog", opacity: 0.35, drift: 40, blend: "screen" },
-          { art: "dark-clouds-alt", opacity: 0.7, drift: -60 },
+        primaryCta={{ label: "Explore an Example Assessment", href: "/example-report" }}
+        secondaryCta={{ label: CTA.DEMO, href: CTA_LINKS.demo }}
+        copySide="right"
+        planes={[
+          { src: OLYMPUS_MEDIA.cloudSea.src, className: "-inset-[3%]", position: "50% 60%", depth: 6, priority: true },
+          { src: OLYMPUS_MEDIA.mountains.src, className: "inset-x-0 top-[40%] h-[18%]", fit: "contain", position: "60% 100%", opacity: 0.75, depth: 8 },
+          { src: OLYMPUS_MEDIA.cliffTemple.src, className: "-right-[3%] bottom-[14%] h-[54%] w-[56%]", fit: "contain", position: "100% 100%", depth: 12 },
+          { src: OLYMPUS_MEDIA.evergreenCliff.src, className: "-left-[3%] bottom-0 h-[62%] w-[34%]", fit: "contain", position: "0% 100%", depth: 16, desktopOnly: true },
+          { src: OLYMPUS_MEDIA.sunbeams, className: "-inset-[3%]", blend: "screen", opacity: 0.55, position: "100% 0%", depth: 10 },
         ]}
-      />
-
-      <section data-surface="navy" aria-labelledby="map-title" className="relative overflow-hidden pb-24 pt-6">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/assets/transitions/transition-bronze-particles.webp"
-          alt=""
-          aria-hidden="true"
-          loading="lazy"
-          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-40 mix-blend-screen"
-        />
-        <Container className="relative">
-          <SectionIntro id="map-title" align="center" eyebrow={c.map.eyebrow} title={c.map.title} lede={c.map.lede} />
-          <div className="mt-12">
-            <SystemMap />
+        figure={
+          <div className="absolute bottom-[6%] left-[4%] h-[86%] xl:left-[7%]" data-depth="22">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={OLYMPUS_MEDIA.athena.src}
+              alt=""
+              className="hero-rise h-full w-auto max-w-none drop-shadow-[0_30px_50px_rgba(18,21,23,0.55)]"
+              style={{ animationDelay: "160ms" }}
+            />
           </div>
-        </Container>
-      </section>
-
-      <SectionBlend
-        from="navy"
-        to="bone"
-        layers={[
-          { art: "dark-clouds", opacity: 0.6, drift: 50 },
-          { art: "ivory-clouds", opacity: 0.85, drift: -70 },
-        ]}
+        }
+        mobileFigure={
+          <div className="relative h-[52svh] overflow-hidden">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={OLYMPUS_MEDIA.athena.src} alt="" className="absolute left-1/2 top-0 h-[124%] w-auto max-w-none -translate-x-1/2" />
+            <div
+              className="absolute inset-x-0 bottom-0 h-[40%]"
+              style={{ background: "linear-gradient(0deg, #ede4d5 0%, rgba(232,220,200,0.92) 30%, rgba(232,220,200,0.45) 65%, rgba(232,220,200,0) 100%)" }}
+            />
+          </div>
+        }
+        into="ivory"
       />
 
-      <section data-surface="bone" aria-labelledby="checks-title" className="pb-24 pt-6">
+      {/* A02 */}
+      <section data-surface="ivory" aria-labelledby="checks-title" className="pb-24 pt-10">
         <Container>
-          <SectionIntro id="checks-title" eyebrow={c.checks.eyebrow} title={c.checks.title} lede={c.checks.lede} />
+          <SectionIntro id="checks-title" eyebrow={c.checks.eyebrow} title={<Accent text={c.checks.title} />} lede={c.checks.lede} caps />
           <div className="mt-12">
             <GroupList groups={ATHENA_CHECKS} columns={2} />
           </div>
         </Container>
       </section>
 
-      <section data-surface="bone" aria-labelledby="proof-title" className="border-t border-rule py-24">
+      {/* A04 */}
+      <Scene
+        surface="navy"
+        labelledBy="map-title"
+        layers={[{ src: OLYMPUS_MEDIA.cloudSea.src, className: "object-[50%_70%]", parallax: 4 }]}
+        scrim="linear-gradient(180deg, rgba(21,35,51,0.5) 0, rgba(21,35,51,0.9) clamp(14rem,22vw,22rem), rgba(21,35,51,0.94) 72%, rgba(21,35,51,0.72) 100%)"
+        top={{ into: "ivory", height: "clamp(8rem,14vw,14rem)" }}
+        bottom={{ into: "parchment", height: "clamp(7rem,12vw,12rem)" }}
+        className="pb-[clamp(10rem,15vw,15rem)] pt-[clamp(10rem,17vw,17rem)]"
+      >
         <Container>
-          <SectionIntro id="proof-title" eyebrow={c.proof.eyebrow} title={c.proof.title} lede={c.proof.lede} />
+          <SectionIntro id="map-title" align="center" eyebrow={c.map.eyebrow} title={<Accent text={c.map.title} />} lede={c.map.lede} caps />
+          <div className="mt-10">
+            <SystemMap />
+          </div>
+        </Container>
+      </Scene>
+
+      {/* A03 */}
+      <section data-surface="parchment" aria-labelledby="coverage-title" className="pb-24 pt-8">
+        <Container className="grid items-center gap-12 lg:grid-cols-[1fr_1.1fr]">
+          <SectionIntro id="coverage-title" eyebrow={c.coverage.eyebrow} title={<Accent text={c.coverage.title} />} lede={c.coverage.lede} caps />
+          <CoveragePanel rows={ATHENA_COVERAGE.rows} unit="assets" note={ATHENA_COVERAGE.note} />
+        </Container>
+      </section>
+
+      {/* A05 */}
+      <section data-surface="ivory" aria-labelledby="traces-title" className="py-24 lg:py-28">
+        <Container>
+          <SectionIntro id="traces-title" eyebrow={c.traces.eyebrow} title={<Accent text={c.traces.title} />} lede={c.traces.lede} caps />
+          <div className="mt-12">
+            <CallTraces traces={ATHENA_TRACES} />
+          </div>
+          <p className="mt-4 text-sm text-fg-muted">Illustrative call traces — synthetic data.</p>
+        </Container>
+      </section>
+
+      {/* A06 */}
+      <section data-surface="ivory" aria-labelledby="proof-title" className="border-t border-rule py-24">
+        <Container>
+          <SectionIntro id="proof-title" eyebrow={c.proof.eyebrow} title={<Accent text={c.proof.title} />} lede={c.proof.lede} caps />
           <ul className="mt-10 grid gap-3 sm:grid-cols-3" aria-label="Finding confidence" data-reveal-group>
             {ATHENA_CONFIDENCE.map((level) => (
               <li key={level.name} className={`border-l-2 bg-panel px-5 py-4 ${CONFIDENCE_TONE[level.name]}`}>
@@ -117,40 +165,69 @@ export default function AthenaPage() {
           <div className="mt-6">
             <DifferentialEvidence {...ATHENA_EXCHANGES} />
           </div>
-          <p className="mt-3 text-xs text-fg-muted">Illustrative exchange. Customers, records and identifiers are fictional.</p>
-        </Container>
-      </section>
-
-      <section data-surface="bone" aria-labelledby="coverage-title" className="border-t border-rule py-24">
-        <Container className="grid items-center gap-12 lg:grid-cols-[1fr_1.1fr]">
-          <SectionIntro id="coverage-title" eyebrow={c.coverage.eyebrow} title={c.coverage.title} lede={c.coverage.lede} />
-          <CoveragePanel rows={ATHENA_COVERAGE.rows} unit="assets" note={ATHENA_COVERAGE.note} />
-        </Container>
-      </section>
-
-      <SectionBlend
-        from="bone"
-        to="navy"
-        layers={[
-          { art: "ivory-clouds-alt", opacity: 0.5, drift: 50 },
-          { art: "dark-clouds-alt", opacity: 0.7, drift: -60 },
-        ]}
-      />
-
-      <section data-surface="navy" aria-labelledby="evidence-title" className="pb-24 pt-6">
-        <Container className="grid items-center gap-12 lg:grid-cols-[1fr_1fr]">
-          <div>
-            <SectionIntro id="evidence-title" eyebrow={c.evidence.eyebrow} title={c.evidence.title} lede={c.evidence.lede} />
-            <div className="mt-8 flex items-center gap-4" data-reveal>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/assets/evidence/evidence-pack.svg" alt="" aria-hidden="true" className="h-14 w-14" />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/assets/evidence/retest-proof.svg" alt="" aria-hidden="true" className="h-14 w-14" />
-            </div>
+          <div className="mt-4 grid gap-3 md:grid-cols-3">
+            {ATHENA_REPLAY.map((item) => (
+              <details key={item.name} className="group border border-rule bg-panel open:border-accent/60">
+                <summary className="flex cursor-pointer list-none items-center justify-between px-5 py-4 text-sm font-semibold text-fg [&::-webkit-details-marker]:hidden">
+                  {item.name}
+                  <span aria-hidden="true" className="text-accent transition-transform group-open:rotate-45">+</span>
+                </summary>
+                <p className="border-t border-rule px-5 py-4 text-sm leading-relaxed text-fg-muted">{item.body}</p>
+              </details>
+            ))}
           </div>
-          <div data-reveal>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-accent">Retest outcomes</p>
-            <dl className="mt-4 grid border-l border-t border-rule sm:grid-cols-2">
+          <p className="mt-4 text-xs text-fg-muted">Illustrative exchange. Customers, records and identifiers are fictional.</p>
+        </Container>
+      </section>
+
+      {/* A07 */}
+      <section data-surface="parchment" aria-labelledby="handoff-title" className="py-24 lg:py-28">
+        <Container>
+          <SectionIntro id="handoff-title" eyebrow={c.handoff.eyebrow} title={<Accent text={c.handoff.title} />} lede={c.handoff.lede} caps />
+          <div className="mt-12">
+            <HandoffFlow steps={ATHENA_HANDOFF} />
+          </div>
+        </Container>
+      </section>
+
+      {/* A08 — sober paper panels on a dusk band. */}
+      <Scene
+        surface="charcoal"
+        labelledBy="evidence-title"
+        layers={[
+          { src: OLYMPUS_MEDIA.cloudSea.src, className: "object-[50%_40%]", parallax: 4 },
+          { src: OLYMPUS_MEDIA.waterfallCliffs.src, className: "!object-contain object-[90%_100%] opacity-60", parallax: 6 },
+        ]}
+        scrim="linear-gradient(180deg, rgba(22,26,28,0.4) 0, rgba(22,26,28,0.88) clamp(14rem,22vw,22rem), rgba(22,26,28,0.93) 75%, rgba(22,26,28,0.75) 100%)"
+        top={{ into: "parchment", height: "clamp(8rem,14vw,14rem)" }}
+        bottom={{ into: "ivory", height: "clamp(7rem,12vw,12rem)" }}
+        className="pb-[clamp(10rem,15vw,15rem)] pt-[clamp(10rem,17vw,17rem)]"
+      >
+        <Container>
+          <SectionIntro id="evidence-title" eyebrow={c.evidence.eyebrow} title={<Accent text={c.evidence.title} />} lede={c.evidence.lede} caps />
+          <ul className="mt-12 grid gap-4 lg:grid-cols-3" data-reveal-group>
+            {ATHENA_OUTPUTS.map((out) => (
+              <li key={out.name} data-surface="ivory" className="flex flex-col border border-rule bg-cream p-6 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.8)]">
+                <div className="flex items-center gap-3 border-b border-rule pb-3">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={out.icon} alt="" aria-hidden="true" className="h-10 w-10" />
+                  <p className="font-display text-2xl text-fg">{out.name}</p>
+                </div>
+                <ul className="mt-4 grid gap-2 text-sm text-fg">
+                  {out.items.map((item) => (
+                    <li key={item} className="flex gap-2.5">
+                      <span aria-hidden="true" className="mt-2 h-px w-3 shrink-0 bg-accent" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-auto pt-5 text-[10px] font-semibold uppercase tracking-[0.2em] text-fg-muted">Synthetic example</p>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-12">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-champagne">Retest outcomes</p>
+            <dl className="mt-4 grid border-l border-t border-rule sm:grid-cols-2 lg:grid-cols-4">
               {ATHENA_RETEST.map((outcome) => (
                 <div key={outcome.name} className="border-b border-r border-rule bg-panel p-5">
                   <dt className="font-display text-2xl leading-tight text-fg">{outcome.name}</dt>
@@ -163,45 +240,25 @@ export default function AthenaPage() {
             </p>
           </div>
         </Container>
-      </section>
+      </Scene>
 
-      <SectionBlend
-        from="navy"
-        to="bone"
-        layers={[
-          { art: "dark-clouds", opacity: 0.6, drift: 50 },
-          { art: "ivory-clouds", opacity: 0.85, drift: -70 },
-        ]}
-      />
-
-      <section data-surface="bone" aria-labelledby="handoff-title" className="pb-24 pt-6">
+      {/* A09 */}
+      <section data-surface="ivory" aria-labelledby="next-title" className="pb-16 pt-8">
         <Container>
-          <SectionIntro id="handoff-title" eyebrow={c.handoff.eyebrow} title={c.handoff.title} lede={c.handoff.lede} />
-          <div className="mt-12">
-            <HandoffFlow steps={ATHENA_HANDOFF} />
-          </div>
-        </Container>
-      </section>
-
-      <section data-surface="bone" aria-labelledby="next-title" className="border-t border-rule py-24">
-        <Container>
-          <SectionIntro id="next-title" eyebrow={c.next.eyebrow} title={c.next.title} />
+          <SectionIntro id="next-title" eyebrow={c.next.eyebrow} title={<Accent text={c.next.title} />} caps />
           <NextLinks items={NEXT} />
         </Container>
       </section>
 
-      <SectionBlend
-        from="bone"
-        to="navy"
+      <ClosingVista
+        from="ivory"
+        title="See your system *the way Athena does.*"
+        secondary={{ label: CTA.SAMPLE_REPORT, href: "/example-report" }}
         layers={[
-          { art: "ivory-clouds-alt", opacity: 0.5, drift: 50 },
-          { art: "dark-clouds-alt", opacity: 0.7, drift: -60 },
+          { src: OLYMPUS_MEDIA.cloudSea.src, className: "object-[50%_45%]", parallax: 4 },
+          { src: OLYMPUS_MEDIA.cliffTemple.src, className: "!object-contain object-[50%_92%]", parallax: 6 },
+          { src: OLYMPUS_MEDIA.sunbeams, blend: "screen", opacity: 0.55, className: "object-[80%_0%]" },
         ]}
-      />
-
-      <ClosingCta
-        title="See your system the way Athena does."
-        secondary={{ label: "View Example Report", href: "/example-report" }}
       />
     </PageMotion>
   );

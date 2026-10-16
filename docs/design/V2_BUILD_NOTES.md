@@ -184,6 +184,31 @@ navy only for technical depth. Rebuilt as the base before more Phase 3 pages.
   Athena art, headline softening on inner pages, missing RevB/RevC documents.
   Inner pages pick up the palette but still use the Phase 3 layouts.
 
+## Inner pages restyled to the Launch Guide contracts (16 Oct 2026)
+
+Platform (R02), SPINE (R04), Athena (R03) and Achilles (R05) now follow their
+section contracts and the Luminous Olympus look.
+
+- **Shared**: `ScenicHero` (painted planes, storm shade, a shade pool under the
+  copy, cloud bank into the first section; copy left or right), and
+  `ClosingVista` (crest, headline, two CTAs over a calm horizon). Batch 03
+  cut-outs staged in `public/assets/olympus/` compose a different scene per
+  page: bridge city (Platform), armillary over waterfall cliffs (SPINE),
+  Athena left of the temple-observatory with copy right (Athena), Achilles in a
+  carved arch over the viaduct with red and blue held to the edges (Achilles).
+- **New modules**: `BuyerQuestions` (P02 disclosures), `CycleStrip` and
+  `ReportPreview` (shared with the homepage), `StatePill` (glyph + word, never
+  colour alone), `CallTraces` (A05), `ApprovalBinding` (AC05, fixture F02),
+  `EffectLedger` (AC06), `RetestComparison` (AC07). `SystemMap` gains category
+  filters, a legend and a table view (A04). Action Gate states renamed
+  Allowed/Escalated/Held/Denied.
+- **Copy**: the guide's candidate H1s are used, with Athena's "See every risk"
+  qualified by an explicit scope line. SPINE receipts now say "built to be
+  tamper-evident, with signing where implemented". Approval-binding testing is
+  forward-worded (action/approval authority is BUILD-NEW). New claims register
+  entries: athena.boundary-traces, achilles.approval-binding,
+  spine.receipt-provenance.
+
 ## Not yet done
 
 - **Contrast:** v1 pages still use `text-bronze` (3.8:1 on navy) and faded

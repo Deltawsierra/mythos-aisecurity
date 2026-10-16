@@ -85,6 +85,13 @@ export const OLYMPUS_MEDIA = {
   sunrays: "/assets/olympus/panorama-sunrays.webp",
   mist: "/assets/olympus/panorama-mist.webp",
   athena: poster("/assets/olympus/athena-guardian.webp", 1024, 1536),
+  /* Batch 03 cut-outs (alpha, trimmed): compose each page's own scene. */
+  cliffTemple: poster("/assets/olympus/cliff-temple.webp", 1429, 815),
+  viaduct: poster("/assets/olympus/viaduct.webp", 1568, 411),
+  mountains: poster("/assets/olympus/mountains.webp", 1656, 369),
+  waterfallCliffs: poster("/assets/olympus/waterfall-cliffs.webp", 1164, 764),
+  evergreenCliff: poster("/assets/olympus/evergreen-cliff.webp", 1140, 890),
+  sunbeams: "/assets/olympus/sunbeams.webp",
 } as const;
 
 /**

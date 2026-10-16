@@ -30,7 +30,7 @@ export function SectionIntro({ eyebrow, title, lede, id, align = "left", caps, c
       <h2
         id={id}
         className={cn(
-          "font-display text-fg",
+          "scroll-mt-28 font-display text-fg",
           caps ? "display-caps text-[2.15rem] sm:text-5xl lg:text-[3.4rem]" : "text-4xl leading-[1.05] lg:text-[3.25rem]",
         )}
       >

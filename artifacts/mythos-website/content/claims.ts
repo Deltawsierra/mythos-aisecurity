@@ -148,6 +148,31 @@ export const CLAIMS: Claim[] = [
     source: "Website blueprint, Oct 2026 — homepage hero body",
     usedIn: ["/ (H03 Strengthen, H06 SPINE truth)"],
   },
+  // ── Luminous Olympus inner pages (Launch Guide R02–R05, 16 Oct 2026).
+  {
+    id: "athena.boundary-traces",
+    text: "Athena observes allowed, denied and held calls at agent and tool boundaries",
+    status: "unverified",
+    source: "Launch Guide A05; Athena log (identity and effective access modules)",
+    usedIn: ["/platform/athena (A05 call traces)"],
+    note: "Shown as illustrative synthetic traces; copy states Athena observes and tests, never enforces.",
+  },
+  {
+    id: "achilles.approval-binding",
+    text: "testing that approvals are bound to destination, amount, identity, order and expected effect",
+    status: "forward",
+    source: "Launch Guide AC05 / F02; Red, Gray and Green Teaming guide §8 (approval-binding lesson)",
+    usedIn: ["/platform/achilles (AC05)"],
+    note: "Action and approval authority family is BUILD-NEW (Roadmap); the reference Action Gate is deferred. Forward wording on the page.",
+  },
+  {
+    id: "spine.receipt-provenance",
+    text: "receipts record provenance and are built to be tamper-evident, with signing where implemented",
+    status: "unverified",
+    source: "SPINE Technical Foundation Spec; Launch Guide R04 proof requirement",
+    usedIn: ["/platform/spine (receipts)"],
+    note: "Replaces 'signed and tamper-evident' — signing status conflicts across docs (see receipts.signed).",
+  },
   // ── Luminous Olympus homepage (Launch Guide, 16 Oct 2026).
   {
     id: "home.ee-informs",

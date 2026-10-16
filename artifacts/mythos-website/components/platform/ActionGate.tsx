@@ -16,11 +16,12 @@ export interface GateTest {
   verdict: string;
 }
 
+// Launch Guide AC04 state names.
 const LABEL: Record<GateOutcome, string> = {
-  permit: "Permit",
-  escalate: "Escalate",
-  hold: "Hold",
-  deny: "Deny",
+  permit: "Allowed",
+  escalate: "Escalated",
+  hold: "Held",
+  deny: "Denied",
 };
 
 const BAR_COLOR: Record<GateOutcome, string> = {
@@ -88,7 +89,7 @@ export function ActionGate({ tests, title }: { tests: GateTest[]; title: string 
                 t.pass ? "text-state-verified" : "text-[#e08a76]",
               )}
             >
-              {t.pass ? "Held" : "Failed"}
+              {t.pass ? "Passed" : "Failed"}
             </span>
           </button>
         ))}
@@ -112,7 +113,7 @@ export function ActionGate({ tests, title }: { tests: GateTest[]; title: string 
           <circle cx="100" cy="17" r="5" fill={color} className="gate-beacon" />
         </svg>
         <figcaption className="mt-3 text-[10px] font-semibold uppercase tracking-[0.22em] text-fg-muted">
-          Should: <span style={{ color }}>{LABEL[current.expected]}</span>
+          Expected: <span style={{ color }}>{LABEL[current.expected]}</span>
         </figcaption>
       </figure>
 
@@ -123,7 +124,7 @@ export function ActionGate({ tests, title }: { tests: GateTest[]; title: string 
       >
         <dl className="grid gap-3 text-sm">
           <div>
-            <dt className="text-[10px] font-semibold uppercase tracking-[0.22em] text-fg-muted">Should</dt>
+            <dt className="text-[10px] font-semibold uppercase tracking-[0.22em] text-fg-muted">Expected decision</dt>
             <dd className="mt-1 font-semibold text-fg">{LABEL[current.expected]}</dd>
           </div>
           <div>

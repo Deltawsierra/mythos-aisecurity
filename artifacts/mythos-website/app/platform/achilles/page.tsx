@@ -1,47 +1,84 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
+import { Accent } from "@/components/ui/Headline";
 import { PageMotion } from "@/components/motion/PageMotion";
-import { InnerHero } from "@/components/sections/InnerHero";
-import { SectionBlend } from "@/components/sections/SectionBlend";
 import { SectionIntro } from "@/components/sections/SectionIntro";
-import { ClosingCta } from "@/components/sections/ClosingCta";
 import { NextLinks, type NextLink } from "@/components/sections/NextLinks";
-import { CharacterPanel } from "@/components/platform/CharacterPanel";
+import { ScenicHero } from "@/components/scenic/ScenicHero";
+import { Scene } from "@/components/scenic/Scene";
+import { ClosingVista } from "@/components/scenic/ClosingVista";
 import { GroupList } from "@/components/platform/GroupList";
 import { ChainFlow } from "@/components/platform/ChainFlow";
 import { ActionGate } from "@/components/platform/ActionGate";
+import { ApprovalBinding } from "@/components/platform/ApprovalBinding";
+import { EffectLedger } from "@/components/platform/EffectLedger";
+import { RetestComparison } from "@/components/platform/RetestComparison";
 import { HandoffFlow } from "@/components/platform/HandoffFlow";
 import {
   ACHILLES_AUTHORITY_QUESTIONS,
   ACHILLES_CHAIN,
   ACHILLES_COPY,
-  ACHILLES_EFFECTS,
   ACHILLES_FAMILIES,
   ACHILLES_GATE_TESTS,
   ACHILLES_HANDOFF,
+  ACHILLES_LEDGER,
 } from "@/content/achilles";
+import { CHARACTER_MEDIA, OLYMPUS_MEDIA } from "@/content/media";
+import { CTA_LINKS } from "@/content/navigation";
+import { CTA } from "@/lib/constants";
+import { cropStyle } from "@/lib/media";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Achilles — Test the AI",
+  title: "Achilles — Constantly Tested AI Never Fights Alone",
   description:
-    "Achilles tests whether an AI system can cause an effect it was not authorized to cause — across turns, tools and approvals — and records what actually happened, not what the agent said.",
+    "Achilles challenges AI systems and agents against declared permissions, tool boundaries, approvals and expected effects — and records what actually happened, not what the agent said.",
   alternates: { canonical: "/platform/achilles/" },
 };
 
 const NEXT: NextLink[] = [
   { eyebrow: "Minotaur", title: "Who tests the tester", href: "/platform/validation" },
   { eyebrow: "SPINE", title: "Where observed effects become claims", href: "/platform/spine" },
-  { eyebrow: "Evidence & Receipts", title: "Results you can verify for yourself", href: "/platform/evidence" },
+  { eyebrow: "Use case", title: "AI agents with tools and actions", href: "/use-cases/ai-agent-tools-actions" },
 ];
 
 const TURNS = [1, 2, 3, 4, 5, 6];
+const c = ACHILLES_COPY;
 
-/** Achilles — Test the AI (blueprint Section 7). */
+/** Achilles in a carved arch: the poster framed as a niche in the arena wall. */
+function Niche({ className }: { className?: string }) {
+  const media = CHARACTER_MEDIA.achilles;
+  const { left = 0, top = 0 } = media.crop;
+  const aspect = (media.poster.width * (100 - left)) / (media.poster.height * (100 - top));
+  return (
+    <div className={cn("flex flex-col items-center", className)} data-depth="18">
+      <div
+        aria-hidden="true"
+        className="absolute -inset-x-[30%] inset-y-0 blur-3xl"
+        style={{
+          background:
+            "radial-gradient(ellipse 40% 50% at 20% 60%, rgba(192,87,63,0.45), transparent 70%), radial-gradient(ellipse 40% 50% at 80% 55%, rgba(91,143,199,0.45), transparent 70%)",
+        }}
+      />
+      <div
+        className="relative h-full overflow-hidden rounded-t-full border-2 border-champagne/60 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.9),inset_0_0_0_6px_rgba(22,26,28,0.45)]"
+        style={{ aspectRatio: aspect }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={media.poster.src} alt="" style={cropStyle(media.crop)} />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 62%, rgba(18,21,23,0.6) 100%)" }} />
+      </div>
+      <div aria-hidden="true" className="relative h-4 w-[118%] border-t border-champagne/60 bg-gradient-to-b from-[#6b5636] to-[#2a241c] shadow-[0_18px_30px_-12px_rgba(0,0,0,0.8)]" />
+    </div>
+  );
+}
+
+/** Achilles — Launch Guide R05 (AC01–AC09). */
 export default function AchillesPage() {
-  const c = ACHILLES_COPY;
   return (
     <PageMotion>
-      <InnerHero
+      {/* AC01 — the arena: red and blue held to the edges of the scene. */}
+      <ScenicHero
         eyebrow={c.hero.eyebrow}
         headline={c.hero.headline}
         lede={c.hero.lede}
@@ -50,31 +87,33 @@ export default function AchillesPage() {
           { label: "Platform", href: "/platform" },
         ]}
         current="Achilles"
-        secondaryCta={{ label: "See SPINE", href: "/platform/spine" }}
-        art={<CharacterPanel project="achilles" />}
-      />
-
-      <SectionBlend
-        from="abyss"
-        to="bone"
-        layers={[
-          { art: "dark-clouds", opacity: 0.8, drift: 60 },
-          { art: "ivory-clouds", opacity: 0.85, drift: -80 },
+        primaryCta={{ label: "Explore the Validation Method", href: "/platform/validation" }}
+        secondaryCta={{ label: CTA.DEMO, href: CTA_LINKS.demo }}
+        planes={[
+          { src: OLYMPUS_MEDIA.cloudSea.src, className: "-inset-[3%]", position: "50% 30%", depth: 6, priority: true },
+          { src: OLYMPUS_MEDIA.viaduct.src, className: "inset-x-[-4%] bottom-[10%] h-[30%]", fit: "contain", position: "50% 100%", opacity: 0.9, depth: 12 },
+          { src: OLYMPUS_MEDIA.sunbeams, className: "-inset-[3%]", blend: "screen", opacity: 0.4, position: "100% 0%", depth: 10 },
         ]}
+        scrim="linear-gradient(180deg, rgba(18,21,23,0.35), rgba(18,21,23,0.25)), radial-gradient(ellipse 32% 45% at 8% 78%, rgba(192,87,63,0.32), transparent 70%), radial-gradient(ellipse 32% 45% at 96% 70%, rgba(91,143,199,0.3), transparent 70%)"
+        figure={<Niche className="absolute bottom-[9%] right-[8%] h-[70%]" />}
+        mobileFigure={<Niche className="relative mx-auto h-[46svh]" />}
+        into="ivory"
       />
 
-      <section data-surface="bone" aria-labelledby="families-title" className="pb-24 pt-6">
+      {/* AC02 */}
+      <section data-surface="ivory" aria-labelledby="families-title" className="pb-24 pt-10">
         <Container>
-          <SectionIntro id="families-title" eyebrow={c.families.eyebrow} title={c.families.title} lede={c.families.lede} />
+          <SectionIntro id="families-title" eyebrow={c.families.eyebrow} title={<Accent text={c.families.title} />} lede={c.families.lede} caps />
           <div className="mt-12">
             <GroupList groups={ACHILLES_FAMILIES} columns={2} />
           </div>
         </Container>
       </section>
 
-      <section data-surface="bone" aria-labelledby="chains-title" className="border-t border-rule py-24">
+      {/* AC03 */}
+      <section data-surface="parchment" aria-labelledby="chains-title" className="py-24 lg:py-28">
         <Container>
-          <SectionIntro id="chains-title" eyebrow={c.chains.eyebrow} title={c.chains.title} lede={c.chains.lede} />
+          <SectionIntro id="chains-title" eyebrow={c.chains.eyebrow} title={<Accent text={c.chains.title} />} lede={c.chains.lede} caps />
           <div className="mt-12 grid gap-6 lg:grid-cols-[0.8fr_1.6fr]">
             <figure className="border border-rule bg-panel p-6" data-reveal>
               <figcaption className="text-[10px] font-semibold uppercase tracking-[0.22em] text-fg-muted">Across turns</figcaption>
@@ -103,102 +142,87 @@ export default function AchillesPage() {
         </Container>
       </section>
 
-      <SectionBlend
-        from="bone"
-        to="navy"
-        layers={[
-          { art: "ivory-clouds-alt", opacity: 0.5, drift: 50 },
-          { art: "dark-clouds-alt", opacity: 0.7, drift: -60 },
-        ]}
-      />
-
-      <section data-surface="navy" aria-labelledby="gate-title" className="relative overflow-hidden pb-24 pt-6">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/assets/transitions/transition-bronze-particles.webp"
-          alt=""
-          aria-hidden="true"
-          loading="lazy"
-          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-40 mix-blend-screen"
-        />
-        <Container className="relative">
-          <SectionIntro id="gate-title" align="center" eyebrow={c.gate.eyebrow} title={c.gate.title} lede={c.gate.lede} />
+      {/* AC04 */}
+      <Scene
+        surface="navy"
+        labelledBy="gate-title"
+        layers={[{ src: OLYMPUS_MEDIA.cloudSea.src, className: "object-[50%_70%]", parallax: 4 }]}
+        scrim="linear-gradient(180deg, rgba(21,35,51,0.5) 0, rgba(21,35,51,0.9) clamp(14rem,22vw,22rem), rgba(21,35,51,0.94) 72%, rgba(21,35,51,0.72) 100%)"
+        top={{ into: "parchment", height: "clamp(8rem,14vw,14rem)" }}
+        bottom={{ into: "ivory", height: "clamp(7rem,12vw,12rem)" }}
+        className="pb-[clamp(10rem,15vw,15rem)] pt-[clamp(10rem,17vw,17rem)]"
+      >
+        <Container>
+          <SectionIntro id="gate-title" align="center" eyebrow={c.gate.eyebrow} title={<Accent text={c.gate.title} />} lede={c.gate.lede} caps />
           <div className="mt-14">
             <ActionGate tests={ACHILLES_GATE_TESTS} title="Illustrative requests" />
           </div>
           <p className="mx-auto mt-12 max-w-2xl text-center text-sm leading-relaxed text-fg-muted">{c.gate.footnote}</p>
         </Container>
-      </section>
+      </Scene>
 
-      <section data-surface="navy" aria-labelledby="questions-title" className="border-t border-rule py-24">
+      {/* AC05 */}
+      <section data-surface="ivory" aria-labelledby="questions-title" className="pb-24 pt-8">
         <Container>
-          <SectionIntro id="questions-title" eyebrow={c.questions.eyebrow} title={c.questions.title} lede={c.questions.lede} />
-          <ul className="mt-12 grid gap-3 md:grid-cols-2 lg:grid-cols-3" data-reveal-group>
-            {ACHILLES_AUTHORITY_QUESTIONS.map((q) => (
-              <li key={q.name} className="border border-rule bg-panel p-6">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-accent">{q.name}</p>
-                <p className="mt-3 font-display text-2xl leading-snug text-fg">{q.question}</p>
-              </li>
-            ))}
-          </ul>
-        </Container>
-      </section>
-
-      <SectionBlend
-        from="navy"
-        to="bone"
-        layers={[
-          { art: "dark-clouds", opacity: 0.6, drift: 50 },
-          { art: "ivory-clouds", opacity: 0.85, drift: -70 },
-        ]}
-      />
-
-      <section data-surface="bone" aria-labelledby="effects-title" className="pb-24 pt-6">
-        <Container>
-          <SectionIntro id="effects-title" eyebrow={c.effects.eyebrow} title={c.effects.title} />
-          <ul className="mt-12 grid gap-3 lg:grid-cols-3" data-reveal-group>
-            {ACHILLES_EFFECTS.map((effect) => (
-              <li key={effect.name} className="flex gap-4 border border-rule bg-panel p-6">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={effect.icon} alt="" aria-hidden="true" className="h-12 w-12 shrink-0" />
-                <div>
-                  <p className="font-display text-2xl leading-tight text-fg">{effect.name}</p>
-                  <p className="mt-2 text-[15px] leading-relaxed text-fg-muted">{effect.body}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </Container>
-      </section>
-
-      <section data-surface="bone" aria-labelledby="handoff-title" className="border-t border-rule py-24">
-        <Container>
-          <SectionIntro id="handoff-title" eyebrow={c.handoff.eyebrow} title={c.handoff.title} lede={c.handoff.lede} />
+          <SectionIntro id="questions-title" eyebrow={c.questions.eyebrow} title={<Accent text={c.questions.title} />} lede={c.questions.lede} caps />
           <div className="mt-12">
-            <HandoffFlow steps={ACHILLES_HANDOFF} />
+            <ApprovalBinding />
+          </div>
+          <ul className="mt-16 grid gap-3 md:grid-cols-2 lg:grid-cols-3" aria-label="Where authority leaks" data-reveal-group>
+            {ACHILLES_AUTHORITY_QUESTIONS.map((q) => (
+              <li key={q.name} className="border border-rule bg-panel p-6 shadow-[0_18px_40px_-34px_rgba(22,26,28,0.45)]">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-accent">{q.name}</p>
+                <p className="mt-3 font-display text-xl leading-snug text-fg">{q.question}</p>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </section>
+
+      {/* AC06 */}
+      <section data-surface="parchment" aria-labelledby="effects-title" className="py-24 lg:py-28">
+        <Container>
+          <SectionIntro id="effects-title" eyebrow={c.effects.eyebrow} title={<Accent text={c.effects.title} />} lede={c.effects.lede} caps />
+          <div className="mt-12">
+            <EffectLedger rows={ACHILLES_LEDGER} />
           </div>
         </Container>
       </section>
 
-      <section data-surface="bone" aria-labelledby="next-title" className="border-t border-rule py-24">
+      {/* AC07 */}
+      <section data-surface="ivory" aria-labelledby="retest-title" className="py-24 lg:py-28">
         <Container>
-          <SectionIntro id="next-title" eyebrow={c.next.eyebrow} title={c.next.title} />
-          <NextLinks items={NEXT} />
+          <SectionIntro id="retest-title" eyebrow={c.retest.eyebrow} title={<Accent text={c.retest.title} />} lede={c.retest.lede} caps />
+          <div className="mt-12">
+            <RetestComparison />
+          </div>
         </Container>
       </section>
 
-      <SectionBlend
-        from="bone"
-        to="navy"
-        layers={[
-          { art: "ivory-clouds-alt", opacity: 0.5, drift: 50 },
-          { art: "dark-clouds-alt", opacity: 0.7, drift: -60 },
-        ]}
-      />
+      {/* AC08 */}
+      <section data-surface="parchment" aria-labelledby="handoff-title" className="py-24 lg:py-28">
+        <Container>
+          <SectionIntro id="handoff-title" eyebrow={c.handoff.eyebrow} title={<Accent text={c.handoff.title} />} lede={c.handoff.lede} caps />
+          <div className="mt-12">
+            <HandoffFlow steps={ACHILLES_HANDOFF} />
+          </div>
+          <div className="mt-24">
+            <SectionIntro id="next-title" eyebrow={c.next.eyebrow} title={<Accent text={c.next.title} />} caps />
+            <NextLinks items={NEXT} />
+          </div>
+        </Container>
+      </section>
 
-      <ClosingCta
-        title="Find out what your agents can actually do."
-        secondary={{ label: "See How Mythos Validates Itself", href: "/platform/validation" }}
+      {/* AC09 */}
+      <ClosingVista
+        from="parchment"
+        title="Find out what your agents *can actually do.*"
+        primary={{ label: "Request an Agent Safety Assessment", href: CTA_LINKS.assessment }}
+        secondary={{ label: "How Mythos Validates Itself", href: "/platform/validation" }}
+        layers={[
+          { src: OLYMPUS_MEDIA.panorama.src, className: "object-[30%_45%]", parallax: 4 },
+          { src: OLYMPUS_MEDIA.mist, opacity: 0.9, className: "object-[30%_45%]", drift: 50 },
+        ]}
       />
     </PageMotion>
   );

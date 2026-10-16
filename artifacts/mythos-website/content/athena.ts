@@ -7,48 +7,56 @@
 import type { Group } from "@/components/platform/GroupList";
 import type { Exchange } from "@/components/platform/DifferentialEvidence";
 import type { CoverageRow } from "@/components/platform/CoveragePanel";
+import type { CallTrace } from "@/components/platform/CallTraces";
 import type { HandoffStep } from "@/components/platform/HandoffFlow";
 import { ATHENA_ICONS, EVIDENCE_STATE_ICONS } from "@/content/media";
 
 export const ATHENA_COPY = {
+  /** Launch Guide R03 candidate H1; the scope line keeps it from implying a complete inventory. */
   hero: {
-    eyebrow: "Athena · system discovery and exposure",
-    headline: "See the System.",
-    lede: "Athena answers what exists, what is exposed, where requests travel, and what evidence proves the system state — the foundation every AI workflow runs on.",
+    eyebrow: "Athena · see the system",
+    headline: "See Every Risk. Understand Every Exposure. *Prove Every Decision.*",
+    lede: "Athena reveals how systems, identities, data, tools and models connect — what is exposed, what is controlled, and where investigation or remediation is needed.",
+    scope: "Within an agreed, authorized scope — and what falls outside it is reported, not assumed.",
   },
   map: {
-    eyebrow: "Discovery",
-    title: "Start with what is actually there.",
-    lede: "AI rarely runs alone. Athena maps the services, identities, routes, data and tools around it — including the ones nobody declared.",
+    eyebrow: "Exposure and route graph",
+    title: "Start with what is *actually there.*",
+    lede: "AI rarely runs alone. Athena maps the services, identities, routes, data and tools around it — including the ones nobody declared. Filter the map by what you care about; the same map is listed as a table below.",
   },
   checks: {
-    eyebrow: "What Athena tests",
-    title: "Checks grouped by the question they answer.",
+    eyebrow: "Discovery capability families",
+    title: "Checks grouped by *the question they answer.*",
     lede: "A broad scanner suite across web, API and LLM surfaces and the foundation beneath them. Grouped here by outcome — the specific techniques stay internal.",
   },
   proof: {
-    eyebrow: "Proof, not alerts",
-    title: "Confirmed, likely or suspicious — and why.",
+    eyebrow: "Differential evidence and replay",
+    title: "Confirmed, likely or suspicious — *and why.*",
     lede: "Every finding carries its confidence and the evidence behind it. Here the same request, for a record that belongs to someone else, returns that record — which is what makes the finding confirmed rather than suspected.",
   },
   coverage: {
-    eyebrow: "Coverage and unknowns",
-    title: "What was assessed — and what was not.",
-    lede: "Athena reports gaps as plainly as findings. Anything inconclusive, unmeasured or excluded goes to the Unknowns register, with the evidence needed to close it.",
+    eyebrow: "Coverage manifest",
+    title: "What was expected, observed, assessed — *and what was not.*",
+    lede: "Athena reports gaps as plainly as findings. Anything unchecked goes to the Unknowns register with the evidence needed to close it. Coverage is a statement of scope, never a compliance verdict.",
   },
   evidence: {
-    eyebrow: "Evidence and retest",
-    title: "Evidence that survives scrutiny.",
+    eyebrow: "Remediation and report outputs",
+    title: "Evidence that *survives scrutiny.*",
     lede: "Findings ship as signed, hash-chained evidence packs that can be verified offline. Retests compare against the original — and a cleared alert is never counted as a fix.",
   },
   handoff: {
-    eyebrow: "From finding to decision",
-    title: "Athena finds. SPINE remembers.",
+    eyebrow: "From finding to SPINE claim",
+    title: "Athena finds. *SPINE remembers.*",
     lede: "Every confirmed finding becomes evidence behind a claim in SPINE, bound to the configuration it was true of — so a deployment decision always knows what it rests on.",
+  },
+  traces: {
+    eyebrow: "Agent and tool boundaries",
+    title: "Three calls, *three boundaries.*",
+    lede: "What the agent asked for, who it acted for, what should have happened and what did. Athena observes and tests these boundaries — it does not enforce them at runtime.",
   },
   next: {
     eyebrow: "Keep going",
-    title: "Where Athena's evidence goes next.",
+    title: "Where Athena's evidence *goes next.*",
   },
 } as const;
 
@@ -148,13 +156,13 @@ export const ATHENA_EXCHANGES: { control: Exchange; test: Exchange; verdict: str
 
 export const ATHENA_COVERAGE: { rows: CoverageRow[]; note: string } = {
   rows: [
-    { label: "In scope", meaning: "Assets the engagement covers.", value: 48 },
+    { label: "Expected", meaning: "Declared in the agreed scope.", value: 46 },
+    { label: "Observed", meaning: "Found by discovery — including 2 nobody declared.", value: 48 },
     { label: "Assessed", meaning: "Tested with a result and evidence.", value: 41 },
     { label: "Inconclusive", meaning: "Tested, but the evidence does not settle it.", value: 3, tone: "gap" },
-    { label: "Unmeasured", meaning: "Could not be measured in this run.", value: 2, tone: "gap" },
-    { label: "Excluded", meaning: "Out of reach or deliberately left out.", value: 2, tone: "gap" },
+    { label: "Unchecked", meaning: "Unmeasured in this run, or out of reach.", value: 4, tone: "gap" },
   ],
-  note: "Seven assets end this run without a result — and the report says so, each with the evidence needed to close it.",
+  note: "Seven observed assets end this run without a result — and the report says so, each with the evidence needed to close it.",
 };
 
 export const ATHENA_RETEST = [
@@ -170,3 +178,69 @@ export const ATHENA_HANDOFF: HandoffStep[] = [
   { owner: "SPINE", name: "Unknowns", detail: "Gaps tracked with the evidence needed to close them.", icon: EVIDENCE_STATE_ICONS.unknown },
   { owner: "SPINE", name: "Decision", detail: "Recalculated when the evidence moves. Your team decides.", icon: "/assets/evidence/deployment-decision-gate.svg" },
 ];
+
+/** A05 — three illustrative call traces: what Athena observed at each boundary. */
+export const ATHENA_TRACES: CallTrace[] = [
+  {
+    kind: "Allowed read",
+    call: "support-agent → crm.read(customer: C-1042)",
+    actingFor: "Customer C-1042",
+    expected: "Allowed — the requester's own record",
+    observed: "Allowed · one record returned",
+    state: "verified",
+    rationale: "Within the requesting customer's scope.",
+  },
+  {
+    kind: "Denied data access",
+    call: "support-agent → crm.read(customer: C-2213)",
+    actingFor: "Customer C-1042",
+    expected: "Denied — another customer's record",
+    observed: "Denied · 403 at the CRM",
+    state: "verified",
+    rationale: "The tenant boundary held for this route.",
+  },
+  {
+    kind: "Held high-risk action",
+    call: "support-agent → payments.refund(amount: $4,800)",
+    actingFor: "Customer C-1042",
+    expected: "Held — above the approval threshold",
+    observed: "Held · routed to a human approver",
+    state: "held",
+    rationale: "The approval threshold was respected.",
+  },
+];
+
+/** A06 — what sits behind the differential evidence. */
+export const ATHENA_REPLAY = [
+  {
+    name: "Negative control",
+    body: "The same request for the customer's own invoice returns their own record. Without a benign baseline, Athena would not call the finding confirmed.",
+  },
+  {
+    name: "Replay",
+    body: "Both exchanges are re-run from the evidence pack to show the result reproduces under the recorded conditions, and again after the fix.",
+  },
+  {
+    name: "Evidence pack",
+    body: "Request, response, identity, configuration fingerprint and timestamps, kept together with the confidence and the limits of the test.",
+  },
+] as const;
+
+/** A08 — the outputs a finding leaves behind. */
+export const ATHENA_OUTPUTS = [
+  {
+    name: "Evidence pack",
+    items: ["Both exchanges and the negative control", "Configuration fingerprint and timestamps", "Confidence and stated limitations"],
+    icon: "/assets/evidence/evidence-pack.svg",
+  },
+  {
+    name: "Audit export",
+    items: ["Finding mapped to the controls it bears on", "Readable summary for reviewers", "Underlying evidence for anyone who checks"],
+    icon: "/assets/evidence/assurance-receipt.svg",
+  },
+  {
+    name: "Remediation checklist",
+    items: ["Enforce ownership on invoice lookups", "Add an authorization test to the pipeline", "Retest against the original exchange"],
+    icon: "/assets/evidence/retest-proof.svg",
+  },
+] as const;

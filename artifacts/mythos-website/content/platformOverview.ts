@@ -3,49 +3,88 @@
  * are registered in content/claims.ts for the launch gate.
  */
 export const OVERVIEW = {
+  /** Launch Guide R02 — Platform hero. No reference-plate metrics (10x, 80%, 100%). */
   hero: {
     eyebrow: "The Mythos platform",
-    headline: "One assurance system for AI deployment.",
-    lede: "Athena sees the system. SPINE maintains the truth. Achilles tests the AI. Minotaur tests Mythos. Together they turn what an AI can reach, do and affect into evidence a human can decide on — and keep that evidence current as the system changes.",
+    headline: "AI Assurance from *Risk to Resilience.*",
+    lede: "A single approach to understanding an AI system, testing its boundaries, recording proof, and keeping critical claims current as its models, data, tools and permissions change.",
   },
   questions: {
-    eyebrow: "What every deployment must answer",
-    title: "Five questions for executives. Six dimensions underneath.",
-    lede: "The questions stay plain enough for a board. The dimensions are where Mythos does the work.",
+    eyebrow: "Five buyer questions",
+    title: "Every deployment has to *answer these.*",
+    lede: "Plain enough for a board. Each one opens onto the part of Mythos that does the work.",
+    answers: [
+      {
+        question: "What exists?",
+        answer: "Athena maps the systems in scope — models, routes, identities, tools and data — including the ones nobody declared, and reports coverage gaps as plainly as findings.",
+        href: "/platform/athena",
+        product: "Athena",
+      },
+      {
+        question: "What can it reach?",
+        answer: "Effective access, not just the roles on paper: what each identity, agent and tool can actually touch, with the authority chain that allows it.",
+        href: "/platform/athena",
+        product: "Athena · SPINE",
+      },
+      {
+        question: "What can it do?",
+        answer: "Achilles tests tools, approvals and effects: whether the AI can cause an effect it was not authorized to cause, and what actually happened when it tried.",
+        href: "/platform/achilles",
+        product: "Achilles",
+      },
+      {
+        question: "Can it be manipulated?",
+        answer: "Multi-turn adversarial testing across goal hijack, retrieval leakage, tool misuse and permission boundaries — with Minotaur checking that the tests themselves are valid.",
+        href: "/platform/achilles",
+        product: "Achilles · Minotaur",
+      },
+      {
+        question: "Can we prove the answer?",
+        answer: "SPINE keeps every conclusion as a claim with its evidence state, its configuration and its receipt — and reopens it when a change undermines the evidence.",
+        href: "/platform/spine",
+        product: "SPINE",
+      },
+    ],
   },
   architecture: {
-    eyebrow: "Architecture",
-    title: "Not five products. One system with five roles.",
+    eyebrow: "System architecture",
+    title: "Not five products. *One system with five roles.*",
     lede: "Athena and Achilles feed SPINE, the system of record. Minotaur validates all three. Hermes carries the model into physical AI. Mythos Core runs underneath every engine.",
   },
   lifecycle: {
     eyebrow: "The assurance lifecycle",
-    title: "Discover. Understand. Test. Prove. Revalidate.",
+    title: "Discover. Understand. Test. *Prove. Revalidate.*",
+    lede: "One sentence and one artifact per stage. Beneath the broader resilience journey, this is the workflow every report follows.",
   },
   authority: {
-    eyebrow: "Authority and action integrity",
-    title: "From the person accountable to the effect that happened.",
-    lede: "The commercial risk in agentic AI is not a clever prompt. It is an action nobody actually authorized. Mythos follows every link of the chain — and checks that the effect matches the authority behind it.",
+    eyebrow: "Authority and effect",
+    title: "From the person accountable *to the effect that happened.*",
+    lede: "The commercial risk in agentic AI is not a clever prompt. It is an action nobody actually authorized. Mythos follows every link of the chain — and keeps the decision to permit apart from the effect that was observed.",
   },
   evidence: {
-    eyebrow: "Evidence states",
-    title: "Unknown is better than false certainty.",
-    lede: "Every claim carries the state of its evidence. A gap stays visibly Unknown — with the question, why it matters and the evidence needed to close it — instead of turning into a green result.",
+    eyebrow: "Evidence states and coverage",
+    title: "Unknown is better than *false certainty.*",
+    lede: "Every claim carries the state of its evidence, and every assessment says what it did not check. A gap stays visibly Unknown — never a green result.",
   },
   economics: {
-    eyebrow: "Economic Exposure",
-    title: "From validated failure to business consequence.",
-    lede: "SPINE Economic Exposure is designed to translate verified technical evidence into financial exposure ranges and remediation economics: what a validated scenario could cost, what drives that range, and how much a proposed fix could remove. Ranges, never a single exact number.",
+    eyebrow: "Economic consequence",
+    title: "From validated failure *to business decision.*",
+    lede: "SPINE Economic Exposure is designed to translate verified technical evidence into financial exposure ranges and remediation economics — scenario, assumptions, currency and horizon shown, and the decision left with your team.",
   },
   outputs: {
-    eyebrow: "What you receive",
-    title: "Not another score.",
+    eyebrow: "Outputs",
+    title: "Not another *score.*",
     lede: "Outputs are built for the people who act on them — from the engineer fixing a boundary to the executive deciding on release.",
   },
   continuous: {
-    eyebrow: "Continuous assurance",
-    title: "Passing once does not mean passing forever.",
-    lede: "When a model, prompt, tool or permission changes, SPINE works out which conclusions the change touches, closes them, and runs only the retests needed to restore trust.",
+    eyebrow: "Change-driven assurance",
+    title: "Passing once does not mean *passing forever.*",
+    lede: "When a model, prompt, tool or permission changes, SPINE works out which conclusions the change touches, closes them, and directs only the retests needed to restore trust.",
+  },
+  cta: {
+    eyebrow: "See it on your system",
+    title: "Start with one AI system. *Leave with proof.*",
+    lede: "A scoped engagement maps one system, tests its boundaries and hands back evidence your security, engineering and risk teams can act on.",
   },
   projects: {
     eyebrow: "Go deeper",

@@ -1,184 +1,209 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Container } from "@/components/ui/Container";
+import { Button } from "@/components/ui/Button";
+import { Accent } from "@/components/ui/Headline";
 import { PageMotion } from "@/components/motion/PageMotion";
-import { InnerHero } from "@/components/sections/InnerHero";
-import { HeroArt } from "@/components/sections/HeroArt";
-import { SectionBlend } from "@/components/sections/SectionBlend";
 import { SectionIntro } from "@/components/sections/SectionIntro";
-import { ClosingCta } from "@/components/sections/ClosingCta";
+import { ScenicHero } from "@/components/scenic/ScenicHero";
+import { Scene } from "@/components/scenic/Scene";
+import { ClosingVista } from "@/components/scenic/ClosingVista";
+import { BuyerQuestions } from "@/components/platform/BuyerQuestions";
 import { ArchitectureMap } from "@/components/platform/ArchitectureMap";
-import { LifecycleStrip } from "@/components/platform/LifecycleStrip";
+import { CycleStrip } from "@/components/platform/CycleStrip";
 import { AuthorityChain } from "@/components/platform/AuthorityChain";
 import { EvidenceStates } from "@/components/platform/EvidenceStates";
+import { CoveragePanel } from "@/components/platform/CoveragePanel";
 import { ExposurePreview } from "@/components/platform/ExposurePreview";
-import { OutputsGrid } from "@/components/platform/OutputsGrid";
 import { ChangeFlow } from "@/components/platform/ChangeFlow";
-import { ProjectGrid } from "@/components/platform/ProjectGrid";
-import { ASSURANCE_DIMENSIONS, EXECUTIVE_QUESTIONS } from "@/content/platform";
+import { OutputsGrid } from "@/components/platform/OutputsGrid";
+import { ReportPreview } from "@/components/platform/ReportPreview";
 import { OVERVIEW } from "@/content/platformOverview";
-import { SPINE_CORE_MEDIA } from "@/content/media";
+import { ATHENA_COVERAGE } from "@/content/athena";
+import { PROJECTS } from "@/content/platform";
+import { OLYMPUS_MEDIA } from "@/content/media";
+import { CTA_LINKS } from "@/content/navigation";
+import { CTA } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Platform — One Assurance System for AI Deployment",
+  title: "Platform — AI Assurance from Risk to Resilience",
   description:
-    "How Athena, SPINE, Achilles, Minotaur and Hermes work as one AI deployment assurance system: authority, evidence states, change-driven revalidation and evidence a human can decide on.",
+    "One approach to understanding an AI system, testing its boundaries, recording proof and keeping critical claims current as its models, data, tools and permissions change.",
   alternates: { canonical: "/platform/" },
 };
 
+const o = OVERVIEW;
+
 /**
- * Platform Overview (blueprint Section 7): an ivory long-form page with dark
- * bands for the architecture and continuous-assurance sequences.
+ * Platform Overview — Launch Guide R02 (P01–P10). The bridge city opens the
+ * page; warm stone sections explain; technical diagrams sit in dusk scenes;
+ * the page closes on the viaduct horizon.
  */
 export default function PlatformPage() {
   return (
     <PageMotion>
-      <InnerHero
-        eyebrow={OVERVIEW.hero.eyebrow}
-        headline={OVERVIEW.hero.headline}
-        lede={OVERVIEW.hero.lede}
+      {/* P01 */}
+      <ScenicHero
+        eyebrow={o.hero.eyebrow}
+        headline={o.hero.headline}
+        lede={o.hero.lede}
         breadcrumbs={[{ label: "Home", href: "/" }]}
         current="Platform"
-        secondaryCta={{ label: "Explore SPINE", href: "/platform/spine" }}
-        art={<HeroArt art={{ kind: "cutout", src: SPINE_CORE_MEDIA.cutout.src, spin: true }} />}
-      />
-
-      <SectionBlend
-        from="abyss"
-        to="bone"
-        layers={[
-          { art: "dark-clouds", opacity: 0.8, drift: 60 },
-          { art: "ivory-clouds", opacity: 0.85, drift: -80 },
+        primaryCta={{ label: "Explore SPINE", href: "/platform/spine" }}
+        secondaryCta={{ label: CTA.DEMO, href: CTA_LINKS.demo }}
+        planes={[
+          { src: OLYMPUS_MEDIA.panorama.src, className: "-inset-[3%]", position: "62% 40%", depth: 8, priority: true },
+          { src: OLYMPUS_MEDIA.sunrays, className: "-inset-[3%]", position: "62% 40%", blend: "screen", opacity: 0.65, depth: 14 },
+          { src: OLYMPUS_MEDIA.mist, className: "-inset-[3%]", position: "62% 40%", opacity: 0.8, drift: 60 },
         ]}
+        into="ivory"
       />
 
-      {/* Executive questions + assurance dimensions */}
-      <section data-surface="bone" aria-labelledby="questions-title" className="pb-24 pt-6 lg:pb-28">
-        <Container>
-          <SectionIntro id="questions-title" {...OVERVIEW.questions} />
-          <ol className="mt-12 grid gap-px border border-rule bg-rule sm:grid-cols-5" data-reveal-group>
-            {EXECUTIVE_QUESTIONS.map((q, i) => (
-              <li key={q} className="bg-bone p-5 lg:p-6">
-                <span className="text-[10px] font-semibold tracking-[0.2em] text-accent">{String(i + 1).padStart(2, "0")}</span>
-                <p className="mt-2 font-display text-2xl italic leading-tight text-fg">{q}</p>
-              </li>
-            ))}
-          </ol>
-          <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3" data-reveal-group>
-            {ASSURANCE_DIMENSIONS.map((d) => (
-              <li key={d.name} className="border border-rule bg-panel p-5 shadow-[0_18px_40px_-34px_rgba(21,35,51,0.45)]">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-accent">{d.name}</p>
-                <p className="mt-2 text-[15px] leading-relaxed text-fg">{d.question}</p>
-              </li>
-            ))}
-          </ul>
+      {/* P02 */}
+      <section data-surface="ivory" aria-labelledby="questions-title" className="pb-24 pt-10 lg:pb-28">
+        <Container className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
+          <SectionIntro id="questions-title" eyebrow={o.questions.eyebrow} title={<Accent text={o.questions.title} />} lede={o.questions.lede} caps />
+          <BuyerQuestions answers={o.questions.answers} />
         </Container>
       </section>
 
-      <SectionBlend
-        from="bone"
-        to="navy"
-        layers={[
-          { art: "ivory-clouds-alt", opacity: 0.5, drift: 50 },
-          { art: "dark-clouds-alt", opacity: 0.7, drift: -60 },
-        ]}
-      />
-
-      {/* Architecture + lifecycle: the dark band */}
-      <section data-surface="navy" aria-labelledby="architecture-title" className="relative overflow-hidden pb-24 pt-6">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/assets/transitions/transition-bronze-particles.webp"
-          alt=""
-          aria-hidden="true"
-          loading="lazy"
-          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-60 mix-blend-screen"
-        />
-        <Container className="relative">
-          <SectionIntro id="architecture-title" align="center" {...OVERVIEW.architecture} />
+      {/* P03 */}
+      <Scene
+        surface="navy"
+        labelledBy="architecture-title"
+        layers={[{ src: OLYMPUS_MEDIA.cloudSea.src, className: "object-[50%_60%]", parallax: 4 }]}
+        scrim="linear-gradient(180deg, rgba(21,35,51,0.55) 0, rgba(21,35,51,0.9) clamp(14rem,22vw,22rem), rgba(21,35,51,0.94) 70%, rgba(21,35,51,0.7) 100%)"
+        top={{ into: "ivory", height: "clamp(8rem,14vw,14rem)" }}
+        bottom={{ into: "ivory", height: "clamp(7rem,12vw,12rem)" }}
+        className="pb-[clamp(10rem,15vw,15rem)] pt-[clamp(10rem,17vw,17rem)]"
+      >
+        <Container>
+          <SectionIntro id="architecture-title" align="center" eyebrow={o.architecture.eyebrow} title={<Accent text={o.architecture.title} />} lede={o.architecture.lede} caps />
           <div className="mt-14">
             <ArchitectureMap />
           </div>
+        </Container>
+      </Scene>
 
-          <div className="mythos-rule my-20" aria-hidden="true" />
-
-          <SectionIntro id="lifecycle-title" align="center" eyebrow={OVERVIEW.lifecycle.eyebrow} title={OVERVIEW.lifecycle.title} />
-          <div className="mt-14">
-            <LifecycleStrip />
+      {/* P04 */}
+      <section data-surface="ivory" aria-labelledby="lifecycle-title" className="pb-24 pt-6 lg:pb-28">
+        <Container>
+          <div className="grid gap-6 lg:grid-cols-2 lg:items-end">
+            <SectionIntro id="lifecycle-title" eyebrow={o.lifecycle.eyebrow} title={<Accent text={o.lifecycle.title} />} caps />
+            <p className="text-lg leading-relaxed text-fg-muted lg:pb-2">{o.lifecycle.lede}</p>
           </div>
+          <CycleStrip className="mt-14" />
         </Container>
       </section>
 
-      <SectionBlend
-        from="navy"
-        to="bone"
-        layers={[
-          { art: "dark-clouds", opacity: 0.6, drift: 50 },
-          { art: "ivory-clouds", opacity: 0.85, drift: -70 },
-        ]}
-      />
-
-      <section data-surface="bone" aria-labelledby="authority-title" className="pb-24 pt-6">
+      {/* P05 */}
+      <section data-surface="parchment" aria-labelledby="authority-title" className="py-24 lg:py-28">
         <Container>
-          <SectionIntro id="authority-title" {...OVERVIEW.authority} />
+          <SectionIntro id="authority-title" eyebrow={o.authority.eyebrow} title={<Accent text={o.authority.title} />} lede={o.authority.lede} caps />
           <div className="mt-14">
             <AuthorityChain />
           </div>
         </Container>
       </section>
 
-      <section data-surface="bone" aria-labelledby="evidence-title" className="border-t border-rule py-24">
+      {/* P06 */}
+      <section data-surface="ivory" aria-labelledby="evidence-title" className="py-24 lg:py-28">
         <Container>
-          <SectionIntro id="evidence-title" {...OVERVIEW.evidence} />
+          <SectionIntro id="evidence-title" eyebrow={o.evidence.eyebrow} title={<Accent text={o.evidence.title} />} lede={o.evidence.lede} caps />
           <EvidenceStates className="mt-12" />
-        </Container>
-      </section>
-
-      <section data-surface="bone" aria-labelledby="economics-title" className="border-t border-rule py-24">
-        <Container>
-          <SectionIntro id="economics-title" {...OVERVIEW.economics} />
-          <div className="mt-12" data-reveal>
-            <ExposurePreview />
+          <div className="mt-10 grid items-center gap-10 lg:grid-cols-[1fr_1.1fr]">
+            <div className="max-w-md" data-reveal>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-accent">Coverage manifest</p>
+              <p className="mt-3 font-display text-3xl leading-tight text-fg">What was expected, observed and assessed — and what was not checked.</p>
+              <p className="mt-3 text-[15px] leading-relaxed text-fg-muted">
+                Coverage states the scope of an assessment. It is never a compliance or certification verdict.
+              </p>
+            </div>
+            <CoveragePanel rows={ATHENA_COVERAGE.rows} unit="assets" note={ATHENA_COVERAGE.note} />
           </div>
         </Container>
       </section>
 
-      <section data-surface="bone" aria-labelledby="outputs-title" className="border-t border-rule pb-24 pt-24">
+      {/* P07 */}
+      <section data-surface="parchment" aria-labelledby="economics-title" className="py-24 lg:py-28">
         <Container>
-          <SectionIntro id="outputs-title" {...OVERVIEW.outputs} />
+          <SectionIntro id="economics-title" eyebrow={o.economics.eyebrow} title={<Accent text={o.economics.title} />} lede={o.economics.lede} caps />
+          <div className="mt-12" data-reveal>
+            <ExposurePreview />
+          </div>
+          <p className="mt-4 text-sm text-fg-muted">Illustrative scenario — synthetic data. Ranges, never a single exact number.</p>
+        </Container>
+      </section>
+
+      {/* P08 */}
+      <Scene
+        surface="charcoal"
+        labelledBy="continuous-title"
+        layers={[
+          { src: OLYMPUS_MEDIA.cloudSea.src, className: "object-[50%_40%]", parallax: 4 },
+          { src: OLYMPUS_MEDIA.waterfallCliffs.src, className: "!object-contain object-[85%_100%] opacity-70", parallax: 6 },
+        ]}
+        scrim="linear-gradient(180deg, rgba(22,26,28,0.4) 0, rgba(22,26,28,0.88) clamp(14rem,22vw,22rem), rgba(22,26,28,0.92) 75%, rgba(22,26,28,0.75) 100%)"
+        top={{ into: "parchment", height: "clamp(8rem,14vw,14rem)" }}
+        bottom={{ into: "ivory", height: "clamp(7rem,12vw,12rem)" }}
+        className="pb-[clamp(10rem,15vw,15rem)] pt-[clamp(10rem,17vw,17rem)]"
+      >
+        <Container>
+          <SectionIntro id="continuous-title" align="center" eyebrow={o.continuous.eyebrow} title={<Accent text={o.continuous.title} />} lede={o.continuous.lede} caps />
+          <div className="mt-14">
+            <ChangeFlow />
+          </div>
+        </Container>
+      </Scene>
+
+      {/* P09 */}
+      <section data-surface="ivory" aria-labelledby="outputs-title" className="pb-24 pt-8 lg:pb-28">
+        <Container>
+          <SectionIntro id="outputs-title" eyebrow={o.outputs.eyebrow} title={<Accent text={o.outputs.title} />} lede={o.outputs.lede} caps />
           <div className="mt-12">
             <OutputsGrid />
           </div>
         </Container>
       </section>
 
-      <SectionBlend
-        from="bone"
-        to="navy"
-        layers={[
-          { art: "ivory-clouds-alt", opacity: 0.5, drift: 50 },
-          { art: "dark-clouds-alt", opacity: 0.7, drift: -60 },
-        ]}
-      />
-
-      <section data-surface="navy" aria-labelledby="continuous-title" className="pb-24 pt-6">
-        <Container>
-          <SectionIntro id="continuous-title" align="center" {...OVERVIEW.continuous} />
-          <div className="mt-14">
-            <ChangeFlow />
+      {/* P10 */}
+      <section data-surface="parchment" aria-labelledby="cta-title" className="pb-16 pt-24 lg:pt-28">
+        <Container className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+          <div>
+            <SectionIntro id="cta-title" eyebrow={o.cta.eyebrow} title={<Accent text={o.cta.title} />} lede={o.cta.lede} caps />
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Button href={CTA_LINKS.assessment} variant="primary" size="md" arrow>
+                Request an Assessment
+              </Button>
+              <Button href="/example-report" variant="secondary" size="md">
+                {CTA.SAMPLE_REPORT}
+              </Button>
+            </div>
+            <nav aria-label="Explore each product" className="mt-10">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-fg-muted">{o.projects.title}</p>
+              <ul className="mt-3 flex flex-wrap gap-2">
+                {PROJECTS.map((p) => (
+                  <li key={p.id}>
+                    <Link href={p.href} className="inline-flex min-h-10 items-center border border-rule bg-cream px-3 text-sm font-semibold text-fg transition-colors hover:border-accent">
+                      {p.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
           </div>
-
-          <div className="mythos-rule my-20" aria-hidden="true" />
-
-          <SectionIntro id="projects-title" align="center" eyebrow={OVERVIEW.projects.eyebrow} title={OVERVIEW.projects.title} />
-          <div className="mt-12">
-            <ProjectGrid />
-          </div>
+          <ReportPreview />
         </Container>
       </section>
 
-      <ClosingCta
-        title="See the whole system on one of yours."
-        secondary={{ label: "View Example Report", href: "/example-report" }}
+      <ClosingVista
+        from="parchment"
+        title="See the whole system *on one of yours.*"
+        layers={[
+          { src: OLYMPUS_MEDIA.cloudSea.src, className: "object-[50%_45%]", parallax: 4 },
+          { src: OLYMPUS_MEDIA.viaduct.src, className: "!object-contain object-[50%_88%]", parallax: 6 },
+          { src: OLYMPUS_MEDIA.sunbeams, blend: "screen", opacity: 0.6, className: "object-[80%_10%]" },
+        ]}
       />
     </PageMotion>
   );

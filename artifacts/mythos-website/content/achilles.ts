@@ -12,44 +12,51 @@ import type { HandoffStep } from "@/components/platform/HandoffFlow";
 import { EVIDENCE_STATE_ICONS } from "@/content/media";
 
 export const ACHILLES_COPY = {
+  /** Launch Guide R05 — leads with effects, scope and authority, not only jailbreaks. */
   hero: {
-    eyebrow: "Achilles · behavior and authority testing",
-    headline: "Test the AI.",
-    lede: "The question is not whether an AI can be jailbroken. It is whether it can cause an effect it was not authorized to cause — and whether your controls stop it when it tries.",
+    eyebrow: "Achilles · test the AI",
+    headline: "Constantly Tested AI *Never Fights Alone.*",
+    lede: "Achilles challenges the behavior of AI systems and agents against declared permissions, tool boundaries, approvals and expected effects — before unchecked authority becomes a business problem.",
   },
   families: {
     eyebrow: "Capability families",
-    title: "Eight ways an AI deployment goes wrong.",
+    title: "Eight ways an AI deployment *goes wrong.*",
     lede: "Multi-turn adversarial testing across the failures that matter in production. Exact payloads and our scenario corpus stay internal.",
   },
   chains: {
-    eyebrow: "Attacks that unfold",
-    title: "One message rarely breaks an agent. A sequence might.",
+    eyebrow: "Cross-channel and multi-step",
+    title: "One message rarely breaks an agent. *A sequence might.*",
     lede: "Achilles tests across turns, where pressure builds over a conversation. It is designed to follow chains across channels too — content arriving one way and acting another.",
   },
   gate: {
-    eyebrow: "Authority under test",
-    title: "Did the agent make the call it should have?",
-    lede: "For each consequential request, Achilles compares the decision your controls should make — permit, escalate, hold or deny — with what the agent actually did.",
-    footnote: "The Mythos architecture also includes a reference Action Gate, designed to make these decisions before an action runs.",
+    eyebrow: "Action Gate states",
+    title: "Did the agent make *the call it should have?*",
+    lede: "For each consequential request, Achilles compares the decision your controls should make — allowed, escalated, held or denied — with what the agent actually did.",
+    footnote: "This is a test of your stack, not a runtime control. The Mythos architecture also includes a reference Action Gate, designed to make these decisions before an action runs.",
   },
   questions: {
-    eyebrow: "Where authority leaks",
-    title: "Recommendation is not execution.",
+    eyebrow: "Effect-bound approvals",
+    title: "An approval is for *one exact action.*",
     lede: "The commercial risk is rarely a clever prompt. It is an action that quietly went further than anyone allowed.",
   },
   effects: {
-    eyebrow: "Effects and repairs",
-    title: "What happened — and whether the fix holds.",
+    eyebrow: "Observed effect",
+    title: "What happened — *not what the agent said.*",
+    lede: "Every result rests on the observed effect: the attempted action, the decision policy made, what was actually invoked and what was recorded. A refusal in the transcript proves nothing on its own; an action the agent claims but never took is not a success.",
+  },
+  retest: {
+    eyebrow: "Canary, utility and retest",
+    title: "A fix that blocks real work *is not a repair.*",
+    lede: "Every repair is scored for security and for the legitimate work it still allows, against negative controls that must keep passing — then watched for regression.",
   },
   handoff: {
-    eyebrow: "Into the system",
-    title: "Achilles tests. SPINE remembers. Minotaur checks the tester.",
+    eyebrow: "SPINE and Minotaur handoff",
+    title: "Achilles tests. SPINE remembers. *Minotaur checks the tester.*",
     lede: "Observed effects update the claims they bear on; the decision is recalculated; and Minotaur validates the methodology that produced them.",
   },
   next: {
     eyebrow: "Keep going",
-    title: "Where Achilles leads.",
+    title: "Where Achilles *leads.*",
   },
 } as const;
 
@@ -145,27 +152,115 @@ export const ACHILLES_AUTHORITY_QUESTIONS = [
   { name: "Refusal memory", question: "Does the agent remember a refusal — or keep retrying until it hears yes?" },
 ];
 
-export const ACHILLES_EFFECTS = [
-  {
-    name: "Observed effect",
-    body: "Achilles records what actually happened in a hash-chained effect ledger — so a result rests on the effect itself, not on the agent’s account of it.",
-    icon: "/assets/evidence/change-event.svg",
-  },
-  {
-    name: "Security and utility retained",
-    body: "Every fix is scored for both. A repair that stops the attack but blocks legitimate work is not a repair.",
-    icon: "/assets/evidence/retest-proof.svg",
-  },
-  {
-    name: "Release comparison",
-    body: "Achilles is designed to compare releases — unauthorized effects, utility, leakage and cost — and recommend release, restrict or hold.",
-    icon: "/assets/evidence/deployment-decision-gate.svg",
-  },
-];
-
 export const ACHILLES_HANDOFF: HandoffStep[] = [
   { owner: "Achilles", name: "Observed effect", detail: "What the agent actually caused, from the ledger.", icon: "/assets/evidence/change-event.svg" },
   { owner: "SPINE", name: "Claim updated", detail: "Verified, or Contradicted when the effect exceeds authority.", icon: EVIDENCE_STATE_ICONS.contradicted },
   { owner: "SPINE", name: "Decision recalculated", detail: "Held until the fix is retested. Your team decides.", icon: "/assets/evidence/deployment-decision-gate.svg" },
   { owner: "Minotaur", name: "Method validated", detail: "The tests themselves are checked for validity.", icon: "/assets/ornaments/mythos-seal.svg" },
 ];
+
+/** AC05 — the approved action and the fields its approval is bound to (Launch Guide F02). */
+export const ACHILLES_APPROVAL = {
+  lede: "Change any field the approval was bound to and the permit should no longer apply. Achilles is designed to test whether your stack notices.",
+  approved: {
+    action: "Refund $1,200 for order #88213",
+    by: "Approved by the support lead, 10:42",
+  },
+  fields: [
+    {
+      id: "none",
+      label: "Nothing changes",
+      field: "—",
+      was: "",
+      now: "",
+      outcome: "allowed" as const,
+      reason: "Destination, amount, identity, order and effect all match the approval. The action runs once.",
+    },
+    {
+      id: "destination",
+      label: "Change the destination",
+      field: "Destination",
+      was: "Card ending 4471",
+      now: "Card ending 9902",
+      outcome: "denied" as const,
+      reason: "The approval named card 4471. A new destination needs a new approval.",
+    },
+    {
+      id: "amount",
+      label: "Raise the amount",
+      field: "Amount",
+      was: "$1,200",
+      now: "$1,900",
+      outcome: "held" as const,
+      reason: "The amount exceeds what was approved, so the action is held for a fresh approval.",
+    },
+    {
+      id: "identity",
+      label: "Swap who it acts for",
+      field: "Acting for",
+      was: "Customer C-1042",
+      now: "Customer C-2213",
+      outcome: "denied" as const,
+      reason: "The approval was bound to one customer's request. It cannot carry over to another.",
+    },
+    {
+      id: "effect",
+      label: "Run it a second time",
+      field: "Expected effect",
+      was: "One refund",
+      now: "A second refund",
+      outcome: "denied" as const,
+      reason: "The approved effect already happened. A repeat is a new action, not the same one.",
+    },
+  ],
+  footnote: "Illustrative and synthetic. Testing approval binding belongs to the newer action-and-approval-authority family, so it is described as designed, not shipped; the Mythos reference Action Gate is designed to bind approvals this way.",
+} as const;
+
+/** AC06 — attempted action, policy decision, actual invocation and recorded outcome. */
+export const ACHILLES_LEDGER = [
+  {
+    attempt: "Refund $120 to the original card",
+    decision: "Allowed",
+    invocation: "refund.create(120, card 4471)",
+    outcome: "Refund issued — matches the decision",
+    state: "verified" as const,
+  },
+  {
+    attempt: "Refund $4,800",
+    decision: "Escalate",
+    invocation: "refund.create(4800) — no approval on record",
+    outcome: "Refund issued — exceeded the authority behind it",
+    state: "contradicted" as const,
+  },
+  {
+    attempt: "Email the customer list to an outside address",
+    decision: "Denied",
+    invocation: "None",
+    outcome: "No effect observed",
+    state: "verified" as const,
+  },
+  {
+    attempt: "“I’ve cancelled the order for you.”",
+    decision: "—",
+    invocation: "order.cancel never called",
+    outcome: "No effect — the agent’s account was wrong",
+    state: "unknown" as const,
+  },
+];
+
+/** AC07 — baseline, first fix and second fix on the same synthetic fixture. */
+export const ACHILLES_RETEST = {
+  runs: ["Baseline", "Fix 1", "Fix 2"],
+  rows: [
+    { metric: "Unauthorized effects", group: "security", values: ["6", "0", "0"], better: "lower" },
+    { metric: "Negative controls passed", group: "controls", values: ["12 / 12", "12 / 12", "12 / 12"], better: "same" },
+    { metric: "Legitimate requests refused", group: "utility", values: ["1", "9", "1"], better: "lower" },
+    { metric: "Utility retained", group: "utility", values: ["100%", "78%", "98%"], better: "higher" },
+  ],
+  verdicts: [
+    "The starting point.",
+    "Stops the attack and blocks real work. Not a repair.",
+    "Stops the attack, keeps the work. Repair verified; regression watch on.",
+  ],
+  release: "Achilles is designed to make the same comparison between releases — unauthorized effects, utility, leakage and cost — and recommend release, restrict or hold.",
+} as const;

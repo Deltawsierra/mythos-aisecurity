@@ -6,14 +6,15 @@
  * "satisfied"; cleared is never "fixed".
  */
 export const SPINE_COPY = {
+  /** Launch Guide R04 — leads with the system of record, never "unified defense against everything". */
   hero: {
     eyebrow: "SPINE · the assurance system of record",
-    headline: "Maintain the Truth.",
-    lede: "Most security tests tell you what was true when the test ran. SPINE maintains whether the evidence behind that conclusion is still safe to rely on — tied to the exact configuration it was true of, and reopened the moment a change undermines it.",
+    headline: "Continuous Assurance. *Evidence That Holds Together.*",
+    lede: "SPINE links claims, controls, authority, observations and decisions. When something material changes, dependent conclusions can be flagged for review, targeted revalidation, or contradiction.",
   },
   why: {
     eyebrow: "Why SPINE",
-    title: "Findings fade. Claims are kept honest.",
+    title: "Findings fade. *Claims are kept honest.*",
     lede: "A report is a snapshot. SPINE records what was approved, notices when the evidence behind it changes, directs the retests that change requires, and shows whether the repair justifies release.",
     pillars: [
       {
@@ -32,12 +33,12 @@ export const SPINE_COPY = {
   },
   graph: {
     eyebrow: "The assurance graph",
-    title: "Everything a claim depends on, connected.",
+    title: "Everything a claim depends on, *connected.*",
     lede: "Systems, identities, tools, evidence, findings, claims, actions, effects and business context — in one graph that remembers what changed and when. What an AI is permitted to reach and what it was actually seen reaching are kept apart.",
   },
   claims: {
-    eyebrow: "Claims and evidence",
-    title: "Declared, observed and verified are never merged.",
+    eyebrow: "The claim state machine",
+    title: "Declared, observed and verified *are never merged.*",
     lede: "What a team or vendor says, what Mythos sees running, and what testing proves stay separate truths. A claim is only as strong as its weakest evidence.",
     clocks: {
       title: "Two clocks, nothing overwritten",
@@ -50,13 +51,13 @@ export const SPINE_COPY = {
     },
   },
   authority: {
-    eyebrow: "Authority chain",
-    title: "Who allowed this, and did the effect match?",
+    eyebrow: "Authority and action lineage",
+    title: "Who allowed this, *and did the effect match?*",
     lede: "Policy decides with four effects, and the most restrictive wins. An unknown input never defaults to allow — it escalates to a human.",
   },
   change: {
     eyebrow: "Change intelligence",
-    title: "The loop that keeps evidence current.",
+    title: "The loop that keeps *evidence current.*",
     lede: "SPINE fires on events or on a schedule: detect the change, assess its impact, invalidate what it touched, plan the minimal retest, revalidate, restore.",
     supersedes: {
       name: "SUPERSEDES",
@@ -76,13 +77,13 @@ export const SPINE_COPY = {
   },
   decisions: {
     eyebrow: "Deployment decisions",
-    title: "A recommendation backed by evidence. Your team decides.",
+    title: "A recommendation backed by evidence. *Your team decides.*",
     lede: "SPINE recalculates the decision whenever the evidence beneath it moves. A missing decision is never Ready.",
   },
   evidence: {
     eyebrow: "Receipts and packets",
-    title: "Evidence you can hand to someone else.",
-    lede: "Assurance Receipts are signed and tamper-evident, so anyone can check where a result came from and that it has not been altered. A receipt proves integrity and provenance — never that the conclusion is true. That is what the evidence is for.",
+    title: "Evidence you can hand *to someone else.*",
+    lede: "An Assurance Receipt records where a result came from — subject, configuration, policy, evaluator, evidence and validity — and is built to be tamper-evident, with signing where it is implemented. A receipt proves provenance, never that the conclusion is true. That is what the evidence is for.",
     packets: [
       {
         name: "Vendor Assurance Packet",
@@ -103,8 +104,19 @@ export const SPINE_COPY = {
   },
   economics: {
     eyebrow: "SPINE Economic Exposure",
-    title: "Connecting a verified effect to its business consequence.",
+    title: "A verified effect, *in business terms.*",
     lede: "Because SPINE knows which effects were verified and which business processes they touch, it is the foundation Economic Exposure is designed to build on: modeled ranges, the cost of a fix, and the exposure that fix could remove — with every source and assumption shown.",
+  },
+  teams: {
+    eyebrow: "Assurance teams and validity",
+    title: "Five teams, *one evidence loop.*",
+    lede: "Red, blue, purple, green and white teams work inside defined, authorized scopes and feed the same claims. Minotaur stands apart from all five, checking that the tests themselves are valid.",
+    minotaur: "Minotaur holds out scenarios, replays results and can hold a release on evidence quality. It is Mythos’ internal proving ground — not a sixth team and not a separate product.",
+  },
+  revalidate: {
+    eyebrow: "Revalidation",
+    title: "Changed condition, stale claim, *targeted retest.*",
+    lede: "Run the loop yourself: introduce a change, watch the claim go stale, then retest. Every state is a synthetic fixture you can reset.",
   },
   next: {
     eyebrow: "Keep going",
