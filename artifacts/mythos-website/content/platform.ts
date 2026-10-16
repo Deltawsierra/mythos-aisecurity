@@ -249,6 +249,7 @@ export const PLATFORM_PAGES: ScaffoldPage[] = [
   {
     slug: "economic-exposure",
     href: "/platform/economic-exposure",
+    built: true,
     navLabel: "Economic Exposure",
     navDescription: "What a validated failure could mean financially.",
     eyebrow: "SPINE Economic Exposure",
@@ -268,6 +269,7 @@ export const PLATFORM_PAGES: ScaffoldPage[] = [
   {
     slug: "evidence",
     href: "/platform/evidence",
+    built: true,
     navLabel: "Evidence & Receipts",
     navDescription: "Claims, receipts and deployment decisions you can verify.",
     eyebrow: "Evidence, Claims & Decisions",
@@ -287,6 +289,7 @@ export const PLATFORM_PAGES: ScaffoldPage[] = [
   {
     slug: "continuous-assurance",
     href: "/platform/continuous-assurance",
+    built: true,
     navLabel: "Continuous Assurance",
     navDescription: "Keep conclusions current as the system changes.",
     eyebrow: "Continuous Assurance",

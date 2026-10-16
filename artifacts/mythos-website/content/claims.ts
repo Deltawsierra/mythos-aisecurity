@@ -171,7 +171,7 @@ export const CLAIMS: Claim[] = [
     status: "unverified",
     source: "SPINE Technical Foundation Spec; Launch Guide R04 proof requirement",
     usedIn: ["/platform/spine (receipts)"],
-    note: "Replaces 'signed and tamper-evident' — signing status conflicts across docs (see receipts.signed).",
+    note: "16 Oct fact-check: receipts are SHA-256 hashed over canonical JSON with a Merkle-style evidence root (built); the backend deliberately does not sign (TFS p.36). Only Achilles engine evidence packs are signed. Page says signing is planned.",
   },
   // ── Minotaur and Hermes (Launch Guide R06/R07). Sources: Platform Roadmap
   //    (17 Sep), Session Work Summary, SPINE R&D Plan (21 Sep), Achilles
@@ -245,6 +245,56 @@ export const CLAIMS: Claim[] = [
     status: "forward",
     source: "SPINE Foundation Spec p.9 (OTA package invalidates prior version); Self-Protection Spec §4",
     usedIn: ["/platform/hermes (HE07 trail, labelled designed)"],
+  },
+  // ── Economic Exposure, Evidence, Continuous Assurance (16 Oct fact-check:
+  //    EE Master Spec, SPINE Technical Foundation Spec, R&D Plan, Roadmap,
+  //    Athena build log).
+  {
+    id: "ee.designed",
+    text: "Economic Exposure is designed to connect verified effects to scenario-based exposure ranges, remediation economics, Financial Exposure Receipts and Financial Validity Cards",
+    status: "forward",
+    source: "EE Master Spec (7 Oct) §5–9, §16, §21, §26",
+    usedIn: ["/platform/economic-exposure"],
+    note: "Specified only; no EE build record. Every figure on the page is a synthetic fixture.",
+  },
+  {
+    id: "evidence.receipt-hashed",
+    text: "Assurance Receipts are hashed over their evidence and exportable as JSON",
+    status: "unverified",
+    source: "Athena build log PR #27, #34; SPINE Foundation Spec p.33–36",
+    usedIn: ["/platform/evidence", "/platform/spine"],
+    note: "Built per the log. Not signed (TFS p.36); signing and a public verifier are planned.",
+  },
+  {
+    id: "evidence.engine-packs-signed",
+    text: "Achilles engine evidence packs are signed and can be verified offline",
+    status: "unverified",
+    source: "Roadmap p.9, p.11",
+    usedIn: ["/platform/evidence (outputs)"],
+  },
+  {
+    id: "evidence.incident-pack",
+    text: "Incident Evidence Packs",
+    status: "unverified",
+    source: "Session Work Summary p.10 (#36)",
+    usedIn: ["/platform/evidence (outputs)", "/platform/spine (packets)"],
+    note: "Built; replay deferred.",
+  },
+  {
+    id: "ca.staleness-and-recalc",
+    text: "evidence that ages to Stale, and decisions recalculated when evidence moves",
+    status: "unverified",
+    source: "SPINE Foundation Spec p.28–31; Athena build log #34, #38",
+    usedIn: ["/platform/continuous-assurance (in place today)"],
+    note: "Staleness interval deliberately not published.",
+  },
+  {
+    id: "ca.drift-triggers",
+    text: "policy, inventory (AI-BOM) and fingerprint drift as revalidation triggers",
+    status: "unverified",
+    source: "R&D Plan p.5 (reported built); Session Work Summary p.12",
+    usedIn: ["/platform/continuous-assurance (in place today)"],
+    note: "Other change types (prompt, tool, permission, data source, route) are planned. No live monitoring.",
   },
   // ── Luminous Olympus homepage (Launch Guide, 16 Oct 2026).
   {

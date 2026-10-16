@@ -83,11 +83,11 @@ export const SPINE_COPY = {
   evidence: {
     eyebrow: "Receipts and packets",
     title: "Evidence you can hand *to someone else.*",
-    lede: "An Assurance Receipt records where a result came from — subject, configuration, policy, evaluator, evidence and validity — and is built to be tamper-evident, with signing where it is implemented. A receipt proves provenance, never that the conclusion is true. That is what the evidence is for.",
+    lede: "An Assurance Receipt records where a result came from — subject, configuration, policy, evaluator, evidence and validity — and is hashed over its evidence, so any change to it can be detected. Signing is planned. A receipt proves provenance, never that the conclusion is true. That is what the evidence is for.",
     packets: [
       {
         name: "Vendor Assurance Packet",
-        body: "Declared versus verified evidence about a third-party AI, for procurement and vendor review.",
+        body: "Declared versus verified evidence about a third-party AI, for procurement and vendor review. In development.",
         icon: "/assets/evidence/evidence-pack.svg",
       },
       {
@@ -97,7 +97,7 @@ export const SPINE_COPY = {
       },
       {
         name: "Evidence API",
-        body: "Bring claims, receipts and decisions into your own GRC, ticketing and release tooling.",
+        body: "Read findings, evidence, unknowns and receipts from your own tooling. Push integrations to ticketing and GRC are in development.",
         icon: "/assets/evidence/policy-authority-chain.svg",
       },
     ],

@@ -533,3 +533,22 @@
     transition: none;
   }
 }
+
+/* Continuous assurance orbit: rings turn over minutes, never spin. */
+.orbit-slow {
+  animation: orbit-turn 140s linear infinite;
+}
+.orbit-slow-reverse {
+  animation: orbit-turn 190s linear infinite reverse;
+}
+@keyframes orbit-turn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .orbit-slow,
+  .orbit-slow-reverse {
+    animation: none;
+  }
+}

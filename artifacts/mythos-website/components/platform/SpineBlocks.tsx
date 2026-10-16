@@ -128,7 +128,7 @@ export function ReceiptCard() {
       <figcaption className="flex items-center gap-3 border-t border-rule bg-marble/60 px-6 py-3.5 text-xs text-fg">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/assets/status/status-evidence-current.svg" alt="" aria-hidden="true" className="h-8 w-8" />
-        Signed and tamper-evident. Integrity and provenance can be checked independently.
+        Tamper-evident: hashed over its evidence, so any change can be detected. It proves provenance — not that the conclusion is true.
       </figcaption>
     </figure>
   );

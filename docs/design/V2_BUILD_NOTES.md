@@ -242,6 +242,34 @@ wording:
 - `CharacterNiche` (components/scenic) is shared by Achilles, Minotaur and
   Hermes heroes.
 
+## Economic Exposure, Evidence and Continuous Assurance (16 Oct 2026)
+
+All ten platform pages now have their own routes; the `app/platform/[slug]`
+scaffold route is retired (static export can't build an empty dynamic route).
+A source fact-check (EE Master Spec, SPINE Technical Foundation Spec, R&D
+Plan, Roadmap, Athena build log) set the wording:
+
+- **Economic Exposure** (`content/economicExposure.ts`): specified, not built —
+  "designed to" throughout and a visible "every figure is synthetic" line.
+  Vocabulary mirrors the spec (loss pathway, expected annual exposure,
+  P10/P50/P90, current vs residual, confidence grades A–D, source types,
+  Financial Exposure Receipt, Financial Validity Card). No exact loss, ROI
+  guarantee, materiality call or live finance feeds. Modules: `ExposureChain`,
+  `ExposureBands` (single event vs annualized, table alternative),
+  `SensitivityGrid` (lookup into a precomputed fixture, not a live model),
+  `RecordCard`, `Faq`.
+- **Evidence & Receipts** (`content/evidence.ts`): receipts are hashed over
+  their evidence and exportable as JSON (built) but **not signed** — signing
+  and a public verifier are planned. Only Achilles engine evidence packs are
+  signed and verifiable offline. Corrected the same point on SPINE, Athena
+  and the shared receipt card. Modules: `ReceiptExplorer`, `JsonArtifact`
+  (Copy JSON copies exactly what is shown).
+- **Continuous Assurance** (`content/continuousAssurance.ts`): evidence ageing,
+  decision recalculation and drift triggers are in place; other change types,
+  dependency tracing and a false-block metric are in development. No live
+  monitoring — the hero says Mythos responds to scans and supplied changes.
+  Modules: `ChangeTraversal`, `OrbitFigure`.
+
 ## Not yet done
 
 - **Contrast:** v1 pages still use `text-bronze` (3.8:1 on navy) and faded

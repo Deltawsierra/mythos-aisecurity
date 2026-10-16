@@ -42,7 +42,7 @@ export const ATHENA_COPY = {
   evidence: {
     eyebrow: "Remediation and report outputs",
     title: "Evidence that *survives scrutiny.*",
-    lede: "Findings ship as signed, hash-chained evidence packs that can be verified offline. Retests compare against the original — and a cleared alert is never counted as a fix.",
+    lede: "Findings ship as tamper-evident evidence packs that keep the exchange, the configuration and the limits of the test together. Retests compare against the original — and a cleared alert is never counted as a fix.",
   },
   handoff: {
     eyebrow: "From finding to SPINE claim",
