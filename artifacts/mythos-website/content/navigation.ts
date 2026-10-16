@@ -147,7 +147,7 @@ export const PRIMARY_NAV: NavNode[] = [
     feature: {
       eyebrow: "Where to start",
       title: "Financial Services & Insurance",
-      description: "Approvals, payments and customer data — with financial exposure in scope.",
+      description: "Servicing copilots, customer data and AI suppliers — one workflow at a time.",
       href: "/solutions/financial-services-insurance",
       image: INDUSTRY_MEDIA["financial-services"].card.src,
       fit: "cover",

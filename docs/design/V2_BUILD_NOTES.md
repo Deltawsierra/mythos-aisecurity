@@ -270,6 +270,39 @@ Plan, Roadmap, Athena build log) set the wording:
   monitoring — the hero says Mythos responds to scans and supplied changes.
   Modules: `ChangeTraversal`, `OrbitFigure`.
 
+## Phase 4 — Solutions hub and industry pages (16 Oct)
+
+Launch Guide Section 09. Copy in `content/industries.ts` (7 `IndustryContent`
+objects + hub copy); one shared template `components/solutions/IndustryPage.tsx`
+(hero → risk context → capability mapping → impact as hypotheses → use cases →
+control alignment → synthetic walkthrough → first-conversation questions →
+closing vista). `app/solutions/[slug]` now renders it for all seven slugs; the
+`SOLUTION_PAGES` registry is all `built: true` and only feeds nav, sitemap and
+the release gate. Hub `app/solutions/page.tsx`: industry switcher (vertical
+tabs on desktop, scroll row on phones, arrow/Home/End keys), four questions,
+architecture-to-sector bridge, featured walkthrough, frameworks by sector.
+
+Fact-check rules applied (16 Oct):
+- No customers, pilots, partners or case studies — every proof section is
+  labelled "Illustrative scenario · synthetic data"; impact cards are tagged
+  "Hypothesis".
+- "Mapping built" only for NIST SP 800-53, OWASP Top 10 (web/LLM) and DoD Zero
+  Trust (`athena.compliance-mapping`). Everything else — Treasury FS AI risk
+  framework, NYDFS CL7, NIST AI RMF, ISO/IEC 42001, OMB M-25-21/22, NIST
+  critical-infrastructure profile — is "Referenced in scoping"
+  (`solutions.framework-references`). Vendor SOC 2 reports are declared
+  evidence only. No HIPAA/HITRUST/FedRAMP/ATO/IEC 62443 language.
+- Healthcare and manufacturing have thin sources, so their pages stay general:
+  no patient-safety, clinical, live-OT or safety-certification claims.
+- Starting-engagement names are research names, not signed offers
+  (`solutions.offer-names`); no prices anywhere.
+- FS nav copy no longer mentions payments or lending (payment agents later,
+  lending AI not found). Government/Capitol art stays withheld; Public Sector
+  uses cloud sea + cliff temple.
+
+Shared fix: `ScenicHero` now pads the copy above the cloud bank on phones
+(secondary CTAs were sinking into the clouds on long heroes).
+
 ## Not yet done
 
 - **Contrast:** v1 pages still use `text-bronze` (3.8:1 on navy) and faded
@@ -281,5 +314,5 @@ Plan, Roadmap, Athena build log) set the wording:
 
 - The old `/use-cases#what-mythos-produces` and `#how-engagement-starts` anchors
   should forward to `/outputs` and `/engagement` (Phase 9 redirects).
-- Existing pages (Home, Platform, Solutions, Pricing, Company, Investors,
-  Careers, Trust, Contact, Use Cases, Example Report) still carry v1 copy.
+- Existing pages (Pricing, Company, Investors, Careers, Trust, Contact,
+  Use Cases, Example Report) still carry v1 copy.

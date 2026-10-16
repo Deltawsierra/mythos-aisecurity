@@ -365,11 +365,27 @@ export const CLAIMS: Claim[] = [
     note: "Roadmap: evidence packs and retest BUILT.",
   },
   {
+    id: "solutions.offer-names",
+    text: "starting engagements: banking AI workflow assurance assessment, insurance AI change evidence, high-risk AI evidence assessment, AI workflow release assurance, privacy and consequential-decision evidence, AI acceptance and change evidence through an integrator, delivery partnership, third-party AI vendor assurance",
+    status: "unverified",
+    source: "Fact-check 16 Oct (Banking Dossier, Regulation Strategy, Market Landscape)",
+    usedIn: ["/solutions/*"],
+    note: "Offer names come from research documents; the price book is unsigned and no price is shown. Needs commercial sign-off.",
+  },
+  {
+    id: "solutions.framework-references",
+    text: "frameworks referenced in scoping: US Treasury FS AI risk framework, NYDFS Circular Letter 7, NIST AI RMF, ISO/IEC 42001, OMB M-25-21/M-25-22, NIST critical-infrastructure AI profile, OWASP agentic guidance, NIST AI 100-2",
+    status: "unverified",
+    source: "Fact-check 16 Oct",
+    usedIn: ["/solutions", "/solutions/*"],
+    note: "Referenced only — never mapped, certified or attested. Built mappings stay limited to athena.compliance-mapping.",
+  },
+  {
     id: "athena.compliance-mapping",
     text: "mapped to tests and evidence for NIST 800-53/RMF, OWASP web and LLM, DoD Zero Trust",
     status: "unverified",
     source: "Athena log",
-    usedIn: ["/platform/athena"],
+    usedIn: ["/platform/athena", "/solutions", "/solutions/*"],
     note: "Merged. Never 'certified' or 'compliant'; controls are touched, not satisfied.",
   },
   {

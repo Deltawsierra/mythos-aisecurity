@@ -1,6 +1,10 @@
 /**
  * Solutions registry — industry verticals from the October 2026 blueprint
  * (Section 9). Financial Services & Insurance is the flagship entry vertical.
+ *
+ * Page copy lives in content/industries.ts; this registry feeds navigation,
+ * the sitemap and the release gate. Scaffold fields below are no longer
+ * rendered.
  */
 import type { IndustryId } from "@/content/media";
 import type { ScaffoldPage } from "@/content/platform";
@@ -17,12 +21,13 @@ export const SOLUTION_PAGES: SolutionPage[] = [
     slug: "financial-services-insurance",
     href: "/solutions/financial-services-insurance",
     navLabel: "Financial Services & Insurance",
-    navDescription: "Payments, lending, fraud, claims and employee AI.",
+    navDescription: "Servicing copilots, customer data and AI suppliers.",
     eyebrow: "Financial Services & Insurance",
-    headline: "Assurance for AI that touches money, customers and approvals.",
-    lede: "Payment, lending, fraud, claims and employee AI — with customer data, approval authority, third-party AI and financial exposure in scope.",
+    headline: "AI assurance for a more resilient financial future.",
+    lede: "Servicing copilots, customer data, AI suppliers and approval boundaries — one scoped workflow at a time.",
     media: "financial-services",
     startingPoint: "Regulated / High-Risk Assessment",
+    built: true,
     plannedSections: [
       "Where AI meets money and customers",
       "Approval authority and service identities",
@@ -42,6 +47,7 @@ export const SOLUTION_PAGES: SolutionPage[] = [
     lede: "Sensitive records, research data, AI-assisted operations and vendor AI — with evidence and change control for regulated review.",
     media: "healthcare-life-sciences",
     startingPoint: "High-Risk / Compliance Evidence Assessment",
+    built: true,
     plannedSections: [
       "Sensitive data and AI-assisted workflows",
       "Vendor and third-party AI",
@@ -60,6 +66,7 @@ export const SOLUTION_PAGES: SolutionPage[] = [
     lede: "Tenant boundaries, RAG leakage, agent actions and customer security reviews — with assurance packets your buyers can use.",
     media: "technology-ai-saas",
     startingPoint: "Agent Safety or Growth Assurance",
+    built: true,
     plannedSections: [
       "Tenant boundaries and RAG leakage",
       "Agents, tools and actions",
@@ -77,6 +84,7 @@ export const SOLUTION_PAGES: SolutionPage[] = [
     headline: "Assurance for enterprise copilots and decision support.",
     lede: "Enterprise copilots, decision support, procurement and internal workflows — with audit, access and change drift in view.",
     startingPoint: "Deployment Assurance / Enterprise",
+    built: true,
     plannedSections: [
       "Copilots and decision support",
       "Access and effective authority",
@@ -88,11 +96,12 @@ export const SOLUTION_PAGES: SolutionPage[] = [
     slug: "public-sector-mission",
     href: "/solutions/public-sector-mission",
     navLabel: "Public Sector & Mission",
-    navDescription: "Sensitive workflows, authorization and high-assurance evidence.",
+    navDescription: "Acceptance and change evidence for mission workflows.",
     eyebrow: "Public Sector & Mission",
     headline: "High-assurance evidence for mission workflows.",
     lede: "Sensitive workflows, authorization, restricted records and private deployment considerations — with human control kept explicit.",
     startingPoint: "Mission / High Assurance",
+    built: true,
     plannedSections: [
       "Authorization and restricted records",
       "Private deployment considerations",
@@ -104,12 +113,13 @@ export const SOLUTION_PAGES: SolutionPage[] = [
     slug: "manufacturing-critical-infrastructure",
     href: "/solutions/manufacturing-critical-infrastructure",
     navLabel: "Manufacturing & Critical Infrastructure",
-    navDescription: "Operational AI, industrial workflows and downtime risk.",
+    navDescription: "Operational AI, vendors and authority — tested outside production.",
     eyebrow: "Manufacturing & Critical Infrastructure",
     headline: "Assurance where AI meets operations.",
     lede: "Operational AI, industrial workflows, vendor systems and cyber-physical dependencies — with downtime and economic consequence in view.",
     media: "manufacturing-critical-infrastructure",
     startingPoint: "High-Risk / Mission",
+    built: true,
     plannedSections: [
       "Operational and industrial AI",
       "Vendor systems and cyber-physical dependencies",
@@ -126,6 +136,7 @@ export const SOLUTION_PAGES: SolutionPage[] = [
     headline: "Evidence that travels with what you deliver.",
     lede: "Use Mythos evidence to support customer releases, vendor assurance, implementation validation and recurring customer assurance.",
     startingPoint: "Partnership / Enterprise Portfolio",
+    built: true,
     plannedSections: [
       "Release and implementation validation",
       "Vendor assurance packets",

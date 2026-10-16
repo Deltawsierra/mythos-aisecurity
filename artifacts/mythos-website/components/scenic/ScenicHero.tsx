@@ -136,7 +136,7 @@ export function ScenicHero({
         />
       </div>
 
-      <Container className="relative z-10 flex flex-1 flex-col pt-28 lg:justify-center lg:pb-[clamp(9rem,16vw,14rem)] lg:pt-32">
+      <Container className="relative z-10 flex flex-1 flex-col pb-36 pt-28 lg:justify-center lg:pb-[clamp(9rem,16vw,14rem)] lg:pt-32">
         <div className={cn("max-w-[38rem] xl:max-w-[42rem]", copyRight && "lg:ml-auto lg:mr-[2%]")}>
           <nav aria-label="Breadcrumb" className="hero-rise mb-7" style={{ animationDelay: "80ms" }}>
             <ol className="flex flex-wrap items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-ivory/70">

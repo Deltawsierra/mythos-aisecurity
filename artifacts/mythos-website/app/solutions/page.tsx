@@ -1,500 +1,239 @@
-import { Fragment } from "react";
 import type { Metadata } from "next";
-import { Users, Landmark, Radar, ArrowRight } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, BookOpenCheck } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
-import { HeroVideo } from "@/components/sections/HeroVideo";
-import { FeatureCard } from "@/components/ui/FeatureCard";
-import {
-  SolutionCard,
-  type SolutionMotif,
-} from "@/components/sections/SolutionCard";
-import { ScrollReveal } from "@/components/motion/ScrollReveal";
-import { StaggerReveal } from "@/components/motion/StaggerReveal";
+import { Accent } from "@/components/ui/Headline";
+import { PageMotion } from "@/components/motion/PageMotion";
+import { SectionIntro } from "@/components/sections/SectionIntro";
+import { ScenicHero } from "@/components/scenic/ScenicHero";
+import { Scene } from "@/components/scenic/Scene";
+import { ClosingVista } from "@/components/scenic/ClosingVista";
+import { EvidenceTimeline } from "@/components/platform/EvidenceTimeline";
+import { IndustrySwitcher, type SwitcherIndustry } from "@/components/solutions/IndustrySwitcher";
+import { INDUSTRIES, SOLUTIONS_BRIDGE, SOLUTIONS_HUB, SOLUTIONS_SWITCHER } from "@/content/industries";
+import { PROJECTS } from "@/content/platform";
+import { OLYMPUS_MEDIA } from "@/content/media";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Solutions",
+  title: "Solutions — AI Assurance for Real-World Impact",
   description:
-    "See how Mythos supports enterprise teams reviewing AI assistants, agents, copilots, data integrations, regulated workflows, and strategic horizon scenarios.",
+    "How Mythos applies evidence-backed AI assurance across financial services, healthcare, SaaS, regulated enterprise, public sector, operations and delivery partners — without one-size-fits-all promises.",
+  alternates: { canonical: "/solutions/" },
 };
 
-const EYEBROW =
-  "mb-4 text-[10px] font-semibold uppercase tracking-[0.3em] text-bronze";
-const HEADING =
-  "mb-5 text-3xl font-normal leading-tight text-ivory lg:text-4xl";
-const BODY = "text-base leading-relaxed text-muted-stone";
+const h = SOLUTIONS_HUB;
 
-/** Hero supporting points — three buyer environments, not product mechanics. */
-const ENV_POINTS = [
-  {
-    icon: Users,
-    label: "Customer-facing AI",
-    desc: "Copilots and agents your customers and prospects interact with directly.",
-  },
-  {
-    icon: Landmark,
-    label: "Regulated records",
-    desc: "AI inside finance, healthcare, and audited records.",
-  },
-  {
-    icon: Radar,
-    label: "Mission-sensitive systems",
-    desc: "Sensitive environments where scope and approval come first.",
-  },
-];
+const SWITCHER: SwitcherIndustry[] = INDUSTRIES.map((i) => ({
+  slug: i.slug,
+  name: i.name,
+  headline: i.hero.headline.replaceAll("*", ""),
+  risks: i.risks.items.slice(0, 3).map((r) => r.name),
+  ...SOLUTIONS_SWITCHER[i.slug],
+}));
 
-const BUYER_PROBLEMS = [
-  {
-    title: "Hidden access",
-    description:
-      "AI may retrieve documents, metadata, logs, permissions, or user context teams did not intend to expose.",
-  },
-  {
-    title: "Action paths",
-    description:
-      "Agents and copilots may call tools, move data, trigger actions, or bypass expected approval steps.",
-  },
-  {
-    title: "Review gaps",
-    description:
-      "Security, compliance, and leadership teams need findings they can evaluate, not vague scanner output.",
-  },
-  {
-    title: "Change drift",
-    description:
-      "Prompts, models, tools, permissions, and routes can change after launch.",
-  },
-];
+const SHORT_NAME: Record<string, string> = {
+  "financial-services-insurance": "Financial",
+  "healthcare-life-sciences": "Healthcare",
+  "ai-saas": "SaaS",
+  "regulated-enterprise": "Regulated",
+  "public-sector-mission": "Public sector",
+  "manufacturing-critical-infrastructure": "Operations",
+  "integrators-vendors": "Integrators",
+};
 
-const SOLUTIONS: {
-  title: string;
-  motif: SolutionMotif;
-  buyerRisk: string;
-  examines: string;
-  delivers: string;
-  startingPoint: string;
-}[] = [
-  {
-    title: "AI-heavy SaaS",
-    motif: "saas",
-    buyerRisk:
-      "Customer security teams want confidence that customer-facing agents and copilots will not cross tenant boundaries, misuse tools, or behave unpredictably.",
-    examines:
-      "Tenant boundaries, RAG leakage, agent tool use, prompt injection exposure, and the actions a customer security review will ask about.",
-    delivers:
-      "Boundary test results, reproduction context, finding summaries, retest notes, and a customer-review packet.",
-    startingPoint: "Agent Safety Assessment",
-  },
-  {
-    title: "Finance and Insurance",
-    motif: "finance",
-    buyerRisk:
-      "AI assistants can touch customer records, policy documents, claims systems, and the approval paths behind regulated decisions.",
-    examines:
-      "Data exposure, retrieval paths, permission boundaries, approval bypass risk, and logging exposure across sensitive routes.",
-    delivers:
-      "Data exposure findings, route review, permission test results, remediation notes, and control mapping.",
-    startingPoint: "AI Data Exposure Assessment",
-  },
-  {
-    title: "Healthcare and Life Sciences",
-    motif: "healthcare",
-    buyerRisk:
-      "AI may touch protected health information, research data, clinical notes, lab systems, or sensitive operational records.",
-    examines:
-      "Context exposure, retrieval leakage, role boundaries, data handling, and the AI-assisted record paths privacy teams review.",
-    delivers:
-      "Exposure findings, data-flow notes, test results, remediation guidance, and review-ready reporting.",
-    startingPoint: "AI Readiness or AI Data Exposure Assessment",
-  },
-  {
-    title: "Regulated Enterprise",
-    motif: "regulated",
-    buyerRisk:
-      "Large organizations need confidence that AI controls hold across cloud, identity, data, applications, and regulated records.",
-    examines:
-      "System exposure, identity paths, cloud configuration, AI behavior, tool boundaries, and the findings behind each one.",
-    delivers:
-      "A compliance review pack with finding summaries, control mapping, remediation tracking, and retest status.",
-    startingPoint: "AI Compliance Evidence Package",
-  },
-  {
-    title: "Defense-Adjacent and Mission-Sensitive Teams",
-    motif: "defense",
-    buyerRisk:
-      "Sensitive AI workflows require defined scope, authorization-first testing, human review, and careful handling of findings.",
-    examines:
-      "Access boundaries, route control, agent behavior, data handling, and the approval paths a mission-sensitive review depends on.",
-    delivers:
-      "Custom finding packages, control mapping, retest notes, executive summaries, and reporting for mission-sensitive review.",
-    startingPoint: "Custom High-Risk AI Assessment",
-  },
-  {
-    title: "Systems Integrators and Consultancies",
-    motif: "integrators",
-    buyerRisk:
-      "Partners delivering AI for clients need repeatable checks before client handoff, procurement review, or production launch.",
-    examines:
-      "Client AI systems, RAG pipelines, agent tool use, route boundaries, and what a client review will expect.",
-    delivers:
-      "Partner-ready findings, assessment outputs, remediation tracking, client handoff documentation, and repeatable test artifacts.",
-    startingPoint: "Partner Pilot or Scoped Assessment",
-  },
-];
+/** Frameworks named on the industry pages, grouped; customer-specific rows are left to each page. */
+const STANDARDS = (() => {
+  const rows = new Map<string, { status: "mapped" | "reference"; sectors: string[] }>();
+  for (const ind of INDUSTRIES) {
+    for (const item of ind.controls.items) {
+      if (item.name.startsWith("Your ") || item.name.startsWith("Sector ")) continue;
+      const row = rows.get(item.name) ?? { status: item.status, sectors: [] };
+      row.sectors.push(ind.slug);
+      rows.set(item.name, row);
+    }
+  }
+  return [...rows.entries()]
+    .map(([name, row]) => ({ name, ...row }))
+    .sort((a, b) => (a.status === b.status ? b.sectors.length - a.sectors.length : a.status === "mapped" ? -1 : 1));
+})();
 
-const ASSESSMENTS = [
-  {
-    title: "AI Readiness Assessment",
-    description:
-      "For teams preparing to launch or expand customer-facing AI that want exposure, behavior, and finding gaps surfaced first.",
-  },
-  {
-    title: "Agent Safety Assessment",
-    description:
-      "For copilots, agents, and tool-using systems; focused on action boundaries and tool behavior under realistic conditions.",
-  },
-  {
-    title: "AI Data Exposure Assessment",
-    description:
-      "For teams concerned about sensitive context, retrieval, and the access paths an AI system can reach.",
-  },
-  {
-    title: "AI Compliance Evidence Package",
-    description:
-      "For organizations that need reviewable findings, control mapping, and retest records the compliance team can use.",
-  },
-  {
-    title: "Custom High-Risk AI Assessment",
-    description:
-      "For sensitive, regulated, or mission-critical environments with unique constraints and custom reporting needs.",
-  },
-];
+const PRODUCT_HREF = Object.fromEntries(PROJECTS.map((p) => [p.name, p.href]));
+const FEATURED = INDUSTRIES[0];
 
-/** Compact engagement flow for Solutions — the full path lives on Platform. */
-const FLOW = [
-  {
-    label: "Scope",
-    desc: "Define the environment, data paths, and boundaries to test.",
-  },
-  {
-    label: "Test",
-    desc: "Check the paths, agents, and access that matter in your environment.",
-  },
-  {
-    label: "Report",
-    desc: "Deliver organized findings your teams can review and act on.",
-  },
-  {
-    label: "Retest",
-    desc: "Re-check after fixes and when the system changes.",
-  },
-];
-
-const WHY_MYTHOS = [
-  {
-    title: "Environment-specific testing",
-    description:
-      "Checks are scoped to the systems, users, tools, and data paths that matter to each buyer environment.",
-  },
-  {
-    title: "Reviewable output",
-    description:
-      "Findings are organized so security, AI, compliance, and leadership teams can act on them.",
-  },
-  {
-    title: "Built for AI execution paths",
-    description:
-      "Mythos focuses on what AI can access, where requests move, and what actions can occur.",
-  },
-  {
-    title: "Human-accountable process",
-    description:
-      "Customer teams remain in control of approvals, fixes, and deployment decisions.",
-  },
-];
-
+/** Solutions hub — Launch Guide Section 09. */
 export default function SolutionsPage() {
   return (
-    <>
-      {/* Section 1 — Buyer hero ──────────────────────────────── */}
-      <section
-        className="relative isolate flex min-h-[68vh] items-center overflow-hidden border-b border-ivory/5 bg-obsidian"
-        aria-label="Page hero"
+    <PageMotion>
+      <ScenicHero
+        eyebrow={h.hero.eyebrow}
+        headline={h.hero.headline}
+        lede={h.hero.lede}
+        breadcrumbs={[{ label: "Home", href: "/" }]}
+        current="Solutions"
+        secondaryCta={{ label: "Find Your Environment", href: "#switcher-title" }}
+        planes={[
+          { src: OLYMPUS_MEDIA.cloudSea.src, className: "-inset-[3%]", position: "50% 60%", depth: 6, priority: true },
+          { src: OLYMPUS_MEDIA.mountains.src, className: "inset-x-0 top-[38%] h-[20%]", fit: "contain", position: "50% 100%", opacity: 0.75, depth: 8 },
+          { src: OLYMPUS_MEDIA.waterfallCliffs.src, className: "-right-[2%] bottom-[10%] h-[60%] w-[52%]", fit: "contain", position: "100% 100%", depth: 12, desktopOnly: true },
+          { src: OLYMPUS_MEDIA.sunbeams, className: "-inset-[3%]", blend: "screen", opacity: 0.45, position: "100% 0%", depth: 10 },
+        ]}
+        into="ivory"
+      />
+
+      {/* Switch destination by industry */}
+      <section data-surface="ivory" aria-labelledby="switcher-title" className="pb-24 pt-10">
+        <Container>
+          <SectionIntro id="switcher-title" eyebrow={h.switcher.eyebrow} title={<Accent text={h.switcher.title} />} lede={h.switcher.lede} caps />
+          <div className="mt-12">
+            <IndustrySwitcher industries={SWITCHER} />
+          </div>
+        </Container>
+      </section>
+
+      {/* Four questions, every sector */}
+      <Scene
+        surface="navy"
+        labelledBy="pillars-title"
+        layers={[{ src: OLYMPUS_MEDIA.cloudSea.src, className: "object-[50%_70%]", parallax: 4 }]}
+        scrim="linear-gradient(180deg, rgba(21,35,51,0.5) 0, rgba(21,35,51,0.9) clamp(14rem,22vw,22rem), rgba(21,35,51,0.94) 72%, rgba(21,35,51,0.72) 100%)"
+        top={{ into: "ivory", height: "clamp(8rem,14vw,14rem)" }}
+        bottom={{ into: "parchment", height: "clamp(7rem,12vw,12rem)" }}
+        className="pb-[clamp(10rem,15vw,15rem)] pt-[clamp(10rem,17vw,17rem)]"
       >
-        {/* Full-bleed background: cinematic looping clip + image fallback. */}
-        <HeroVideo
-          src="/video/solutions-hero-loop.mp4"
-          poster="/images/solutions/solutions-hero-bg.png"
-          className="absolute inset-0"
-        />
-
-        {/* Readability gradient: darkest on the far left, fully transparent by
-            the middle of the hero so the background art reads on the right. */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(90deg, rgba(18,21,23,0.95) 0%, rgba(18,21,23,0.9) 18%, rgba(18,21,23,0.72) 36%, rgba(18,21,23,0.45) 50%, rgba(18,21,23,0.18) 58%, rgba(18,21,23,0) 64%)",
-          }}
-        />
-        {/* Mobile/tablet: a gentle all-over scrim so the stacked copy stays
-            readable over the poster image. */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 lg:hidden"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(18,21,23,0.84) 0%, rgba(18,21,23,0.6) 45%, rgba(18,21,23,0.78) 100%)",
-          }}
-        />
-        <div
-          aria-hidden="true"
-          className="absolute bottom-0 left-0 right-0 h-px"
-          style={{
-            background:
-              "linear-gradient(90deg, transparent, rgba(184,130,63,0.25) 30%, rgba(184,130,63,0.25) 70%, transparent)",
-          }}
-        />
-        <Container className="relative z-10 py-20 lg:py-24">
-          <ScrollReveal className="max-w-3xl">
-            <p className={EYEBROW}>AI Risk by Environment</p>
-            <h1 className="mb-6 max-w-2xl text-4xl font-normal leading-tight text-ivory sm:text-5xl lg:text-[3.25rem]">
-              <span className="text-antique-gold">Different</span> AI deployments.
-              <br />
-              <span className="text-antique-gold">Evolving</span> risks.
-              <br />
-              <span className="text-antique-gold">Continuous</span> need for proof.
-            </h1>
-            <p className="mb-9 max-w-[30rem] text-base leading-relaxed text-muted-stone sm:text-lg">
-              Mythos examines AI where it actually runs: customer facing
-              surfaces, regulated records, and approval paths each buyer
-              environment puts at stake.
-            </p>
-            <Button href="#solution-cards" variant="primary" size="lg">
-              Find Your Starting Point
-            </Button>
-          </ScrollReveal>
-
-          <ScrollReveal y={16}>
-            <dl className="mt-14 flex flex-col gap-6 border-t border-ivory/8 pt-8 sm:flex-row sm:gap-0">
-              {ENV_POINTS.map((point, i) => (
-                <div
-                  key={point.label}
-                  className={cn(
-                    "flex items-start gap-3 sm:flex-1 sm:px-7",
-                    i === 0 && "sm:pl-0",
-                    i > 0 && "sm:border-l sm:border-ivory/10",
+        <Container>
+          <SectionIntro id="pillars-title" align="center" eyebrow={h.pillars.eyebrow} title={<Accent text={h.pillars.title} />} caps />
+          <ol className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4" data-reveal-group>
+            {h.pillars.items.map((p, i) => (
+              <li key={p.name} className="flex flex-col border border-rule bg-panel p-6">
+                <span className="font-display text-3xl leading-none text-champagne">{String(i + 1).padStart(2, "0")}</span>
+                <p className="display-caps mt-4 font-display text-2xl text-fg">{p.name}</p>
+                <p className="mt-2 text-[15px] leading-relaxed text-fg-muted">{p.body}</p>
+                <p className="mt-auto border-t border-rule pt-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-champagne">
+                  {PRODUCT_HREF[p.product] ? (
+                    <Link href={PRODUCT_HREF[p.product]} className="inline-flex items-center gap-1.5 hover:text-ivory">
+                      {p.product}
+                      <ArrowRight size={12} aria-hidden="true" />
+                    </Link>
+                  ) : (
+                    p.product
                   )}
-                >
-                  <point.icon
-                    className="mt-0.5 h-5 w-5 shrink-0 text-bronze"
-                    strokeWidth={1.5}
-                    aria-hidden="true"
-                  />
-                  <div>
-                    <dt className="text-sm font-semibold text-ivory">
-                      {point.label}
-                    </dt>
-                    <dd className="mt-1 text-sm leading-relaxed text-muted-stone">
-                      {point.desc}
-                    </dd>
-                  </div>
-                </div>
-              ))}
-            </dl>
-          </ScrollReveal>
-        </Container>
-      </section>
-
-      {/* Section 2 — The buyer problem ───────────────────────── */}
-      <section
-        className="border-b border-ivory/5 bg-graphite py-20 lg:py-28"
-        aria-labelledby="buyer-problem-heading"
-      >
-        <Container>
-          <ScrollReveal className="max-w-3xl">
-            <h2 id="buyer-problem-heading" className={HEADING}>
-              AI risk changes with the environment around it.
-            </h2>
-            <p className={BODY}>
-              The same AI feature can create different risks depending on the
-              data it touches, the users it serves, the tools it can call, and
-              the decisions it supports.
-            </p>
-          </ScrollReveal>
-
-          <StaggerReveal className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {BUYER_PROBLEMS.map((p) => (
-              <FeatureCard
-                key={p.title}
-                variant="problem"
-                title={p.title}
-                description={p.description}
-              />
+                </p>
+              </li>
             ))}
-          </StaggerReveal>
+          </ol>
         </Container>
-      </section>
+      </Scene>
 
-      {/* Section 3 — Buyer solution cards ────────────────────── */}
-      <section
-        id="solution-cards"
-        className="scroll-mt-24 border-b border-ivory/5 bg-obsidian py-20 lg:py-28"
-        aria-labelledby="solutions-heading"
-      >
+      {/* Architecture-to-sector bridge */}
+      <section data-surface="parchment" aria-labelledby="bridge-title" className="pb-24 pt-8">
         <Container>
-          <ScrollReveal className="max-w-3xl">
-            <p className={EYEBROW}>By Buyer Environment</p>
-            <h2 id="solutions-heading" className={HEADING}>
-              Find the lens that matches your environment.
-            </h2>
-            <p className={BODY}>
-              Each environment puts different data, users, tools, and approval
-              paths at stake. Find the one closest to yours to see what Mythos
-              examines and what your teams get back.
-            </p>
-          </ScrollReveal>
-
-          <StaggerReveal className="mt-12 grid gap-6 lg:grid-cols-2">
-            {SOLUTIONS.map((s) => (
-              <SolutionCard
-                key={s.title}
-                title={s.title}
-                motif={s.motif}
-                buyerRisk={s.buyerRisk}
-                examines={s.examines}
-                delivers={s.delivers}
-                startingPoint={s.startingPoint}
-              />
-            ))}
-          </StaggerReveal>
-        </Container>
-      </section>
-
-      {/* Section 4 — Assessment entry points ─────────────────── */}
-      <section
-        className="border-b border-ivory/5 bg-graphite py-20 lg:py-28"
-        aria-labelledby="assessments-heading"
-      >
-        <Container>
-          <ScrollReveal className="max-w-3xl">
-            <h2 id="assessments-heading" className={HEADING}>
-              Start with a scoped assessment.
-            </h2>
-            <p className={BODY}>
-              Assessments give teams a focused way to examine one AI surface,
-              agent, data path, or buyer environment before expanding into an
-              ongoing engagement.
-            </p>
-          </ScrollReveal>
-
-          <StaggerReveal className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-6">
-            {ASSESSMENTS.map((a, i) => (
-              <FeatureCard
-                key={a.title}
-                variant="default"
-                tag="Assessment"
-                title={a.title}
-                description={a.description}
-                className={cn("lg:col-span-2", i === 3 && "lg:col-start-2")}
-              />
-            ))}
-          </StaggerReveal>
-        </Container>
-      </section>
-
-      {/* Section 5 — Common engagement model (compact) ──────── */}
-      <section
-        className="border-b border-ivory/5 bg-obsidian py-20 lg:py-28"
-        aria-labelledby="engagement-model-heading"
-      >
-        <Container>
-          <ScrollReveal className="max-w-3xl">
-            <h2 id="engagement-model-heading" className={HEADING}>
-              One model, adapted to each environment.
-            </h2>
-            <p className={BODY}>
-              Every engagement starts with scope. Mythos maps the environment,
-              tests the paths that matter, records findings, supports
-              remediation review, and retests when changes occur.
-            </p>
-          </ScrollReveal>
-
-          <ScrollReveal y={16}>
-            <div
-              role="list"
-              aria-label="Mythos engagement flow"
-              className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-stretch"
-            >
-              {FLOW.map((step, i) => (
-                <Fragment key={step.label}>
-                  <div
-                    role="listitem"
-                    className="flex-1 border border-ivory/8 bg-charcoal p-5"
-                  >
-                    <p className="font-display text-lg font-normal text-antique-gold">
-                      {step.label}
-                    </p>
-                    <p className="mt-1.5 text-sm leading-relaxed text-muted-stone">
-                      {step.desc}
-                    </p>
-                  </div>
-                  {i < FLOW.length - 1 && (
-                    <ArrowRight
-                      className="mx-auto h-5 w-5 shrink-0 rotate-90 self-center text-bronze/60 sm:rotate-0"
-                      strokeWidth={1.5}
-                      aria-hidden="true"
-                    />
-                  )}
-                </Fragment>
-              ))}
+          <SectionIntro id="bridge-title" eyebrow={h.bridge.eyebrow} title={<Accent text={h.bridge.title} />} lede={h.bridge.lede} caps />
+          <div className="mt-12 border-y border-rule">
+            <div aria-hidden="true" className="hidden grid-cols-[1.1fr_1fr_1fr_1fr] gap-6 border-b border-rule py-3 text-[10px] font-semibold uppercase tracking-[0.22em] text-accent lg:grid">
+              <span>Sector</span>
+              <span>Athena</span>
+              <span>Achilles</span>
+              <span>SPINE</span>
             </div>
-          </ScrollReveal>
+            <ul className="divide-y divide-rule" data-reveal-group>
+              {SOLUTIONS_BRIDGE.map((row) => {
+                const ind = INDUSTRIES.find((i) => i.slug === row.slug)!;
+                return (
+                  <li key={row.slug} className="grid gap-x-6 gap-y-2 py-5 lg:grid-cols-[1.1fr_1fr_1fr_1fr] lg:py-4">
+                    <Link href={`/solutions/${row.slug}`} className="group self-start font-display text-xl leading-snug text-fg hover:text-accent">
+                      {ind.name}
+                      <ArrowRight size={13} aria-hidden="true" className="ml-1.5 inline align-baseline text-accent transition-transform group-hover:translate-x-0.5" />
+                    </Link>
+                    {(["athena", "achilles", "spine"] as const).map((k) => (
+                      <p key={k} className="text-[15px] leading-relaxed text-fg-muted">
+                        <span className="mr-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-fg lg:sr-only">
+                          {k === "spine" ? "SPINE" : k[0].toUpperCase() + k.slice(1)}
+                        </span>
+                        {row[k]}
+                      </p>
+                    ))}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+          <p className="mt-4 text-sm text-fg-muted">Where each part tends to carry the most weight — not a record of results.</p>
         </Container>
       </section>
 
-      {/* Section 6 — Why teams choose Mythos ─────────────────── */}
-      <section
-        className="relative overflow-hidden border-b border-ivory/5 bg-obsidian py-20 lg:py-28"
-        aria-labelledby="why-mythos-heading"
+      {/* Featured walkthrough — synthetic */}
+      <Scene
+        surface="charcoal"
+        labelledBy="featured-title"
+        layers={[
+          { src: OLYMPUS_MEDIA.cloudSea.src, className: "object-[50%_40%]", parallax: 4 },
+          { src: OLYMPUS_MEDIA.viaduct.src, className: "!object-contain object-[50%_100%] opacity-45", parallax: 6 },
+        ]}
+        scrim="linear-gradient(180deg, rgba(22,26,28,0.4) 0, rgba(22,26,28,0.88) clamp(14rem,22vw,22rem), rgba(22,26,28,0.93) 75%, rgba(22,26,28,0.78) 100%)"
+        top={{ into: "parchment", height: "clamp(8rem,14vw,14rem)" }}
+        bottom={{ into: "ivory", height: "clamp(7rem,12vw,12rem)" }}
+        className="pb-[clamp(10rem,15vw,15rem)] pt-[clamp(10rem,17vw,17rem)]"
       >
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: "url(/images/platform/deploy-assurance-bg.webp)",
-            opacity: 1,
-          }}
-        />
-        <div
-          aria-hidden="true"
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(18,21,23,0.5) 0%, rgba(18,21,23,0.18) 45%, rgba(18,21,23,0.55) 100%)",
-          }}
-        />
-        <Container className="relative z-10">
-          <ScrollReveal className="max-w-3xl">
-            <h2 id="why-mythos-heading" className={HEADING}>
-              Why teams choose Mythos.
-            </h2>
-          </ScrollReveal>
+        <Container className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
+          <div>
+            <SectionIntro id="featured-title" eyebrow={h.featured.eyebrow} title={<Accent text={h.featured.title} />} lede={h.featured.lede} caps />
+            <p className="mt-6 border-l-2 border-champagne/60 pl-4 text-[15px] leading-relaxed text-fg">{FEATURED.proof.scenario}</p>
+            <Link href={`/solutions/${FEATURED.slug}`} className="group mt-6 inline-flex items-center gap-2 text-[13px] font-semibold text-champagne">
+              More on {FEATURED.name}
+              <ArrowRight size={14} aria-hidden="true" className="transition-transform group-hover:translate-x-0.5" />
+            </Link>
+          </div>
+          <EvidenceTimeline events={FEATURED.proof.events} caption="Illustrative scenario · synthetic data" />
+        </Container>
+      </Scene>
 
-          <StaggerReveal className="mt-10 grid gap-x-12 gap-y-8 sm:grid-cols-2">
-            {WHY_MYTHOS.map((point) => (
-              <FeatureCard
-                key={point.title}
-                variant="principle"
-                title={point.title}
-                description={point.description}
-              />
-            ))}
-          </StaggerReveal>
+      {/* Frameworks by sector */}
+      <section data-surface="ivory" aria-labelledby="standards-title" className="pb-16 pt-8">
+        <Container className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
+          <SectionIntro id="standards-title" eyebrow={h.standards.eyebrow} title={<Accent text={h.standards.title} />} lede={h.standards.lede} caps />
+          <div>
+            <ul className="divide-y divide-rule border-y border-rule" data-reveal-group>
+              {STANDARDS.map((row) => (
+                <li key={row.name} className="grid gap-2 py-4 sm:grid-cols-[1fr_auto] sm:items-baseline sm:gap-x-6">
+                  <span className="font-display text-xl text-fg">{row.name}</span>
+                  <span
+                    className={cn(
+                      "self-start justify-self-start border px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] sm:justify-self-end",
+                      row.status === "mapped" ? "border-state-verified text-state-verified-ink" : "border-rule text-fg-muted",
+                    )}
+                  >
+                    {row.status === "mapped" ? "Mapping built" : "Referenced in scoping"}
+                  </span>
+                  <span className="flex flex-wrap gap-1.5 sm:col-span-2">
+                    <span className="sr-only">Comes up in: </span>
+                    {row.sectors.map((s) => (
+                      <span key={s} className="bg-panel px-2 py-0.5 text-xs text-fg-muted">
+                        {SHORT_NAME[s]}
+                      </span>
+                    ))}
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-4 flex items-start gap-2 text-sm text-fg-muted">
+              <BookOpenCheck size={16} aria-hidden="true" className="mt-0.5 shrink-0 text-accent" />
+              Mapped findings tag the controls they touch; nothing is marked as satisfied. Mythos does not certify compliance or issue attestations.
+            </p>
+          </div>
         </Container>
       </section>
-    </>
+
+      <ClosingVista
+        from="ivory"
+        title="Start with *the workflow that matters most.*"
+        body="Tell us your environment and the AI system you are most concerned about. We will suggest a scoped first engagement."
+        secondary={{ label: "Explore the Platform", href: "/platform" }}
+        layers={[
+          { src: OLYMPUS_MEDIA.panorama.src, className: "object-[55%_45%]", parallax: 4 },
+          { src: OLYMPUS_MEDIA.sunrays, blend: "screen", opacity: 0.6, className: "object-[55%_45%]" },
+        ]}
+      />
+    </PageMotion>
   );
 }
