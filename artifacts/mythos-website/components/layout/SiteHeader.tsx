@@ -198,7 +198,7 @@ export function SiteHeader() {
             <Link href="/" className="group flex items-center gap-2.5" aria-label="Mythos — home">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/images/logo-icon-small.png"
+                src="/assets/brand/monogram.webp"
                 alt=""
                 width={32}
                 height={32}
@@ -301,7 +301,7 @@ export function SiteHeader() {
           <div className="flex h-16 shrink-0 items-center justify-between border-b border-ivory/10 px-5">
             <p id="mobile-nav-title" className="flex items-center gap-2.5 font-display text-lg uppercase tracking-[0.2em] text-ivory">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/images/logo-icon-small.png" alt="" width={26} height={26} className="block" aria-hidden="true" />
+              <img src="/assets/brand/monogram.webp" alt="" width={26} height={26} className="block" aria-hidden="true" />
               Menu
             </p>
             <button

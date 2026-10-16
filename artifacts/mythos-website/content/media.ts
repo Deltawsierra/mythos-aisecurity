@@ -287,8 +287,7 @@ export const ATHENA_ICONS = {
   remediation: "/assets/athena/athena-remediation.webp",
 } as const;
 
+/** Default social card (homepage); per-page cards live in /assets/social/pages (see lib/social.ts). */
 export const SOCIAL_MEDIA = {
-  ogDefault: poster("/assets/social/og-default.jpg", 1200, 630),
-  ogEconomicExposure: poster("/assets/social/og-economic-exposure.jpg", 1200, 630),
-  ogSpine: poster("/assets/social/og-spine.jpg", 1200, 630),
+  ogDefault: poster("/assets/social/pages/home.jpg", 1200, 630),
 } as const;

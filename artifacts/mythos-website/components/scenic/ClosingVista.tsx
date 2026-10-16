@@ -44,7 +44,7 @@ export function ClosingVista({
         <div className="mx-auto max-w-3xl" data-reveal-group>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/mythos-crest-main.png"
+            src="/assets/brand/crest.webp"
             alt=""
             aria-hidden="true"
             width={80}

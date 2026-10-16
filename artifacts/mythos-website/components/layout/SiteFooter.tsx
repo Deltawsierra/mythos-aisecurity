@@ -33,7 +33,7 @@ export function SiteFooter() {
             <Link href="/" className="group mb-5 inline-flex items-center gap-3" aria-label="Mythos — home">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/images/footer-logo.png"
+                src="/assets/brand/crest-flat.webp"
                 alt=""
                 width={48}
                 height={48}

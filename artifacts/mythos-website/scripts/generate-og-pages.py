@@ -83,27 +83,39 @@ def wrap(words, f, max_w, space):
     return lines
 
 
-def parse(page_html):
-    h1 = re.search(r'<h1[^>]*id="page-title"[^>]*aria-label="([^"]*)"[^>]*>(.*?)</h1>', page_html, re.S)
+def tag_words(inner):
+    """Split headline HTML into (WORD, is_accent) pairs."""
+    tagged = []
+    for part in re.split(r'(<span class="accent-word[^"]*">.*?</span>)', inner, flags=re.S):
+        gold = part.startswith("<span")
+        for w in strip(part).upper().split():
+            tagged.append((w, gold))
+    return tagged
+
+
+def parse(page_html, home=False):
+    pat = r'<h1[^>]*id="home-hero-title"[^>]*aria-label="([^"]*)"[^>]*>(.*?)</h1>' if home else r'<h1[^>]*id="page-title"[^>]*aria-label="([^"]*)"[^>]*>(.*?)</h1>'
+    h1 = re.search(pat, page_html, re.S)
     if not h1:
         return None
     plain = htmllib.unescape(h1.group(1)).strip()
-    accent = " ".join(strip(m) for m in re.findall(r'<span class="accent-word[^"]*">(.*?)</span>', h1.group(2), re.S)).strip()
+    tagged = tag_words(h1.group(2))
     eyebrow = re.search(r'<p class="hero-rise mb-5[^"]*"[^>]*>(.*?)</p>', page_html, re.S)
     img = re.search(r'<img[^>]*fetchPriority="high"[^>]*>', page_html, re.S | re.I)
     src = re.search(r'src="([^"]+)"', img.group(0)).group(1) if img else None
     pos = re.search(r"object-position:\s*([\d.]+)%\s+([\d.]+)%", img.group(0)) if img else None
     return {
         "plain": plain,
-        "accent": accent,
+        "tagged": tagged,
         "eyebrow": strip(eyebrow.group(1)) if eyebrow else "",
         "src": src,
         "pos": (float(pos.group(1)) / 100, float(pos.group(2)) / 100) if pos else (0.5, 0.5),
     }
 
 
-crest = Image.open(os.path.join(public, "images", "mythos-crest-main.png")).convert("RGBA")
-crest = crest.resize((round(crest.width * 52 / crest.height), 52), Image.LANCZOS)
+crest_master = Image.open(os.path.join(public, "assets", "brand", "crest-512.png")).convert("RGBA")
+crest_master = crest_master.crop(crest_master.getbbox())
+crest = crest_master.resize((round(crest_master.width * 52 / crest_master.height), 52), Image.LANCZOS)
 f_brand = font("cormorant.woff2", 30, 600)
 f_eyebrow = font("inter.woff2", 17, 600)
 f_url = font("inter.woff2", 17, 500)
@@ -114,13 +126,16 @@ for root, _, files in os.walk(dist):
         continue
     route = os.path.relpath(root, dist).replace(os.sep, "/")
     route = "" if route == "." else route
-    if route in SKIP or route.startswith("_next"):
+    if route in SKIP and route != "" or route.startswith("_next"):
         continue
-    meta = parse(open(os.path.join(root, "index.html"), encoding="utf-8").read())
+    home = route == ""
+    meta = parse(open(os.path.join(root, "index.html"), encoding="utf-8").read(), home=home)
+    if home and meta:
+        meta.update(eyebrow="AI deployment assurance", src="/assets/olympus/panorama.webp", pos=(0.6, 0.4))
     if not meta or not meta["src"]:
         print("skip (no scenic hero):", route or "/")
         continue
-    key = route.replace("/", "-")
+    key = route.replace("/", "-") or "home"
     src_path = os.path.join(public, meta["src"].lstrip("/").replace("/", os.sep))
     bg = cover(Image.open(src_path).convert("RGB"), meta["pos"])
     if key in SHIFT:  # art that would sit under the headline moves right
@@ -128,6 +143,9 @@ for root, _, files in os.walk(dist):
         shifted.paste(bg, (SHIFT[key], 0))
         bg = shifted
     card = shade(bg)
+    if home:
+        big = crest_master.resize((round(crest_master.width * 400 / crest_master.height), 400), Image.LANCZOS)
+        card.alpha_composite(big, (W - big.width - 70, (H - big.height) // 2))
     d = ImageDraw.Draw(card)
 
     # Brand row
@@ -145,14 +163,10 @@ for root, _, files in os.walk(dist):
         x += f_eyebrow.getlength(ch) + 3.2
 
     # Headline: uppercase Cormorant, accent words in gold, sized to fit.
-    plain_up = meta["plain"].upper()
-    accent_up = meta["accent"].upper()
-    words = plain_up.split()
-    start = len(plain_up.split()) - len(accent_up.split()) if accent_up and plain_up.endswith(accent_up) else len(words)
-    tagged = [(w, i >= start) for i, w in enumerate(words)]
+    tagged = meta["tagged"]
     for size in (68, 62, 56, 50, 46, 42, 38):
         f_title = font("cormorant.woff2", size, 520)
-        lines = wrap(tagged, f_title, 700, size * 0.28)
+        lines = wrap(tagged, f_title, 620 if home else 700, size * 0.28)
         if len(lines) <= 4:
             break
     y = 238

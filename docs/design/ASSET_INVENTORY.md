@@ -28,7 +28,8 @@ The current live site does not reference anything in `/assets/` yet.
 | `transitions/` | Cloud, fog, dust, particle, haze, vignette layers + temple silhouette | Batch 10 |
 | `overlays/` | Atmospheric cloud, gold dust | Production v1 |
 | `textures/` | Footer stone | Batch 9 |
-| `social/` | Open Graph images (1200×630): default, Economic Exposure, SPINE | Fixes v2 (default), Targeted Fixes v4 |
+| `social/pages/` | 45 generated Open Graph cards (1200×630), one per page incl. `home.jpg` (the site default) | `scripts/generate-og-pages.py`, 16 Oct 2026 |
+| `brand/` | Crest (`crest.webp`, 288 px tall; `crest-512.png` for structured data), flat footer crest (`crest-flat.webp`), gold M monogram (`monogram.webp`). App icons live in `app/` (`favicon.ico` 16/32/48 from the small M, `icon.png` 192 gold M, `apple-icon.png` 180 crest on charcoal) | Brand R2 (`Mythos_Updated_Crest_Brand_and_UI_Groups_R2.zip`), staged 16 Oct 2026 |
 | `athena/` | Eight gold check-group medallions (480×480 WebP, transparent outside the medallion) | AthenaPageAssets (1)–(8), staged 14 Oct 2026 |
 | `olympus/` | Marble city (1672×941), cloud sea, cloud layer (alpha), panorama (1612×809, cropped) + its sun and mist layers, Batch 04 Athena (1024×1536 alpha); trimmed alpha cut-outs: cliff temple, viaduct, mountains, waterfall cliffs, evergreen cliff, sunbeams | Batch 03 candidates, Batch 04 R4 source — staged 16 Oct 2026 |
 | `causeway/` | Batch 06 layers on a 2048×1152 canvas (sky, mountains, gorge, bridge, sunbeams, mist) + Batch 07 journey medallions, halo, energy path | Batches 06/07 Integrated R1 — staged 16 Oct 2026 |
@@ -90,7 +91,9 @@ frame visible and should not be used. Team posters and loops need no crop.
 
 | File(s) | Reason |
 | --- | --- |
-| Batch 1 marks + wordmarks | Would replace the current crest; wordmarks are live Georgia `<text>`. Keep the existing logo. |
+| Batch 1 marks + wordmarks | Superseded by Brand R2 (the four-point crest the user confirmed on 16 Oct). The double-peak monogram is retired. |
+| Brand R2 SVG lockups, simplified vector crests, monochrome lockups | The SVG crest and wordmark are derived approximations pending brand sign-off, and the monochrome charcoal/ivory lockups still use the retired double-peak M. The site sets the MYTHOS wordmark as live text beside the raster crest instead. |
+| Brand R2 Groups 08–10 (nav, drawer, tokens) | The site's navigation and tokens were already integrated from R1; R2 only swaps branding inside the standalone demos. Reference only. |
 | Batch 1 divider, section marker | Divider near-invisible; superseded by Batch 11. |
 | Batch 2 (all) | Geometric placeholders; superseded by the Motion V1 hero. |
 | Batch 3 face, cracks overlay, fragments, cloud transition, energy line, step medallion | Placeholders or superseded by the Challenge sculpture and Batch 5. |
@@ -122,9 +125,10 @@ frame visible and should not be used. Team posters and loops need no crop.
 - `minotaur-engaged.webm` without the repeated final frame and the three held
   mid-loop frames.
 - Government / Mission art without the Capitol.
-- Platform OG (lifecycle order Discover → Understand → Test → Prove → Revalidate,
-  blended panel) and square social image (text box off the face, serif headline),
-  or generate them in code from the crest and approved art.
+- Square (1080×1080) social image. Per-page 1200×630 cards are now generated
+  in code from the crest and each page's hero.
+- An authoritative vector master of the detailed crest and the official
+  wordmark typography (Brand R2 delivers the crest as a 761×904 raster).
 - Transparent VP9 overlays (`hero-light-overlay`, `cta-mist-overlay`) don't render
   transparently in Safari. Load them only where supported.
 - 3D GLBs (marble fragments, lifecycle medallion, SPINE core) — not produced.

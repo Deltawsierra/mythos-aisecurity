@@ -397,6 +397,20 @@ Items from the open-issues audit that needed no decision:
   (6.5 MB), unreferenced `public/images/*`, `public/opengraph.jpg`, and the
   `three` / `@react-three/*` dependencies.
 
+## Brand R2 crest (16 Oct)
+
+The user confirmed the four-point crest family as the logo (the Launch
+Guide's double-peak monogram is retired). From the Brand R2 package:
+header gold M (`/assets/brand/monogram.webp`), footer flat crest
+(`crest-flat.webp`), closing and homepage crest (`crest.webp`), JSON-LD
+logo (`crest-512.png`), app icons in `app/` (`favicon.ico`, `icon.png`,
+`apple-icon.png`). The old ~320 KB PNGs and the placeholder
+`public/favicon.svg` are removed. Social cards were regenerated with the
+new crest; the homepage card (`social/pages/home.jpg`) replaces
+`og-default.jpg`, which still carried the old "Know · Test · Prove" line.
+The wordmark stays live text (Cormorant), so the unapproved R2 SVG
+wordmark isn't used.
+
 ## Not yet done
 
 - **Accessibility QA (Phase 9):** full keyboard / screen-reader / contrast

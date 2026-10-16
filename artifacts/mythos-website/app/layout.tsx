@@ -45,7 +45,7 @@ const STRUCTURED_DATA = {
       name: "Mythos AI Security",
       alternateName: "Mythos",
       url: "https://www.mythosaisecurity.com/",
-      logo: "https://www.mythosaisecurity.com/images/mythos-crest-main.png",
+      logo: "https://www.mythosaisecurity.com/assets/brand/crest-512.png",
       email: "info@mythosaisecurity.com",
       description: "AI deployment assurance: mapping, testing and evidence for AI systems with real access and authority.",
     },
@@ -77,16 +77,16 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/assets/social/og-default.jpg",
+        url: "/assets/social/pages/home.jpg",
         width: 1200,
         height: 630,
-        alt: "Mythos AI Security — AI Deployment Assurance",
+        alt: "Human Ambition Deserves a Stronger Guardian — Mythos AI Security",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    images: ["/assets/social/og-default.jpg"],
+    images: ["/assets/social/pages/home.jpg"],
   },
 };
 
