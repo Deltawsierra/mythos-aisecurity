@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Check, Minus } from "lucide-react";
+import { ArrowRight, Check, Hourglass, Minus } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Accent } from "@/components/ui/Headline";
 import { Button } from "@/components/ui/Button";
@@ -10,76 +10,26 @@ import { ScenicHero } from "@/components/scenic/ScenicHero";
 import { Scene } from "@/components/scenic/Scene";
 import { ClosingVista } from "@/components/scenic/ClosingVista";
 import { Faq } from "@/components/platform/Faq";
+import { ASSESSMENTS, CONSULT_ASSESSMENTS, EXPAND, INCLUDED, MOTIONS, PRICING_FAQ, PRICING_HERO, QUOTE_FACTORS, SUA, TIERS } from "@/content/pricing";
 import { OLYMPUS_MEDIA } from "@/content/media";
 
 export const metadata: Metadata = {
   title: "Pricing — Assurance That Scales With Your AI Estate",
   description:
-    "Two ways to work with Mythos — a scoped assessment or continuing assurance — what determines price, what is included and the questions procurement asks. Prices are quoted after scoping.",
+    "Assess, assure, expand: scoped assessments, annual assurance priced by Systems Under Assurance, and what changes a quote. Prices are quoted after scoping.",
   alternates: { canonical: "/pricing/" },
 };
 
 /*
- * Pricing (Launch Guide §13). The price book is not signed (decision D03), so
- * no figure, tier name or engagement name is published — only pathways,
- * scoping dimensions, inclusions and the guide's non-numeric FAQ.
+ * Pricing (Launch Guide §13) with the structure of the internal Pricing
+ * Strategy. No figures until the price book is signed (D03) — see
+ * content/pricing.ts. Names and the SUA definition are pending sign-off
+ * (claim pricing.offer-structure).
  */
 
 const ASSESSMENT = { label: "Request Assessment", href: "/contact?intent=assessment" };
 const ANNUAL = { label: "Discuss Annual Assurance", href: "/contact?intent=assessment" };
-
-const PATHWAYS = [
-  {
-    name: "Scoped assessment",
-    lede: "One defined AI system or workflow, one decision to support.",
-    points: ["A written scope and authorization", "Mapping, testing and recorded evidence", "Findings, a remediation plan and one retest", "Decision support for your release owner"],
-    cta: ASSESSMENT,
-  },
-  {
-    name: "Continuing assurance",
-    lede: "For systems that keep changing after the first assessment.",
-    points: ["Priced by systems under assurance", "Reassessment when agreed changes happen", "Targeted retests rather than starting over", "Evidence kept current between reviews"],
-    cta: ANNUAL,
-  },
-];
-
-const DIMENSIONS = [
-  { name: "Systems and workflows", body: "How many AI systems, and how many workflows within them." },
-  { name: "People, roles and tools", body: "Users, roles, tools and the actions those tools can take." },
-  { name: "Model routes", body: "Providers, models and fallbacks behind each workflow." },
-  { name: "Data sources and sensitivity", body: "What the AI can read, and how sensitive it is." },
-  { name: "Evidence required", body: "What your reviewers need to see, including any regulatory controls in scope." },
-  { name: "Testing and retest cadence", body: "Test volume, retests and — for continuing assurance — how often changes are reassessed." },
-];
-
-const INCLUDED: { name: string; assessment: boolean; continuing: boolean }[] = [
-  { name: "Written scope and authorization", assessment: true, continuing: true },
-  { name: "System and access mapping", assessment: true, continuing: true },
-  { name: "Behavior and permission testing", assessment: true, continuing: true },
-  { name: "Evidence pack and receipts", assessment: true, continuing: true },
-  { name: "Remediation guidance", assessment: true, continuing: true },
-  { name: "Retest", assessment: true, continuing: true },
-  { name: "Evidence states kept current after changes", assessment: false, continuing: true },
-];
-
-const EXPANSIONS = [
-  "An additional system or workflow",
-  "Another vendor route or toolset",
-  "A further test or retest sprint",
-  "An executive briefing",
-  "Regulated-review evidence packaging",
-  "Physical AI horizon work — only if separately scoped and technically reviewed",
-];
-
-const FAQ = [
-  { q: "Why aren’t prices listed?", a: "Because every engagement is scoped first. You get a quote after a scoping conversation, based on the factors on this page." },
-  { q: "Can we start with one assessment?", a: "Yes. A scoped assessment defines the systems, workflows, evidence needs and authorization boundaries for a specific review decision." },
-  { q: "What changes under ongoing assurance?", a: "Recurring work revisits significant changes in models, prompts, data sources, tools, permissions and business workflows, with targeted retesting where relevant." },
-  { q: "Do you certify AI as safe?", a: "No. Mythos provides evidence, testing, findings and decision support within an agreed scope. It does not guarantee safety or issue an independent regulatory certification." },
-  { q: "What determines price?", a: "System count, workflow complexity, role and tool access, data sensitivity, deployment conditions, required evidence, test volume and retest cadence." },
-  { q: "Can you support a regulated or high-consequence environment?", a: "The scope can include high-assurance needs, additional review and evidence requirements; applicable deployment constraints are decided during scoping." },
-  { q: "Is Hermes physical AI certification included?", a: "No. Physical AI scope must be defined and technically reviewed; Mythos does not promise vehicle safety certification." },
-];
+const QUOTED = "Quoted after scoping";
 
 const PROOF: NextLink[] = [
   { eyebrow: "Example Report", title: "A synthetic report, section by section", href: "/example-report" },
@@ -87,14 +37,14 @@ const PROOF: NextLink[] = [
   { eyebrow: "How Engagement Starts", title: "From inquiry to evidence", href: "/engagement" },
 ];
 
-/** Pricing — Launch Guide §13, without figures until the price book is signed. */
+/** Pricing — Launch Guide §13. */
 export default function PricingPage() {
   return (
     <PageMotion>
       <ScenicHero
-        eyebrow="Pricing"
-        headline="Assurance That Scales With *Your AI Estate.*"
-        lede="Start with one defined system or workflow. Expand assurance as models, tools, permissions and business consequence grow. Every engagement begins with a scoped review and a clear evidence plan."
+        eyebrow={PRICING_HERO.eyebrow}
+        headline={PRICING_HERO.headline}
+        lede={PRICING_HERO.lede}
         breadcrumbs={[{ label: "Home", href: "/" }]}
         current="Pricing"
         primaryCta={ASSESSMENT}
@@ -106,80 +56,209 @@ export default function PricingPage() {
         into="ivory"
       />
 
-      {/* Pathways */}
-      <section data-surface="ivory" aria-labelledby="paths-title" className="pb-24 pt-10">
+      {/* Assess → Assure → Expand */}
+      <section data-surface="ivory" aria-labelledby="motions-title" className="pb-24 pt-10">
         <Container>
-          <SectionIntro id="paths-title" eyebrow="Two ways to start" title={<Accent text="An assessment, *or assurance that continues.*" />} lede="Prices are quoted after a scoping conversation." caps />
-          <ul className="mt-12 grid gap-4 lg:grid-cols-2" data-reveal-group>
-            {PATHWAYS.map((p) => (
-              <li key={p.name} className="flex flex-col border border-antique-gold/40 bg-panel p-8 shadow-[0_30px_60px_-44px_rgba(22,26,28,0.55)]">
-                <p className="display-caps font-display text-3xl text-fg">{p.name}</p>
-                <p className="mt-2 text-[16px] leading-relaxed text-fg-muted">{p.lede}</p>
-                <ul className="mt-6 grid gap-2.5">
-                  {p.points.map((pt) => (
-                    <li key={pt} className="flex items-start gap-3 text-[15px] text-fg">
-                      <Check size={16} aria-hidden="true" className="mt-0.5 shrink-0 text-state-verified-ink" />
-                      {pt}
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-auto pt-8">
-                  <p className="mb-4 text-sm font-semibold text-fg">Quoted after scoping</p>
-                  <Button href={p.cta.href} variant="primary" size="lg" arrow>
-                    {p.cta.label}
+          <SectionIntro id="motions-title" eyebrow="How pricing works" title={<Accent text="Assess. Assure. *Expand.*" />} lede="Three ways to buy, in the order most organizations use them." caps />
+          <ol className="mt-12 grid gap-4 lg:grid-cols-3" data-reveal-group>
+            {MOTIONS.map((m, i) => (
+              <li key={m.id} className="relative flex flex-col border border-rule bg-panel p-7">
+                <span className="font-display text-3xl leading-none text-accent">{String(i + 1).padStart(2, "0")}</span>
+                <p className="display-caps mt-4 font-display text-3xl text-fg">{m.name}</p>
+                <p className="mt-1 text-[15px] font-semibold text-fg">{m.lede}</p>
+                <p className="mt-3 text-[15px] leading-relaxed text-fg-muted">{m.body}</p>
+                <p className="mt-auto flex items-start gap-2 border-t border-rule pt-4 text-sm text-fg-muted">
+                  <ArrowRight size={14} aria-hidden="true" className="mt-0.5 shrink-0 text-accent" />
+                  {m.next}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </Container>
+      </section>
+
+      {/* System Under Assurance */}
+      <section data-surface="parchment" aria-labelledby="sua-title" className="py-24 lg:py-28">
+        <Container className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+          <div>
+            <SectionIntro id="sua-title" eyebrow="The unit of assurance" title={<Accent text={SUA.title} />} caps />
+            <p className="mt-6 text-[17px] leading-relaxed text-fg">{SUA.body}</p>
+          </div>
+          <div className="lg:pt-10">
+            <ul className="grid gap-3" data-reveal-group>
+              {SUA.points.map((p) => (
+                <li key={p} className="border-l-2 border-accent/60 bg-panel px-5 py-4 text-[15px] leading-relaxed text-fg">
+                  {p}
+                </li>
+              ))}
+            </ul>
+            <p className="mt-4 text-sm text-fg-muted">{SUA.note}</p>
+          </div>
+        </Container>
+      </section>
+
+      {/* Assess */}
+      <section data-surface="ivory" aria-labelledby="assess-title" className="py-24">
+        <Container>
+          <SectionIntro id="assess-title" eyebrow="Assess" title={<Accent text="Four ways *to start.*" />} lede="One defined system, one decision. Pricing is per scoped engagement." caps />
+          <ul className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-4" data-reveal-group>
+            {ASSESSMENTS.map((a) => (
+              <li key={a.name} className="flex flex-col border border-antique-gold/40 bg-panel p-6 shadow-[0_30px_60px_-46px_rgba(22,26,28,0.55)]">
+                <p className="display-caps font-display text-2xl text-fg">{a.name}</p>
+                <p className="mt-2 text-[15px] leading-relaxed text-fg">{a.fit}</p>
+                <p className="mt-3 text-sm leading-relaxed text-fg-muted">
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-fg">You receive · </span>
+                  {a.outputs}
+                </p>
+                <div className="mt-auto pt-6">
+                  <p className="mb-3 text-sm font-semibold text-fg">{a.price ?? QUOTED}</p>
+                  <Button href={ASSESSMENT.href} variant="secondary" size="sm" arrow>
+                    {a.cta}
                   </Button>
                 </div>
               </li>
             ))}
           </ul>
+          <div className="mt-8 grid gap-3 md:grid-cols-2">
+            {CONSULT_ASSESSMENTS.map((c) => (
+              <div key={c.name} className="border border-rule px-5 py-4">
+                <p className="flex flex-wrap items-baseline justify-between gap-2">
+                  <span className="font-display text-xl text-fg">{c.name}</span>
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-fg-muted">By consultation</span>
+                </p>
+                <p className="mt-1.5 text-sm leading-relaxed text-fg-muted">{c.body}</p>
+              </div>
+            ))}
+          </div>
         </Container>
       </section>
 
-      {/* What determines price */}
-      <section data-surface="parchment" aria-labelledby="dimensions-title" className="py-24 lg:py-28">
+      {/* Assure: annual tiers */}
+      <Scene
+        surface="navy"
+        labelledBy="assure-title"
+        layers={[{ src: OLYMPUS_MEDIA.cloudSea.src, className: "object-[50%_70%]", parallax: 4 }]}
+        scrim="linear-gradient(180deg, rgba(21,35,51,0.5) 0, rgba(21,35,51,0.9) clamp(14rem,22vw,22rem), rgba(21,35,51,0.94) 72%, rgba(21,35,51,0.72) 100%)"
+        top={{ into: "ivory", height: "clamp(8rem,14vw,14rem)" }}
+        bottom={{ into: "parchment", height: "clamp(7rem,12vw,12rem)" }}
+        className="pb-[clamp(10rem,15vw,15rem)] pt-[clamp(10rem,17vw,17rem)]"
+      >
         <Container>
-          <SectionIntro id="dimensions-title" eyebrow="What determines price" title={<Accent text="Scope, *not scan counts.*" />} caps />
+          <SectionIntro
+            id="assure-title"
+            eyebrow="Assure"
+            title={<Accent text="Annual assurance, *by Systems Under Assurance.*" />}
+            lede="Each tier lists what is available today and what is planned. Planned items are not part of a tier until they ship."
+            caps
+          />
+          <ul className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3" data-reveal-group>
+            {TIERS.map((t) => (
+              <li key={t.name} className="flex flex-col border border-rule bg-panel p-6">
+                <div className="flex flex-wrap items-baseline justify-between gap-2">
+                  <p className="display-caps font-display text-2xl text-champagne">{t.name}</p>
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-fg-muted">{t.scope}</span>
+                </div>
+                <p className="mt-2 text-[15px] leading-relaxed text-fg">{t.fit}</p>
+                <p className="mt-5 text-[10px] font-semibold uppercase tracking-[0.2em] text-fg">Available today</p>
+                <ul className="mt-2 grid gap-1.5 text-sm text-fg">
+                  {t.available.map((x) => (
+                    <li key={x} className="flex items-start gap-2">
+                      <Check size={14} aria-hidden="true" className="mt-0.5 shrink-0 text-state-verified" />
+                      {x}
+                    </li>
+                  ))}
+                </ul>
+                {t.planned.length > 0 && (
+                  <>
+                    <p className="mt-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-fg-muted">Planned</p>
+                    <ul className="mt-2 grid gap-1.5 text-sm text-fg-muted">
+                      {t.planned.map((x) => (
+                        <li key={x} className="flex items-start gap-2">
+                          <Hourglass size={13} aria-hidden="true" className="mt-0.5 shrink-0 text-state-stale" />
+                          {x}
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                )}
+                <p className="mt-auto border-t border-rule pt-4 text-sm font-semibold text-fg">{t.price ?? (t.scope === "Custom" ? "Custom proposal" : QUOTED)}</p>
+              </li>
+            ))}
+            <li className="flex flex-col justify-center border border-dashed border-champagne/40 p-6">
+              <p className="font-display text-2xl text-fg">Not sure which tier?</p>
+              <p className="mt-2 text-[15px] leading-relaxed text-fg-muted">Start with one assessment, or tell us how many systems matter and how often they change.</p>
+              <div className="mt-5">
+                <Button href={ANNUAL.href} variant="primary" size="sm" arrow>
+                  Talk to an Assurance Specialist
+                </Button>
+              </div>
+            </li>
+          </ul>
+        </Container>
+      </Scene>
+
+      {/* Expand */}
+      <section data-surface="parchment" aria-labelledby="expand-title" className="pb-24 pt-8">
+        <Container className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+          <div>
+            <SectionIntro id="expand-title" eyebrow="Expand" title={<Accent text={EXPAND.title} />} lede={EXPAND.lede} caps />
+            <ul className="mt-8 flex flex-wrap gap-2">
+              {EXPAND.items.map((x) => (
+                <li key={x} className="border border-rule bg-panel px-3 py-1.5 text-[14px] text-fg">
+                  {x}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="border border-antique-gold/50 bg-panel p-8 lg:mt-[4.5rem]">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-accent">Design partners</p>
+            <p className="mt-3 font-display text-2xl leading-snug text-fg">{EXPAND.partners}</p>
+            <div className="mt-6">
+              <Button href={ANNUAL.href} variant="secondary" size="sm" arrow>
+                Start a Conversation
+              </Button>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* What changes a quote */}
+      <section data-surface="ivory" aria-labelledby="factors-title" className="py-24">
+        <Container>
+          <SectionIntro id="factors-title" eyebrow="What changes your quote" title={<Accent text="Scope, *not scan counts.*" />} lede="Every quote begins with an authorized scope and a documented evidence plan." caps />
           <ul className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3" data-reveal-group>
-            {DIMENSIONS.map((d) => (
-              <li key={d.name} className="border border-rule bg-panel p-6">
-                <p className="font-display text-2xl text-fg">{d.name}</p>
-                <p className="mt-2 text-[15px] leading-relaxed text-fg-muted">{d.body}</p>
+            {QUOTE_FACTORS.map((f) => (
+              <li key={f.name} className="border border-rule bg-panel p-6">
+                <p className="font-display text-2xl text-fg">{f.name}</p>
+                <p className="mt-2 text-[15px] leading-relaxed text-fg-muted">{f.body}</p>
               </li>
             ))}
           </ul>
         </Container>
       </section>
 
-      {/* Included */}
+      {/* What is included */}
       <Scene
-        surface="navy"
+        surface="charcoal"
         labelledBy="included-title"
-        layers={[{ src: OLYMPUS_MEDIA.cloudSea.src, className: "object-[50%_70%]", parallax: 4 }]}
-        scrim="linear-gradient(180deg, rgba(21,35,51,0.5) 0, rgba(21,35,51,0.9) clamp(14rem,22vw,22rem), rgba(21,35,51,0.94) 72%, rgba(21,35,51,0.72) 100%)"
-        top={{ into: "parchment", height: "clamp(8rem,14vw,14rem)" }}
+        layers={[
+          { src: OLYMPUS_MEDIA.cloudSea.src, className: "object-[50%_40%]", parallax: 4 },
+          { src: OLYMPUS_MEDIA.viaduct.src, className: "!object-contain object-[50%_100%] opacity-45", parallax: 6 },
+        ]}
+        scrim="linear-gradient(180deg, rgba(22,26,28,0.4) 0, rgba(22,26,28,0.88) clamp(14rem,22vw,22rem), rgba(22,26,28,0.93) 75%, rgba(22,26,28,0.78) 100%)"
+        top={{ into: "ivory", height: "clamp(8rem,14vw,14rem)" }}
         bottom={{ into: "ivory", height: "clamp(7rem,12vw,12rem)" }}
         className="pb-[clamp(10rem,15vw,15rem)] pt-[clamp(10rem,17vw,17rem)]"
       >
         <Container className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
-          <div>
-            <SectionIntro id="included-title" eyebrow="What is included" title={<Accent text="The same evidence, *kept current.*" />} caps />
-            <p className="mt-6 text-[15px] leading-relaxed text-fg-muted">Optional scope can be added to either pathway:</p>
-            <ul className="mt-3 grid gap-1.5 text-[15px] text-fg">
-              {EXPANSIONS.map((e) => (
-                <li key={e} className="flex gap-2.5">
-                  <span aria-hidden="true" className="mt-2.5 h-px w-3 shrink-0 bg-champagne" />
-                  {e}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <SectionIntro id="included-title" eyebrow="What is included" title={<Accent text="The same evidence, *kept current.*" />} lede="Methodology and evidence integrity are never premium extras — they come with every engagement." caps />
           <table className="w-full border-collapse text-left">
-            <caption className="sr-only">What each pathway includes</caption>
+            <caption className="sr-only">What assessments and annual assurance include</caption>
             <thead>
               <tr className="border-b border-rule text-[10px] font-semibold uppercase tracking-[0.2em] text-champagne">
                 <th scope="col" className="py-3 pr-4 font-semibold">Included</th>
-                <th scope="col" className="w-28 py-3 text-center font-semibold">Assessment</th>
-                <th scope="col" className="w-28 py-3 text-center font-semibold">Continuing</th>
+                <th scope="col" className="w-24 py-3 text-center font-semibold sm:w-28">Assess</th>
+                <th scope="col" className="w-24 py-3 text-center font-semibold sm:w-28">Assure</th>
               </tr>
             </thead>
             <tbody>
@@ -188,7 +267,7 @@ export default function PricingPage() {
                   <th scope="row" className="py-3.5 pr-4 text-[15px] font-normal text-fg">
                     {row.name}
                   </th>
-                  {[row.assessment, row.continuing].map((on, i) => (
+                  {[row.assess, row.assure].map((on, i) => (
                     <td key={i} className="py-3.5 text-center">
                       {on ? <Check size={17} aria-label="Included" className="mx-auto text-state-verified" /> : <Minus size={17} aria-label="Not included" className="mx-auto text-fg-muted" />}
                     </td>
@@ -210,16 +289,16 @@ export default function PricingPage() {
       <section data-surface="ivory" aria-labelledby="faq-title" className="pb-16 pt-16">
         <Container className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
           <SectionIntro id="faq-title" eyebrow="Procurement questions" title={<Accent text="Asked *before every engagement.*" />} caps />
-          <Faq items={FAQ} />
+          <Faq items={PRICING_FAQ} />
         </Container>
       </section>
 
       <ClosingVista
         from="ivory"
-        title="Tell us your systems, *scope and evidence needs.*"
-        body="Ask for a scoped assessment or for continuing-assurance scoping."
+        title="Make your next AI decision *with evidence.*"
+        body="Tell us the system you need reviewed, what it can reach or do, and the decision your team is preparing to make. We will propose an assessment or an assurance path."
         primary={ASSESSMENT}
-        secondary={ANNUAL}
+        secondary={{ label: "Talk to an Expert", href: "/contact?intent=general" }}
         layers={[
           { src: OLYMPUS_MEDIA.panorama.src, className: "object-[55%_45%]", parallax: 4 },
           { src: OLYMPUS_MEDIA.sunrays, blend: "screen", opacity: 0.6, className: "object-[55%_45%]" },

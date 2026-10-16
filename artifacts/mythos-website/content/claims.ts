@@ -444,6 +444,14 @@ export const CLAIMS: Claim[] = [
     usedIn: ["/platform/achilles"],
   },
   {
+    id: "pricing.offer-structure",
+    text: "Assess / Assure / Expand; System Under Assurance definition; assessment names (AI Readiness, AI Data Exposure, Agent Safety, Deployment Assurance, High-Risk / Regulated, Incident Evidence); tier names and scopes (Launch 1, Growth 2-4, Enterprise 5-10, Enterprise Portfolio 10-25+, Mission custom); design-partner line",
+    status: "unverified",
+    source: "Pricing Strategy: Public vs Consultation (internal, 16 Oct 2026), from the 7 Oct Pricing & Engagement Guide",
+    usedIn: ["/pricing"],
+    note: "Release blocker until the price book is signed (D03). No figures are shown; once signed, set `price` in content/pricing.ts. Tier capabilities are split into available today vs planned.",
+  },
+  {
     id: "usecases.effective-access-declared",
     text: "effective access is computed from the access configuration supplied; cloud, identity and repository connectors need customer credentials",
     status: "unverified",

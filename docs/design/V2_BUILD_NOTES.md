@@ -344,6 +344,17 @@ partners, open roles, milestones or people are named; nothing is certified.
   D03). Two pathways, what determines price, inclusion matrix, optional
   scope, the guide's non-numeric FAQ ("Why aren't prices listed?").
 - `ScenicHero` gained `compact` and `longHeadline`.
+- **Pricing restructured** to the internal Pricing Strategy (Public vs
+  Consultation, 16 Oct): Assess → Assure → Expand, the System Under
+  Assurance definition, four flagship assessments plus two by consultation,
+  five annual tiers with "available today" vs "planned" capabilities, an
+  expansion menu without rates, a design-partner line, quote factors,
+  inclusion matrix and the strategy's FAQ (rewritten where it overclaimed).
+  Copy lives in `content/pricing.ts`; every `price` is null and renders
+  "Quoted after scoping". Once the price book is signed, set the signed
+  "from" prices there and retire claim `pricing.offer-structure`. Private
+  items (specialist catalog, extra-system rates, design-partner terms,
+  credits) stay off the site.
 
 Still open from this phase: approve UC11/UC12 publication; Careers is in the
 nav with no roles (guide gate "only open roles"); v1 components/data for use
