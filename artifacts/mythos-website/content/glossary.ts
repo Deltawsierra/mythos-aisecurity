@@ -1,0 +1,57 @@
+import type { GlossaryTerm } from "@/components/resources/GlossaryIndex";
+
+/**
+ * AI assurance glossary (Launch Guide §11, /glossary). Definitions follow the
+ * 16 Oct fact-check (SPINE Technical Foundation spec, Session Work Summary,
+ * Beyond the Finding §13.3, services agreement). Planned things are defined
+ * as planned; "Held" and "Revalidated" are explained without implying
+ * runtime blocking or a separate state.
+ */
+export const GLOSSARY: GlossaryTerm[] = [
+  { term: "Action Gate", plain: "A planned, optional runtime component that would decide whether a high-impact action is allowed, needs approval, is denied or is escalated — before it runs.", technical: "Not built. Mythos assessments do not block live production actions today.", href: "/platform/achilles" },
+  { term: "AI-BOM", plain: "A bill of materials for an AI system: its models, providers, datasets, tools and dependencies.", href: "/platform/athena" },
+  { term: "Assurance claim", plain: "A specific, checkable statement about an AI system — for example, “refunds go only to the original payment method” — tied to the configuration and policy version it was tested against.", href: "/platform/spine" },
+  { term: "Assurance Receipt", plain: "A machine-readable record of where a result came from: subject, configuration, policy, evaluator, evidence and validity. It is hashed so any later change can be detected.", technical: "A receipt proves provenance, not that the conclusion is true. Receipts are hashed today; signing is planned.", href: "/platform/evidence" },
+  { term: "Authority", plain: "Permission to make a specific decision or cause a specific effect under defined conditions." },
+  { term: "Authorized Scope", plain: "The written, agreed definition of what may be tested and how: in- and out-of-scope targets, prohibited actions, testing windows, contacts, testing mode and constraints.", href: "/engagement" },
+  { term: "Benign control", plain: "A legitimate test case that checks a defense still allows the work it should allow." },
+  { term: "Change intelligence", plain: "Detecting a change, finding the claims it affects, setting them aside, planning the smallest retest and confirming them again.", technical: "Partly built: evidence ageing, decision recalculation and drift triggers are in place.", href: "/platform/continuous-assurance" },
+  { term: "Confidence", plain: "How sure a finding is — confirmed, likely or suspicious. Unknown confidence is left blank, never shown as zero." },
+  { term: "Contradicted", plain: "A newer observation or test conflicts with a claim. The claim can no longer be relied on as it stands." },
+  { term: "Coverage", plain: "The part of a system or its behavior that was actually observed or tested. What lies outside it is untested — not safe." },
+  { term: "Declared", plain: "What a customer, vendor, document, contract or configuration says is true. Not yet checked." },
+  { term: "Deployment decision", plain: "Mythos’s evidence-backed recommendation in one of six states: Ready, Ready with restrictions, Requires additional evidence, Requires remediation, Not recommended, or Paused.", technical: "It never defaults to Ready. The recommendation supports a decision your release owner makes.", href: "/outputs" },
+  { term: "Effect", plain: "A consequential result: a disclosure, an external write, a permission change, a payment or a disruption." },
+  { term: "Effect ledger", plain: "A hash-chained record of the effects observed during Achilles testing.", href: "/platform/achilles" },
+  { term: "Effective access", plain: "Everything an identity can actually reach once inherited and indirect permissions are followed.", technical: "Computed today from declared configuration; live identity connectors need credentials to be wired in." },
+  { term: "Evidence class", plain: "How strong a piece of evidence is, from technically verified down to not documented." },
+  { term: "Evidence pack", plain: "The evidence behind a set of findings, bundled for review.", technical: "Achilles engine evidence packs are signed and can be verified offline." },
+  { term: "Evidence root", plain: "One hash that summarizes every evidence artifact behind a receipt." },
+  { term: "False block", plain: "A legitimate action wrongly stopped by a control.", technical: "Tracking false blocks is in development." },
+  { term: "False closure", plain: "Treating an issue as fixed before the repair has been verified." },
+  { term: "Failsafe", plain: "Operator controls that halt engine work at three levels — pause, stand down and terminate. The two most serious need two separate keys." },
+  { term: "Held", plain: "Paused pending evidence or review — a decision marked Paused, or a retest that could not complete.", technical: "Not a claim state, and not a runtime block on live actions." },
+  { term: "Incident Evidence Pack", plain: "Everything an incident review needs — what happened, and under which authority — with its provenance intact." },
+  { term: "Invalidation", plain: "Withdrawing reliance on a claim because a condition it depended on changed.", href: "/platform/spine" },
+  { term: "MCP", plain: "Model Context Protocol — an interface that connects AI applications to tools and data." },
+  { term: "Observed", plain: "What Mythos actually saw — in configuration, identity systems, telemetry or behavior — within the tested scope. It does not imply proof of the whole system." },
+  { term: "Principal", plain: "Any identity that can hold authority: a person, service account, workload or agent." },
+  { term: "Provenance", plain: "Where a fact, artifact or observation came from and how it was produced." },
+  { term: "Ready with restrictions", plain: "Can proceed only under stated conditions, with the open unknowns shown alongside." },
+  { term: "Residual risk", plain: "Risk that remains after a fix, restriction or other control." },
+  { term: "Retest", plain: "Re-running the original failure, variations of it and the legitimate workflow after a fix. A cached pass is not a retest." },
+  { term: "Revalidated", plain: "Reviewed and supported again under current, versioned conditions — in SPINE, a new version of the claim replaces the one that was set aside." },
+  { term: "Rules of engagement", plain: "The operating limits attached to a scope: testing windows, escalation contacts, safety controls and prohibited actions." },
+  { term: "Scope lock", plain: "The point where the Authorized Scope is agreed in writing and the testing engine enforces it — before any testing begins.", href: "/engagement" },
+  { term: "Served route", plain: "The actual model-serving path behind an endpoint: model, version, engine, parser and fallbacks." },
+  { term: "Stale", plain: "A claim whose evidence no longer describes the current system — something it depended on changed, or the evidence aged out. It needs revalidation.", href: "/platform/continuous-assurance" },
+  { term: "Superseded", plain: "A fresher observation of the same fact replaced an earlier one. The history is kept." },
+  { term: "System fingerprint", plain: "A fingerprint of the deployed configuration a claim was true of, so a result cannot silently carry over to a different version." },
+  { term: "Tamper-evident", plain: "Any change can be detected. Not the same as tamper-proof." },
+  { term: "Unknown", plain: "A specific question the evidence cannot answer yet, recorded with why it matters and what would close it. Never counted as a pass." },
+  { term: "Utility retained", plain: "Whether a fix still lets legitimate work complete — measured alongside whether it stopped the problem." },
+  { term: "Validity Card", plain: "A planned record explaining why a benchmark result deserves trust: owner, versions, seeds, scorer, false blocks and limits.", href: "/platform/validation" },
+  { term: "Vendor-asserted", plain: "A supplier’s own statement about its product. Mythos records it but never shows it as verified." },
+  { term: "Verified", plain: "Supported by evidence Mythos tested or technically demonstrated, with nothing contradicting it, under stated conditions." },
+  { term: "Weakest-link rule", plain: "A claim is only as strong as the weakest evidence it rests on." },
+];

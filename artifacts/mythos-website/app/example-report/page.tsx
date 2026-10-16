@@ -1,267 +1,241 @@
 import type { Metadata } from "next";
-import {
-  FileCheck2,
-  Gavel,
-  Presentation,
-  Wrench,
-  RefreshCw,
-  ShieldAlert,
-  Download,
-  type LucideIcon,
-} from "lucide-react";
+import { FlaskConical, Hourglass } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
-import { ScrollReveal } from "@/components/motion/ScrollReveal";
-import { StaggerReveal } from "@/components/motion/StaggerReveal";
-import { ReportTheater } from "@/components/example-report/ReportTheater";
-import { DEMONSTRATES, type DemonstratesCard } from "@/data/exampleReport";
-import { CTA } from "@/lib/constants";
+import { PageMotion } from "@/components/motion/PageMotion";
+import { ScenicHero } from "@/components/scenic/ScenicHero";
+import { ClosingVista } from "@/components/scenic/ClosingVista";
+import { RecordCard } from "@/components/platform/RecordCard";
+import { StatePill } from "@/components/platform/StatePill";
+import { EvidenceTimeline } from "@/components/platform/EvidenceTimeline";
+import { JsonArtifact } from "@/components/platform/JsonArtifact";
+import { CHANGES, CLAIMS, COVER, DECISION, FINDINGS, RECEIPT_JSON, REPORT_SECTIONS, RETEST, SUMMARY, SYSTEM_MAP } from "@/content/sampleReport";
+import { OLYMPUS_MEDIA } from "@/content/media";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Example Report",
+  title: "Example Report — The Evidence Behind an AI Deployment Decision",
   description:
-    "See an illustrative Mythos AI Deployment Assurance Evidence Pack: a 12-page sample deliverable covering scope, methodology, findings, scenario testing, remediation, and a release readiness decision. Fictional data, for demonstration only.",
+    "A fully synthetic sample report for a fictional organization: scope, system map, findings, claim states, remediation and retest, change history and a deployment recommendation.",
+  alternates: { canonical: "/example-report/" },
 };
 
-const EYEBROW =
-  "mb-4 text-[10px] font-semibold uppercase tracking-[0.3em] text-bronze";
-const HEADING =
-  "mb-5 text-3xl font-normal leading-tight text-ivory lg:text-4xl";
-const BODY = "text-base leading-relaxed text-muted-stone";
-
-const REPORT_PDF = "/example-report/ai-deployment-assurance-evidence-pack.pdf";
-
-const DEMONSTRATES_ICONS: Record<DemonstratesCard["icon"], LucideIcon> = {
-  evidence: FileCheck2,
-  decision: Gavel,
-  leadership: Presentation,
-  engineering: Wrench,
-  ongoing: RefreshCw,
+const SEVERITY: Record<string, string> = {
+  High: "border-state-contradicted text-state-contradicted-ink",
+  Medium: "border-state-stale text-state-stale-ink",
+  Low: "border-rule text-fg-muted",
 };
 
+function Part({ id, n, title, children }: { id: string; n: number; title: string; children: React.ReactNode }) {
+  return (
+    <section id={id} aria-labelledby={`${id}-title`} className="min-w-0 scroll-mt-28 border-t border-rule pt-10">
+      <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-accent">Section {String(n).padStart(2, "0")}</p>
+      <h2 id={`${id}-title`} className="display-caps mt-2 font-display text-3xl text-fg sm:text-4xl">
+        {title}
+      </h2>
+      <div className="mt-6">{children}</div>
+    </section>
+  );
+}
+
+/** Example Report — Launch Guide §14: a synthetic fixture, rendered as native DOM. */
 export default function ExampleReportPage() {
   return (
-    <>
-      {/* 1 · Hero ──────────────────────────────────────────── */}
-      <section
-        className="relative isolate -mt-16 overflow-hidden border-b border-ivory/5 bg-obsidian lg:-mt-20"
-        aria-label="Example report hero"
-      >
-        {/* Bronze radial glow */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(ellipse 70% 60% at 50% 8%, rgba(184,130,63,0.22), transparent 70%)",
-          }}
-        />
-        {/* Bottom vignette into next section */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(18,21,23,0.4) 0%, transparent 30%, transparent 70%, rgba(18,21,23,0.9) 100%)",
-          }}
-        />
-        <div
-          aria-hidden="true"
-          className="absolute bottom-0 left-0 right-0 h-px"
-          style={{
-            background:
-              "linear-gradient(90deg, transparent, rgba(184,130,63,0.3) 30%, rgba(184,130,63,0.3) 70%, transparent)",
-          }}
-        />
+    <PageMotion>
+      <ScenicHero
+        eyebrow="Example Report"
+        headline="See the Evidence Behind an AI *Deployment Decision.*"
+        lede="This synthetic sample shows the kinds of claims, findings, retest records and human-reviewed decisions a scoped Mythos engagement is designed to produce. No customer information is represented."
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Resources", href: "/resources" },
+        ]}
+        current="Example Report"
+        primaryCta={{ label: "Read the Report", href: "#cover" }}
+        secondaryCta={{ label: "What Mythos Produces", href: "/outputs" }}
+        planes={[
+          { src: "/assets/cta/cta-olympus-poster.avif", className: "-inset-[3%]", position: "60% 45%", depth: 6, priority: true },
+          { src: OLYMPUS_MEDIA.sunbeams, className: "-inset-[3%]", blend: "screen", opacity: 0.4, position: "100% 0%", depth: 10 },
+        ]}
+        compact
+        into="ivory"
+      />
 
-        <Container className="relative z-10 flex min-h-[70svh] items-center pt-28 pb-20 lg:min-h-[74vh] lg:pt-36 lg:pb-28">
-          <ScrollReveal y={0} className="mx-auto max-w-3xl text-center">
-            <p className={EYEBROW}>Example Report</p>
-            <h1 className="font-display text-4xl font-normal leading-[1.1] text-ivory sm:text-5xl lg:text-[3.5rem] lg:leading-[1.08]">
-              See what a Mythos{" "}
-              <span className="text-antique-gold">assurance deliverable</span>{" "}
-              looks like.
-            </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted-stone sm:text-lg">
-              This is an illustrative, 12-page AI Deployment Assurance Evidence
-              Pack. The kind of report a Mythos assessment produces. Walk through
-              the scope, methodology, findings, scenario testing, remediation, and
-              the final release decision, each explained in plain language.
-            </p>
-            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-muted-stone/75">
-              Fictional data. No real customer engagement. For demonstration only.
-            </p>
-
-            <div className="mt-9 flex flex-wrap justify-center gap-4">
-              <Button
-                href="#report-viewer"
-                variant="primary"
-                size="lg"
-                className="bronze-glow"
-              >
-                Review the Report
-              </Button>
-              <Button
-                href={REPORT_PDF}
-                download
-                variant="secondary"
-                size="lg"
-                className="gap-2"
-              >
-                <Download size={15} strokeWidth={1.75} aria-hidden="true" />
-                Download PDF
-              </Button>
-            </div>
-          </ScrollReveal>
-        </Container>
-      </section>
-
-      {/* 2 · Illustrative-only disclaimer ──────────────────── */}
-      <section
-        className="border-b border-ivory/5 bg-graphite py-14 lg:py-16"
-        aria-labelledby="disclaimer-heading"
-      >
+      <section data-surface="ivory" aria-label="Sample report" className="pb-24 pt-6">
         <Container>
-          <ScrollReveal>
-            <div className="relative mx-auto max-w-3xl border border-bronze/25 bg-obsidian/50 p-7 backdrop-blur-sm lg:p-9">
-              <span
-                aria-hidden="true"
-                className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-bronze/50 to-transparent"
-              />
-              <div className="flex items-start gap-4">
-                <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center border border-bronze/30 bg-charcoal/60 text-bronze">
-                  <ShieldAlert size={18} strokeWidth={1.75} aria-hidden="true" />
-                </span>
-                <div>
-                  <h2
-                    id="disclaimer-heading"
-                    className="font-display text-xl font-normal leading-tight text-ivory"
-                  >
-                    Illustrative example only
-                  </h2>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-stone">
-                    This sample report uses entirely fictional data and a
-                    made-up scenario. It is not based on a real customer
-                    engagement, and it is not a certification, audit result, or
-                    statement of compliance. Its only purpose is to show the
-                    structure, depth, and clarity of a Mythos assessment
-                    deliverable. Real engagements are scoped, tested, and
-                    reported against your actual AI system.
-                  </p>
+          <p className="flex items-start gap-2.5 border-l-2 border-state-stale bg-panel px-4 py-3 text-sm leading-relaxed text-fg">
+            <FlaskConical size={16} aria-hidden="true" className="mt-0.5 shrink-0 text-state-stale-ink" />
+            Synthetic sample. Sample Organization is fictional, and every system, value, hash and date below is invented for illustration.
+          </p>
+
+          <div className="mt-12 grid grid-cols-1 gap-12 lg:grid-cols-[14rem_minmax(0,1fr)]">
+            <nav aria-label="Report sections" className="hidden lg:block">
+              <ol className="sticky top-28 grid gap-1 border-l border-rule">
+                {REPORT_SECTIONS.map((s, i) => (
+                  <li key={s.id}>
+                    <a href={`#${s.id}`} className="-ml-px block border-l border-transparent py-1.5 pl-4 text-sm text-fg-muted hover:border-accent hover:text-fg">
+                      <span className="mr-2 font-display text-accent">{String(i + 1).padStart(2, "0")}</span>
+                      {s.label}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </nav>
+
+            <div className="grid min-w-0 gap-16">
+              <Part id="cover" n={1} title="Cover and scope">
+                <RecordCard kind="Sample report · synthetic" title="AI deployment assurance — servicing copilot" rows={COVER} footer="Scope was agreed in writing before testing; the engine enforced it at launch." />
+              </Part>
+
+              <Part id="summary" n={2} title="Executive summary">
+                <p className="text-[17px] leading-relaxed text-fg">{SUMMARY.tested}</p>
+                <div className="mt-6 grid gap-4 md:grid-cols-2">
+                  <div className="border border-rule bg-panel p-6">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-accent">Key findings</p>
+                    <ul className="mt-3 grid gap-2 text-[15px] leading-relaxed text-fg">
+                      {SUMMARY.findings.map((f) => (
+                        <li key={f} className="flex gap-2.5">
+                          <span aria-hidden="true" className="mt-2.5 h-px w-3 shrink-0 bg-accent" />
+                          {f}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="border border-rule bg-panel p-6">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-accent">Open unknowns</p>
+                    <ul className="mt-3 grid gap-2 text-[15px] leading-relaxed text-fg">
+                      {SUMMARY.unknowns.map((u) => (
+                        <li key={u} className="flex gap-2.5">
+                          <span aria-hidden="true" className="mt-2.5 h-px w-3 shrink-0 bg-accent" />
+                          {u}
+                        </li>
+                      ))}
+                    </ul>
+                    <p className="mt-5 border-t border-rule pt-4 text-sm text-fg-muted">
+                      Recommendation: <span className="font-semibold text-fg">{SUMMARY.recommendation}</span> — no score, and the decision stays with your release owner.
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </ScrollReveal>
-        </Container>
-      </section>
+              </Part>
 
-      {/* 3 · Report viewer ─────────────────────────────────── */}
-      <section
-        id="report-viewer"
-        className="scroll-mt-24 border-b border-ivory/5 bg-obsidian py-20 lg:py-28"
-        aria-labelledby="viewer-heading"
-      >
-        <Container>
-          <ScrollReveal className="mb-12 max-w-2xl">
-            <p className={EYEBROW}>The Deliverable</p>
-            <h2 id="viewer-heading" className={HEADING}>
-              The evidence pack, page by page
-            </h2>
-            <p className={BODY}>
-              Scroll through all twelve pages. The panel keeps pace with the page
-              you are viewing, explaining what each one shows and why it matters.
-              Open any page larger to read it in full detail.
-            </p>
-            <div className="mt-7">
-              <Button href={REPORT_PDF} download variant="secondary" className="gap-2">
-                <Download size={14} strokeWidth={1.75} aria-hidden="true" />
-                Download all 12 pages (PDF)
-              </Button>
-            </div>
-          </ScrollReveal>
-
-          <ReportTheater />
-        </Container>
-      </section>
-
-      {/* 4 · What this example demonstrates ────────────────── */}
-      <section
-        className="border-b border-ivory/5 bg-graphite py-20 lg:py-28"
-        aria-labelledby="demonstrates-heading"
-      >
-        <Container>
-          <ScrollReveal className="mb-12 max-w-2xl">
-            <p className={EYEBROW}>Why It Matters</p>
-            <h2 id="demonstrates-heading" className={HEADING}>
-              What this example demonstrates
-            </h2>
-            <p className={BODY}>
-              A Mythos deliverable is built to do one job: make the next
-              deployment decision easier and more defensible. Here is what a
-              report like this gives each part of your organization.
-            </p>
-          </ScrollReveal>
-
-          <StaggerReveal className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {DEMONSTRATES.map((card) => {
-              const Icon = DEMONSTRATES_ICONS[card.icon];
-              return (
-                <div
-                  key={card.title}
-                  className="group relative flex h-full flex-col border border-bronze/20 bg-charcoal/60 p-6 backdrop-blur-sm transition-colors duration-300 hover:border-bronze/45"
-                >
-                  <span
-                    aria-hidden="true"
-                    className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-bronze/50 to-transparent"
-                  />
-                  <span className="mb-4 flex h-9 w-9 shrink-0 items-center justify-center border border-bronze/30 bg-obsidian/60 text-bronze">
-                    <Icon size={16} strokeWidth={1.75} aria-hidden="true" />
-                  </span>
-                  <h3 className="font-display text-lg font-normal leading-tight text-ivory">
-                    {card.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-stone">
-                    {card.description}
-                  </p>
+              <Part id="system" n={3} title="System map">
+                <div className="overflow-x-auto">
+                  <table className="w-full min-w-[36rem] border-collapse text-left text-[15px]">
+                    <caption className="sr-only">Components in scope and what they reach</caption>
+                    <thead>
+                      <tr className="border-b border-rule text-[10px] font-semibold uppercase tracking-[0.2em] text-accent">
+                        <th scope="col" className="py-3 pr-4 font-semibold">Component</th>
+                        <th scope="col" className="py-3 pr-4 font-semibold">Type</th>
+                        <th scope="col" className="py-3 pr-4 font-semibold">Reaches</th>
+                        <th scope="col" className="py-3 font-semibold">Evidence</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {SYSTEM_MAP.map((r) => (
+                        <tr key={r.component} className="border-b border-rule">
+                          <th scope="row" className="py-3 pr-4 font-display text-lg font-normal text-fg">{r.component}</th>
+                          <td className="py-3 pr-4 text-fg-muted">{r.kind}</td>
+                          <td className="py-3 pr-4 text-fg">{r.reaches}</td>
+                          <td className="py-3 text-fg-muted">{r.evidence}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
-              );
-            })}
-          </StaggerReveal>
+              </Part>
+
+              <Part id="findings" n={4} title="Findings and evidence">
+                <ul className="grid gap-4">
+                  {FINDINGS.map((f) => (
+                    <li key={f.id} className="border border-rule bg-panel p-6">
+                      <div className="flex flex-wrap items-center gap-3">
+                        <span className="font-display text-lg text-accent">{f.id}</span>
+                        <span className={cn("border px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.16em]", SEVERITY[f.severity])}>{f.severity}</span>
+                        <StatePill state={f.state} label={f.status} />
+                      </div>
+                      <p className="mt-3 font-display text-2xl leading-tight text-fg">{f.title}</p>
+                      <dl className="mt-4 grid gap-3 text-[15px] md:grid-cols-3">
+                        <div>
+                          <dt className="text-[10px] font-semibold uppercase tracking-[0.18em] text-fg-muted">Observed effect</dt>
+                          <dd className="mt-1 leading-relaxed text-fg">{f.effect}</dd>
+                        </div>
+                        <div>
+                          <dt className="text-[10px] font-semibold uppercase tracking-[0.18em] text-fg-muted">Conditions</dt>
+                          <dd className="mt-1 leading-relaxed text-fg">{f.conditions}</dd>
+                        </div>
+                        <div>
+                          <dt className="text-[10px] font-semibold uppercase tracking-[0.18em] text-fg-muted">Confidence</dt>
+                          <dd className="mt-1 leading-relaxed text-fg">{f.confidence}</dd>
+                        </div>
+                      </dl>
+                    </li>
+                  ))}
+                </ul>
+              </Part>
+
+              <Part id="claims" n={5} title="Claim matrix">
+                <ul className="divide-y divide-rule border-y border-rule">
+                  {CLAIMS.map((c) => (
+                    <li key={c.claim} className="grid gap-2 py-4 md:grid-cols-[1fr_auto] md:items-start md:gap-x-6">
+                      <span className="font-display text-xl leading-snug text-fg">{c.claim}</span>
+                      <StatePill state={c.state} label={c.label} className="justify-self-start md:justify-self-end" />
+                      <span className="text-sm text-fg-muted md:col-span-2">
+                        {c.source} · {c.date}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </Part>
+
+              <Part id="retest" n={6} title="Remediation and retest">
+                <ul className="grid gap-3">
+                  {RETEST.map((r) => (
+                    <li key={r.finding} className="grid gap-3 border border-rule bg-panel p-5 md:grid-cols-[4rem_1fr_1fr_auto] md:items-start">
+                      <span className="font-display text-lg text-accent">{r.finding}</span>
+                      <span className="text-[15px] text-fg">
+                        {r.fix}
+                        <span className="block text-sm text-fg-muted">Owner: {r.owner}</span>
+                      </span>
+                      <span className="text-[15px] leading-relaxed text-fg-muted">{r.result}</span>
+                      <StatePill state={r.state} className="justify-self-start" />
+                    </li>
+                  ))}
+                </ul>
+              </Part>
+
+              <Part id="changes" n={7} title="Change history">
+                <EvidenceTimeline events={CHANGES} caption="Change ledger · synthetic" />
+              </Part>
+
+              <Part id="exposure" n={8} title="Economic scenario">
+                <p className="flex items-start gap-3 border border-rule bg-panel px-5 py-4 text-[15px] leading-relaxed text-fg">
+                  <Hourglass size={17} aria-hidden="true" className="mt-0.5 shrink-0 text-state-stale-ink" />
+                  Not included. Economic Exposure is specified but not yet producing scores, so this report shows no financial figures. When built, it is designed to express
+                  modeled ranges with their assumptions — never realized losses.
+                </p>
+              </Part>
+
+              <Part id="decision" n={9} title="Deployment decision">
+                <RecordCard kind="Deployment decision · synthetic" title="Servicing copilot — pilot release" rows={DECISION} icon="/assets/evidence/deployment-decision-gate.svg" footer="Mythos recommends; accountable people decide. A missing decision never reads as Ready." />
+              </Part>
+
+              <Part id="appendix" n={10} title="Appendix">
+                <p className="mb-5 text-[15px] leading-relaxed text-fg-muted">A sample receipt for the first claim. Copy JSON copies exactly what is shown.</p>
+                <JsonArtifact title="assurance-receipt.sample.json" data={RECEIPT_JSON} />
+              </Part>
+            </div>
+          </div>
         </Container>
       </section>
 
-      {/* 5 · Final CTA ─────────────────────────────────────── */}
-      <section
-        className="bg-obsidian py-20 lg:py-28"
-        aria-labelledby="cta-heading"
-      >
-        <Container>
-          <ScrollReveal className="mx-auto max-w-2xl text-center">
-            <p className={EYEBROW}>Your AI System</p>
-            <h2 id="cta-heading" className={HEADING}>
-              See this kind of evidence for your own deployment.
-            </h2>
-            <p className={`${BODY} mx-auto max-w-xl`}>
-              A scoped Mythos assessment produces a report like this for your
-              actual AI system; mapped, tested, and reported against your
-              deployment, with a clear release recommendation at the end.
-            </p>
-            <div className="mt-9 flex flex-wrap justify-center gap-4">
-              <Button
-                href="/contact?intent=assessment"
-                variant="primary"
-                size="lg"
-                className="bronze-glow"
-              >
-                {CTA.PRIMARY}
-              </Button>
-              <Button href="/use-cases" variant="secondary" size="lg">
-                Explore Use Cases
-              </Button>
-            </div>
-          </ScrollReveal>
-        </Container>
-      </section>
-    </>
+      <ClosingVista
+        from="ivory"
+        title="Get this evidence *for your own system.*"
+        secondary={{ label: "How Engagement Starts", href: "/engagement" }}
+        layers={[
+          { src: OLYMPUS_MEDIA.panorama.src, className: "object-[55%_45%]", parallax: 4 },
+          { src: OLYMPUS_MEDIA.sunrays, blend: "screen", opacity: 0.6, className: "object-[55%_45%]" },
+        ]}
+      />
+    </PageMotion>
   );
 }

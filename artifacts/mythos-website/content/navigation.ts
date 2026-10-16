@@ -155,15 +155,20 @@ export const PRIMARY_NAV: NavNode[] = [
   },
   {
     label: "Resources",
-    match: ["/use-cases", "/outputs", "/example-report", "/standards", "/glossary", "/engagement", "/trust", "/pricing"],
+    match: ["/resources", "/use-cases", "/outputs", "/example-report", "/standards", "/glossary", "/engagement", "/trust", "/pricing"],
     columns: [
       {
         heading: "Proof",
         items: [
           {
+            label: "All Resources",
+            href: "/resources",
+            description: "The knowledge archive — only pages that exist.",
+          },
+          {
             label: "Example Assurance Report",
             href: "/example-report",
-            description: "A synthetic sample deliverable, page by page.",
+            description: "A synthetic sample report, section by section.",
           },
           resource("outputs"),
           {
@@ -187,7 +192,7 @@ export const PRIMARY_NAV: NavNode[] = [
           {
             label: "Pricing",
             href: "/pricing",
-            description: "Scoped assessments and continuing assurance.",
+            description: "What determines price, and what is included.",
           },
         ],
       },
@@ -213,7 +218,7 @@ export const PRIMARY_NAV: NavNode[] = [
           {
             label: "Careers",
             href: "/careers",
-            description: "Help build the systems that test AI.",
+            description: "What we build, and how roles will be posted.",
           },
           resource("partnerships"),
           {
@@ -265,8 +270,9 @@ export const FOOTER_NAV: FooterGroup[] = [
   {
     label: "Resources",
     items: [
+      { label: "All Resources", href: "/resources" },
       { label: "Use Cases", href: "/use-cases" },
-      { label: "Example Assurance Report", href: "/example-report" },
+      { label: "Example Report", href: "/example-report" },
       { label: "What Mythos Produces", href: "/outputs" },
       { label: "Standards & Control Mapping", href: "/standards" },
       { label: "Glossary", href: "/glossary" },

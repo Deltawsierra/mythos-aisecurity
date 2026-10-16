@@ -9,7 +9,7 @@ import { Scene } from "@/components/scenic/Scene";
 import { ClosingVista } from "@/components/scenic/ClosingVista";
 import { EvidenceTimeline } from "@/components/platform/EvidenceTimeline";
 import type { IndustryContent } from "@/components/solutions/types";
-import { USE_CASE_DEEP_DIVES } from "@/data/useCaseDeepDives";
+import { USE_CASES } from "@/content/useCaseLibrary";
 import { PROJECTS } from "@/content/platform";
 import { OLYMPUS_MEDIA } from "@/content/media";
 import { cn } from "@/lib/utils";
@@ -27,7 +27,7 @@ const PRODUCT_HREF: Record<string, string> = {
  */
 export function IndustryPage({ c }: { c: IndustryContent }) {
   const useCases = c.useCases.slugs
-    .map((slug) => USE_CASE_DEEP_DIVES.find((u) => u.slug === slug))
+    .map((slug) => USE_CASES.find((u) => u.slug === slug))
     .filter((u): u is NonNullable<typeof u> => Boolean(u));
 
   return (
@@ -127,7 +127,7 @@ export function IndustryPage({ c }: { c: IndustryContent }) {
                 >
                   <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-accent">Use case {String(u.number).padStart(2, "0")}</span>
                   <span className="mt-2 font-display text-2xl leading-tight text-fg">{u.title}</span>
-                  <span className="mt-2 text-sm italic leading-relaxed text-fg-muted">“{u.buyerQuestion}”</span>
+                  <span className="mt-2 text-sm italic leading-relaxed text-fg-muted">“{u.question.replaceAll("*", "")}”</span>
                   <span className="mt-auto inline-flex items-center gap-1.5 pt-5 text-[13px] font-semibold text-accent">
                     Read the scenario
                     <ArrowRight size={13} aria-hidden="true" className="transition-transform group-hover:translate-x-0.5" />

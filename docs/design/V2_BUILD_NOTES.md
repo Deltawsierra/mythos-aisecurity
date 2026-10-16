@@ -303,6 +303,53 @@ Fact-check rules applied (16 Oct):
 Shared fix: `ScenicHero` now pads the copy above the cloud bank on phones
 (secondary CTAs were sinking into the clouds on long heroes).
 
+## Phase 4 — Use cases, Resources, Company, Pricing (16 Oct)
+
+Three fact-check passes (use cases; resource pages; company + pricing) set the
+copy. Shared rules: every example is synthetic and labelled; no customers,
+partners, open roles, milestones or people are named; nothing is certified.
+
+- **Use cases** (`content/useCaseLibrary.ts`, `components/use-cases/
+  UseCasePage.tsx`, `WorkflowPath`, `UseCaseFilter`): question-first hero
+  (`ScenicHero longHeadline`), workflow diagram with the authority boundary,
+  failure classes (no recipes), Athena/Achilles/SPINE approach, synthetic
+  receipt + claim states, scope limits, related industries. Mythos tests your
+  controls, never enforces them (Action Gate not built); no answer-quality,
+  bias or code-quality testing; effective access is from supplied
+  configuration. UC11 (Hermes) and UC12 (quantum) are strategic-horizon pages
+  with guardrails, gated by `hermes.publication-scope` and
+  `usecases.quantum-horizon`. Hub filters by industry/product/risk with URL
+  state. Industry pages now show the v2 questions; SaaS and Regulated
+  use-case links realigned.
+- **Resources**: new `/resources` hub curating only real pages (no
+  `/resources/*` sub-routes until assets exist); `/trust` (current controls vs
+  designed-not-built, plain no-certification statement, responsibilities, no
+  retention promise, no formal disclosure policy yet); `/outputs` (nine
+  outputs with built/partly/planned); `/standards` (4 mapped, referenced,
+  designed interop, not listed on purpose); `/glossary` (46 terms, searchable
+  A–Z, `content/glossary.ts`); `/engagement` (11 steps, no durations).
+- **Example report** rebuilt as a native synthetic fixture
+  (`content/sampleReport.ts`, "Sample Organization", no score). The v1 image
+  pack, PDF and generator were deleted — they carried a readiness score,
+  contradictory counts, invented staff/emails, real vendor names and a
+  client name close to a real insurer.
+- **Company**: `/company`, `/investors` (thesis only — no raise, valuation,
+  runway or use of funds; moat stated as hypotheses), `/careers` (no open
+  roles; resume form removed), `/partnerships` (relationship types +
+  independence rules; no partners named), `/contact` (form restyled to
+  surface tokens on parchment; Hermes/quantum/vehicle options and
+  "confidential" promise removed). Product maturity list shared
+  (`components/company/MaturityList.tsx`).
+- **Pricing**: no figures, tier names or offer names (price book unsigned,
+  D03). Two pathways, what determines price, inclusion matrix, optional
+  scope, the guide's non-numeric FAQ ("Why aren't prices listed?").
+- `ScenicHero` gained `compact` and `longHeadline`.
+
+Still open from this phase: approve UC11/UC12 publication; Careers is in the
+nav with no roles (guide gate "only open roles"); v1 components/data for use
+cases, careers and pricing are now unused (remove before launch, including
+`data/pricing.ts` figures); v1 images under `public/images/*` still ship.
+
 ## Not yet done
 
 - **Contrast:** v1 pages still use `text-bronze` (3.8:1 on navy) and faded
@@ -314,5 +361,4 @@ Shared fix: `ScenicHero` now pads the copy above the cloud bank on phones
 
 - The old `/use-cases#what-mythos-produces` and `#how-engagement-starts` anchors
   should forward to `/outputs` and `/engagement` (Phase 9 redirects).
-- Existing pages (Pricing, Company, Investors, Careers, Trust, Contact,
-  Use Cases, Example Report) still carry v1 copy.
+- Remaining v1 pages: Privacy and the /demo redirect only.

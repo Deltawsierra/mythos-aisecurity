@@ -53,6 +53,10 @@ interface ScenicHeroProps {
   into: Surface;
   /** Extra readability shade (CSS background) over the scene. */
   scrim?: string;
+  /** A shorter hero for pages whose working content (a form, a notice) should sit near the top. */
+  compact?: boolean;
+  /** A question-length headline: a smaller type ramp so it stays within five lines. */
+  longHeadline?: boolean;
   children?: ReactNode;
 }
 
@@ -76,6 +80,8 @@ export function ScenicHero({
   copySide = "left",
   into,
   scrim,
+  compact,
+  longHeadline,
   children,
 }: ScenicHeroProps) {
   const copyRight = copySide === "right";
@@ -87,7 +93,7 @@ export function ScenicHero({
     <section
       data-surface="charcoal"
       aria-labelledby="page-title"
-      className="relative isolate -mt-16 flex min-h-[92svh] flex-col overflow-hidden lg:-mt-20"
+      className={cn("relative isolate -mt-16 flex flex-col overflow-hidden lg:-mt-20", compact ? "min-h-[68svh]" : "min-h-[92svh]")}
     >
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
         {planes.map((plane) => (
@@ -136,7 +142,12 @@ export function ScenicHero({
         />
       </div>
 
-      <Container className="relative z-10 flex flex-1 flex-col pb-36 pt-28 lg:justify-center lg:pb-[clamp(9rem,16vw,14rem)] lg:pt-32">
+      <Container
+        className={cn(
+          "relative z-10 flex flex-1 flex-col pb-36 pt-28 lg:justify-center lg:pt-32",
+          compact ? "lg:pb-[clamp(7rem,12vw,10rem)]" : "lg:pb-[clamp(9rem,16vw,14rem)]",
+        )}
+      >
         <div className={cn("max-w-[38rem] xl:max-w-[42rem]", copyRight && "lg:ml-auto lg:mr-[2%]")}>
           <nav aria-label="Breadcrumb" className="hero-rise mb-7" style={{ animationDelay: "80ms" }}>
             <ol className="flex flex-wrap items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-ivory/70">
@@ -165,7 +176,12 @@ export function ScenicHero({
           <h1
             id="page-title"
             aria-label={plain(headline)}
-            className="hero-rise display-caps font-display text-[2.5rem] text-ivory drop-shadow-[0_4px_24px_rgba(18,21,23,0.6)] sm:text-[3.2rem] lg:text-[clamp(2.9rem,min(4.3vw,7vh),4.2rem)]"
+            className={cn(
+              "hero-rise display-caps font-display text-ivory drop-shadow-[0_4px_24px_rgba(18,21,23,0.6)]",
+              longHeadline
+                ? "text-[2.05rem] sm:text-[2.6rem] lg:text-[clamp(2.3rem,min(3.3vw,5.4vh),3.2rem)]"
+                : "text-[2.5rem] sm:text-[3.2rem] lg:text-[clamp(2.9rem,min(4.3vw,7vh),4.2rem)]",
+            )}
             style={{ animationDelay: "240ms" }}
           >
             <Accent text={headline} />

@@ -77,12 +77,12 @@ export const INQUIRIES: InquiryDef[] = [
     value: "assessment",
     label: "Request Assessment",
     description:
-      "Start a scoped Mythos review for an AI assistant, agent, copilot, integration, workflow, or strategic scenario.",
+      "Start a scoped Mythos review for an AI assistant, agent, copilot, integration or workflow.",
     detailsLegend: "Assessment details",
     submitLabel: "Request Assessment",
     confirmHeading: "Assessment request received.",
     confirmBody:
-      "Mythos will review your inquiry and identify the appropriate assessment path based on the system, deployment stage, and risk concerns you provided.",
+      "Mythos will review your inquiry and suggest a scoping conversation. Please don’t send credentials, code, logs or customer data — scope details are exchanged later under an agreement.",
     selects: [
       {
         name: "aiSystemType",
@@ -99,8 +99,6 @@ export const INQUIRIES: InquiryDef[] = [
           "AI-powered decision support",
           "Public sector / mission workflow",
           "Data platform / cloud AI integration",
-          "AI-driven vehicle / Hermes-related scenario",
-          "Quantum-adjacent / strategic R&D scenario",
           "Other / not sure",
         ],
       },
@@ -134,8 +132,6 @@ export const INQUIRIES: InquiryDef[] = [
           "Vendor risk",
           "Cloud/data platform access",
           "Human approval / decision support",
-          "Vehicle/autonomy/fleet risk",
-          "Post-quantum / cryptographic readiness",
           "Not sure yet",
         ],
       },
@@ -217,12 +213,12 @@ export const INQUIRIES: InquiryDef[] = [
     value: "investor",
     label: "Investor Inquiry",
     description:
-      "Request investor materials or start a conversation about the Mythos investment thesis and roadmap.",
+      "Start a conversation about the Mythos thesis, or ask what materials can be shared.",
     detailsLegend: "Investor details",
-    submitLabel: "Request Investor Materials",
+    submitLabel: "Request an Investor Conversation",
     confirmHeading: "Investor inquiry received.",
     confirmBody:
-      "Mythos will review your request for investor materials or an introductory conversation.",
+      "Mythos will review your request and follow up about an introductory conversation. Please don’t send diligence files through this form.",
     selects: [
       {
         name: "investorType",
@@ -242,7 +238,7 @@ export const INQUIRIES: InquiryDef[] = [
         label: "Interest",
         placeholder: "Select interest",
         options: [
-          "Investor deck",
+          "Investor materials",
           "Intro call",
           "Product roadmap",
           "Market thesis",
@@ -285,10 +281,8 @@ export const INQUIRIES: InquiryDef[] = [
           "Cloud/data platform partnership",
           "Compliance/GRC partnership",
           "MSSP / consultancy channel",
-          "Research collaboration",
-          "Quantum / advanced computing exploration",
-          "Vehicle / autonomy / Hermes-related exploration",
-          "Investor / strategic partnership",
+          "Research or standards collaboration",
+          "Insurance / broker evidence channel",
           "Other",
         ],
       },

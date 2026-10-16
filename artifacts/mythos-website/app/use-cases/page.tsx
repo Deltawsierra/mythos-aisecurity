@@ -1,232 +1,153 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowRight, Compass, FlaskConical } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
-import { FeatureCard } from "@/components/ui/FeatureCard";
-import { ScrollReveal } from "@/components/motion/ScrollReveal";
-import { StaggerReveal } from "@/components/motion/StaggerReveal";
-import { CTASection } from "@/components/sections/CTASection";
-import { UseCasesHero } from "@/components/use-cases/UseCasesHero";
-import { UseCaseLibrary } from "@/components/use-cases/UseCaseLibrary";
-import { AssessmentOutputs } from "@/components/assessment/AssessmentOutputs";
-import { OutputFlow } from "@/components/assessment/OutputFlow";
-import { AssessmentSnapshot } from "@/components/assessment/AssessmentSnapshot";
-import { EngagementPath } from "@/components/assessment/EngagementPath";
-import { EngagementTypes } from "@/components/assessment/EngagementTypes";
-import { CTA } from "@/lib/constants";
+import { Accent } from "@/components/ui/Headline";
+import { PageMotion } from "@/components/motion/PageMotion";
+import { SectionIntro } from "@/components/sections/SectionIntro";
+import { ScenicHero } from "@/components/scenic/ScenicHero";
+import { Scene } from "@/components/scenic/Scene";
+import { ClosingVista } from "@/components/scenic/ClosingVista";
+import { UseCaseFilter, type Facet, type FilterCard } from "@/components/use-cases/UseCaseFilter";
+import { RISK_THEMES, USE_CASES } from "@/content/useCaseLibrary";
+import { INDUSTRIES } from "@/content/industries";
+import { CHALLENGE_MEDIA, OLYMPUS_MEDIA } from "@/content/media";
 
 export const metadata: Metadata = {
-  title: "Use Cases",
+  title: "Use Cases — Where AI Deployment Risk Shows Up",
   description:
-    "Explore illustrative AI deployment scenarios and how Mythos helps review access, behavior, evidence, remediation, and retest before trust expands.",
+    "Ten assessment scenarios and two strategic-horizon pages: the question each AI workflow raises, what can go wrong, how Mythos tests it and what the evidence looks like. Every example is synthetic.",
+  alternates: { canonical: "/use-cases/" },
 };
 
-const EYEBROW = "mb-4 text-[10px] font-semibold uppercase tracking-[0.3em] text-bronze";
-const HEADING = "mb-5 text-3xl font-normal leading-tight text-ivory lg:text-4xl";
-const BODY = "text-base leading-relaxed text-muted-stone";
+const plain = (s: string) => s.replaceAll("*", "");
 
-const VALUE_CARDS = [
-  {
-    title: "Map the System",
-    description:
-      "Understand what the AI can access, where requests go, which systems are connected, and what data becomes reachable.",
-  },
-  {
-    title: "Test the Behavior",
-    description:
-      "Validate how the AI responds under normal, edge-case, adversarial, and permission-boundary conditions.",
-  },
-  {
-    title: "Review the Evidence",
-    description:
-      "Receive findings, proof, remediation guidance, and retest material that supports deployment decisions.",
-  },
+const CORE = USE_CASES.filter((u) => !u.horizon);
+const HORIZON = USE_CASES.filter((u) => u.horizon);
+
+const CARDS: FilterCard[] = CORE.map((u) => ({
+  slug: u.slug,
+  number: u.number,
+  title: u.title,
+  question: plain(u.question),
+  image: u.image,
+  facets: u.facets,
+}));
+
+const FACETS: Facet[] = [
+  { key: "industry", label: "Industry", options: INDUSTRIES.map((i) => ({ value: i.slug, label: i.name })) },
+  { key: "product", label: "Product", options: ["Athena", "Achilles", "SPINE"].map((p) => ({ value: p, label: p })) },
+  { key: "risk", label: "Risk theme", options: RISK_THEMES.map((r) => ({ value: r, label: r })) },
 ];
 
+const FLOW = ["The question", "The workflow", "What can go wrong", "How Mythos tests it", "The evidence", "Scope limits"];
+
+/** Use-case library — Launch Guide §10. */
 export default function UseCasesPage() {
   return (
-    <>
-      {/* 1 · Hero ─────────────────────────────────────────── */}
-      <UseCasesHero />
-
-      {/* 2 · Why use cases matter ─────────────────────────── */}
-      <section
-        className="border-b border-ivory/5 bg-graphite py-20 lg:py-28"
-        aria-labelledby="why-use-cases-heading"
-      >
-        <Container>
-          <ScrollReveal className="mb-12 max-w-2xl">
-            <p className={EYEBROW}>Why Use Cases Matter</p>
-            <h2 id="why-use-cases-heading" className={HEADING}>
-              AI risk does not appear in one place.
-            </h2>
-            <p className={BODY}>
-              Every AI deployment has a different risk surface. A support agent
-              can expose customer records. A RAG assistant can retrieve the wrong
-              documents. A tool-using agent can exceed permissions. A
-              cloud-connected AI system can create new data paths. Mythos helps
-              teams examine the specific workflow before trust is expanded.
-            </p>
-          </ScrollReveal>
-          <StaggerReveal className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {VALUE_CARDS.map((card) => (
-              <FeatureCard
-                key={card.title}
-                variant="problem"
-                title={card.title}
-                description={card.description}
-              />
-            ))}
-          </StaggerReveal>
-        </Container>
-      </section>
-
-      {/* 3 · Filterable use case library ──────────────────── */}
-      <section
-        className="border-b border-ivory/5 bg-obsidian py-20 lg:py-28"
-        aria-labelledby="library-heading"
-      >
-        <Container>
-          <ScrollReveal className="mb-10 max-w-2xl">
-            <p className={EYEBROW}>Use Case Library</p>
-            <h2 id="library-heading" className={HEADING}>
-              Explore where AI risk shows up.
-            </h2>
-            <p className={BODY}>
-              Filter by deployment type to see concrete scenarios. What the
-              system does, where it can go wrong, which Mythos project applies,
-              and what an assessment produces. Open any scenario to review the
-              detail.
-            </p>
-          </ScrollReveal>
-          <ScrollReveal y={16}>
-            <div className="mb-10 border-l-2 border-l-bronze bg-charcoal/50 px-5 py-4">
-              <p className="mb-1.5 text-[10px] font-semibold uppercase tracking-[0.22em] text-bronze">
-                Illustrative scenarios, evidence-first review
-              </p>
-              <p className="text-sm leading-relaxed text-muted-stone">
-                These use cases are illustrative examples of AI deployment
-                patterns Mythos is designed to help review. They are not claims
-                of completed customer work, guaranteed outcomes, compliance
-                certification, or automatic approval. Each assessment should be
-                authorized, scoped, non-destructive, and controlled by the
-                customer.
-              </p>
-            </div>
-          </ScrollReveal>
-          <ScrollReveal y={20}>
-            <UseCaseLibrary />
-          </ScrollReveal>
-        </Container>
-      </section>
-
-      {/* 4 · What Mythos produces ─────────────────────────── */}
-      <section
-        id="what-mythos-produces"
-        className="scroll-mt-24 border-b border-ivory/5 bg-graphite py-20 lg:py-28"
-        aria-labelledby="produces-heading"
-      >
-        <Container>
-          <ScrollReveal className="mb-12 max-w-2xl">
-            <p className={EYEBROW}>Assessment Outputs</p>
-            <h2 id="produces-heading" className={HEADING}>
-              What Mythos produces
-            </h2>
-            <p className={BODY}>
-              Mythos assessments are built to produce decision material, not
-              vague AI opinions. Each engagement is designed to help security,
-              product, engineering, compliance, leadership, and operations teams
-              understand what was tested, what was found, what needs to change,
-              and what evidence supports the next deployment decision.
-            </p>
-          </ScrollReveal>
-          <ScrollReveal y={20}>
-            <AssessmentOutputs />
-          </ScrollReveal>
-          <ScrollReveal y={20}>
-            <OutputFlow />
-          </ScrollReveal>
-          <ScrollReveal y={16}>
-            <div className="mt-12 flex flex-col gap-5 border-t border-bronze/15 pt-8 sm:flex-row sm:items-center sm:justify-between">
-              <p className="max-w-xl text-sm leading-relaxed text-muted-stone">
-                Want to see what a finished deliverable looks like? Walk through
-                an illustrative 12-page assurance evidence pack: fictional data,
-                for demonstration only.
-              </p>
-              <Button
-                href="/example-report"
-                variant="secondary"
-                size="md"
-                className="shrink-0"
-              >
-                View Example Report
-              </Button>
-            </div>
-          </ScrollReveal>
-        </Container>
-      </section>
-
-      {/* 5 · Example assessment snapshot ──────────────────── */}
-      <section
-        className="border-b border-ivory/5 bg-obsidian py-20 lg:py-28"
-        aria-labelledby="snapshot-heading"
-      >
-        <Container>
-          <ScrollReveal className="mb-12 max-w-2xl">
-            <p className={EYEBROW}>Example Output</p>
-            <h2 id="snapshot-heading" className={HEADING}>
-              Example assessment snapshot
-            </h2>
-            <p className={BODY}>
-              A Mythos report should make the next decision easier. The customer
-              should be able to see what was tested, what failed, what changed,
-              and what still requires approval.
-            </p>
-          </ScrollReveal>
-          <ScrollReveal y={20}>
-            <AssessmentSnapshot />
-          </ScrollReveal>
-        </Container>
-      </section>
-
-      {/* 6 · How engagement starts ────────────────────────── */}
-      <section
-        id="how-engagement-starts"
-        className="scroll-mt-24 border-b border-ivory/5 bg-graphite py-20 lg:py-28"
-        aria-labelledby="engagement-heading"
-      >
-        <Container>
-          <ScrollReveal className="mb-12 max-w-2xl">
-            <p className={EYEBROW}>Engagement Path</p>
-            <h2 id="engagement-heading" className={HEADING}>
-              How engagement starts
-            </h2>
-            <p className={BODY}>
-              A Mythos assessment begins with a defined AI system, a controlled
-              scope, and a clear deployment question. The goal is to understand
-              what is being trusted before trust expands.
-            </p>
-          </ScrollReveal>
-          <ScrollReveal y={20}>
-            <EngagementPath />
-          </ScrollReveal>
-          <ScrollReveal y={20}>
-            <EngagementTypes />
-          </ScrollReveal>
-        </Container>
-      </section>
-
-      {/* 7 · Final CTA ────────────────────────────────────── */}
-      <CTASection
-        variant="bordered"
-        backgroundImage="/images/use-cases/lower-cta-bg.png"
-        id="start-assessment"
-        className="scroll-mt-24"
-        badge="Start the Assessment"
-        headline="Which AI deployment are you preparing to trust?"
-        subline="Tell Mythos what you are building, connecting, or preparing to release. We will help identify the right assessment path."
-        primaryCta={{ label: CTA.PRIMARY, href: "/contact" }}
-        secondaryCta={{ label: "Request Demo", href: "/contact?intent=demo" }}
+    <PageMotion>
+      <ScenicHero
+        eyebrow="Use Cases"
+        headline="Where AI Deployment Risk *Shows Up.*"
+        lede="Twelve scenarios, each starting from the question a buyer has to answer about one AI workflow — and ending with what the evidence can and cannot show."
+        breadcrumbs={[{ label: "Home", href: "/" }]}
+        current="Use Cases"
+        secondaryCta={{ label: "Browse the Scenarios", href: "#library-title" }}
+        planes={[
+          { src: CHALLENGE_MEDIA.desktopTextSafe.src, className: "-inset-[3%]", position: "70% 40%", depth: 6, priority: true },
+          { src: OLYMPUS_MEDIA.sunbeams, className: "-inset-[3%]", blend: "screen", opacity: 0.35, position: "100% 0%", depth: 10 },
+        ]}
+        into="ivory"
       />
-    </>
+
+      {/* Library */}
+      <section data-surface="ivory" aria-labelledby="library-title" className="scroll-mt-24 pb-24 pt-10">
+        <Container>
+          <SectionIntro
+            id="library-title"
+            eyebrow="The library"
+            title={<Accent text="Ten workflows, *one honest method.*" />}
+            lede="Filter by industry, product or risk theme. Filters update the address, so a view can be shared."
+            caps
+          />
+          <p className="mt-6 flex items-start gap-2.5 border-l-2 border-state-stale bg-panel px-4 py-3 text-sm leading-relaxed text-fg">
+            <FlaskConical size={16} aria-hidden="true" className="mt-0.5 shrink-0 text-state-stale-ink" />
+            Every finding, claim and receipt in these scenarios is synthetic. No customer, pilot or design-partner results are shown.
+          </p>
+          <div className="mt-10">
+            <UseCaseFilter cards={CARDS} facets={FACETS} />
+          </div>
+        </Container>
+      </section>
+
+      {/* How each scenario reads */}
+      <Scene
+        surface="navy"
+        labelledBy="flow-title"
+        layers={[{ src: OLYMPUS_MEDIA.cloudSea.src, className: "object-[50%_70%]", parallax: 4 }]}
+        scrim="linear-gradient(180deg, rgba(21,35,51,0.5) 0, rgba(21,35,51,0.9) clamp(14rem,22vw,22rem), rgba(21,35,51,0.94) 72%, rgba(21,35,51,0.72) 100%)"
+        top={{ into: "ivory", height: "clamp(8rem,14vw,14rem)" }}
+        bottom={{ into: "parchment", height: "clamp(7rem,12vw,12rem)" }}
+        className="pb-[clamp(10rem,15vw,15rem)] pt-[clamp(10rem,17vw,17rem)]"
+      >
+        <Container>
+          <SectionIntro id="flow-title" align="center" eyebrow="How each scenario reads" title={<Accent text="From question *to evidence.*" />} caps />
+          <ol className="mx-auto mt-12 grid max-w-5xl gap-3 sm:grid-cols-2 lg:grid-cols-6" data-reveal-group>
+            {FLOW.map((f, i) => (
+              <li key={f} className="border border-rule bg-panel px-4 py-5 text-center">
+                <span className="font-display text-2xl text-champagne">{String(i + 1).padStart(2, "0")}</span>
+                <p className="mt-2 text-sm font-semibold leading-snug text-fg">{f}</p>
+              </li>
+            ))}
+          </ol>
+        </Container>
+      </Scene>
+
+      {/* Strategic horizon */}
+      <section data-surface="parchment" aria-labelledby="horizon-title" className="pb-16 pt-8">
+        <Container>
+          <SectionIntro
+            id="horizon-title"
+            eyebrow="Strategic horizon"
+            title={<Accent text="Questions we are *exploring, not selling.*" />}
+            lede="Two pages describe directions under research. Neither is a service available today."
+            caps
+          />
+          <ul className="mt-12 grid gap-4 md:grid-cols-2" data-reveal-group>
+            {HORIZON.map((u) => (
+              <li key={u.slug}>
+                <Link href={`/use-cases/${u.slug}`} className="group flex h-full gap-5 border border-rule bg-panel p-6 hover:border-antique-gold/60">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={u.image} alt="" aria-hidden="true" loading="lazy" className="h-16 w-16 shrink-0 object-contain" />
+                  <span className="flex flex-col">
+                    <span className="inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.22em] text-state-stale-ink">
+                      <Compass size={12} aria-hidden="true" />
+                      {u.horizon!.label} · Use case {u.number}
+                    </span>
+                    <span className="mt-2 font-display text-2xl leading-tight text-fg">{u.title}</span>
+                    <span className="mt-2 text-sm leading-relaxed text-fg-muted">{u.horizon!.guardrail}</span>
+                    <span className="mt-auto inline-flex items-center gap-1.5 pt-4 text-[13px] font-semibold text-accent">
+                      Read the page
+                      <ArrowRight size={13} aria-hidden="true" className="transition-transform group-hover:translate-x-0.5" />
+                    </span>
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </section>
+
+      <ClosingVista
+        from="parchment"
+        title="Bring us *the workflow you are deciding about.*"
+        body="A scoped assessment starts from one workflow and the decision you need to make about it."
+        secondary={{ label: "How Engagement Starts", href: "/engagement" }}
+        layers={[
+          { src: OLYMPUS_MEDIA.panorama.src, className: "object-[55%_45%]", parallax: 4 },
+          { src: OLYMPUS_MEDIA.sunrays, blend: "screen", opacity: 0.6, className: "object-[55%_45%]" },
+        ]}
+      />
+    </PageMotion>
   );
 }

@@ -26,11 +26,11 @@ function Field({ label, id, required, className, children }: FieldProps) {
     <div className={cn("flex min-w-0 flex-col gap-1.5", className)}>
       <label
         htmlFor={id}
-        className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-stone"
+        className="text-[11px] font-semibold uppercase tracking-[0.18em] text-fg-muted"
       >
         {label}
         {required && (
-          <span className="ml-1 text-bronze" aria-hidden="true">
+          <span className="ml-1 text-accent" aria-hidden="true">
             *
           </span>
         )}
@@ -41,10 +41,10 @@ function Field({ label, id, required, className, children }: FieldProps) {
 }
 
 const inputClass =
-  "w-full border border-ivory/10 bg-charcoal px-4 py-2.5 text-sm text-ivory placeholder:text-muted-stone/40 focus:outline-none focus:border-bronze/50 focus:ring-1 focus:ring-bronze/30 transition-colors duration-150";
+  "w-full border border-rule bg-panel px-4 py-2.5 text-sm text-fg placeholder:text-fg-muted/60 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-colors duration-150";
 
 const legendClass =
-  "mb-4 w-full border-b border-ivory/5 pb-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-bronze";
+  "mb-4 w-full border-b border-rule pb-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-accent";
 
 type SubmitStatus = "idle" | "submitting" | "success" | "error";
 
@@ -134,15 +134,15 @@ export function ContactForm() {
         tabIndex={-1}
         role="status"
         aria-live="polite"
-        className="border border-bronze/30 bg-charcoal p-8 text-center focus:outline-none focus:ring-2 focus:ring-bronze/40"
+        className="border border-rule bg-panel p-8 text-center focus:outline-none focus:ring-2 focus:ring-accent/40"
       >
-        <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.28em] text-bronze">
+        <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.28em] text-accent">
           {def.label}
         </p>
-        <p className="mb-3 font-display text-2xl font-normal leading-tight text-ivory">
+        <p className="mb-3 font-display text-2xl font-normal leading-tight text-fg">
           {def.confirmHeading}
         </p>
-        <p className="mx-auto max-w-md text-base leading-relaxed text-muted-stone">
+        <p className="mx-auto max-w-md text-base leading-relaxed text-fg-muted">
           {def.confirmBody}
         </p>
       </div>
@@ -181,10 +181,10 @@ export function ContactForm() {
                 key={option.value}
                 className={cn(
                   "group flex cursor-pointer flex-col gap-1.5 border p-4 transition-colors duration-150",
-                  "focus-within:ring-2 focus-within:ring-bronze/60 focus-within:ring-offset-2 focus-within:ring-offset-obsidian",
+                  "focus-within:ring-2 focus-within:ring-accent/60 focus-within:ring-offset-2",
                   selected
-                    ? "border-bronze bg-bronze/10 shadow-[0_0_0_1px_rgba(184,130,63,0.4)]"
-                    : "border-ivory/10 bg-charcoal hover:border-ivory/25",
+                    ? "border-accent bg-panel shadow-[0_0_0_1px_rgba(184,130,63,0.4)]"
+                    : "border-rule hover:border-accent/50",
                 )}
               >
                 <input
@@ -198,12 +198,12 @@ export function ContactForm() {
                 <span
                   className={cn(
                     "text-sm font-semibold",
-                    selected ? "text-ivory" : "text-ivory/90",
+                    selected ? "text-fg" : "text-fg/90",
                   )}
                 >
                   {option.label}
                 </span>
-                <span className="text-xs leading-relaxed text-muted-stone">
+                <span className="text-xs leading-relaxed text-fg-muted">
                   {option.description}
                 </span>
               </label>
@@ -339,7 +339,7 @@ export function ContactForm() {
           {def.checkbox && (
             <label
               htmlFor={`contact-${def.checkbox.name}`}
-              className="flex cursor-pointer items-start gap-3 border border-ivory/10 bg-charcoal p-4 focus-within:ring-2 focus-within:ring-bronze/50 focus-within:ring-offset-2 focus-within:ring-offset-obsidian"
+              className="flex cursor-pointer items-start gap-3 border border-rule bg-panel p-4 focus-within:ring-2 focus-within:ring-accent/50 focus-within:ring-offset-2"
             >
               <input
                 id={`contact-${def.checkbox.name}`}
@@ -348,7 +348,7 @@ export function ContactForm() {
                 value={def.checkbox.value}
                 className="mt-0.5 h-4 w-4 shrink-0 accent-bronze"
               />
-              <span className="text-sm leading-relaxed text-muted-stone">
+              <span className="text-sm leading-relaxed text-fg-muted">
                 {def.checkbox.label}
               </span>
             </label>
@@ -366,7 +366,7 @@ export function ContactForm() {
               name="message"
               rows={4}
               required
-              placeholder="Tell Mythos what you are building, connecting, preparing to deploy, or evaluating."
+              placeholder="In a sentence or two: what kind of AI system, and what decision you need to make. No architecture details, credentials or data."
               className={cn(inputClass, "resize-none")}
             />
           </Field>
@@ -402,15 +402,15 @@ export function ContactForm() {
       </fieldset>
 
       {/* Submit ───────────────────────────────────────────── */}
-      <div className="border-t border-ivory/5 pt-6">
-        <p className="mb-5 border-l-2 border-bronze/40 pl-4 text-xs leading-relaxed text-muted-stone/80">
+      <div className="border-t border-rule pt-6">
+        <p className="mb-5 border-l-2 border-accent/40 pl-4 text-xs leading-relaxed text-fg-muted">
           Do not submit secrets, credentials, regulated records, private customer
           data, or sensitive production material through this form.
         </p>
         {status === "error" && errorMessage && (
           <p
             role="alert"
-            className="mb-4 border border-red-500/30 bg-red-500/5 px-4 py-3 text-sm leading-relaxed text-red-200"
+            className="mb-4 border border-state-contradicted bg-panel px-4 py-3 text-sm leading-relaxed text-state-contradicted-ink"
           >
             {errorMessage}
           </p>
@@ -424,8 +424,8 @@ export function ContactForm() {
         >
           {status === "submitting" ? "Sending…" : def.submitLabel}
         </Button>
-        <p className="mt-3 text-xs text-muted-stone/50">
-          All inquiries are reviewed confidentially.
+        <p className="mt-3 text-xs text-fg-muted">
+          Inquiries are read by the Mythos team.
         </p>
       </div>
     </form>

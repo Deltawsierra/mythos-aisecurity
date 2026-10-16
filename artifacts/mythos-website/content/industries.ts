@@ -223,7 +223,7 @@ export const INDUSTRIES: IndustryContent[] = [
         { name: "Clear release calls", body: "Ship, restrict or hold, traced to evidence." },
       ],
     },
-    useCases: { title: "Scenarios for *SaaS teams.*", slugs: ["customer-support-ai-agent", "ai-agent-tools-actions", "internal-knowledge-rag-assistant", "developer-ai-assistant"] },
+    useCases: { title: "Scenarios for *SaaS teams.*", slugs: ["customer-support-ai-agent", "ai-agent-tools-actions", "data-platform-cloud-ai-integration", "developer-ai-assistant"] },
     controls: {
       title: "Threat coverage, *stated honestly.*",
       lede: "Testing coverage is described against public threat taxonomies. Supplier attestations count as declared evidence until they are observed.",
@@ -301,7 +301,7 @@ export const INDUSTRIES: IndustryContent[] = [
         { name: "Less rework", body: "One body of evidence reused across reviews." },
       ],
     },
-    useCases: { title: "Scenarios for *regulated teams.*", slugs: ["regulated-workflow-assistant", "executive-employee-copilot", "ai-powered-decision-support", "partner-vendor-ai-integration"] },
+    useCases: { title: "Scenarios for *regulated teams.*", slugs: ["regulated-workflow-assistant", "internal-knowledge-rag-assistant", "executive-employee-copilot", "ai-powered-decision-support"] },
     controls: {
       title: "Supporting reviews, *not replacing them.*",
       lede: "Frameworks are referenced so evidence can be used in your reviews. None of this is a certification or a legal safe harbor.",

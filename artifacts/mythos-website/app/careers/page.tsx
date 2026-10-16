@@ -1,116 +1,88 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
-import { ScrollReveal } from "@/components/motion/ScrollReveal";
-import { CareersHero } from "@/components/careers/CareersHero";
-import { WhyJoinMythos } from "@/components/careers/WhyJoinMythos";
-import { CurrentOpenings } from "@/components/careers/CurrentOpenings";
-import { WhatWeLookFor } from "@/components/careers/WhatWeLookFor";
-import { HiringProcess } from "@/components/careers/HiringProcess";
-import { CareersCTA } from "@/components/careers/CareersCTA";
-import { OpenTalentForm } from "@/components/careers/OpenTalentForm";
+import { Accent } from "@/components/ui/Headline";
+import { Button } from "@/components/ui/Button";
+import { PageMotion } from "@/components/motion/PageMotion";
+import { SectionIntro } from "@/components/sections/SectionIntro";
+import { ScenicHero } from "@/components/scenic/ScenicHero";
+import { CAREERS } from "@/content/company";
+import { OLYMPUS_MEDIA } from "@/content/media";
 
 export const metadata: Metadata = {
-  title: "Careers",
+  title: "Careers — Build the Systems That Test AI",
   description:
-    "Explore future career opportunities at Mythos AI Security and submit an Open Talent application for future roles across AI security, software engineering, cybersecurity, cloud, product, design, research, and go-to-market.",
+    "What building Mythos involves. There are no open roles right now; when one opens it will be listed here with its team, location, eligibility and how to apply.",
+  alternates: { canonical: "/careers/" },
 };
 
-const EYEBROW =
-  "mb-4 text-[10px] font-semibold uppercase tracking-[0.3em] text-bronze";
-const HEADING =
-  "mb-5 text-3xl font-normal leading-tight text-ivory lg:text-4xl";
-const BODY = "text-base leading-relaxed text-muted-stone";
+const c = CAREERS;
 
+/** Careers — Launch Guide §12 /careers. No roles are open, so none are shown. */
 export default function CareersPage() {
   return (
-    <>
-      <CareersHero />
-      <WhyJoinMythos />
-      <CurrentOpenings />
-      <WhatWeLookFor />
+    <PageMotion>
+      <ScenicHero
+        eyebrow={c.hero.eyebrow}
+        headline={c.hero.headline}
+        lede={c.hero.lede}
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Company", href: "/company" },
+        ]}
+        current="Careers"
+        primaryCta={{ label: "See Open Roles", href: "#roles-title" }}
+        secondaryCta={{ label: "About Mythos", href: "/company" }}
+        planes={[
+          { src: OLYMPUS_MEDIA.cloudSea.src, className: "-inset-[3%]", position: "50% 60%", depth: 6, priority: true },
+          { src: OLYMPUS_MEDIA.viaduct.src, className: "inset-x-[-4%] bottom-[16%] h-[34%]", fit: "contain", position: "50% 100%", depth: 12 },
+          { src: OLYMPUS_MEDIA.sunbeams, className: "-inset-[3%]", blend: "screen", opacity: 0.45, position: "100% 0%", depth: 10 },
+        ]}
+        compact
+        into="ivory"
+      />
 
-      {/* Open Talent application ───────────────────────────── */}
-      <section
-        id="open-talent"
-        className="scroll-mt-24 border-b border-ivory/5 bg-obsidian py-20 lg:py-28"
-        aria-labelledby="open-talent-heading"
-      >
-        <Container>
-          <div className="grid items-start gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
-            <ScrollReveal>
-              <div>
-                <p className={EYEBROW}>Open Talent</p>
-                <h2 id="open-talent-heading" className={HEADING}>
-                  Introduce yourself to Mythos.
-                </h2>
-                <p className={`${BODY} max-w-sm`}>
-                  This application is always open. Tell us who you are, what you
-                  are great at, and why AI security pulls at you. We review every
-                  submission and reach out when there is a fit.
-                </p>
-                <ul className="mt-8 flex flex-col gap-5">
-                  <li className="border-l-2 border-bronze/30 pl-5">
-                    <p className="mb-1 text-sm font-semibold text-ivory">
-                      Resume goes straight to our team
-                    </p>
-                    <p className="text-sm leading-relaxed text-muted-stone">
-                      Your application is emailed directly to the Mythos hiring
-                      team, not stored on this website.
-                    </p>
-                  </li>
-                  <li className="border-l-2 border-ivory/15 pl-5">
-                    <p className="mb-1 text-sm font-semibold text-ivory">
-                      Open to all backgrounds
-                    </p>
-                    <p className="text-sm leading-relaxed text-muted-stone">
-                      Research, engineering, security, product, operations, and
-                      early-career, there is a path for strong people.
-                    </p>
-                  </li>
-                  <li className="border-l-2 border-ivory/15 pl-5">
-                    <p className="mb-1 text-sm font-semibold text-ivory">
-                      Reviewed with care
-                    </p>
-                    <p className="text-sm leading-relaxed text-muted-stone">
-                      A person reads every application. We keep what you share
-                      confidential to the hiring process.
-                    </p>
-                  </li>
-                </ul>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal delay={0.05}>
-              <div className="border border-ivory/8 bg-charcoal/70 p-6 backdrop-blur-sm sm:p-8 lg:p-10">
-                <OpenTalentForm />
-              </div>
-            </ScrollReveal>
+      {/* Open roles */}
+      <section data-surface="ivory" aria-labelledby="roles-title" className="scroll-mt-24 pb-24 pt-10">
+        <Container className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+          <SectionIntro id="roles-title" eyebrow={c.roles.eyebrow} title={<Accent text={c.roles.title} />} caps />
+          <div className="border border-rule bg-panel p-8 lg:mt-10">
+            <p className="text-lg leading-relaxed text-fg">{c.roles.body}</p>
           </div>
-
-          {/* Privacy & safety notes */}
-          <ScrollReveal>
-            <div className="mx-auto mt-12 max-w-3xl border border-bronze/25 bg-charcoal p-8 lg:p-10">
-              <p className={EYEBROW}>How your application is handled</p>
-              <h3 className="mb-4 text-2xl font-normal leading-tight text-ivory lg:text-3xl">
-                Email-only, no storage.
-              </h3>
-              <p className={`${BODY} mb-4`}>
-                Your application and resume are delivered directly to the Mythos
-                hiring team by email. We do not save applications, resumes, or any
-                applicant data on this website, in a database, or in your browser.
-              </p>
-              <p className="text-sm leading-relaxed text-muted-stone/70">
-                Please keep passwords, credentials, government ID numbers,
-                financial details, and other sensitive personal data out of your
-                resume and message. Share only what is relevant to your
-                candidacy.
-              </p>
-            </div>
-          </ScrollReveal>
         </Container>
       </section>
 
-      <HiringProcess />
-      <CareersCTA />
-    </>
+      {/* The work */}
+      <section data-surface="parchment" aria-labelledby="work-title" className="py-24 lg:py-28">
+        <Container>
+          <SectionIntro id="work-title" eyebrow={c.work.eyebrow} title={<Accent text={c.work.title} />} caps />
+          <ul className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-4" data-reveal-group>
+            {c.work.items.map((w) => (
+              <li key={w.name} className="border border-rule bg-panel p-6">
+                <p className="font-display text-2xl text-fg">{w.name}</p>
+                <p className="mt-2 text-[15px] leading-relaxed text-fg-muted">{w.body}</p>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </section>
+
+      {/* Interest */}
+      <section data-surface="ivory" aria-labelledby="interest-title" className="py-24">
+        <Container className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+          <SectionIntro id="interest-title" eyebrow={c.interest.eyebrow} title={<Accent text={c.interest.title} />} caps />
+          <div className="lg:mt-10">
+            <p className="text-[17px] leading-relaxed text-fg">{c.interest.body}</p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Button href="/contact?intent=general" variant="primary" size="lg" arrow>
+                Send a Note
+              </Button>
+              <Button href="/company" variant="secondary" size="lg">
+                Our Principles
+              </Button>
+            </div>
+          </div>
+        </Container>
+      </section>
+    </PageMotion>
   );
 }

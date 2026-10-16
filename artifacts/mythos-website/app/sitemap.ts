@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { USE_CASE_DEEP_DIVES } from "@/data/useCaseDeepDives";
+import { USE_CASES } from "@/content/useCaseLibrary";
 import { PLATFORM_PAGES } from "@/content/platform";
 import { SOLUTION_PAGES } from "@/content/solutions";
 import { RESOURCE_PAGES } from "@/content/resources";
@@ -14,6 +14,7 @@ const STATIC_ROUTES = [
   "/platform",
   "/solutions",
   "/use-cases",
+  "/resources",
   "/pricing",
   "/example-report",
   "/investors",
@@ -52,6 +53,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...STATIC_ROUTES.map((route) => entry(route, route === "/" ? 1 : 0.8)),
     ...PLATFORM_PAGES.map((page) => entry(page.href, 0.8)),
     ...SOLUTION_PAGES.map((page) => entry(page.href, 0.7)),
-    ...USE_CASE_DEEP_DIVES.map((deepDive) => entry(`/use-cases/${deepDive.slug}`, 0.6)),
+    ...USE_CASES.map((u) => entry(`/use-cases/${u.slug}`, u.horizon ? 0.4 : 0.6)),
   ];
 }

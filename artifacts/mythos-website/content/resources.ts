@@ -1,6 +1,7 @@
 /**
  * New standalone v2 routes outside Platform and Solutions (blueprint Sections
- * 11–13). Each renders as a reviewable scaffold until its full build lands.
+ * 11–13). All are built (16 Oct); the scaffold fields remain for navigation
+ * and the release gate only.
  */
 import type { ScaffoldPage } from "@/content/platform";
 
@@ -13,6 +14,7 @@ export const RESOURCE_PAGES = {
     eyebrow: "What Mythos Produces",
     headline: "From finding to evidence to decision.",
     lede: "Every output a buyer receives — and who it is useful for: security, engineering, audit, the board, procurement and the release owner.",
+    built: true,
     plannedSections: [
       "Assurance claims and evidence states",
       "Assurance Receipt",
@@ -34,6 +36,7 @@ export const RESOURCE_PAGES = {
     eyebrow: "Standards & Control Mapping",
     headline: "Mapped to tests and evidence — never “certified by Mythos.”",
     lede: "How Mythos tests and evidence map to AI, security and industry frameworks, and where mapping ends and audit responsibility begins.",
+    built: true,
     plannedSections: [
       "Mapping, evidence support and certification",
       "AI and secure-development frameworks",
@@ -49,6 +52,7 @@ export const RESOURCE_PAGES = {
     eyebrow: "AI Assurance Glossary",
     headline: "The language of AI assurance, in plain English.",
     lede: "Searchable A–Z definitions — technical and plain-English — for the terms buyers meet on the way to an assessment.",
+    built: true,
     plannedSections: ["A–Z terms", "Plain-English and technical definitions", "Related pages"],
   },
   engagement: {
@@ -59,6 +63,7 @@ export const RESOURCE_PAGES = {
     eyebrow: "How Engagement Starts",
     headline: "What happens after you click Request Assessment.",
     lede: "From scope lock and authorization to evidence, remediation, retest and annual assurance — what you provide, what Mythos does and what you receive.",
+    built: true,
     plannedSections: [
       "Choose the system and business question",
       "Scope lock and authorization",
@@ -78,6 +83,7 @@ export const RESOURCE_PAGES = {
     eyebrow: "Partnerships",
     headline: "Build assurance into what you deliver.",
     lede: "For systems integrators, AI vendors, research collaborators and channel partners who want Mythos evidence alongside their work.",
+    built: true,
     plannedSections: [
       "Partnership types",
       "Integrators and AI vendors",

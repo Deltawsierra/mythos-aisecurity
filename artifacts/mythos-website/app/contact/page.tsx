@@ -1,313 +1,131 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowRight, ShieldAlert } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
-import { IntentButton } from "@/components/forms/IntentButton";
+import { Accent } from "@/components/ui/Headline";
+import { PageMotion } from "@/components/motion/PageMotion";
+import { SectionIntro } from "@/components/sections/SectionIntro";
+import { ScenicHero } from "@/components/scenic/ScenicHero";
 import { ContactForm } from "@/components/forms/ContactForm";
-import { ScrollReveal } from "@/components/motion/ScrollReveal";
-import { StaggerReveal } from "@/components/motion/StaggerReveal";
+import { OLYMPUS_MEDIA } from "@/content/media";
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: "Contact — Start With a Defined Scope",
   description:
-    "Contact Mythos AI Security to request an assessment, demo, investor conversation, partnership discussion, or general inquiry.",
+    "Tell Mythos what you are building or reviewing — an assessment, a demo, an investor or partnership conversation — without exposing confidential systems through a public form.",
+  alternates: { canonical: "/contact/" },
 };
 
-/* ── Shared style tokens ──────────────────────────────────── */
-const EYEBROW =
-  "mb-4 text-[10px] font-semibold uppercase tracking-[0.3em] text-bronze";
-const HEADING =
-  "mb-5 text-3xl font-normal leading-tight text-ivory lg:text-4xl";
-const BODY = "text-base leading-relaxed text-muted-stone";
-
-/* ── Section · What happens after you reach out ───────────── */
 const STEPS = [
-  {
-    title: "Mythos reviews the inquiry.",
-    description:
-      "Your request is reviewed for relevance, request type, and the appropriate next step.",
-  },
-  {
-    title: "The right conversation path is selected.",
-    description:
-      "Assessment, demo, investor, partnership, or general; routed to the right team.",
-  },
-  {
-    title: "Scope, goals, and constraints are clarified.",
-    description:
-      "Mythos confirms the system, deployment stage, and concerns that matter most.",
-  },
-  {
-    title: "An assessment or demo next step is prepared.",
-    description:
-      "If appropriate, Mythos prepares a scoped assessment or a private walkthrough.",
-  },
+  { name: "We read your note", body: "Someone at Mythos reviews what kind of request it is and what you are trying to decide." },
+  { name: "We suggest the right conversation", body: "Assessment, demo, investor, partnership or general — routed to the people who can answer." },
+  { name: "Scope comes later, in writing", body: "Systems, goals and constraints are discussed in a scoping conversation, and anything sensitive is shared under an agreement." },
 ];
 
-/* ── Section · Common starting points ─────────────────────── */
 const STARTING_POINTS = [
-  "AI agent preparing for pilot",
-  "Internal RAG assistant before rollout",
-  "Vendor AI integration review",
-  "Cloud/data AI integration",
-  "Regulated workflow assistant",
-  "Use case or investor discussion",
+  { label: "An AI agent before its pilot", href: "/use-cases/ai-agent-tools-actions" },
+  { label: "An internal knowledge assistant before rollout", href: "/use-cases/internal-knowledge-rag-assistant" },
+  { label: "A vendor’s AI joining your systems", href: "/use-cases/partner-vendor-ai-integration" },
+  { label: "AI on your data or cloud platform", href: "/use-cases/data-platform-cloud-ai-integration" },
+  { label: "A regulated workflow assistant", href: "/use-cases/regulated-workflow-assistant" },
 ];
 
+const OTHER = [
+  { label: "Investors", body: "The thesis, and how to start a conversation.", href: "/investors" },
+  { label: "Partnerships", body: "Relationship types and independence rules.", href: "/partnerships" },
+  { label: "Careers", body: "No open roles right now — what to do instead.", href: "/careers" },
+  { label: "Trust", body: "Authorization, scope and how evidence is handled.", href: "/trust" },
+];
+
+/** Contact — Launch Guide §12 /contact: a calm form on parchment with stable trust copy. */
 export default function ContactPage() {
   return (
-    <>
-      {/* 1 · Contact Hero ─────────────────────────────────── */}
-      <section
-        className="relative flex min-h-[58vh] items-center overflow-hidden border-b border-ivory/5 bg-obsidian"
-        aria-label="Contact hero"
-      >
-        {/* Restrained background texture */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-obsidian bg-cover bg-center"
-          style={{ backgroundImage: "url(/images/contact/contact-hero.webp)" }}
-        />
-        {/* Lighter readability scrim — lets the cinematic background show through
-            while keeping a darker pocket behind the centered copy. */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(18,21,23,0.5) 0%, rgba(18,21,23,0.36) 45%, rgba(18,21,23,0.72) 100%)",
-          }}
-        />
-        <div
-          aria-hidden="true"
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(ellipse 62% 58% at 50% 50%, rgba(18,21,23,0.5) 0%, transparent 72%)",
-          }}
-        />
-        {/* Bottom divider glow */}
-        <div
-          aria-hidden="true"
-          className="absolute bottom-0 left-0 right-0 h-px"
-          style={{
-            background:
-              "linear-gradient(90deg, transparent, rgba(184,130,63,0.3) 30%, rgba(184,130,63,0.3) 70%, transparent)",
-          }}
-        />
+    <PageMotion>
+      <ScenicHero
+        eyebrow="Contact Mythos"
+        headline="Start With a *Defined Scope.*"
+        lede="Tell us what you are building or reviewing. We will help identify the right next conversation without asking you to expose confidential systems through a public form."
+        breadcrumbs={[{ label: "Home", href: "/" }]}
+        current="Contact"
+        primaryCta={{ label: "Go to the Form", href: "#contact-form" }}
+        secondaryCta={{ label: "How Engagement Starts", href: "/engagement" }}
+        planes={[
+          { src: OLYMPUS_MEDIA.cloudSea.src, className: "-inset-[3%]", position: "50% 55%", depth: 6, priority: true },
+          { src: OLYMPUS_MEDIA.cliffTemple.src, className: "-right-[3%] bottom-[8%] h-[62%] w-[52%]", fit: "contain", position: "100% 100%", depth: 12, desktopOnly: true },
+          { src: OLYMPUS_MEDIA.sunbeams, className: "-inset-[3%]", blend: "screen", opacity: 0.45, position: "100% 0%", depth: 10 },
+        ]}
+        compact
+        into="parchment"
+      />
 
-        <Container className="relative z-10 py-20 lg:py-24">
-          <ScrollReveal y={20}>
-            <div className="mx-auto max-w-2xl text-center">
-              <p className={EYEBROW}>Contact Mythos</p>
-              <h1 className="mb-6 text-4xl font-normal leading-tight text-ivory sm:text-5xl">
-                Start the right assessment conversation.
-              </h1>
-              <p className={`${BODY} mx-auto mb-8 max-w-xl sm:text-lg`}>
-                Tell Mythos what you are building, connecting, preparing to
-                deploy, or evaluating. We will route the inquiry to the right
-                next step: assessment, demo, investor conversation, partnership
-                discussion, or general contact.
-              </p>
-              <div className="flex flex-wrap justify-center gap-4">
-                <Button href="#contact-form" variant="primary" size="lg">
-                  Request Assessment
-                </Button>
-                <IntentButton
-                  intent="demo"
-                  href="/contact?intent=demo#contact-form"
-                  variant="secondary"
-                  size="lg"
-                >
-                  Request Demo
-                </IntentButton>
-              </div>
-              <p className="mt-8 text-[10px] font-semibold uppercase tracking-[0.28em] text-bronze/70">
-                All inquiries are reviewed confidentially
+      {/* Form */}
+      <section id="contact-form" data-surface="parchment" aria-labelledby="form-title" className="scroll-mt-24 pb-24 pt-8">
+        <Container className="grid items-start gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+          <div className="lg:sticky lg:top-28">
+            <SectionIntro id="form-title" eyebrow="Your inquiry" title={<Accent text="Tell us *what you need.*" />} lede="Choose the kind of request and share a sentence or two of context. The right fields appear for each type." caps />
+            <ol className="mt-8 grid gap-4">
+              {STEPS.map((s, i) => (
+                <li key={s.name} className="flex gap-4">
+                  <span className="font-display text-2xl leading-none text-accent">{String(i + 1).padStart(2, "0")}</span>
+                  <span>
+                    <span className="block font-semibold text-fg">{s.name}</span>
+                    <span className="block text-[15px] leading-relaxed text-fg-muted">{s.body}</span>
+                  </span>
+                </li>
+              ))}
+            </ol>
+            <div className="mt-8 flex items-start gap-3 border-l-2 border-state-contradicted bg-panel px-5 py-4">
+              <ShieldAlert size={18} aria-hidden="true" className="mt-0.5 shrink-0 text-state-contradicted-ink" />
+              <p className="text-sm leading-relaxed text-fg">
+                <span className="font-semibold">Keep sensitive material out.</span> Please don’t send secrets, credentials, private keys, regulated records, customer
+                data, source code or incident material through this form. Those are shared only through an agreed, scoped process.
               </p>
             </div>
-          </ScrollReveal>
-        </Container>
-      </section>
-
-      {/* 2 · Inquiry form (selector + conditional fields) ──── */}
-      <section
-        id="contact-form"
-        className="relative scroll-mt-24 overflow-hidden border-b border-ivory/5 bg-obsidian py-20 lg:py-28"
-        aria-labelledby="form-heading"
-      >
-        {/* Background plate — glowing altar reads on the left, dark smoke behind the form on the right */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-obsidian bg-cover bg-center"
-          style={{ backgroundImage: "url(/images/contact/contact-form-bg.webp)" }}
-        />
-        {/* Horizontal readability gradient */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(90deg, rgba(18,21,23,0.82) 0%, rgba(18,21,23,0.55) 42%, rgba(18,21,23,0.5) 66%, rgba(18,21,23,0.62) 100%)",
-          }}
-        />
-        {/* Vertical blend to soften the section seams */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(18,21,23,0.55) 0%, rgba(18,21,23,0.22) 24%, rgba(18,21,23,0.3) 74%, rgba(18,21,23,0.7) 100%)",
-          }}
-        />
-        <Container className="relative z-10">
-          <div className="grid items-start gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
-            <ScrollReveal>
-              <div>
-                <p className={EYEBROW}>Inquiry routing</p>
-                <h2 id="form-heading" className={HEADING}>
-                  Tell Mythos what you need.
-                </h2>
-                <p className={`${BODY} max-w-sm`}>
-                  Choose the inquiry type, share a little context, and Mythos will
-                  route your message to the right next step.
-                </p>
-                <ul className="mt-8 flex flex-col gap-5">
-                  <li className="border-l-2 border-bronze/30 pl-5">
-                    <p className="mb-1 text-sm font-semibold text-ivory">
-                      Request Assessment
-                    </p>
-                    <p className="text-sm leading-relaxed text-muted-stone">
-                      Start a scoped Mythos review of a real AI system, workflow,
-                      or strategic scenario.
-                    </p>
-                  </li>
-                  <li className="border-l-2 border-ivory/15 pl-5">
-                    <p className="mb-1 text-sm font-semibold text-ivory">
-                      Demo, investor, partnership, or general
-                    </p>
-                    <p className="text-sm leading-relaxed text-muted-stone">
-                      Switch the inquiry type above the form and the right fields
-                      appear automatically.
-                    </p>
-                  </li>
-                  <li className="border-l-2 border-ivory/15 pl-5">
-                    <p className="mb-1 text-sm font-semibold text-ivory">
-                      Confidential by default
-                    </p>
-                    <p className="text-sm leading-relaxed text-muted-stone">
-                      Messages are reviewed for business follow-up and handled
-                      with care.
-                    </p>
-                  </li>
-                </ul>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal delay={0.05}>
-              <div className="border border-ivory/8 bg-charcoal/70 p-6 backdrop-blur-sm sm:p-8 lg:p-10">
-                <ContactForm />
-              </div>
-            </ScrollReveal>
+          </div>
+          <div className="border border-rule bg-panel/60 p-6 shadow-[0_40px_80px_-50px_rgba(22,26,28,0.5)] sm:p-8">
+            <ContactForm />
           </div>
         </Container>
       </section>
 
-      {/* 3 · What happens after you reach out ─────────────── */}
-      <section
-        className="border-b border-ivory/5 bg-graphite py-20 lg:py-28"
-        aria-labelledby="next-heading"
-      >
-        <Container>
-          <ScrollReveal>
-            <div className="mb-12 max-w-xl">
-              <p className={EYEBROW}>Next steps</p>
-              <h2 id="next-heading" className={HEADING}>
-                What happens after you reach out.
-              </h2>
-            </div>
-          </ScrollReveal>
-          <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {STEPS.map((step, i) => (
-              <li
-                key={step.title}
-                className="flex flex-col border-t-2 border-t-bronze/40 bg-charcoal p-7"
-              >
-                <span className="mb-4 font-display text-2xl font-normal text-bronze/80">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h3 className="mb-2 text-base font-semibold text-ivory">
-                  {step.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-muted-stone">
-                  {step.description}
-                </p>
-              </li>
-            ))}
-          </ol>
+      {/* Starting points and other routes */}
+      <section data-surface="ivory" aria-labelledby="start-title" className="py-24">
+        <Container className="grid gap-12 lg:grid-cols-2">
+          <div>
+            <SectionIntro id="start-title" eyebrow="Good places to start" title={<Accent text="Not sure *what to ask for?*" />} lede="Each of these scenarios explains what an assessment would look at." caps />
+            <ul className="mt-8 grid gap-2" data-reveal-group>
+              {STARTING_POINTS.map((s) => (
+                <li key={s.href}>
+                  <Link href={s.href} className="group flex items-center justify-between gap-4 border border-rule bg-panel px-5 py-3.5 text-[15px] text-fg hover:border-antique-gold/60">
+                    {s.label}
+                    <ArrowRight size={14} aria-hidden="true" className="shrink-0 text-accent transition-transform group-hover:translate-x-0.5" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="lg:pt-[4.5rem]">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-accent">Other routes</p>
+            <ul className="mt-4 grid gap-3 sm:grid-cols-2" data-reveal-group>
+              {OTHER.map((o) => (
+                <li key={o.href}>
+                  <Link href={o.href} className="group flex h-full flex-col border border-rule bg-panel p-5 hover:border-antique-gold/60">
+                    <span className="font-display text-xl text-fg">{o.label}</span>
+                    <span className="mt-1 text-sm text-fg-muted">{o.body}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-6 text-sm text-fg-muted">
+              You can also email{" "}
+              <a href="mailto:info@mythosaisecurity.com" className="font-semibold text-accent hover:underline">
+                info@mythosaisecurity.com
+              </a>
+              .
+            </p>
+          </div>
         </Container>
       </section>
-
-      {/* 4 · What not to submit ───────────────────────────── */}
-      <section
-        className="border-b border-ivory/5 bg-obsidian py-20 lg:py-28"
-        aria-labelledby="care-heading"
-      >
-        <Container>
-          <ScrollReveal>
-            <div className="mx-auto max-w-3xl border border-bronze/25 bg-charcoal p-8 lg:p-10">
-              <p className={EYEBROW}>What not to submit</p>
-              <h2
-                id="care-heading"
-                className="mb-4 text-2xl font-normal leading-tight text-ivory lg:text-3xl"
-              >
-                Keep sensitive material out of the form.
-              </h2>
-              <p className={`${BODY} mb-4`}>
-                Please do not submit secrets, credentials, private keys, regulated
-                records, sensitive customer data, proprietary source code, or
-                production incident material through this form.
-              </p>
-              <p className="text-sm leading-relaxed text-muted-stone/70">
-                Sensitive details should be shared only through an approved,
-                scoped process.
-              </p>
-            </div>
-          </ScrollReveal>
-        </Container>
-      </section>
-
-      {/* 5 · Common starting points ───────────────────────── */}
-      <section
-        className="border-b border-ivory/5 bg-graphite py-20 lg:py-28"
-        aria-labelledby="starting-heading"
-      >
-        <Container>
-          <ScrollReveal>
-            <div className="mb-12 max-w-xl">
-              <p className={EYEBROW}>Common starting points</p>
-              <h2 id="starting-heading" className={HEADING}>
-                Where most conversations begin.
-              </h2>
-              <p className={BODY}>
-                A few of the most common reasons teams reach out to Mythos.
-              </p>
-            </div>
-          </ScrollReveal>
-          <StaggerReveal className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {STARTING_POINTS.map((point) => (
-              <div
-                key={point}
-                className="flex items-center gap-3 border border-ivory/8 bg-charcoal p-6"
-              >
-                <span
-                  aria-hidden="true"
-                  className="h-1.5 w-1.5 shrink-0 rounded-full bg-bronze"
-                />
-                <span className="text-sm font-medium text-ivory">{point}</span>
-              </div>
-            ))}
-          </StaggerReveal>
-        </Container>
-      </section>
-    </>
+    </PageMotion>
   );
 }
