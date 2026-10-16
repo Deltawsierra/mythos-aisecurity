@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
+import { socialImage } from "@/lib/social";
 import { Container } from "@/components/ui/Container";
+import { PageMotion } from "@/components/motion/PageMotion";
+import { ScenicHero } from "@/components/scenic/ScenicHero";
+import { OLYMPUS_MEDIA } from "@/content/media";
 import { CookieSettingsButton } from "@/components/consent/CookieSettingsButton";
 
 export const metadata: Metadata = {
@@ -7,17 +11,18 @@ export const metadata: Metadata = {
   description:
     "How Mythos AI Security handles information submitted through this website, how we use cookies and Google Analytics, and the choices available to visitors.",
   robots: { index: true, follow: true },
+  ...socialImage("privacy", "Privacy & Cookie Policy — Mythos AI Security"),
 };
 
 const SECTION = "mt-10 first:mt-0";
-const H2 = "mb-3 text-xl font-normal text-ivory";
-const H3 = "mb-2 mt-6 text-sm font-semibold uppercase tracking-[0.14em] text-ivory/90";
-const BODY = "text-sm leading-relaxed text-muted-stone";
-const LI = "text-sm leading-relaxed text-muted-stone";
+const H2 = "mb-3 font-display text-2xl font-normal text-fg";
+const H3 = "mb-2 mt-6 text-[11px] font-semibold uppercase tracking-[0.18em] text-accent";
+const BODY = "text-[15px] leading-relaxed text-fg-muted";
+const LI = "text-[15px] leading-relaxed text-fg-muted";
 const UL = "mt-3 list-disc space-y-1.5 pl-5";
 const TH =
-  "border-b border-ivory/15 px-3 py-2 text-left text-[11px] font-semibold uppercase tracking-[0.12em] text-ivory/80";
-const TD = "border-b border-ivory/5 px-3 py-2 align-top text-sm text-muted-stone";
+  "border-b border-rule px-3 py-2 text-left text-[11px] font-semibold uppercase tracking-[0.12em] text-fg";
+const TD = "border-b border-rule px-3 py-2 align-top text-sm text-fg-muted";
 
 function PolicyTable({
   headers,
@@ -58,12 +63,25 @@ export default function PrivacyPage() {
   const lastUpdated = "June 2026";
 
   return (
-    <Container className="max-w-3xl py-20 lg:py-28">
-      {/* Bare page title — no marketing hero treatment. */}
-      <h1 className="text-3xl font-normal leading-tight text-ivory lg:text-4xl">
-        Privacy &amp; Cookie Policy
-      </h1>
-      <p className="mt-3 text-xs uppercase tracking-[0.2em] text-muted-stone/50">
+    <PageMotion>
+      <ScenicHero
+        eyebrow="Legal"
+        headline="Privacy & *Cookie Policy.*"
+        lede="How Mythos handles information submitted through this website, how cookies and analytics are used, and the choices you have."
+        breadcrumbs={[{ label: "Home", href: "/" }]}
+        current="Privacy"
+        primaryCta={{ label: "Contact Us", href: "/contact" }}
+        secondaryCta={{ label: "Trust Center", href: "/trust" }}
+        planes={[
+          { src: OLYMPUS_MEDIA.cloudSea.src, className: "-inset-[3%]", position: "50% 55%", depth: 6, priority: true },
+          { src: OLYMPUS_MEDIA.sunbeams, className: "-inset-[3%]", blend: "screen", opacity: 0.4, position: "100% 0%", depth: 10 },
+        ]}
+        compact
+        into="ivory"
+      />
+      <section data-surface="ivory" aria-label="Policy text" className="pb-24 pt-6">
+    <Container className="max-w-3xl">
+      <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-muted">
         Last updated: {lastUpdated}
       </p>
 
@@ -332,7 +350,7 @@ export default function PrivacyPage() {
             Blocking necessary cookies may affect website functionality.
           </p>
           <div className="mt-5">
-            <CookieSettingsButton className="inline-flex cursor-pointer items-center border border-ivory/20 px-5 py-2.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-ivory transition-colors duration-200 hover:border-ivory/50 hover:bg-ivory/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bronze/60" />
+            <CookieSettingsButton className="inline-flex cursor-pointer items-center rounded-full border border-accent px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-fg transition-colors duration-200 hover:bg-panel focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60" />
           </div>
         </section>
 
@@ -377,21 +395,21 @@ export default function PrivacyPage() {
           </p>
           <ul className={UL}>
             <li className={LI}>
-              <span className="text-ivory">Consent</span> for optional analytics
+              <span className="font-semibold text-fg">Consent</span> for optional analytics
               cookies and similar technologies.
             </li>
             <li className={LI}>
-              <span className="text-ivory">Legitimate interests</span> for website
+              <span className="font-semibold text-fg">Legitimate interests</span> for website
               security, spam prevention, basic business communications, and
               responding to inquiries.
             </li>
             <li className={LI}>
-              <span className="text-ivory">Contract or pre-contractual steps</span>{" "}
+              <span className="font-semibold text-fg">Contract or pre-contractual steps</span>{" "}
               when you request information about services, demos, partnerships, or
               potential business relationships.
             </li>
             <li className={LI}>
-              <span className="text-ivory">Legal obligation</span> where we must
+              <span className="font-semibold text-fg">Legal obligation</span> where we must
               retain or disclose information to comply with applicable law.
             </li>
           </ul>
@@ -406,25 +424,25 @@ export default function PrivacyPage() {
           <p className={`${BODY} mt-3`}>Typical retention periods are:</p>
           <ul className={UL}>
             <li className={LI}>
-              <span className="text-ivory">
+              <span className="font-semibold text-fg">
                 Contact, demo, and investor inquiries:
               </span>{" "}
               retained as long as needed to respond, manage the relationship,
               maintain business records, or comply with legal obligations.
             </li>
             <li className={LI}>
-              <span className="text-ivory">
+              <span className="font-semibold text-fg">
                 Security logs and technical metadata:
               </span>{" "}
               retained for a limited period needed for security, troubleshooting,
               and abuse prevention.
             </li>
             <li className={LI}>
-              <span className="text-ivory">Cookie consent records:</span> retained
+              <span className="font-semibold text-fg">Cookie consent records:</span> retained
               for the duration needed to remember and document your preferences.
             </li>
             <li className={LI}>
-              <span className="text-ivory">Google Analytics data:</span> retained
+              <span className="font-semibold text-fg">Google Analytics data:</span> retained
               according to our Google Analytics settings and Google&rsquo;s
               applicable retention controls.
             </li>
@@ -493,7 +511,7 @@ export default function PrivacyPage() {
             To make a request, contact us at{" "}
             <a
               href="mailto:info@mythosaisecurity.com"
-              className="text-bronze underline-offset-4 hover:underline"
+              className="font-semibold text-accent underline-offset-4 hover:underline"
             >
               info@mythosaisecurity.com
             </a>
@@ -567,7 +585,7 @@ export default function PrivacyPage() {
             Email:{" "}
             <a
               href="mailto:info@mythosaisecurity.com"
-              className="text-bronze underline-offset-4 hover:underline"
+              className="font-semibold text-accent underline-offset-4 hover:underline"
             >
               info@mythosaisecurity.com
             </a>
@@ -575,5 +593,7 @@ export default function PrivacyPage() {
         </section>
       </div>
     </Container>
+      </section>
+    </PageMotion>
   );
 }

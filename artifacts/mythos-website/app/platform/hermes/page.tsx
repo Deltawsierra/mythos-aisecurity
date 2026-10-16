@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { socialImage } from "@/lib/social";
 import Link from "next/link";
 import { ArrowRight, Ban, Check } from "lucide-react";
 import { Container } from "@/components/ui/Container";
@@ -32,6 +33,7 @@ export const metadata: Metadata = {
   description:
     "Hermes extends the Mythos evidence philosophy toward physical AI — starting with vehicles, fleets and over-the-air updates. An early foundation, with no vehicle safety certification or crash-prevention claims.",
   alternates: { canonical: "/platform/hermes/" },
+  ...socialImage("platform-hermes", "Physical AI Deserves a Safer Tomorrow — Mythos AI Security"),
 };
 
 const SKY = "radial-gradient(ellipse 45% 55% at 40% 55%, rgba(229,197,143,0.42), transparent 70%), radial-gradient(ellipse 35% 45% at 75% 45%, rgba(91,143,199,0.32), transparent 70%)";

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { socialImage } from "@/lib/social";
 import { FlaskConical, Hourglass } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { PageMotion } from "@/components/motion/PageMotion";
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
   description:
     "A fully synthetic sample report for a fictional organization: scope, system map, findings, claim states, remediation and retest, change history and a deployment recommendation.",
   alternates: { canonical: "/example-report/" },
+  ...socialImage("example-report", "See the Evidence Behind an AI Deployment Decision — Mythos AI Security"),
 };
 
 const SEVERITY: Record<string, string> = {

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { socialImage } from "@/lib/social";
 import { notFound } from "next/navigation";
 import { UseCasePage } from "@/components/use-cases/UseCasePage";
 import { USE_CASES, getUseCase } from "@/content/useCaseLibrary";
@@ -18,6 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: `${u.title} — Use Case ${String(u.number).padStart(2, "0")}`,
     description: u.metaDescription,
     alternates: { canonical: `/use-cases/${u.slug}/` },
+    ...socialImage(`use-cases-${u.slug}`, `${u.question.replaceAll("*", "")} — Mythos AI Security`),
   };
 }
 

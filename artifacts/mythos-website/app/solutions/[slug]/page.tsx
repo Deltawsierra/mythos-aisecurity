@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { socialImage } from "@/lib/social";
 import { notFound } from "next/navigation";
 import { IndustryPage } from "@/components/solutions/IndustryPage";
 import { INDUSTRIES, getIndustry } from "@/content/industries";
@@ -22,6 +23,7 @@ export async function generateMetadata({
     title: industry.metaTitle,
     description: industry.metaDescription,
     alternates: { canonical: `/solutions/${industry.slug}/` },
+    ...socialImage(`solutions-${industry.slug}`, `${industry.hero.headline.replaceAll("*", "").replace(/\.$/, "")} — Mythos AI Security`),
   };
 }
 

@@ -25,6 +25,8 @@ export const CONTACT_INQUIRY_TYPES = [
   "investor",
   "partnership",
   "assessment",
+  "press",
+  "careers",
   "general",
   "other",
 ] as const;
@@ -61,6 +63,11 @@ const contactSchema = z.object({
   // Partnership conditional fields
   partnershipType: optionalText,
   partnershipStage: optionalText,
+  // Press conditional fields
+  pressTopic: optionalText,
+  pressDeadline: optionalText,
+  // Careers conditional field
+  careersInterest: optionalText,
   // General conditional field
   topic: optionalText,
 });
@@ -116,6 +123,8 @@ const CONTACT_PREFIX: Record<ContactInquiryType, string> = {
   investor: "[Mythos Investor Materials]",
   partnership: "[Mythos Partnership Inquiry]",
   assessment: "[Mythos Assessment Inquiry]",
+  press: "[Mythos Press Inquiry]",
+  careers: "[Mythos Careers Note]",
   general: "[Mythos General Inquiry]",
   other: "[Mythos Other Inquiry]",
 };
@@ -136,6 +145,8 @@ const CONTACT_LABELS: Record<ContactInquiryType, string> = {
   investor: "Investor inquiry",
   partnership: "Partnership inquiry",
   assessment: "Request Assessment",
+  press: "Press inquiry",
+  careers: "Careers note",
   general: "General inquiry",
   other: "Other",
 };
@@ -237,6 +248,11 @@ function rows(data: InquiryInput): Array<[string, string]> {
       // Partnership
       ["Partnership type", data.partnershipType],
       ["Partnership stage", data.partnershipStage],
+      // Press
+      ["Press topic", data.pressTopic],
+      ["Deadline", data.pressDeadline],
+      // Careers
+      ["Area of interest", data.careersInterest],
       // General
       ["Topic", data.topic],
       ["Message", data.message],

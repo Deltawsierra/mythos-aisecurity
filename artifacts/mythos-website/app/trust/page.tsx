@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { socialImage } from "@/lib/social";
 import { BadgeX, Check, Hourglass, Mail, ShieldCheck } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Accent } from "@/components/ui/Headline";
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
   description:
     "How Mythos handles authorization, testing scope, evidence integrity and data — what is in place today, what is designed but not built, and which certifications Mythos does not hold.",
   alternates: { canonical: "/trust/" },
+  ...socialImage("trust", "Trust Requires More Than a Claim — Mythos AI Security"),
 };
 
 /*

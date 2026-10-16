@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { socialImage } from "@/lib/social";
 import { Container } from "@/components/ui/Container";
 import { Accent } from "@/components/ui/Headline";
 import { PageMotion } from "@/components/motion/PageMotion";
@@ -34,6 +35,7 @@ export const metadata: Metadata = {
   description:
     "Athena reveals how systems, identities, data, tools and models connect within an agreed scope — what is exposed, what is controlled, what was not checked, and where remediation is needed.",
   alternates: { canonical: "/platform/athena/" },
+  ...socialImage("platform-athena", "See Every Risk. Understand Every Exposure. Prove Every Decision — Mythos AI Security"),
 };
 
 const NEXT: NextLink[] = [

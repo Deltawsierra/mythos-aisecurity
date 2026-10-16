@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { socialImage } from "@/lib/social";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
@@ -30,6 +31,7 @@ export const metadata: Metadata = {
   description:
     "One approach to understanding an AI system, testing its boundaries, recording proof and keeping critical claims current as its models, data, tools and permissions change.",
   alternates: { canonical: "/platform/" },
+  ...socialImage("platform", "AI Assurance from Risk to Resilience — Mythos AI Security"),
 };
 
 const o = OVERVIEW;

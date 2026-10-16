@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { socialImage } from "@/lib/social";
 import Link from "next/link";
 import { ArrowRight, Ban } from "lucide-react";
 import { Container } from "@/components/ui/Container";
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
   description:
     "What happens after you request an assessment: scoping one workflow, written authorization before any testing, the assessment, remediation, one retest and decision support.",
   alternates: { canonical: "/engagement/" },
+  ...socialImage("engagement", "What Happens After You Request an Assessment — Mythos AI Security"),
 };
 
 /* Sequence per the 16 Oct resources fact-check (services agreement template,

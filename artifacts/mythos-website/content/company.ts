@@ -145,7 +145,7 @@ export const CAREERS = {
   interest: {
     eyebrow: "Staying in touch",
     title: "Interested *before a role opens?*",
-    body: "Send a short note through the contact form with the topic “Recruiting / careers”. Please don’t include a resume, ID documents or clearance details — when roles open, applications will go through a proper process.",
+    body: "Send a short note through the contact form and choose “Careers”. Please don’t include a resume, ID documents or clearance details — when roles open, applications will go through a proper process.",
   },
 } as const;
 

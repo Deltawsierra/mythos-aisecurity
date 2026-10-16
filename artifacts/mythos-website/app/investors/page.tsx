@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { socialImage } from "@/lib/social";
 import { FlaskConical } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Accent } from "@/components/ui/Headline";
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
   description:
     "The thesis behind Mythos: deployment assurance as a category, one consequential workflow as the wedge, and evidence that survives change as the layer customers keep.",
   alternates: { canonical: "/investors/" },
+  ...socialImage("investors", "Building the Assurance Layer for Operational AI — Mythos AI Security"),
 };
 
 const c = INVESTORS;

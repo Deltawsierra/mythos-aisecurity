@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { socialImage } from "@/lib/social";
 import Link from "next/link";
 import { ArrowRight, ShieldAlert } from "lucide-react";
 import { Container } from "@/components/ui/Container";
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
   description:
     "Tell Mythos what you are building or reviewing — an assessment, a demo, an investor or partnership conversation — without exposing confidential systems through a public form.",
   alternates: { canonical: "/contact/" },
+  ...socialImage("contact", "Start With a Defined Scope — Mythos AI Security"),
 };
 
 const STEPS = [

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { socialImage } from "@/lib/social";
 import { ShieldCheck } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Accent } from "@/components/ui/Headline";
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
   description:
     "How integrators, consultancies, platform vendors, researchers and insurers could work with Mythos — and the independence rules that keep evidence honest. No partners are listed yet.",
   alternates: { canonical: "/partnerships/" },
+  ...socialImage("partnerships", "Build Trust Together — Mythos AI Security"),
 };
 
 const c = PARTNERSHIPS;

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { socialImage } from "@/lib/social";
 import { Check, Hourglass } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Accent } from "@/components/ui/Headline";
@@ -34,6 +35,7 @@ export const metadata: Metadata = {
   description:
     "Minotaur is Mythos’ internal proving ground: known answers, held-out cases and a validity method designed to catch contaminated benchmarks, invalid scorers, false blocks and regressions before anyone relies on a result.",
   alternates: { canonical: "/platform/validation/" },
+  ...socialImage("platform-validation", "Find What We Missed. Prove What We Test — Mythos AI Security"),
 };
 
 const NEXT: NextLink[] = [

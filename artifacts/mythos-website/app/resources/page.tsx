@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { socialImage } from "@/lib/social";
 import Link from "next/link";
 import { ArrowRight, FlaskConical } from "lucide-react";
 import { Container } from "@/components/ui/Container";
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
   description:
     "The evidence, methods and ideas behind assurance for operational AI: a synthetic example report, outputs, standards mapping, a glossary, scenarios and how engagements work.",
   alternates: { canonical: "/resources/" },
+  ...socialImage("resources", "The Mythos Knowledge Archive — Mythos AI Security"),
 };
 
 /*

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { socialImage } from "@/lib/social";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
@@ -27,6 +28,7 @@ export const metadata: Metadata = {
   description:
     "SPINE is the assurance system of record: it links claims, controls, authority, observations and decisions, and flags dependent conclusions for review or targeted revalidation when something material changes.",
   alternates: { canonical: "/platform/spine/" },
+  ...socialImage("platform-spine", "Continuous Assurance. Evidence That Holds Together — Mythos AI Security"),
 };
 
 const NEXT: NextLink[] = [

@@ -32,6 +32,34 @@ const cormorant = Cormorant_Garamond({
  */
 const GA_BOOTSTRAP_SCRIPT = `(function(){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});gtag('js',new Date());gtag('config','${GA_MEASUREMENT_ID}');var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}';document.head.appendChild(s);})();`;
 
+/**
+ * Organization + WebSite structured data (Launch Guide §17). Only verifiable
+ * facts: no address, founders, social profiles or ratings.
+ */
+const STRUCTURED_DATA = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.mythosaisecurity.com/#organization",
+      name: "Mythos AI Security",
+      alternateName: "Mythos",
+      url: "https://www.mythosaisecurity.com/",
+      logo: "https://www.mythosaisecurity.com/images/mythos-crest-main.png",
+      email: "info@mythosaisecurity.com",
+      description: "AI deployment assurance: mapping, testing and evidence for AI systems with real access and authority.",
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.mythosaisecurity.com/#website",
+      url: "https://www.mythosaisecurity.com/",
+      name: "Mythos AI Security",
+      publisher: { "@id": "https://www.mythosaisecurity.com/#organization" },
+      inLanguage: "en",
+    },
+  ],
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.mythosaisecurity.com"),
   title: {
@@ -39,7 +67,7 @@ export const metadata: Metadata = {
     default: "Mythos AI Security | AI Deployment Assurance",
   },
   description:
-    "Mythos is an AI Deployment Assurance company. We validate high-risk AI workflows across data, routing, agents, controls, and evidence — and produce proof teams can use for security, compliance, and executive review.",
+    "Mythos is an AI deployment assurance company. It maps what AI systems can reach, tests what they do under pressure and keeps the evidence current as they change — so accountable people can decide.",
   robots: {
     index: true,
     follow: true,
@@ -79,9 +107,10 @@ export default function RootLayout({
             consent signals denied by default; CookieConsent upgrades them on
             opt-in. See GA_BOOTSTRAP_SCRIPT above. */}
         <script dangerouslySetInnerHTML={{ __html: GA_BOOTSTRAP_SCRIPT }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(STRUCTURED_DATA) }} />
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded focus:bg-bronze focus:px-4 focus:py-2 focus:text-ivory focus:text-sm"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded focus:bg-charcoal focus:px-4 focus:py-2 focus:text-ivory focus:text-sm focus:ring-2 focus:ring-antique-gold"
         >
           Skip to main content
         </a>

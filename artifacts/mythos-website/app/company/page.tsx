@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { socialImage } from "@/lib/social";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
   description:
     "Why Mythos exists, the principles behind its evidence, where each product stands today, and how Mythos works with the people it tests for.",
   alternates: { canonical: "/company/" },
+  ...socialImage("company", "Built to Put Evidence Behind Ambition — Mythos AI Security"),
 };
 
 const c = COMPANY;

@@ -90,6 +90,36 @@ app.use("/api", router);
 const here = path.dirname(fileURLToPath(import.meta.url));
 const siteDir = path.resolve(here, "../../mythos-website/dist/public");
 
+// Canonical host: when SITE_URL names the www host, send the bare domain
+// there permanently. Inert when SITE_URL is unset or has no www prefix.
+const apexHost = siteHost?.startsWith("www.") ? siteHost.slice(4) : null;
+app.use((req, res, next) => {
+  if (apexHost && req.hostname === apexHost) {
+    res.redirect(301, `https://${siteHost}${req.originalUrl}`);
+    return;
+  }
+  next();
+});
+
+// Retired routes. /demo folded into the contact form (the exported /demo page
+// still forwards with a meta refresh for anything that reaches it).
+const REDIRECTS: Record<string, string> = {
+  "/demo": "/contact/?intent=demo",
+  "/demo/": "/contact/?intent=demo",
+};
+app.use((req, res, next) => {
+  const target = REDIRECTS[req.path];
+  if (target && (req.method === "GET" || req.method === "HEAD")) {
+    res.redirect(301, target);
+    return;
+  }
+  next();
+});
+
+// /.well-known/security.txt — express.static skips dot-directories by default,
+// so mount it explicitly.
+app.use("/.well-known", express.static(path.join(siteDir, ".well-known")));
+
 app.use(express.static(siteDir));
 
 // Anything that isn't an API route or a real file falls back to the

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { socialImage } from "@/lib/social";
 import Link from "next/link";
 import { ArrowRight, BookOpenCheck } from "lucide-react";
 import { Container } from "@/components/ui/Container";
@@ -20,6 +21,7 @@ export const metadata: Metadata = {
   description:
     "How Mythos applies evidence-backed AI assurance across financial services, healthcare, SaaS, regulated enterprise, public sector, operations and delivery partners — without one-size-fits-all promises.",
   alternates: { canonical: "/solutions/" },
+  ...socialImage("solutions", "AI Assurance for Real-World Impact — Mythos AI Security"),
 };
 
 const h = SOLUTIONS_HUB;

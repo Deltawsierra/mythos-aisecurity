@@ -16,14 +16,14 @@ export default function DemoRedirectPage() {
   return (
     <>
       <meta httpEquiv="refresh" content={`0; url=${DEMO_FORM}`} />
-      <section data-surface="obsidian" className="py-32">
+      <section data-surface="parchment" className="py-40">
         <Container className="max-w-xl text-center">
           <p className="text-base leading-relaxed text-fg-muted">
             Demo requests now go through our contact form.
           </p>
           <Link
             href={DEMO_FORM}
-            className="mt-6 inline-block text-[11px] font-semibold uppercase tracking-[0.2em] text-accent hover:text-ivory"
+            className="mt-6 inline-block text-[11px] font-semibold uppercase tracking-[0.2em] text-accent hover:underline"
           >
             Continue to Request a Demo
           </Link>

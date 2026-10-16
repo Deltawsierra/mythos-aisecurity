@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { socialImage } from "@/lib/social";
 import Link from "next/link";
 import { ArrowRight, Compass, FlaskConical } from "lucide-react";
 import { Container } from "@/components/ui/Container";
@@ -9,6 +10,7 @@ import { ScenicHero } from "@/components/scenic/ScenicHero";
 import { Scene } from "@/components/scenic/Scene";
 import { ClosingVista } from "@/components/scenic/ClosingVista";
 import { UseCaseFilter, type Facet, type FilterCard } from "@/components/use-cases/UseCaseFilter";
+import { HashRedirect } from "@/components/layout/HashRedirect";
 import { RISK_THEMES, USE_CASES } from "@/content/useCaseLibrary";
 import { INDUSTRIES } from "@/content/industries";
 import { CHALLENGE_MEDIA, OLYMPUS_MEDIA } from "@/content/media";
@@ -18,6 +20,7 @@ export const metadata: Metadata = {
   description:
     "Ten assessment scenarios and two strategic-horizon pages: the question each AI workflow raises, what can go wrong, how Mythos tests it and what the evidence looks like. Every example is synthetic.",
   alternates: { canonical: "/use-cases/" },
+  ...socialImage("use-cases", "Where AI Deployment Risk Shows Up — Mythos AI Security"),
 };
 
 const plain = (s: string) => s.replaceAll("*", "");
@@ -46,6 +49,8 @@ const FLOW = ["The question", "The workflow", "What can go wrong", "How Mythos t
 export default function UseCasesPage() {
   return (
     <PageMotion>
+      {/* v1 anchors that moved to their own pages */}
+      <HashRedirect map={{ "#what-mythos-produces": "/outputs/", "#how-engagement-starts": "/engagement/" }} />
       <ScenicHero
         eyebrow="Use Cases"
         headline="Where AI Deployment Risk *Shows Up.*"

@@ -369,7 +369,7 @@ export const ARCHITECTURE_LINKS: {
 export const MYTHOS_CORE = {
   name: "Mythos Core",
   tagline: "Shared trust and safety foundation",
-  role: "Trusted primitives underneath every engine: signed commands and outcomes, evidence chains, and a failsafe that can pause, stand down or terminate — under human authority, and without depending on the component being stopped.",
+  role: "Shared primitives underneath every engine: evidence chains and a failsafe that can pause, stand down or terminate — the most serious stops need two separate keys — under human authority, without depending on the component being stopped.",
 } as const;
 
 export type OutputId =
@@ -392,7 +392,7 @@ export const OUTPUTS: { id: OutputId; name: string; plain: string; audience: str
   {
     id: "receipt",
     name: "Assurance Receipt",
-    plain: "A signed record of what was tested and found, that you can verify yourself.",
+    plain: "A hashed record of what was tested and found, so any later change is detectable.",
     audience: "Audit · Procurement",
     icon: "/assets/evidence/assurance-receipt.svg",
   },

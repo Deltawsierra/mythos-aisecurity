@@ -399,7 +399,7 @@ export function SiteHeader() {
                   <Link
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
-                    className="flex min-h-11 items-center text-sm text-muted-stone hover:text-ivory"
+                    className="flex min-h-11 items-center text-sm text-ivory/75 hover:text-ivory"
                   >
                     {link.label}
                   </Link>

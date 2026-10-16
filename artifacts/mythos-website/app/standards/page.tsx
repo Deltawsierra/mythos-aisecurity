@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { socialImage } from "@/lib/social";
 import { Check, Hourglass, Minus } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Accent } from "@/components/ui/Headline";
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
   description:
     "Which frameworks Mythos findings are mapped to today (NIST SP 800-53, OWASP Top 10 and LLM Top 10, DoD Zero Trust), which are referenced in scoping, and where mapping ends and audit begins.",
   alternates: { canonical: "/standards/" },
+  ...socialImage("standards", "Mapped to Tests and Evidence — Never Certified — Mythos AI Security"),
 };
 
 /* Per the 16 Oct resources fact-check: four mappings built (self-reported);

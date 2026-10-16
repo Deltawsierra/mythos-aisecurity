@@ -203,7 +203,7 @@ export function MegaMenu({
                             {item.label}
                           </span>
                           {item.description && (
-                            <span className="mt-1 block pl-[18px] text-xs leading-snug text-muted-stone">
+                            <span className="mt-1 block pl-[18px] text-xs leading-snug text-ivory/70">
                               {item.description}
                             </span>
                           )}

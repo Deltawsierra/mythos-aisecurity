@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { socialImage } from "@/lib/social";
 import { Container } from "@/components/ui/Container";
 import { Accent } from "@/components/ui/Headline";
 import { PageMotion } from "@/components/motion/PageMotion";
@@ -28,6 +29,7 @@ export const metadata: Metadata = {
   description:
     "Mythos connects every claim to the evidence behind it: tamper-evident Assurance Receipts, a provenance chain from observation to review, and exports you can inspect — with integrity stated plainly.",
   alternates: { canonical: "/platform/evidence/" },
+  ...socialImage("platform-evidence", "Proof You Can Inspect — Mythos AI Security"),
 };
 
 const NEXT: NextLink[] = [

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { socialImage } from "@/lib/social";
 import { ArrowRight, Check, Hourglass, Minus } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Accent } from "@/components/ui/Headline";
@@ -18,6 +19,7 @@ export const metadata: Metadata = {
   description:
     "Assess, assure, expand: scoped assessments, annual assurance priced by Systems Under Assurance, and what changes a quote. Prices are quoted after scoping.",
   alternates: { canonical: "/pricing/" },
+  ...socialImage("pricing", "Assurance That Scales With Your AI Estate — Mythos AI Security"),
 };
 
 /*

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { socialImage } from "@/lib/social";
 import { Container } from "@/components/ui/Container";
 import { Accent } from "@/components/ui/Headline";
 import { PageMotion } from "@/components/motion/PageMotion";
@@ -33,6 +34,7 @@ export const metadata: Metadata = {
   description:
     "SPINE Economic Exposure is designed to connect verified AI findings to scenario-based exposure ranges, remediation economics and reviewer-approved receipts — never an exact loss or a guaranteed return.",
   alternates: { canonical: "/platform/economic-exposure/" },
+  ...socialImage("platform-economic-exposure", "Evidence-Backed Economic Exposure. Better Business Decisions — Mythos AI Security"),
 };
 
 const INQUIRY = "/contact?intent=general";

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { socialImage } from "@/lib/social";
 import { Container } from "@/components/ui/Container";
 import { Accent } from "@/components/ui/Headline";
 import { Button } from "@/components/ui/Button";
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
   description:
     "What building Mythos involves. There are no open roles right now; when one opens it will be listed here with its team, location, eligibility and how to apply.",
   alternates: { canonical: "/careers/" },
+  ...socialImage("careers", "Build the Systems That Test AI — Mythos AI Security"),
 };
 
 const c = CAREERS;
@@ -73,7 +75,7 @@ export default function CareersPage() {
           <div className="lg:mt-10">
             <p className="text-[17px] leading-relaxed text-fg">{c.interest.body}</p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <Button href="/contact?intent=general" variant="primary" size="lg" arrow>
+              <Button href="/contact?intent=careers" variant="primary" size="lg" arrow>
                 Send a Note
               </Button>
               <Button href="/company" variant="secondary" size="lg">

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { socialImage } from "@/lib/social";
 import { Container } from "@/components/ui/Container";
 import { Accent } from "@/components/ui/Headline";
 import { PageMotion } from "@/components/motion/PageMotion";
@@ -33,6 +34,7 @@ export const metadata: Metadata = {
   description:
     "Achilles challenges AI systems and agents against declared permissions, tool boundaries, approvals and expected effects — and records what actually happened, not what the agent said.",
   alternates: { canonical: "/platform/achilles/" },
+  ...socialImage("platform-achilles", "Constantly Tested AI Never Fights Alone — Mythos AI Security"),
 };
 
 const NEXT: NextLink[] = [

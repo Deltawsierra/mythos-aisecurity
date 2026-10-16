@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { socialImage } from "@/lib/social";
 import { Container } from "@/components/ui/Container";
 import { PageMotion } from "@/components/motion/PageMotion";
 import { ScenicHero } from "@/components/scenic/ScenicHero";
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
   description:
     "Plain-English definitions of the terms used across Mythos: evidence states, receipts, scope, effective access, retests and deployment decisions — with planned things marked as planned.",
   alternates: { canonical: "/glossary/" },
+  ...socialImage("glossary", "The Language of AI Assurance, in Plain English — Mythos AI Security"),
 };
 
 /** AI Assurance Glossary — Launch Guide §04 /glossary. */

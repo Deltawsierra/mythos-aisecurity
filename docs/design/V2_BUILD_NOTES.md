@@ -361,15 +361,45 @@ nav with no roles (guide gate "only open roles"); v1 components/data for use
 cases, careers and pricing are now unused (remove before launch, including
 `data/pricing.ts` figures); v1 images under `public/images/*` still ship.
 
+## Cleanup pass (16 Oct)
+
+Items from the open-issues audit that needed no decision:
+- **Restyled** `/privacy` (ScenicHero + ivory policy text, wording unchanged),
+  the `/demo` forwarder, the cookie banner and settings dialog (surface
+  tokens, no small bronze text) and the mega-menu / drawer small text.
+- **404 and error pages**: `app/not-found.tsx` and `app/error.tsx` share
+  `components/layout/LostPath.tsx`; the 404 has a page finder over
+  `content/siteIndex.ts` (footer clusters + use cases).
+- **Claims register**: `receipts.signed`, `economic-exposure.quantifies` and
+  `athena.scanner-count` set to rejected (copy no longer uses them);
+  `athena.evidence-packs-retest` reworded to tamper-evident. Fixed the
+  /platform outputs grid ("signed record" → hashed) and the Mythos Core line.
+- **Contact**: new Press and Careers inquiry types (front end and API schema /
+  email); press/careers removed from General topics; Careers page links to
+  `?intent=careers`. The API's resume-upload route (`/api/careers`, multer)
+  is removed — its only client was the v1 careers form.
+- **security.txt** at `/.well-known/security.txt` (info@ contact, expires
+  16 Oct 2027, policy → /trust); Express mounts `.well-known` explicitly.
+- **JSON-LD** Organization + WebSite in the root layout (no address, people
+  or social profiles). Root meta description updated to v2 wording.
+- **Redirects** (api-server `app.ts`): `/demo` → `/contact/?intent=demo`
+  (301); bare domain → `www` when `SITE_URL` names the www host; the old
+  `/use-cases#what-mythos-produces` / `#how-engagement-starts` anchors
+  forward client-side (`HashRedirect`).
+- **Social images**: 44 per-page 1200×630 cards in
+  `public/assets/social/pages/`, generated from each page's hero art and
+  headline by `scripts/generate-og-pages.py`, wired via `lib/social.ts`.
+  The homepage keeps `og-default.jpg`. Re-run the script when headlines
+  change. (`og-spine.jpg` / `og-economic-exposure.jpg` are now unused.)
+- **Removed unused v1 code and assets**: ~40 components, 6 data files,
+  `content/site.ts`, `lib/inlineSvg.ts`, `lib/motion.ts`,
+  `lib/submitOpenTalent.ts`, `public/video` (8 MB), `public/models`
+  (6.5 MB), unreferenced `public/images/*`, `public/opengraph.jpg`, and the
+  `three` / `@react-three/*` dependencies.
+
 ## Not yet done
 
-- **Contrast:** v1 pages still use `text-bronze` (3.8:1 on navy) and faded
-  `text-bronze/70` for small text. v2 components use `text-bronze-bright` on
-  dark surfaces and `text-state-*-ink` / `text-deep-copper` on light ones. Sweep
-  any v1 page that survives to launch (Phase 9 accessibility QA).
-- `public/models/` (6.5 MB of v1 GLBs) is no longer referenced on site-v2;
-  remove before launch unless the SPINE-core GLB work reuses it.
+- **Accessibility QA (Phase 9):** full keyboard / screen-reader / contrast
+  audit and the Launch Guide §17 performance targets are still to run.
 
-- The old `/use-cases#what-mythos-produces` and `#how-engagement-starts` anchors
-  should forward to `/outputs` and `/engagement` (Phase 9 redirects).
-- Remaining v1 pages: Privacy and the /demo redirect only.
+- No v1 pages remain. The privacy policy text is still pending legal review.

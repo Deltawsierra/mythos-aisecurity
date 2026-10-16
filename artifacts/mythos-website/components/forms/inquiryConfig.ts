@@ -15,6 +15,8 @@ export type InquiryValue =
   | "demo"
   | "investor"
   | "partnership"
+  | "press"
+  | "careers"
   | "general";
 
 export interface SelectField {
@@ -61,6 +63,10 @@ export const INTENT_MAP: Record<string, InquiryValue> = {
   investor: "investor",
   partner: "partnership",
   partnership: "partnership",
+  press: "press",
+  media: "press",
+  careers: "careers",
+  jobs: "careers",
   general: "general",
 };
 
@@ -302,6 +308,43 @@ export const INQUIRIES: InquiryDef[] = [
     ],
   },
   {
+    value: "press",
+    label: "Press Inquiry",
+    description: "Media requests — tell us your outlet, topic and deadline.",
+    detailsLegend: "Press details",
+    submitLabel: "Send Press Inquiry",
+    confirmHeading: "Press inquiry received.",
+    confirmBody:
+      "Mythos will review your request and reply to the address you gave. Please don’t send embargoed material through this form.",
+    selects: [
+      {
+        name: "pressTopic",
+        label: "Topic",
+        placeholder: "Select a topic",
+        options: ["The company", "Products and approach", "AI assurance in general", "Speaking or events", "Other"],
+      },
+    ],
+    texts: [{ name: "pressDeadline", label: "Deadline", placeholder: "When do you need a reply?" }],
+  },
+  {
+    value: "careers",
+    label: "Careers",
+    description: "No roles are open right now — tell us what you would like to work on.",
+    detailsLegend: "Careers details",
+    submitLabel: "Send Note",
+    confirmHeading: "Note received.",
+    confirmBody:
+      "Thank you. There are no open roles right now; when one opens it will be listed on the Careers page with how to apply. Please don’t send a resume or ID documents.",
+    selects: [
+      {
+        name: "careersInterest",
+        label: "Area of interest",
+        placeholder: "Select an area",
+        options: ["Engineering", "Research", "Security testing", "Product and design", "Go-to-market", "Other"],
+      },
+    ],
+  },
+  {
     value: "general",
     label: "General Inquiry",
     description: "Contact Mythos about another topic.",
@@ -316,8 +359,6 @@ export const INQUIRIES: InquiryDef[] = [
         placeholder: "Select a topic",
         options: [
           "General question",
-          "Press / media",
-          "Recruiting / careers",
           "Website issue",
           "Other",
         ],

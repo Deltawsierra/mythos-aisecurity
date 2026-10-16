@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { socialImage } from "@/lib/social";
 import { Check, Hourglass } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Accent } from "@/components/ui/Headline";
@@ -21,6 +22,7 @@ export const metadata: Metadata = {
   description:
     "When data, identity, model route, tools or policies change, Mythos targets the claims that change affects and asks whether revalidation is required — responding to scans and the changes you supply.",
   alternates: { canonical: "/platform/continuous-assurance/" },
+  ...socialImage("platform-continuous-assurance", "When AI Changes, Your Evidence Should Respond — Mythos AI Security"),
 };
 
 const NEXT: NextLink[] = [

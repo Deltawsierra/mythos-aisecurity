@@ -104,10 +104,9 @@ export const CLAIMS: Claim[] = [
   {
     id: "receipts.signed",
     text: "signed, tamper-evident Assurance Receipts whose integrity and provenance can be checked",
-    status: "unverified",
+    status: "rejected",
     source: "Spec receipt; Athena log",
-    usedIn: ["/platform", "/platform/spine"],
-    note: "Conflict: Athena 'MERGED'; Spec marks signature field net-new; R&D: anchoring inert until configured, verifier still to do.",
+    note: "Superseded 16 Oct: receipts are hashed, not signed — copy uses spine.receipt-provenance and evidence.receipt-hashed; signing is planned. (Conflict was: Athena 'MERGED'; Spec marks signature net-new; R&D: verifier still to do.)",
   },
   {
     id: "outputs.vendor-incident-packs",
@@ -136,10 +135,9 @@ export const CLAIMS: Claim[] = [
   {
     id: "economic-exposure.quantifies",
     text: "quantifies the business exposure",
-    status: "unverified",
+    status: "rejected",
     source: "Website blueprint, Oct 2026 — homepage hero body",
-    usedIn: ["/platform", "/platform/spine"],
-    note: "EE spec (7 Oct): specified only — 'no production scoring yet'. Platform pages use forward wording. The Luminous Olympus homepage (16 Oct) no longer says 'quantifies'; see home.ee-informs.",
+    note: "Not used: copy says Economic Exposure is designed to show ranges (ee.designed, home.ee-informs). EE spec (7 Oct): specified only — 'no production scoring yet'. Platform pages use forward wording. The Luminous Olympus homepage (16 Oct) no longer says 'quantifies'; see home.ee-informs.",
   },
   {
     id: "spine.keeps-evidence-current",
@@ -328,9 +326,9 @@ export const CLAIMS: Claim[] = [
   {
     id: "athena.scanner-count",
     text: "27 scanners",
-    status: "unverified",
+    status: "rejected",
     source: "Website blueprint, Oct 2026 — Athena page",
-    note: "Roadmap: '~27 scanners', BUILT. Not used in copy until confirmed exactly.",
+    note: "Not published: the Roadmap says '~27 scanners'. Re-open only with an exact, verified count.",
   },
   {
     id: "athena.check-groups",
@@ -358,11 +356,11 @@ export const CLAIMS: Claim[] = [
   },
   {
     id: "athena.evidence-packs-retest",
-    text: "signed, hash-chained evidence packs with an offline verifier; retest results unchanged / review / blocked / unmeasured",
+    text: "tamper-evident (hash-chained) evidence packs; retest results unchanged / review / blocked / unmeasured",
     status: "unverified",
     source: "Roadmap",
     usedIn: ["/platform/athena"],
-    note: "Roadmap: evidence packs and retest BUILT.",
+    note: "Roadmap: evidence packs and retest BUILT. The page says tamper-evident, not signed: the register treats only Achilles engine packs as signed (evidence.engine-packs-signed), though the Roadmap (p.9) also credits signed packs to the scanning engine — verify.",
   },
   {
     id: "solutions.offer-names",
@@ -472,7 +470,7 @@ export const CLAIMS: Claim[] = [
     text: "scope enforced at scan launch; allow-listed scanner egress with size/time limits; three-level failsafe with two keys for the most serious stops; evidence keeps hashes and metadata, not raw secrets",
     status: "unverified",
     source: "Session Work Summary p.4-8; Roadmap p.10-11; SPINE spec p.47-48",
-    usedIn: ["/trust"],
+    usedIn: ["/trust", "/platform (Mythos Core)"],
     note: "Internal build records only; no external audit. Designed items (isolation, broker, tenant isolation, RBAC/SSO, signing, VPC/air-gapped) are listed as not built.",
   },
   {

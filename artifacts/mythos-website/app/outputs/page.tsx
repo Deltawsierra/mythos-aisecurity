@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { socialImage } from "@/lib/social";
 import { Container } from "@/components/ui/Container";
 import { Accent } from "@/components/ui/Headline";
 import { PageMotion } from "@/components/motion/PageMotion";
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
   description:
     "The nine outputs of a Mythos engagement — scope record, system map, findings, receipts, remediation, retest, decision support, exposure scenarios and exports — with how far along each one is.",
   alternates: { canonical: "/outputs/" },
+  ...socialImage("outputs", "From Finding to Evidence to Decision — Mythos AI Security"),
 };
 
 type Status = "Built" | "Partly built" | "Planned";
