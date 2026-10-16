@@ -523,3 +523,13 @@
     animation: none;
   }
 }
+
+/* Minotaur labyrinth: the gold walk to the chosen criterion. */
+.labyrinth-trace {
+  transition: stroke-dashoffset 1.2s cubic-bezier(0.16, 0.84, 0.24, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .labyrinth-trace {
+    transition: none;
+  }
+}

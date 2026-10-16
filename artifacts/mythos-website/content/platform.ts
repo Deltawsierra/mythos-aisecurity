@@ -210,6 +210,7 @@ export const PLATFORM_PAGES: ScaffoldPage[] = [
   {
     slug: "validation",
     href: "/platform/validation",
+    built: true,
     navLabel: "How Mythos Validates Itself",
     navDescription: "Minotaur — who tests the tester.",
     eyebrow: "Minotaur",
@@ -229,6 +230,7 @@ export const PLATFORM_PAGES: ScaffoldPage[] = [
   {
     slug: "hermes",
     href: "/platform/hermes",
+    built: true,
     navLabel: "Hermes",
     navDescription: "Assure Physical AI — vehicles, fleets and cyber-physical systems.",
     eyebrow: "Hermes",

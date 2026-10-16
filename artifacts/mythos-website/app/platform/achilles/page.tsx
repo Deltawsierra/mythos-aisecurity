@@ -7,6 +7,7 @@ import { NextLinks, type NextLink } from "@/components/sections/NextLinks";
 import { ScenicHero } from "@/components/scenic/ScenicHero";
 import { Scene } from "@/components/scenic/Scene";
 import { ClosingVista } from "@/components/scenic/ClosingVista";
+import { CharacterNiche } from "@/components/scenic/CharacterNiche";
 import { GroupList } from "@/components/platform/GroupList";
 import { ChainFlow } from "@/components/platform/ChainFlow";
 import { ActionGate } from "@/components/platform/ActionGate";
@@ -23,11 +24,9 @@ import {
   ACHILLES_HANDOFF,
   ACHILLES_LEDGER,
 } from "@/content/achilles";
-import { CHARACTER_MEDIA, OLYMPUS_MEDIA } from "@/content/media";
+import { OLYMPUS_MEDIA } from "@/content/media";
 import { CTA_LINKS } from "@/content/navigation";
 import { CTA } from "@/lib/constants";
-import { cropStyle } from "@/lib/media";
-import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Achilles — Constantly Tested AI Never Fights Alone",
@@ -45,33 +44,8 @@ const NEXT: NextLink[] = [
 const TURNS = [1, 2, 3, 4, 5, 6];
 const c = ACHILLES_COPY;
 
-/** Achilles in a carved arch: the poster framed as a niche in the arena wall. */
-function Niche({ className }: { className?: string }) {
-  const media = CHARACTER_MEDIA.achilles;
-  const { left = 0, top = 0 } = media.crop;
-  const aspect = (media.poster.width * (100 - left)) / (media.poster.height * (100 - top));
-  return (
-    <div className={cn("flex flex-col items-center", className)} data-depth="18">
-      <div
-        aria-hidden="true"
-        className="absolute -inset-x-[30%] inset-y-0 blur-3xl"
-        style={{
-          background:
-            "radial-gradient(ellipse 40% 50% at 20% 60%, rgba(192,87,63,0.45), transparent 70%), radial-gradient(ellipse 40% 50% at 80% 55%, rgba(91,143,199,0.45), transparent 70%)",
-        }}
-      />
-      <div
-        className="relative h-full overflow-hidden rounded-t-full border-2 border-champagne/60 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.9),inset_0_0_0_6px_rgba(22,26,28,0.45)]"
-        style={{ aspectRatio: aspect }}
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={media.poster.src} alt="" style={cropStyle(media.crop)} />
-        <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 62%, rgba(18,21,23,0.6) 100%)" }} />
-      </div>
-      <div aria-hidden="true" className="relative h-4 w-[118%] border-t border-champagne/60 bg-gradient-to-b from-[#6b5636] to-[#2a241c] shadow-[0_18px_30px_-12px_rgba(0,0,0,0.8)]" />
-    </div>
-  );
-}
+const ARENA_GLOW =
+  "radial-gradient(ellipse 40% 50% at 20% 60%, rgba(192,87,63,0.45), transparent 70%), radial-gradient(ellipse 40% 50% at 80% 55%, rgba(91,143,199,0.45), transparent 70%)";
 
 /** Achilles — Launch Guide R05 (AC01–AC09). */
 export default function AchillesPage() {
@@ -95,8 +69,8 @@ export default function AchillesPage() {
           { src: OLYMPUS_MEDIA.sunbeams, className: "-inset-[3%]", blend: "screen", opacity: 0.4, position: "100% 0%", depth: 10 },
         ]}
         scrim="linear-gradient(180deg, rgba(18,21,23,0.35), rgba(18,21,23,0.25)), radial-gradient(ellipse 32% 45% at 8% 78%, rgba(192,87,63,0.32), transparent 70%), radial-gradient(ellipse 32% 45% at 96% 70%, rgba(91,143,199,0.3), transparent 70%)"
-        figure={<Niche className="absolute bottom-[9%] right-[8%] h-[70%]" />}
-        mobileFigure={<Niche className="relative mx-auto h-[46svh]" />}
+        figure={<CharacterNiche project="achilles" glow={ARENA_GLOW} className="absolute bottom-[9%] right-[8%] h-[70%]" />}
+        mobileFigure={<CharacterNiche project="achilles" glow={ARENA_GLOW} className="relative mx-auto h-[46svh]" />}
         into="ivory"
       />
 

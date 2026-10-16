@@ -209,6 +209,39 @@ section contracts and the Luminous Olympus look.
   entries: athena.boundary-traces, achilles.approval-binding,
   spine.receipt-provenance.
 
+## Minotaur and Hermes (16 Oct 2026)
+
+Built to Launch Guide R06/R07 under the Luminous Olympus base. A source
+fact-check (Roadmap 17 Sep, Session Work Summary, R&D Plan, Achilles
+Handbook, Launch Research, Self-Protection Spec, Threat Atlas) set the
+wording:
+
+- **Minotaur** (`app/platform/validation`, `content/minotaur.ts`): built today
+  is an internal proving ground — a target range with a sealed answer key and
+  tiered difficulty; held-out cases are reported (conflicting status, see
+  claims). Validity Cards, benign twins, reproduction, regression and
+  contamination checks are drafted or planned and use "designed to". The
+  guide's H1 "Detect What Others Miss" is comparative and unsupported, so the
+  page uses "Find What We Missed. Prove What We Test." The blueprint's
+  "security veto" is not in the sources; the release section says "designed
+  to advise". No counts, corpora, answer keys or thresholds are published.
+  Modules: `LabyrinthCriteria` (signature: rings = validity criteria, gold walk
+  to the chosen ring), `SafeTwinCards`, `ValidityCard` (compare mode),
+  `OutcomeMatrix`, `EvidenceTimeline`, `ReleaseGate`.
+- **Hermes** (`app/platform/hermes`, `content/hermes.ts`): an early scaffold
+  whose domain logic returns inconclusive; vehicles, fleets and OTA first; no
+  customers, standards, certification or crash-prevention claims, all stated
+  on the page. The guide's six layers are not in the sources; the layers group
+  the domains the sources name. V-model, update trail and evidence outline are
+  labelled illustrative; no safety-case download (no file exists). Modules:
+  `PhysicalLoop`, `LayerSelector` (tabs with arrow keys), `VModel`,
+  `ComponentVsSystem`.
+- **Release gate**: `hermes.publication-scope` stays unverified on purpose —
+  the Launch Guide ships Hermes only "if scope approved", and the research
+  docs advise deferring it.
+- `CharacterNiche` (components/scenic) is shared by Achilles, Minotaur and
+  Hermes heroes.
+
 ## Not yet done
 
 - **Contrast:** v1 pages still use `text-bronze` (3.8:1 on navy) and faded
