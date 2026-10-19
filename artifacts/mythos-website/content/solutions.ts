@@ -145,7 +145,3 @@ export const SOLUTION_PAGES: SolutionPage[] = [
     ],
   },
 ];
-
-export function getSolutionPage(slug: string): SolutionPage | undefined {
-  return SOLUTION_PAGES.find((page) => page.slug === slug);
-}

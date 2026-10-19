@@ -24,7 +24,7 @@ export function PageFinder({ pages }: { pages: IndexedPage[] }) {
           value={q}
           onChange={(e) => setQ(e.target.value)}
           placeholder="Find a page — try “pricing” or “SPINE”"
-          className="w-full border border-rule bg-panel py-3 pl-10 pr-4 text-[15px] text-fg placeholder:text-fg-muted/70 focus:border-accent focus:outline-none"
+          className="w-full border border-rule bg-panel py-3 pl-10 pr-4 text-[15px] text-fg placeholder:text-fg-muted/85 focus:border-accent focus:outline-none"
         />
       </label>
       <p aria-live="polite" className="sr-only">

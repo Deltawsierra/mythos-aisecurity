@@ -41,7 +41,7 @@ function Field({ label, id, required, className, children }: FieldProps) {
 }
 
 const inputClass =
-  "w-full border border-rule bg-panel px-4 py-2.5 text-sm text-fg placeholder:text-fg-muted/60 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-colors duration-150";
+  "w-full border border-rule bg-panel px-4 py-2.5 text-sm text-fg placeholder:text-fg-muted/85 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-colors duration-150";
 
 const legendClass =
   "mb-4 w-full border-b border-rule pb-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-accent";

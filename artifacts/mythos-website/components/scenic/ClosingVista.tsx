@@ -45,6 +45,7 @@ export function ClosingVista({
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/assets/brand/crest.webp"
+            loading="lazy"
             alt=""
             aria-hidden="true"
             width={80}

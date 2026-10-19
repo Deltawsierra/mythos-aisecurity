@@ -307,29 +307,6 @@ export const PLATFORM_PAGES: ScaffoldPage[] = [
   },
 ];
 
-export function getPlatformPage(slug: string): ScaffoldPage | undefined {
-  return PLATFORM_PAGES.find((page) => page.slug === slug);
-}
-
-/** The buyer briefing's five plain-English questions. */
-export const EXECUTIVE_QUESTIONS = [
-  "What exists?",
-  "What can it reach?",
-  "What can it do?",
-  "Can it be manipulated?",
-  "Can we prove the answer?",
-] as const;
-
-/** The deeper assurance dimensions underneath the five questions. */
-export const ASSURANCE_DIMENSIONS: { name: string; question: string }[] = [
-  { name: "Access", question: "What data, systems and tools can the AI actually reach?" },
-  { name: "Authority", question: "What is it permitted to do, and who granted that?" },
-  { name: "Behavior", question: "How does it act under normal use and under pressure?" },
-  { name: "Effects", question: "What actually happens downstream when it acts?" },
-  { name: "Economics", question: "What could a validated failure mean for the business?" },
-  { name: "Validity", question: "Is the evidence still current after the system changed?" },
-];
-
 /** Person → effect: the links SPINE keeps accountable for every action. */
 export const AUTHORITY_CHAIN: { name: string; question: string; example: string }[] = [
   { name: "Person", question: "Who is accountable?", example: "Support lead" },

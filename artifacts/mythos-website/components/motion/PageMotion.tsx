@@ -104,9 +104,12 @@ export function PageMotion({
         };
       });
 
-      // Fonts and media change layout after first paint.
+      // Fonts and media change layout after first paint. Hydration can land
+      // after the load event, so refresh now in that case too.
       const refresh = () => ScrollTrigger.refresh();
       window.addEventListener("load", refresh);
+      if (document.readyState === "complete") refresh();
+      document.fonts?.ready.then(refresh);
       return () => {
         window.removeEventListener("load", refresh);
         mm.revert();

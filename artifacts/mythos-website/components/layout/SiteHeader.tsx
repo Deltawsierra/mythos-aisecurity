@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { IntentLink } from "@/components/ui/IntentLink";
 import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Container } from "@/components/ui/Container";
@@ -318,7 +319,7 @@ export function SiteHeader() {
           <nav className="flex flex-1 flex-col overflow-y-auto overscroll-contain px-5 pb-6 pt-2" aria-label="Mobile navigation">
             <ul className="flex flex-col" role="list">
               <li className="border-b border-ivory/10">
-                <Link
+                <IntentLink
                   href="/"
                   onClick={() => setMobileOpen(false)}
                   className={cn(
@@ -328,20 +329,20 @@ export function SiteHeader() {
                   aria-current={pathname === "/" ? "page" : undefined}
                 >
                   Home
-                </Link>
+                </IntentLink>
               </li>
               {PRIMARY_NAV.map((node) => {
                 const groupActive = activeLabel === node.label;
                 if (!node.columns) {
                   return (
                     <li key={node.label} className="border-b border-ivory/10">
-                      <Link
+                      <IntentLink
                         href={node.href ?? "/"}
                         onClick={() => setMobileOpen(false)}
                         className={cn("flex min-h-12 items-center text-[15px] font-medium", groupActive ? "text-champagne" : "text-ivory/90 hover:text-ivory")}
                       >
                         {node.label}
-                      </Link>
+                      </IntentLink>
                     </li>
                   );
                 }
@@ -373,14 +374,14 @@ export function SiteHeader() {
                               const current = pathname === it.href || pathname === `${it.href}/`;
                               return (
                                 <li key={it.href}>
-                                  <Link
+                                  <IntentLink
                                     href={it.href}
                                     onClick={() => setMobileOpen(false)}
                                     className={cn("flex min-h-11 items-center text-sm", current ? "text-champagne" : "text-ivory/80 hover:text-ivory")}
                                     aria-current={current ? "page" : undefined}
                                   >
                                     {it.label}
-                                  </Link>
+                                  </IntentLink>
                                 </li>
                               );
                             })}
@@ -396,13 +397,13 @@ export function SiteHeader() {
             <ul className="mt-5 flex flex-wrap gap-x-5" role="list" aria-label="More">
               {UTILITY_LINKS.map((link) => (
                 <li key={link.href}>
-                  <Link
+                  <IntentLink
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
                     className="flex min-h-11 items-center text-sm text-ivory/75 hover:text-ivory"
                   >
                     {link.label}
-                  </Link>
+                  </IntentLink>
                 </li>
               ))}
             </ul>

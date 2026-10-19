@@ -200,7 +200,7 @@ export default function SpinePage() {
               {c.evidence.packets.map((packet) => (
                 <li key={packet.name} className="flex gap-4 border border-rule bg-panel p-5">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={packet.icon} alt="" aria-hidden="true" className="h-12 w-12 shrink-0" />
+                  <img src={packet.icon} loading="lazy" alt="" aria-hidden="true" className="h-12 w-12 shrink-0" />
                   <div>
                     <p className="font-display text-xl leading-tight text-fg">{packet.name}</p>
                     <p className="mt-1.5 text-sm leading-relaxed text-fg-muted">{packet.body}</p>
@@ -248,7 +248,7 @@ export default function SpinePage() {
             className="group mx-auto mt-10 flex max-w-3xl items-start gap-4 border border-champagne/30 bg-panel p-5 transition-colors hover:border-champagne/70"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/assets/ornaments/mythos-seal.svg" alt="" aria-hidden="true" className="h-10 w-10 shrink-0" />
+            <img src="/assets/ornaments/mythos-seal.svg" loading="lazy" alt="" aria-hidden="true" className="h-10 w-10 shrink-0" />
             <span>
               <span className="block text-[10px] font-semibold uppercase tracking-[0.22em] text-champagne">Minotaur · validity</span>
               <span className="mt-1 block text-[15px] leading-relaxed text-fg">{c.teams.minotaur}</span>

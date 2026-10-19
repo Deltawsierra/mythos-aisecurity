@@ -70,10 +70,10 @@ export function JourneyCauseway() {
         <span className={cn("relative block", variant === "stage" ? "h-[clamp(4.5rem,8.4vw,9.5rem)] w-[clamp(4.5rem,8.4vw,9.5rem)]" : "h-[4.5rem] w-[4.5rem]")}>
           {active === i && (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={halo} alt="" aria-hidden="true" className="journey-halo absolute -inset-[22%] h-[144%] w-[144%] max-w-none" />
+            <img src={halo} loading="lazy" alt="" aria-hidden="true" className="journey-halo absolute -inset-[22%] h-[144%] w-[144%] max-w-none" />
           )}
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={medallions[stage.id]} alt="" aria-hidden="true" className="journey-medallion relative h-full w-full" />
+          <img src={medallions[stage.id]} loading="lazy" alt="" aria-hidden="true" className="journey-medallion relative h-full w-full" />
         </span>
         <span
           className={cn(

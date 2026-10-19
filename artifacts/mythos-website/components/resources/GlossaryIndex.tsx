@@ -49,7 +49,7 @@ export function GlossaryIndex({ terms }: { terms: GlossaryTerm[] }) {
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder="Search terms and definitions"
-            className="w-full border border-rule bg-panel py-2.5 pl-10 pr-4 text-[15px] text-fg placeholder:text-fg-muted/70 focus:border-accent focus:outline-none"
+            className="w-full border border-rule bg-panel py-2.5 pl-10 pr-4 text-[15px] text-fg placeholder:text-fg-muted/85 focus:border-accent focus:outline-none"
           />
         </label>
         <nav aria-label="Jump to letter" className="flex flex-wrap gap-1">

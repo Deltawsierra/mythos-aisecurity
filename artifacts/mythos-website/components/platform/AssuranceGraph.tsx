@@ -98,6 +98,7 @@ export function AssuranceGraph() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={SPINE_CORE_MEDIA.cutout.src}
+          loading="lazy"
           alt=""
           aria-hidden="true"
           className="core-sway absolute left-1/2 top-1/2 w-[30%] -translate-x-1/2 -translate-y-1/2 drop-shadow-[0_30px_60px_rgba(0,0,0,0.6)]"

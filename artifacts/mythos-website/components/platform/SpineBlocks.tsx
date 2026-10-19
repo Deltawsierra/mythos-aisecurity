@@ -67,7 +67,7 @@ export function UnknownCard() {
     <figure className="border border-rule bg-panel p-6 shadow-[0_18px_40px_-34px_rgba(21,35,51,0.45)]" data-reveal>
       <figcaption className="flex items-center gap-3">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={EVIDENCE_STATE_ICONS.unknown} alt="" aria-hidden="true" className="h-11 w-11" />
+        <img src={EVIDENCE_STATE_ICONS.unknown} loading="lazy" alt="" aria-hidden="true" className="h-11 w-11" />
         <span>
           <span className="block text-[10px] font-semibold uppercase tracking-[0.22em] text-accent">Unknowns register · illustrative</span>
           <span className="mt-1 block font-display text-xl leading-snug text-fg">{u.question}</span>
@@ -115,7 +115,7 @@ export function ReceiptCard() {
           <p className="mt-0.5 text-xs text-ivory/70">Sample · fictional data</p>
         </div>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/assets/evidence/assurance-receipt.svg" alt="" aria-hidden="true" className="h-12 w-12" />
+        <img src="/assets/evidence/assurance-receipt.svg" loading="lazy" alt="" aria-hidden="true" className="h-12 w-12" />
       </div>
       <dl className="divide-y divide-rule px-6">
         {SAMPLE_RECEIPT.map((row) => (
@@ -127,7 +127,7 @@ export function ReceiptCard() {
       </dl>
       <figcaption className="flex items-center gap-3 border-t border-rule bg-marble/60 px-6 py-3.5 text-xs text-fg">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/assets/status/status-evidence-current.svg" alt="" aria-hidden="true" className="h-8 w-8" />
+        <img src="/assets/status/status-evidence-current.svg" loading="lazy" alt="" aria-hidden="true" className="h-8 w-8" />
         Tamper-evident: hashed over its evidence, so any change can be detected. It proves provenance — not that the conclusion is true.
       </figcaption>
     </figure>

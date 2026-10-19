@@ -62,15 +62,6 @@ const poster = (src: string, width: number, height: number): ImageAsset => ({
   height,
 });
 
-export const HERO_MEDIA = {
-  poster: poster("/assets/hero/hero-athena-poster.webp", 1920, 1080),
-  /** Lanczos upscale of the 720p render; swap in a native 1080p render when available. */
-  loopWebm: "/assets/hero/hero-athena-loop-1080.webm",
-  loopMp4: "/assets/hero/hero-athena-loop-720.mp4",
-  /** Transparent VP9 layer: Chromium/Firefox only, optional enhancement. */
-  lightOverlay: "/assets/hero/hero-light-overlay.webm",
-} as const;
-
 /**
  * Luminous Olympus scenery (Launch Guide, 16 Oct). Batch 03 candidates at
  * native size — no faux 4K. The panorama is cropped to drop banners painted
@@ -104,6 +95,8 @@ export const OLYMPUS_MEDIA = {
  */
 export const INTERIM_SCENES = {
   publicSector: poster("/assets/scenes/public-sector-mission-hero.webp", 1672, 941),
+  /** 3:4 crop of the same scene for the homepage sector card. */
+  publicSectorCard: poster("/assets/scenes/public-sector-mission-card.webp", 480, 640),
   continuousAssurance: poster("/assets/scenes/continuous-assurance-hero.webp", 1672, 941),
   hermes: poster("/assets/scenes/hermes-hero.webp", 1672, 941),
   athena: poster("/assets/scenes/athena-hero.webp", 1672, 941),
@@ -140,14 +133,6 @@ export const CAUSEWAY_MEDIA = {
   path: "M217 666 C345 605 489 710 620 666S894 611 1024 666S1289 713 1428 666S1704 621 1830 666",
 } as const;
 
-export const CTA_MEDIA = {
-  poster: poster("/assets/cta/cta-olympus-poster.avif", 1600, 667),
-  loopWebm: "/assets/cta/cta-olympus-loop.webm",
-  loopMp4: "/assets/cta/cta-olympus-loop.mp4",
-  /** Transparent VP9 layer: Chromium/Firefox only, optional enhancement. */
-  mistOverlay: "/assets/cta/cta-mist-overlay.webm",
-} as const;
-
 export const CHALLENGE_MEDIA = {
   desktop: poster("/assets/challenge/challenge-sculpture-desktop.webp", 2560, 1440),
   /** Use when DOM copy sits on the left; still needs a readability gradient. */
@@ -178,14 +163,14 @@ export const LIFECYCLE_MEDALLIONS = {
 
 export const CHARACTER_MEDIA: Record<ProjectId, CharacterMedia> = {
   athena: {
-    poster: poster("/assets/characters/athena-poster.webp", 880, 1600),
+    poster: poster("/assets/characters/athena-poster.webp", 640, 1164),
     idle: "/assets/characters/athena-idle.webm",
     engaged: "/assets/characters/athena-engaged.webm",
     crop: { left: 1, top: 1 },
     face: { x: 52, y: 21, zoom: 3.2 },
   },
   spine: {
-    poster: poster("/assets/characters/spine-poster.webp", 867, 1600),
+    poster: poster("/assets/characters/spine-poster.webp", 631, 1164),
     idle: "/assets/characters/spine-idle.webm",
     engaged: "/assets/characters/spine-engaged.webm",
     emblem: "/assets/characters/emblems/spine-emblem.svg",
@@ -193,7 +178,7 @@ export const CHARACTER_MEDIA: Record<ProjectId, CharacterMedia> = {
     face: { x: 52, y: 19, zoom: 3.2 },
   },
   achilles: {
-    poster: poster("/assets/characters/achilles-poster.webp", 884, 1600),
+    poster: poster("/assets/characters/achilles-poster.webp", 643, 1164),
     idle: "/assets/characters/achilles-idle.webm",
     engaged: "/assets/characters/achilles-engaged.webm",
     emblem: "/assets/characters/emblems/achilles-emblem.svg",
@@ -201,14 +186,14 @@ export const CHARACTER_MEDIA: Record<ProjectId, CharacterMedia> = {
     face: { x: 60, y: 19, zoom: 3.2 },
   },
   minotaur: {
-    poster: poster("/assets/characters/minotaur-poster.webp", 867, 1600),
+    poster: poster("/assets/characters/minotaur-poster.webp", 631, 1164),
     idle: "/assets/characters/minotaur-idle.webm",
     // minotaur-engaged.webm withheld: 3.2s instead of 5s, visible jump at the loop.
     crop: { left: 5.5, top: 2 },
     face: { x: 64, y: 22, zoom: 3 },
   },
   hermes: {
-    poster: poster("/assets/characters/hermes-poster.webp", 901, 1600),
+    poster: poster("/assets/characters/hermes-poster.webp", 655, 1164),
     idle: "/assets/characters/hermes-idle.webm",
     engaged: "/assets/characters/hermes-engaged.webm",
     emblem: "/assets/characters/emblems/hermes-emblem.svg",
@@ -220,7 +205,7 @@ export const CHARACTER_MEDIA: Record<ProjectId, CharacterMedia> = {
 };
 
 const team = (id: TeamId): TeamMedia => ({
-  poster: poster(`/assets/teams/${id}-team-poster.webp`, 960, 1707),
+  poster: poster(`/assets/teams/${id}-team-poster.webp`, 540, 960),
   idle: `/assets/teams/${id}-team-idle.webm`,
   engaged: `/assets/teams/${id}-team-engaged.webm`,
   emblem: `/assets/teams/emblems/${id}-team-emblem.svg`,
@@ -237,26 +222,26 @@ export const TEAM_MEDIA: Record<TeamId, TeamMedia> = {
 // Government / Mission is withheld until its card no longer depicts the US Capitol.
 export const INDUSTRY_MEDIA: Record<IndustryId, IndustryMedia> = {
   "financial-services": {
-    card: poster("/assets/industries/financial-services-card.webp", 1086, 1500),
+    card: poster("/assets/industries/financial-services-card.webp", 600, 829),
     hero: poster("/assets/industries/financial-services-hero.webp", 1920, 1080),
   },
   insurance: {
-    card: poster("/assets/industries/insurance-card.webp", 1086, 1500),
+    card: poster("/assets/industries/insurance-card.webp", 600, 829),
     hero: poster("/assets/industries/insurance-hero.webp", 1920, 1080),
   },
   "healthcare-life-sciences": {
-    card: poster("/assets/industries/healthcare-life-sciences-card.webp", 1080, 1500),
+    card: poster("/assets/industries/healthcare-life-sciences-card.webp", 600, 833),
     hero: poster("/assets/industries/healthcare-life-sciences-hero.webp", 1920, 1080),
   },
   "technology-ai-saas": {
-    card: poster("/assets/industries/technology-ai-saas-card.webp", 1068, 1500),
+    card: poster("/assets/industries/technology-ai-saas-card.webp", 600, 843),
     hero: poster("/assets/industries/technology-ai-saas-hero.webp", 1920, 1080),
   },
   "manufacturing-critical-infrastructure": {
     card: poster(
       "/assets/industries/manufacturing-critical-infrastructure-card.webp",
-      1038,
-      1462,
+      600,
+      845,
     ),
     hero: poster(
       "/assets/industries/manufacturing-critical-infrastructure-hero.webp",
@@ -280,15 +265,6 @@ export const EVIDENCE_STATE_ICONS = {
   unknown: "/assets/evidence/states/evidence-unknown.svg",
   stale: "/assets/evidence/states/evidence-stale.svg",
   contradicted: "/assets/evidence/states/evidence-contradicted.svg",
-} as const;
-
-export const DECISION_STATUS_ICONS = {
-  approved: "/assets/status/status-approved.svg",
-  blocked: "/assets/status/status-blocked.svg",
-  revalidate: "/assets/status/status-revalidate.svg",
-  revoked: "/assets/status/status-revoked.svg",
-  warning: "/assets/status/status-warning.svg",
-  evidenceCurrent: "/assets/status/status-evidence-current.svg",
 } as const;
 
 /** Athena check-group medallions (gold on transparent, from AthenaPageAssets). */

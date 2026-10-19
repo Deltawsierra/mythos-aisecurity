@@ -20,7 +20,7 @@ export function HandoffFlow({ steps }: { steps: HandoffStep[] }) {
             </span>
           )}
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={step.icon} alt="" aria-hidden="true" className="h-12 w-12" />
+          <img src={step.icon} loading="lazy" alt="" aria-hidden="true" className="h-12 w-12" />
           <p className={cn("mt-4 text-[10px] font-semibold uppercase tracking-[0.22em]", "text-accent")}>{step.owner}</p>
           <p className="mt-1 font-display text-xl leading-tight text-fg">{step.name}</p>
           <p className="mt-2 text-sm leading-relaxed text-fg-muted">{step.detail}</p>

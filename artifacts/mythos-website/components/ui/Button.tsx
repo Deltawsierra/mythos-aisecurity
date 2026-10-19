@@ -28,6 +28,10 @@ const variantClasses: Record<ButtonVariant, string> = {
   ghost: "border border-transparent bg-transparent text-fg-muted hover:text-fg",
 };
 
+/** For an outline CTA over painted art: it can land on bright cloud or marble,
+ * so a dark glass backing keeps its label legible whatever sits behind it. */
+export const OUTLINE_ON_ART = "bg-charcoal/55 backdrop-blur-sm hover:bg-charcoal/70";
+
 const sizeClasses: Record<ButtonSize, string> = {
   sm: "gap-1.5 px-4 py-2 text-[13px]",
   md: "gap-2 px-5 py-2.5 text-sm",

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { IntentLink } from "@/components/ui/IntentLink";
 import { Container } from "@/components/ui/Container";
 import { CookieSettingsButton } from "@/components/consent/CookieSettingsButton";
 import { FOOTER_NAV } from "@/content/navigation";
@@ -34,6 +35,7 @@ export function SiteFooter() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/assets/brand/crest-flat.webp"
+                loading="lazy"
                 alt=""
                 width={48}
                 height={48}
@@ -58,12 +60,12 @@ export function SiteFooter() {
               <ul className="flex flex-col gap-1" role="list">
                 {group.items.map((item) => (
                   <li key={`${group.label}-${item.href}`}>
-                    <Link
+                    <IntentLink
                       href={item.href}
                       className="inline-flex min-h-8 items-center text-sm text-fg-muted transition-colors duration-200 hover:text-ivory"
                     >
                       {item.label}
-                    </Link>
+                    </IntentLink>
                   </li>
                 ))}
               </ul>
@@ -77,12 +79,12 @@ export function SiteFooter() {
               &copy; {currentYear} {SITE_FULL_NAME}. All rights reserved.
             </p>
             <nav className="flex flex-wrap items-center gap-x-5 gap-y-2" aria-label="Trust and legal">
-              <Link href="/trust" className="text-xs text-fg-muted transition-colors duration-200 hover:text-ivory">
+              <IntentLink href="/trust" className="text-xs text-fg-muted transition-colors duration-200 hover:text-ivory">
                 Trust & Security
-              </Link>
-              <Link href="/privacy" className="text-xs text-fg-muted transition-colors duration-200 hover:text-ivory">
+              </IntentLink>
+              <IntentLink href="/privacy" className="text-xs text-fg-muted transition-colors duration-200 hover:text-ivory">
                 Privacy
-              </Link>
+              </IntentLink>
               <CookieSettingsButton className="cursor-pointer text-xs text-fg-muted transition-colors duration-200 hover:text-ivory" />
             </nav>
           </div>

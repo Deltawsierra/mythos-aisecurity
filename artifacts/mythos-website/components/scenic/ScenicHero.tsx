@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { CSSProperties, ReactNode } from "react";
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
+import { Button, OUTLINE_ON_ART } from "@/components/ui/Button";
 import { Accent, plain } from "@/components/ui/Headline";
 import { CloudBank } from "@/components/scenic/Scene";
 import type { Surface } from "@/components/sections/SectionBlend";
@@ -132,10 +132,11 @@ export function ScenicHero({
         <div className="absolute inset-0 lg:hidden" style={{ background: "linear-gradient(180deg, rgba(18,21,23,0.4) 0%, rgba(18,21,23,0.76) 35%, rgba(18,21,23,0.62) 70%, rgba(18,21,23,0.15) 92%)" }} />
         {scrim && <div className="absolute inset-0" style={{ background: scrim }} />}
         {figure && <div className="hidden lg:block">{figure}</div>}
-        <CloudBank edge={{ into, height: "clamp(8rem,17vw,15rem)" }} at="bottom" />
+        <CloudBank edge={{ into, height: "clamp(8rem,17vw,15rem)" }} at="bottom" priority />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/assets/overlays/gold-dust.webp"
+          loading="lazy"
           alt=""
           data-depth="28"
           className="absolute -inset-8 h-[calc(100%+4rem)] w-[calc(100%+4rem)] max-w-none object-cover opacity-50 mix-blend-screen"
@@ -194,7 +195,7 @@ export function ScenicHero({
               {primaryCta.label}
             </Button>
             {secondaryCta && (
-              <Button href={secondaryCta.href} variant="secondary" size="lg">
+              <Button href={secondaryCta.href} variant="secondary" size="lg" className={OUTLINE_ON_ART}>
                 {secondaryCta.label}
               </Button>
             )}

@@ -19,6 +19,7 @@ export const metadata: Metadata = {
   title: { absolute: "AI Deployment Assurance | Mythos AI Security" },
   description:
     "Mythos is the assurance layer for operational AI: evidence about what AI can reach, what authority it has, how it behaves and what it affects — kept current as systems change.",
+  alternates: { canonical: "/" },
 };
 
 /**

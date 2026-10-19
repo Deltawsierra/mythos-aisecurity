@@ -24,7 +24,7 @@ export function EvidenceStates({ className }: { className?: string }) {
           )}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={EVIDENCE_STATE_ICONS[state.id]} alt="" aria-hidden="true" className="h-12 w-12 shrink-0" />
+          <img src={EVIDENCE_STATE_ICONS[state.id]} loading="lazy" alt="" aria-hidden="true" className="h-12 w-12 shrink-0" />
           <div>
             <p className="font-display text-2xl leading-none text-fg">{state.name}</p>
             <p className="mt-2 text-sm leading-relaxed text-fg-muted">{state.meaning}</p>

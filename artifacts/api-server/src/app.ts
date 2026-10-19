@@ -120,7 +120,22 @@ app.use((req, res, next) => {
 // so mount it explicitly.
 app.use("/.well-known", express.static(path.join(siteDir, ".well-known")));
 
-app.use(express.static(siteDir));
+// Caching: Next's build output under /_next/static is content-hashed, so it
+// never changes at a given URL. Art under /assets keeps its name across
+// edits, so it gets an hour fresh and a day of background revalidation. Pages
+// stay revalidated on every visit so a deploy shows at once.
+app.use(
+  express.static(siteDir, {
+    setHeaders(res, filePath) {
+      const rel = path.relative(siteDir, filePath).split(path.sep).join("/");
+      if (rel.startsWith("_next/static/")) {
+        res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+      } else if (rel.startsWith("assets/")) {
+        res.setHeader("Cache-Control", "public, max-age=3600, stale-while-revalidate=86400");
+      }
+    },
+  }),
+);
 
 // Anything that isn't an API route or a real file falls back to the
 // exported 404 page.

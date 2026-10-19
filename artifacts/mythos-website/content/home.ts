@@ -6,7 +6,7 @@
  * sources and the difference is noted inline.
  */
 import type { LifecycleStageId } from "@/content/platform";
-import type { ProjectId, TeamId } from "@/content/media";
+import { INTERIM_SCENES, type ProjectId, type TeamId } from "@/content/media";
 
 export const HOME_HERO = {
   eyebrow: "AI security for a braver tomorrow",
@@ -244,7 +244,7 @@ export const HOME_SECTORS = {
     { slug: "healthcare-life-sciences", image: "/assets/industries/healthcare-life-sciences-card.webp", position: "50% 35%" },
     { slug: "ai-saas", image: "/assets/industries/technology-ai-saas-card.webp", position: "50% 40%" },
     { slug: "regulated-enterprise", image: "/assets/olympus/marble-city.webp", position: "82% 18%" },
-    { slug: "public-sector-mission", image: "/assets/industries/insurance-card.webp", position: "50% 30%" },
+    { slug: "public-sector-mission", image: INTERIM_SCENES.publicSectorCard.src, position: "50% 40%" },
     { slug: "manufacturing-critical-infrastructure", image: "/assets/industries/manufacturing-critical-infrastructure-card.webp", position: "50% 40%" },
   ],
 } as const;

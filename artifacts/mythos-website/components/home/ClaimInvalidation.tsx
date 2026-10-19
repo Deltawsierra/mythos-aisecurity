@@ -76,7 +76,7 @@ function StatePill({ tone, state }: { tone: Tone; state: string }) {
     <span className={cn("inline-flex items-center gap-1.5 border bg-cream px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.18em]", t.ring, t.ink)}>
       {t.icon ? (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={t.icon} alt="" aria-hidden="true" className="h-3.5 w-3.5" />
+        <img src={t.icon} loading="lazy" alt="" aria-hidden="true" className="h-3.5 w-3.5" />
       ) : (
         <span aria-hidden="true" className={cn("h-2 w-2 rounded-full", tone === "hold" ? "bg-state-contradicted" : "bg-fg-muted/50")} />
       )}

@@ -1,5 +1,5 @@
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
+import { Button, OUTLINE_ON_ART } from "@/components/ui/Button";
 import { Accent, plain } from "@/components/ui/Headline";
 import { CloudBank } from "@/components/scenic/Scene";
 import { CTA_LINKS } from "@/content/navigation";
@@ -34,6 +34,7 @@ export function HomeHero() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={OLYMPUS_MEDIA.sunrays}
+          loading="lazy"
           alt=""
           data-depth="16"
           className="absolute -inset-[3%] h-[106%] w-[106%] max-w-none object-cover opacity-60 mix-blend-screen"
@@ -53,6 +54,15 @@ export function HomeHero() {
               "radial-gradient(ellipse 50% 60% at 68% 40%, rgba(18,21,23,0.74) 0%, rgba(18,21,23,0.46) 55%, transparent 85%)",
           }}
         />
+        {/* Phones: the copy runs down the full width over the city, so shade its
+            band (to ~63% of the hero) and leave the guardian below it lit. */}
+        <div
+          className="absolute inset-0 lg:hidden"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(18,21,23,0.35) 0%, rgba(18,21,23,0.6) 28%, rgba(18,21,23,0.6) 58%, rgba(18,21,23,0) 70%)",
+          }}
+        />
         {/* The guardian: desktop stands her left of the copy. */}
         <div className="absolute bottom-[7%] left-[1%] hidden h-[90%] lg:block xl:left-[4%]" data-depth="22">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -63,10 +73,11 @@ export function HomeHero() {
             style={{ animationDelay: "160ms" }}
           />
         </div>
-        <CloudBank edge={{ into: "ivory", height: "28%" }} at="bottom" />
+        <CloudBank edge={{ into: "ivory", height: "28%" }} at="bottom" priority />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/assets/overlays/gold-dust.webp"
+          loading="lazy"
           alt=""
           data-depth="30"
           className="absolute -inset-8 h-[calc(100%+4rem)] w-[calc(100%+4rem)] max-w-none object-cover opacity-60 mix-blend-screen"
@@ -106,7 +117,7 @@ export function HomeHero() {
             <Button href={CTA_LINKS.demo} variant="primary" size="lg" arrow>
               {CTA.DEMO}
             </Button>
-            <Button href="/platform" variant="secondary" size="lg">
+            <Button href="/platform" variant="secondary" size="lg" className={OUTLINE_ON_ART}>
               {CTA.PLATFORM}
             </Button>
           </div>

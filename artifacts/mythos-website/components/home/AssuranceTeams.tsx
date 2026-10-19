@@ -16,6 +16,10 @@ const LANES_X = [100, 300, 500, 700, 900];
 export function AssuranceTeams() {
   const [active, setActive] = useState(0);
   const [motion, setMotion] = useState(false);
+  // Loops only start once the section is near the viewport, so the homepage
+  // doesn't download a team video on first view.
+  const [near, setNear] = useState(false);
+  const root = useRef<HTMLDivElement>(null);
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
   const teams = HOME_TEAMS.teams;
   const team = teams[active];
@@ -26,6 +30,19 @@ export function AssuranceTeams() {
     update();
     q.addEventListener("change", update);
     return () => q.removeEventListener("change", update);
+  }, []);
+
+  useEffect(() => {
+    const el = root.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setNear(true);
+        io.disconnect();
+      }
+    }, { rootMargin: "600px 0px" });
+    io.observe(el);
+    return () => io.disconnect();
   }, []);
 
   const onKeyDown = (e: React.KeyboardEvent) => {
@@ -41,7 +58,7 @@ export function AssuranceTeams() {
   };
 
   return (
-    <div>
+    <div ref={root}>
       {/* Lanes converge on SPINE (decorative). */}
       <div aria-hidden="true" className="relative mx-auto hidden h-44 max-w-5xl lg:block">
         <svg viewBox="0 0 1000 176" className="absolute inset-0 h-full w-full" preserveAspectRatio="none">
@@ -61,6 +78,7 @@ export function AssuranceTeams() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={CHARACTER_MEDIA.spine.emblem}
+          loading="lazy"
           alt=""
           className="absolute left-1/2 top-0 h-16 w-16 -translate-x-1/2 drop-shadow-[0_0_18px_rgba(229,197,143,0.6)]"
         />
@@ -94,13 +112,13 @@ export function AssuranceTeams() {
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={media.poster.src} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover object-top" />
-                {selected && motion && (
+                {selected && motion && near && (
                   <video key={t.id} className="lc-fade absolute inset-0 h-full w-full object-cover object-top" src={media.idle} autoPlay muted loop playsInline aria-hidden="true" />
                 )}
                 <span aria-hidden="true" className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 55%, rgba(18,21,23,0.9) 100%)" }} />
                 <span className="absolute inset-x-0 bottom-0 flex items-center gap-2 p-3">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={media.emblem} alt="" aria-hidden="true" className="h-6 w-6" />
+                  <img src={media.emblem} loading="lazy" alt="" aria-hidden="true" className="h-6 w-6" />
                   <span className="text-[12px] font-semibold uppercase tracking-[0.18em] text-ivory">{t.name}</span>
                 </span>
               </span>

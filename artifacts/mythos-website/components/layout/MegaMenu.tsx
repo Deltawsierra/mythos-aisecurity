@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import { IntentLink } from "@/components/ui/IntentLink";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { NavNode } from "@/content/navigation";
@@ -44,6 +44,12 @@ export function MegaMenu({
   const columns = node.columns ?? [];
   const wide = columns.length > 1 || !!node.feature;
   const panelId = `mega-${node.label.toLowerCase()}`;
+  // The closed panel is still laid out (it fades), so its feature art would
+  // load on every page; mount it the first time the panel opens.
+  const [seen, setSeen] = useState(open);
+  useEffect(() => {
+    if (open) setSeen(true);
+  }, [open]);
 
   useEffect(() => {
     if (!open) return;
@@ -66,11 +72,15 @@ export function MegaMenu({
   }, [open, onClose]);
 
   const focusFirstItem = () => {
-    requestAnimationFrame(() => {
-      containerRef.current
-        ?.querySelector<HTMLAnchorElement>("a[data-nav-item]")
-        ?.focus();
-    });
+    // The panel's visibility transition keeps it hidden for its first frame,
+    // and focus() on a hidden element is ignored, so retry for a few frames.
+    let tries = 0;
+    const attempt = () => {
+      const first = containerRef.current?.querySelector<HTMLAnchorElement>("a[data-nav-item]");
+      first?.focus();
+      if (first && document.activeElement !== first && ++tries < 6) requestAnimationFrame(attempt);
+    };
+    requestAnimationFrame(attempt);
   };
 
   const onPanelKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -181,7 +191,7 @@ export function MegaMenu({
                     const current = pathname === item.href || pathname === `${item.href}/`;
                     return (
                       <li key={item.href}>
-                        <Link
+                        <IntentLink
                           href={item.href}
                           data-nav-item
                           aria-current={current ? "page" : undefined}
@@ -207,7 +217,7 @@ export function MegaMenu({
                               {item.description}
                             </span>
                           )}
-                        </Link>
+                        </IntentLink>
                       </li>
                     );
                   })}
@@ -216,24 +226,26 @@ export function MegaMenu({
             ))}
 
             {node.feature && (
-              <Link
+              <IntentLink
                 href={node.feature.href}
                 data-nav-item
                 className="group relative flex min-h-[15rem] flex-col justify-end overflow-hidden border border-bronze/25 p-5"
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={node.feature.image}
-                  alt=""
-                  aria-hidden="true"
-                  loading="lazy"
-                  className={cn(
-                    "absolute inset-0 h-full w-full transition-transform duration-700 ease-out group-hover:scale-[1.03]",
-                    node.feature.fit === "contain"
-                      ? "object-contain object-top px-8 pb-36 pt-5"
-                      : "object-cover",
-                  )}
-                />
+                {seen && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={node.feature.image}
+                    alt=""
+                    aria-hidden="true"
+                    loading="lazy"
+                    className={cn(
+                      "absolute inset-0 h-full w-full transition-transform duration-700 ease-out group-hover:scale-[1.03]",
+                      node.feature.fit === "contain"
+                        ? "object-contain object-top px-8 pb-36 pt-5"
+                        : "object-cover",
+                    )}
+                  />
+                )}
                 <div
                   aria-hidden="true"
                   className="absolute inset-0"
@@ -263,7 +275,7 @@ export function MegaMenu({
                     />
                   </span>
                 </div>
-              </Link>
+              </IntentLink>
             )}
           </div>
         </div>

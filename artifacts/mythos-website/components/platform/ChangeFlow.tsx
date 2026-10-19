@@ -114,7 +114,7 @@ export function ChangeFlow() {
                 )}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={STEP_ICON[index]} alt="" aria-hidden="true" className="h-16 w-16" />
+                <img src={STEP_ICON[index]} loading="lazy" alt="" aria-hidden="true" className="h-16 w-16" />
               </span>
               <p className={cn("mt-4 text-[11px] font-semibold uppercase tracking-[0.2em]", index === step ? "text-antique-gold" : "text-fg")}>
                 {item.name}

@@ -24,13 +24,15 @@ const cormorant = Cormorant_Garamond({
 
 /**
  * Google Analytics 4 bootstrap with Consent Mode v2. Runs on every page load and
- * loads the gtag.js tag immediately, but every consent signal defaults to
- * "denied": GA sets no cookies and sends only cookieless, aggregated pings until
- * the visitor opts in. CookieConsent then flips the signals with
- * gtag('consent','update',...). Loading the tag up front (rather than only after
- * opt-in) is what lets Google verify the tag and gives cookieless traffic data.
+ * loads the gtag.js tag once the page has loaded (so it never competes with the
+ * hero art), but every consent signal defaults to "denied": GA sets no cookies
+ * and sends only cookieless, aggregated pings until the visitor opts in.
+ * CookieConsent then flips the signals with gtag('consent','update',...).
+ * Loading the tag on every page (rather than only after opt-in) is what lets
+ * Google verify the tag and gives cookieless traffic data; commands queued in
+ * dataLayer before it arrives are replayed.
  */
-const GA_BOOTSTRAP_SCRIPT = `(function(){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});gtag('js',new Date());gtag('config','${GA_MEASUREMENT_ID}');var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}';document.head.appendChild(s);})();`;
+const GA_BOOTSTRAP_SCRIPT = `(function(){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});gtag('js',new Date());gtag('config','${GA_MEASUREMENT_ID}');function l(){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}';document.head.appendChild(s);}if(document.readyState==='complete')l();else window.addEventListener('load',l,{once:true});})();`;
 
 /**
  * Organization + WebSite structured data (Launch Guide §17). Only verifiable

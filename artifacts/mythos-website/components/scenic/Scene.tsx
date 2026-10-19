@@ -48,8 +48,13 @@ const CLOUD_ART = {
   dusk: ["/assets/transitions/transition-dark-cloud-01.webp", "/assets/olympus/cloud-valley.webp"],
 } as const;
 
-/** A cloud bank at one edge of a positioned parent. Decorative; use inside aria-hidden art. */
-export function CloudBank({ edge, at }: { edge: CloudEdge; at: "top" | "bottom" }) {
+/**
+ * A cloud bank at one edge of a positioned parent. Decorative; use inside
+ * aria-hidden art. In a hero, pass `priority`: Chrome skips full-viewport
+ * backdrops when picking the largest paint, so the bank is usually the page's
+ * LCP element and must not wait for lazy loading.
+ */
+export function CloudBank({ edge, at, priority }: { edge: CloudEdge; at: "top" | "bottom"; priority?: boolean }) {
   const color = SURFACE_COLOR[edge.into];
   const tone = edge.tone ?? "sunlit";
   const [back, front] = CLOUD_ART[tone];
@@ -64,7 +69,8 @@ export function CloudBank({ edge, at }: { edge: CloudEdge; at: "top" | "bottom" 
         <img
           src={back}
           alt=""
-          loading="lazy"
+          loading={priority ? "eager" : "lazy"}
+          fetchPriority={priority ? "high" : undefined}
           data-drift="70"
           className={cn(
             "absolute -left-16 h-[150%] w-[calc(100%+8rem)] max-w-none object-cover",
@@ -76,7 +82,7 @@ export function CloudBank({ edge, at }: { edge: CloudEdge; at: "top" | "bottom" 
         <img
           src={front}
           alt=""
-          loading="lazy"
+          loading={priority ? "eager" : "lazy"}
           data-drift="-90"
           className={cn(
             "absolute -left-16 h-[120%] w-[calc(100%+8rem)] max-w-none object-cover",

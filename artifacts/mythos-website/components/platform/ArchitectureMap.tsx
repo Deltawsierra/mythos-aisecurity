@@ -232,7 +232,7 @@ export function ArchitectureMap() {
                   <span className="mt-1 block text-[10px] font-semibold uppercase tracking-[0.22em] text-accent">{p.tagline}</span>
                   <span className="mt-2 block text-sm leading-relaxed text-fg-muted">{p.role}</span>
                   {out.length > 0 && (
-                    <span className="mt-2 block text-xs text-fg-muted/80">
+                    <span className="mt-2 block text-xs text-fg-muted">
                       {out.map((l) => `${l.label} → ${l.to === "spine" ? "SPINE" : PROJECTS.find((x) => x.id === l.to)?.name}`).join(" · ")}
                     </span>
                   )}

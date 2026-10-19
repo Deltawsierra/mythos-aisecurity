@@ -206,7 +206,7 @@ export default function AthenaPage() {
               <li key={out.name} data-surface="ivory" className="flex flex-col border border-rule bg-cream p-6 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.8)]">
                 <div className="flex items-center gap-3 border-b border-rule pb-3">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={out.icon} alt="" aria-hidden="true" className="h-10 w-10" />
+                  <img src={out.icon} loading="lazy" alt="" aria-hidden="true" className="h-10 w-10" />
                   <p className="font-display text-2xl text-fg">{out.name}</p>
                 </div>
                 <ul className="mt-4 grid gap-2 text-sm text-fg">

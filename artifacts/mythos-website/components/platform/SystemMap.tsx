@@ -203,7 +203,7 @@ export function SystemMap() {
                 )}
               />
               {n.label}
-              <span className="text-[9px] font-semibold uppercase tracking-[0.16em] text-ivory/50">{TYPE[n.kind]}</span>
+              <span className="text-[9px] font-semibold uppercase tracking-[0.16em] text-ivory/60">{TYPE[n.kind]}</span>
             </span>
           </span>
         ))}

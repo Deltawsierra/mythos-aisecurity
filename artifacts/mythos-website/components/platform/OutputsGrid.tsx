@@ -15,6 +15,7 @@ export function OutputsGrid() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={output.icon}
+              loading="lazy"
               alt=""
               aria-hidden="true"
               className="h-14 w-14 transition-transform duration-700 ease-out group-hover:-translate-y-0.5 group-hover:rotate-[4deg]"

@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   description:
     "How Mythos AI Security handles information submitted through this website, how we use cookies and Google Analytics, and the choices available to visitors.",
   robots: { index: true, follow: true },
+  alternates: { canonical: "/privacy/" },
   ...socialImage("privacy", "Privacy & Cookie Policy — Mythos AI Security"),
 };
 

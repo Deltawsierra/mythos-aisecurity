@@ -422,6 +422,53 @@ Resources (F1). Provenance is in `ASSET_INVENTORY.md`. The pages keep their
 own figures: the orbit on Continuous Assurance, the canonical Hermes, and the
 stand-in Athena. Their social cards were regenerated.
 
+## Optimization pass (19 Oct)
+
+Measured with a headless-Chrome audit of all 47 routes at 1440×900 and
+390×844 (layout overflow, broken images, console and network errors, h1
+count, CLS, LCP element, transferred bytes). The baseline had no functional
+problems; the cost was weight.
+
+- **Prefetch:** the closed mega-menu panels are laid out (they fade), so
+  Next prefetched ~40 routes' payloads on every page view (~2.4 MB) and
+  loaded the menus' feature art. Menu, drawer and footer links now use
+  `IntentLink` (prefetch on hover, focus or touch), and the feature art
+  mounts the first time its panel opens.
+- **Image preloads:** React 19 preloads every non-lazy `<img>` in the head,
+  so pages asked for 5–20 images up front (footer crest, evidence icons,
+  medallions). Below-the-fold and decorative images are now
+  `loading="lazy"`; pages preload 2–3 (logo, hero, cloud bank).
+- **LCP:** Chrome skips full-viewport backdrops when picking the largest
+  paint, so the hero cloud bank is the LCP element on most pages. It was
+  lazy and 507 KB; it is now 224 KB and loads eagerly at high priority
+  (`CloudBank priority` in heroes).
+- **Weight:** see the weight pass in `ASSET_INVENTORY.md` (~5 MB less).
+- **Homepage:** the team loop starts only when its section is near the
+  viewport; Google's tag loads after the page's load event.
+- **Caching (api-server):** `/_next/static` is immutable for a year;
+  `/assets` is fresh for an hour with a day of background revalidation;
+  pages revalidate on every visit.
+- **Contrast:** placeholder text, one map caption and one 9 px label were
+  below 4.5:1; raised.
+- **SEO:** the homepage and Privacy now declare canonical URLs.
+- **Phones:** every hero's outline button sat where the cloud bank turns
+  near-white (ivory label on cream cloud, ~1.2:1). Hero outline buttons now
+  take `OUTLINE_ON_ART`, a dark glass backing. The homepage hero gains a
+  phone-only shade over its copy band so the body text no longer sits on
+  bright city art; Athena below it stays lit.
+- **Keyboard:** ArrowDown on a mega-menu trigger opened the panel but never
+  moved focus into it: the panel's visibility transition keeps it hidden for
+  its first frame, where `focus()` is ignored. It now retries for a few
+  frames. Verified: ArrowDown focuses the first link, arrows move, Escape
+  returns to the trigger; the mobile drawer traps and restores focus.
+- **Posters:** team posters 960×1707 → 540×960 and character posters 1600 →
+  1164 px tall (shown ~230 px wide).
+- **Cards:** industry cards resized to 600 px; the homepage Public Sector card
+  now uses a crop of the B1 scene instead of the insurance art.
+- **Dead code:** unused `getPlatformPage`, `getSolutionPage`,
+  `EXECUTIVE_QUESTIONS`, `ASSURANCE_DIMENSIONS`, `DECISION_STATUS_ICONS`,
+  `SITE_TAGLINE` and `PRODUCT` removed.
+
 ## Not yet done
 
 - **Accessibility QA (Phase 9):** full keyboard / screen-reader / contrast

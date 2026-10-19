@@ -50,7 +50,7 @@ export function RecordCard({
           <p className="mt-0.5 font-display text-lg text-ivory">{title}</p>
         </div>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={icon} alt="" aria-hidden="true" className="h-11 w-11" />
+        <img src={icon} loading="lazy" alt="" aria-hidden="true" className="h-11 w-11" />
       </div>
       <dl className="divide-y divide-[rgba(184,130,63,0.3)] px-6">{shown.map(row)}</dl>
       {more.length > 0 && (

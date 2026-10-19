@@ -42,6 +42,22 @@ be checked against product terminology before reuse.
 
 ## Changes made while staging
 
+- **Weight pass (19 Oct):** large WebPs re-encoded at quality 80 where the
+  result stayed at or above 37 dB PSNR and saved at least 15% (challenge
+  sculpture, character and SPINE posters, two industry cards, sky and cloud
+  plates): about 3.2 MB less. The two `sunbeams.webp` overlays are only ever
+  drawn with `mix-blend-mode: screen`, so they are flattened onto black and
+  stored without alpha, which looks identical under screen and cuts them from
+  387 KB and 112 KB to 28 KB and 6 KB. `footer-stone.webp` shows at 16%
+  opacity in luminosity blend, so it is now a 1600×800 greyscale (503 → 13 KB).
+  `cloud-valley.webp`, the hero cloud bank and most pages' LCP element, is
+  re-encoded at quality 70 / alpha 70 (507 → 224 KB, 38 dB), and
+  `athena-guardian.webp` at quality 85 (460 → 389 KB, 38 dB); `marble-city.webp`
+  and `panorama.webp` at quality 82 (398 → 337 KB and 349 → 292 KB, 37 dB).
+  The unused homepage hero loops and CTA loops (`/assets/hero/*`,
+  `cta-olympus-loop.*`, `cta-mist-overlay.webm`; about 1.2 MB) are removed
+  with their `HERO_MEDIA` / `CTA_MEDIA` registries; they remain in git history.
+
 - **Interim Wave 2 heroes (19 Oct):** `/assets/scenes/*-hero.webp`, 1672×941
   (the delivered native size; nothing upscaled). Each is the delivered L0–L4
   layers flattened, with solid alpha (250–254) clamped to 255 first:
@@ -54,7 +70,16 @@ be checked against product terminology before reuse.
 
 - **PNG → WebP:** marble texture (1.8 MB → 45 KB), atmospheric cloud
   (1.2 MB → 222 KB), gold dust, and three character FX overlays. Transparency kept.
-- **Team posters:** resized 1440×2560 → 960×1707 (≈360 KB → ≈115 KB each).
+- **Team posters:** resized 1440×2560 → 960×1707 (≈360 KB → ≈115 KB each), then
+  on 19 Oct to 540×960 (≈58 KB each): the homepage cards show them about 208 px wide.
+- **Character posters (19 Oct):** 1600 → 1164 px tall (≈640 wide, 61–80 KB). The
+  family cards show them ~230 px wide and the hero niches ~255 px; 1164 still
+  covers a 2× laptop screen.
+- **Industry cards (19 Oct):** 600 px wide (422 → 169 KB for the five); they show
+  at 188 px on the homepage and up to ~272 px in the Solutions menu feature.
+- **Public Sector card (19 Oct):** `scenes/public-sector-mission-card.webp`, a
+  480×640 crop of the B1 interim scene, replaces the borrowed insurance card in
+  the homepage sector grid.
 - **Challenge risk icons:** removed the baked label text and white card, and
   set a square viewBox from each icon's rendered bounds. Labels belong in DOM text.
 - **Industry cards:** trimmed the neighbouring-card sliver and dark sheet gutter
@@ -130,8 +155,6 @@ frame visible and should not be used. Team posters and loops need no crop.
 
 ## Open items
 
-- Native 1080p render of the hero loop (current loop is an upscale; still carries
-  a VP9 `alpha_mode` flag it doesn't need).
 - `minotaur-engaged.webm` without the repeated final frame and the three held
   mid-loop frames.
 - Government / Mission art without the Capitol.
@@ -139,6 +162,4 @@ frame visible and should not be used. Team posters and loops need no crop.
   in code from the crest and each page's hero.
 - An authoritative vector master of the detailed crest and the official
   wordmark typography (Brand R2 delivers the crest as a 761×904 raster).
-- Transparent VP9 overlays (`hero-light-overlay`, `cta-mist-overlay`) don't render
-  transparently in Safari. Load them only where supported.
 - 3D GLBs (marble fragments, lifecycle medallion, SPINE core) — not produced.
