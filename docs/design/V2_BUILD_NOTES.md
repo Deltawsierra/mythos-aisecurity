@@ -411,6 +411,17 @@ new crest; the homepage card (`social/pages/home.jpg`) replaces
 The wordmark stays live text (Cormorant), so the unapproved R2 SVG
 wordmark isn't used.
 
+## Interim Wave 2 heroes (19 Oct)
+
+The Wave 1–2 art delivery was reviewed against the V3 art brief (private
+review: https://claude.ai/artifact/Uw8CDfPw3sEMFjqZ3Zn3QC). No layer set
+passes technical QA yet, so five of the strongest compositions run as flat
+heroes until rebuilt masters arrive (`INTERIM_SCENES` in `content/media.ts`):
+Public Sector (B1), Continuous Assurance (C7), Hermes (C8), Athena (C9) and
+Resources (F1). Provenance is in `ASSET_INVENTORY.md`. The pages keep their
+own figures: the orbit on Continuous Assurance, the canonical Hermes, and the
+stand-in Athena. Their social cards were regenerated.
+
 ## Not yet done
 
 - **Accessibility QA (Phase 9):** full keyboard / screen-reader / contrast

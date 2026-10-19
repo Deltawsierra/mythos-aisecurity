@@ -95,6 +95,22 @@ export const OLYMPUS_MEDIA = {
 } as const;
 
 /**
+ * Interim flat heroes from the Wave 2 art delivery (19 Oct): delivered layers
+ * flattened at their native 1672×941 with solid alpha clamped to 255. Flat
+ * until rebuilt layered masters arrive. Continuous Assurance leaves out the
+ * painted ring and Hermes the painted figure, because those pages draw their
+ * own orbit and character. Resources uses the final-look image (its layers
+ * have no floor).
+ */
+export const INTERIM_SCENES = {
+  publicSector: poster("/assets/scenes/public-sector-mission-hero.webp", 1672, 941),
+  continuousAssurance: poster("/assets/scenes/continuous-assurance-hero.webp", 1672, 941),
+  hermes: poster("/assets/scenes/hermes-hero.webp", 1672, 941),
+  athena: poster("/assets/scenes/athena-hero.webp", 1672, 941),
+  resources: poster("/assets/scenes/resources-hero.webp", 1672, 941),
+} as const;
+
+/**
  * Batch 06 causeway layers on a shared 2048×1152 canvas (the placeholder
  * colonnade is left out) and the Batch 07 journey medallions, registered at
  * y = 666 on the bridge.

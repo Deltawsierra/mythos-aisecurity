@@ -42,6 +42,16 @@ be checked against product terminology before reuse.
 
 ## Changes made while staging
 
+- **Interim Wave 2 heroes (19 Oct):** `/assets/scenes/*-hero.webp`, 1672×941
+  (the delivered native size; nothing upscaled). Each is the delivered L0–L4
+  layers flattened, with solid alpha (250–254) clamped to 255 first:
+  W2-02 → `public-sector-mission-hero`; W2-13 without the painted ring (L3)
+  → `continuous-assurance-hero`; W2-14 without the painted Hermes (L3) →
+  `hermes-hero`, where 0.14% of the frame had no sky behind it and was filled
+  from the surrounding sky; W2-15 → `athena-hero`. `resources-hero` is the
+  W2-16 final-look image, because its layers have no floor. These are flat
+  stand-ins until rebuilt layered masters pass review.
+
 - **PNG → WebP:** marble texture (1.8 MB → 45 KB), atmospheric cloud
   (1.2 MB → 222 KB), gold dust, and three character FX overlays. Transparency kept.
 - **Team posters:** resized 1440×2560 → 960×1707 (≈360 KB → ≈115 KB each).

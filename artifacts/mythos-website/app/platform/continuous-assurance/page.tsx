@@ -15,7 +15,7 @@ import { ChangeTraversal } from "@/components/platform/ChangeTraversal";
 import { ChangeFlow } from "@/components/platform/ChangeFlow";
 import { EvidenceTimeline } from "@/components/platform/EvidenceTimeline";
 import { CA_CHANGES, CA_CLAIMS, CA_COPY, CA_EVENTS, CA_LEDGER } from "@/content/continuousAssurance";
-import { OLYMPUS_MEDIA } from "@/content/media";
+import { INTERIM_SCENES, OLYMPUS_MEDIA } from "@/content/media";
 
 export const metadata: Metadata = {
   title: "Continuous Assurance — When AI Changes, Your Evidence Should Respond",
@@ -55,11 +55,7 @@ export default function ContinuousAssurancePage() {
         ]}
         current="Continuous Assurance"
         secondaryCta={{ label: "Explore the Platform", href: "/platform" }}
-        planes={[
-          { src: OLYMPUS_MEDIA.cloudSea.src, className: "-inset-[3%]", position: "50% 55%", depth: 6, priority: true },
-          { src: OLYMPUS_MEDIA.mountains.src, className: "inset-x-0 top-[40%] h-[18%]", fit: "contain", position: "60% 100%", opacity: 0.7, depth: 8 },
-          { src: OLYMPUS_MEDIA.sunbeams, className: "-inset-[3%]", blend: "screen", opacity: 0.45, position: "100% 0%", depth: 10 },
-        ]}
+        planes={[{ src: INTERIM_SCENES.continuousAssurance.src, className: "-inset-[3%]", position: "60% 50%", depth: 6, priority: true }]}
         figure={<OrbitFigure entries={LEDGER_TICKER} className="absolute right-[6%] top-[14%] w-[min(36vw,33rem)]" />}
         mobileFigure={<OrbitFigure entries={LEDGER_TICKER} className="relative mx-auto w-72" />}
         into="ivory"

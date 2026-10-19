@@ -15,7 +15,7 @@
  *   approval (register: solutions.offer-names). Prices are never shown.
  */
 import type { IndustryContent } from "@/components/solutions/types";
-import { OLYMPUS_MEDIA } from "@/content/media";
+import { INTERIM_SCENES, OLYMPUS_MEDIA } from "@/content/media";
 
 const ASSESSMENT = "/contact?intent=assessment";
 const sun = (position = "100% 0%") => ({ src: OLYMPUS_MEDIA.sunbeams, className: "-inset-[3%]", blend: "screen" as const, opacity: 0.45, position, depth: 10 });
@@ -347,12 +347,7 @@ export const INDUSTRIES: IndustryContent[] = [
       headline: "Enable Innovation *With Assurance.*",
       lede: "For mission-sensitive work, authorization, scope control, traceability and reliable evidence matter as much as detection.",
       primaryCta: { label: "Discuss Mission Assurance", href: ASSESSMENT },
-      planes: [
-        { src: OLYMPUS_MEDIA.cloudSea.src, className: "-inset-[3%]", position: "50% 50%", depth: 6, priority: true },
-        { src: OLYMPUS_MEDIA.mountains.src, className: "inset-x-0 top-[36%] h-[20%]", fit: "contain", position: "60% 100%", opacity: 0.8, depth: 8 },
-        { src: OLYMPUS_MEDIA.cliffTemple.src, className: "-right-[3%] bottom-[12%] h-[56%] w-[58%]", fit: "contain", position: "100% 100%", depth: 12 },
-        sun(),
-      ],
+      planes: [{ src: INTERIM_SCENES.publicSector.src, className: "-inset-[3%]", position: "70% 40%", depth: 6, priority: true }, sun()],
     },
     risks: {
       title: "What an evaluation *has to show.*",

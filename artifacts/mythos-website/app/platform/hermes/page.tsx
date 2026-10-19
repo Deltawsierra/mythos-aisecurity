@@ -26,7 +26,7 @@ import {
   HERMES_TRAIL,
   HERMES_VMODEL,
 } from "@/content/hermes";
-import { OLYMPUS_MEDIA } from "@/content/media";
+import { INTERIM_SCENES, OLYMPUS_MEDIA } from "@/content/media";
 
 export const metadata: Metadata = {
   title: "Hermes — Physical AI Assurance",
@@ -61,11 +61,7 @@ export default function HermesPage() {
         current="Hermes"
         primaryCta={{ label: "Discuss Physical AI Assurance", href: INQUIRY }}
         secondaryCta={{ label: "Explore the Platform", href: "/platform" }}
-        planes={[
-          { src: OLYMPUS_MEDIA.cloudSea.src, className: "-inset-[3%]", position: "50% 35%", depth: 6, priority: true },
-          { src: OLYMPUS_MEDIA.viaduct.src, className: "-inset-x-[6%] bottom-[16%] h-[26%]", fit: "contain", position: "50% 100%", depth: 12, drift: 80 },
-          { src: OLYMPUS_MEDIA.sunbeams, className: "-inset-[3%]", blend: "screen", opacity: 0.5, position: "100% 0%", depth: 10 },
-        ]}
+        planes={[{ src: INTERIM_SCENES.hermes.src, className: "-inset-[3%]", position: "55% 45%", depth: 6, priority: true }]}
         figure={<CharacterNiche project="hermes" glow={SKY} className="absolute bottom-[30%] right-[9%] h-[56%]" />}
         mobileFigure={<CharacterNiche project="hermes" glow={SKY} className="relative mx-auto h-[44svh]" />}
         into="ivory"

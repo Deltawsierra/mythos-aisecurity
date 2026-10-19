@@ -26,7 +26,7 @@ import {
   ATHENA_RETEST,
   ATHENA_TRACES,
 } from "@/content/athena";
-import { OLYMPUS_MEDIA } from "@/content/media";
+import { INTERIM_SCENES, OLYMPUS_MEDIA } from "@/content/media";
 import { CTA_LINKS } from "@/content/navigation";
 import { CTA } from "@/lib/constants";
 
@@ -74,13 +74,7 @@ export default function AthenaPage() {
         primaryCta={{ label: "Explore an Example Assessment", href: "/example-report" }}
         secondaryCta={{ label: CTA.DEMO, href: CTA_LINKS.demo }}
         copySide="right"
-        planes={[
-          { src: OLYMPUS_MEDIA.cloudSea.src, className: "-inset-[3%]", position: "50% 60%", depth: 6, priority: true },
-          { src: OLYMPUS_MEDIA.mountains.src, className: "inset-x-0 top-[40%] h-[18%]", fit: "contain", position: "60% 100%", opacity: 0.75, depth: 8 },
-          { src: OLYMPUS_MEDIA.cliffTemple.src, className: "-right-[3%] bottom-[14%] h-[54%] w-[56%]", fit: "contain", position: "100% 100%", depth: 12 },
-          { src: OLYMPUS_MEDIA.evergreenCliff.src, className: "-left-[3%] bottom-0 h-[62%] w-[34%]", fit: "contain", position: "0% 100%", depth: 16, desktopOnly: true },
-          { src: OLYMPUS_MEDIA.sunbeams, className: "-inset-[3%]", blend: "screen", opacity: 0.55, position: "100% 0%", depth: 10 },
-        ]}
+        planes={[{ src: INTERIM_SCENES.athena.src, className: "-inset-[3%]", position: "40% 50%", depth: 6, priority: true }]}
         figure={
           <div className="absolute bottom-[6%] left-[4%] h-[86%] xl:left-[7%]" data-depth="22">
             {/* eslint-disable-next-line @next/next/no-img-element */}

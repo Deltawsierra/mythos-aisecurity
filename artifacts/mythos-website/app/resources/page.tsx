@@ -8,7 +8,7 @@ import { PageMotion } from "@/components/motion/PageMotion";
 import { SectionIntro } from "@/components/sections/SectionIntro";
 import { ScenicHero } from "@/components/scenic/ScenicHero";
 import { ClosingVista } from "@/components/scenic/ClosingVista";
-import { OLYMPUS_MEDIA } from "@/content/media";
+import { INTERIM_SCENES, OLYMPUS_MEDIA } from "@/content/media";
 
 export const metadata: Metadata = {
   title: "Resources — The Mythos Knowledge Archive",
@@ -69,12 +69,7 @@ export default function ResourcesPage() {
         current="Resources"
         primaryCta={{ label: "Explore the Library", href: "#library" }}
         secondaryCta={{ label: "Request an Expert Conversation", href: "/contact?intent=general" }}
-        planes={[
-          { src: "/assets/causeway/sky.webp", className: "-inset-[3%]", position: "50% 40%", depth: 4, priority: true },
-          { src: "/assets/causeway/mountains.webp", className: "-inset-[3%]", position: "50% 60%", depth: 8 },
-          { src: "/assets/causeway/bridge.webp", className: "-inset-[3%]", position: "50% 70%", depth: 12 },
-          { src: OLYMPUS_MEDIA.sunbeams, className: "-inset-[3%]", blend: "screen", opacity: 0.4, position: "100% 0%", depth: 10 },
-        ]}
+        planes={[{ src: INTERIM_SCENES.resources.src, className: "-inset-[3%]", position: "55% 50%", depth: 6, priority: true }]}
         into="ivory"
       />
 
