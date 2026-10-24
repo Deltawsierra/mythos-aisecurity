@@ -42,6 +42,13 @@ be checked against product terminology before reuse.
 
 ## Changes made while staging
 
+- **Athena R6 (24 Oct, trial):** `/assets/athena/athena-figure-r6.webp`, the
+  W1-05 R6 assembled export (2208×3264, a declared 2× enlargement) trimmed to the
+  figure plus 24 px and resized to 1195×1800 (387 KB). It replaces the Batch 04
+  stand-in on the homepage and the Athena page; the stand-in stays on Trust,
+  where the figure stands on the right and R6 would face off the page. Open with
+  the studio: the gown split from mid-thigh and the high-heeled sandals.
+
 - **Weight pass (19 Oct):** large WebPs re-encoded at quality 80 where the
   result stayed at or above 37 dB PSNR and saved at least 15% (challenge
   sculpture, character and SPINE posters, two industry cards, sky and cloud

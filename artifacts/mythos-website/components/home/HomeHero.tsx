@@ -67,7 +67,7 @@ export function HomeHero() {
         <div className="absolute bottom-[7%] left-[1%] hidden h-[90%] lg:block xl:left-[4%]" data-depth="22">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={OLYMPUS_MEDIA.athena.src}
+            src={OLYMPUS_MEDIA.athenaR6.src}
             alt=""
             className="hero-rise h-full w-auto max-w-none drop-shadow-[0_30px_50px_rgba(18,21,23,0.55)]"
             style={{ animationDelay: "160ms" }}
@@ -128,7 +128,7 @@ export function HomeHero() {
           {/* Anchored at the head and cropped below the knee: she stands in the clouds. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={OLYMPUS_MEDIA.athena.src}
+            src={OLYMPUS_MEDIA.athenaR6.src}
             alt=""
             className="absolute left-1/2 top-0 h-[124%] w-auto max-w-none -translate-x-1/2 drop-shadow-[0_24px_40px_rgba(18,21,23,0.5)]"
           />

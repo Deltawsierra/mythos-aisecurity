@@ -469,6 +469,14 @@ problems; the cost was weight.
   `EXECUTIVE_QUESTIONS`, `ASSURANCE_DIMENSIONS`, `DECISION_STATUS_ICONS`,
   `SITE_TAGLINE` and `PRODUCT` removed.
 
+## Athena R6 trial (24 Oct)
+
+The reviewed W1-05 R6 Athena (`OLYMPUS_MEDIA.athenaR6`) replaces the Batch 04
+stand-in on the homepage hero and the Athena page, desktop and phone. Trust
+keeps the stand-in for now (figure on the right). The Athena page's phone
+figure now dissolves into the scene with a mask instead of fading to a solid
+ivory band, which had left a hard seam above the rest of the hero.
+
 ## Not yet done
 
 - **Accessibility QA (Phase 9):** full keyboard / screen-reader / contrast

@@ -79,7 +79,7 @@ export default function AthenaPage() {
           <div className="absolute bottom-[6%] left-[4%] h-[86%] xl:left-[7%]" data-depth="22">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={OLYMPUS_MEDIA.athena.src}
+              src={OLYMPUS_MEDIA.athenaR6.src}
               alt=""
               className="hero-rise h-full w-auto max-w-none drop-shadow-[0_30px_50px_rgba(18,21,23,0.55)]"
               style={{ animationDelay: "160ms" }}
@@ -87,13 +87,14 @@ export default function AthenaPage() {
           </div>
         }
         mobileFigure={
-          <div className="relative h-[52svh] overflow-hidden">
+          // She dissolves into the scene (not into a solid ivory band, which left a
+          // seam above the rest of the hero); the cloud bank resolves to ivory.
+          <div
+            className="relative h-[52svh] overflow-hidden"
+            style={{ WebkitMaskImage: "linear-gradient(180deg, #000 62%, transparent 100%)", maskImage: "linear-gradient(180deg, #000 62%, transparent 100%)" }}
+          >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={OLYMPUS_MEDIA.athena.src} alt="" className="absolute left-1/2 top-0 h-[124%] w-auto max-w-none -translate-x-1/2" />
-            <div
-              className="absolute inset-x-0 bottom-0 h-[40%]"
-              style={{ background: "linear-gradient(0deg, #ede4d5 0%, rgba(232,220,200,0.92) 30%, rgba(232,220,200,0.45) 65%, rgba(232,220,200,0) 100%)" }}
-            />
+            <img src={OLYMPUS_MEDIA.athenaR6.src} alt="" className="absolute left-1/2 top-0 h-[124%] w-auto max-w-none -translate-x-1/2" />
           </div>
         }
         into="ivory"

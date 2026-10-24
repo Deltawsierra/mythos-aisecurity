@@ -66,7 +66,10 @@ const poster = (src: string, width: number, height: number): ImageAsset => ({
  * Luminous Olympus scenery (Launch Guide, 16 Oct). Batch 03 candidates at
  * native size — no faux 4K. The panorama is cropped to drop banners painted
  * with the unapproved Batch 01 monogram; its sun and mist layers share the
- * crop. The Batch 04 Athena is a stand-in until the Athena decision is made.
+ * crop. `athenaR6` is the W1-05 R6 Athena (painted, formal styling; trimmed
+ * from the 2208×3264 master, a declared 2× enlargement) on the homepage and
+ * the Athena page; the Batch 04 stand-in `athena` remains on Trust, where
+ * the figure stands on the right and R6 would face off the page.
  */
 export const OLYMPUS_MEDIA = {
   marbleCity: poster("/assets/olympus/marble-city.webp", 1672, 941),
@@ -76,6 +79,7 @@ export const OLYMPUS_MEDIA = {
   sunrays: "/assets/olympus/panorama-sunrays.webp",
   mist: "/assets/olympus/panorama-mist.webp",
   athena: poster("/assets/olympus/athena-guardian.webp", 1024, 1536),
+  athenaR6: poster("/assets/athena/athena-figure-r6.webp", 1195, 1800),
   /* Batch 03 cut-outs (alpha, trimmed): compose each page's own scene. */
   cliffTemple: poster("/assets/olympus/cliff-temple.webp", 1429, 815),
   viaduct: poster("/assets/olympus/viaduct.webp", 1568, 411),
