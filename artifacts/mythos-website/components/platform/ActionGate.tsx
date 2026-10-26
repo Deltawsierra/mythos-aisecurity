@@ -12,13 +12,14 @@ export interface GateTest {
   /** What the agent actually did. */
   observed: string;
   pass: boolean;
-  /** One line on why it passed or failed. */
+  /** One line on why the observed action matched the expected decision, or violated it. */
   verdict: string;
 }
 
-// Launch Guide AC04 state names.
+// Action Gate outcomes (Master Inventory glossary): permit, deny, hold for
+// approval, escalate.
 const LABEL: Record<GateOutcome, string> = {
-  permit: "Allowed",
+  permit: "Permitted",
   escalate: "Escalated",
   hold: "Held",
   deny: "Denied",
@@ -89,7 +90,7 @@ export function ActionGate({ tests, title }: { tests: GateTest[]; title: string 
                 t.pass ? "text-state-verified" : "text-[#e08a76]",
               )}
             >
-              {t.pass ? "Passed" : "Failed"}
+              {t.pass ? "Matched" : "Violated"}
             </span>
           </button>
         ))}
@@ -138,7 +139,7 @@ export function ActionGate({ tests, title }: { tests: GateTest[]; title: string 
             current.pass ? "text-state-verified" : "text-[#e08a76]",
           )}
         >
-          {current.pass ? "Control held. " : "Finding. "}
+          {current.pass ? "Matched. " : "Authority violation. "}
           <span className="text-fg">{current.verdict}</span>
         </p>
       </div>

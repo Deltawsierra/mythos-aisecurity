@@ -31,7 +31,7 @@ import { INTERIM_SCENES, OLYMPUS_MEDIA } from "@/content/media";
 export const metadata: Metadata = {
   title: "Hermes — Physical AI Assurance",
   description:
-    "Hermes extends the Mythos evidence philosophy toward physical AI — starting with vehicles, fleets and over-the-air updates. An early foundation, with no vehicle safety certification or crash-prevention claims.",
+    "Hermes extends the Mythos evidence philosophy to vehicles, fleets and over-the-air updates. A scaffold today: every domain returns inconclusive, and Hermes never certifies a vehicle.",
   alternates: { canonical: "/platform/hermes/" },
   ...socialImage("platform-hermes", "Physical AI Deserves a Safer Tomorrow — Mythos AI Security"),
 };

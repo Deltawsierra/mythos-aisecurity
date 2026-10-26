@@ -6,9 +6,11 @@
  *
  * - No customers, pilots, partners or case studies exist: every proof section
  *   is an explicitly synthetic walkthrough, and impact is framed as hypotheses.
- * - Built mappings (self-reported, register: athena.compliance-mapping): NIST
- *   SP 800-53, OWASP Top 10 (web and LLM), DoD Zero Trust — findings touch
- *   controls; nothing is "satisfied". Everything else is referenced in scoping.
+ * - Built mappings (ledger.maps-to-standards, 26 Oct inventory): NIST SP
+ *   800-53, OWASP 2021 and LLM 2025, DoD Zero Trust — evidence of gaps, never
+ *   a certificate. Everything else is referenced in scoping only.
+ * - Vendor-asserted claims cap at supported; verified needs non-vendor
+ *   technical evidence.
  * - Healthcare and manufacturing have little research behind them, so their
  *   pages stay general and make no sector-rule or safety claims.
  * - Starting-point names come from the research and still need commercial
@@ -88,7 +90,7 @@ export const INDUSTRIES: IndustryContent[] = [
         { label: "Scope agreed", meta: "one workflow · one region", detail: "Copilot, data sources, supplier and excluded systems are written down and approved.", state: "verified", stateLabel: "Scoped" },
         { label: "Reach mapped", meta: "Athena", detail: "Two data sources the team hadn’t declared turn up; both are added to scope.", state: "observed" },
         { label: "Boundary tested", meta: "Achilles", detail: "A request for a second customer’s history returns notes it shouldn’t.", state: "contradicted", stateLabel: "Finding" },
-        { label: "Fix retested", meta: "same scenarios", detail: "Retrieval is filtered by customer; the original test now fails safely.", state: "verified" },
+        { label: "Fix retested", meta: "same scenarios", detail: "Retrieval is filtered by customer; the original request no longer returns those notes.", state: "verified" },
         { label: "Decision", meta: "your model-risk owner", detail: "Pilot approved for one region, with retest on the next supplier update.", state: "held", stateLabel: "Human decision" },
       ],
     },
@@ -226,12 +228,12 @@ export const INDUSTRIES: IndustryContent[] = [
     useCases: { title: "Scenarios for *SaaS teams.*", slugs: ["customer-support-ai-agent", "ai-agent-tools-actions", "data-platform-cloud-ai-integration", "developer-ai-assistant"] },
     controls: {
       title: "Threat coverage, *stated honestly.*",
-      lede: "Testing coverage is described against public threat taxonomies. Supplier attestations count as declared evidence until they are observed.",
+      lede: "Testing coverage is described against public threat taxonomies. Supplier attestations cap at supported until technical evidence shows more.",
       items: [
         ...MAPPED_CORE,
         { name: "OWASP guidance for agentic applications", status: "reference", note: "Used as threat coverage for agent features." },
         { name: "NIST AI 100-2 adversarial ML taxonomy", status: "reference", note: "Used to describe attack classes in reports." },
-        { name: "Your vendors’ SOC 2 reports", status: "reference", note: "Recorded as vendor-declared evidence — never as verified." },
+        { name: "Your vendors’ SOC 2 reports", status: "reference", note: "Recorded as vendor-asserted evidence — capped at supported, never verified." },
       ],
     },
     proof: {
@@ -307,7 +309,7 @@ export const INDUSTRIES: IndustryContent[] = [
       lede: "Frameworks are referenced so evidence can be used in your reviews. None of this is a certification or a legal safe harbor.",
       items: [
         ...MAPPED_CORE,
-        { name: "NIST AI Risk Management Framework", status: "reference", note: "A voluntary framework; evidence can be organized against it." },
+        { name: "NIST AI Risk Management Framework", status: "reference", note: "A voluntary framework, referenced in scoping; not part of the built mapping." },
         { name: "ISO/IEC 42001", status: "reference", note: "A management-system standard — evidence about a system supports it but does not prove it." },
         { name: "State AI and privacy requirements", status: "reference", note: "Identified with your counsel during scoping." },
       ],
@@ -495,7 +497,7 @@ export const INDUSTRIES: IndustryContent[] = [
     name: "Systems Integrators & AI Vendors",
     metaTitle: "AI Assurance for Systems Integrators & AI Vendors",
     metaDescription:
-      "Release evidence, declared-versus-verified vendor evidence and change records that travel with what you deliver — with roles and independence made explicit.",
+      "Release evidence, vendor-asserted versus verified evidence and change records that travel with what you deliver — with roles and independence made explicit.",
     hero: {
       eyebrow: "Systems Integrators & AI Vendors",
       headline: "Build Customer Trust Into *Every Deployment.*",
@@ -523,7 +525,7 @@ export const INDUSTRIES: IndustryContent[] = [
       items: [
         { product: "Athena", does: "Maps what the delivered system can reach, including connectors and model routes.", output: "Hand-off access map" },
         { product: "Achilles", does: "Tests permissions and behavior before hand-off, against the agreed scope.", output: "Release findings and retests" },
-        { product: "SPINE", does: "Separates declared from verified vendor evidence and keeps it current after delivery.", output: "Receipts and change records" },
+        { product: "SPINE", does: "Caps vendor-asserted claims at supported and keeps the evidence current after delivery.", output: "Signed receipts and change records" },
       ],
     },
     impact: {
@@ -532,7 +534,7 @@ export const INDUSTRIES: IndustryContent[] = [
       items: [
         { name: "Smoother hand-offs", body: "Acceptance supported by evidence, not slides." },
         { name: "Fewer post-delivery surprises", body: "Permissions and routes tested before go-live." },
-        { name: "Verified vendor claims", body: "Declared controls checked against what was observed." },
+        { name: "Tested vendor claims", body: "Vendor-asserted controls checked against what was observed." },
         { name: "Recurring evidence", body: "Retests after changes, on an agreed cadence." },
       ],
     },
@@ -623,7 +625,7 @@ export const SOLUTIONS_BRIDGE: { slug: string; athena: string; achilles: string;
   { slug: "regulated-enterprise", athena: "Inventory, owners and policy", achilles: "Consequential-decision behavior", spine: "Assessments that stay current" },
   { slug: "public-sector-mission", athena: "Exactly what was evaluated", achilles: "Restricted-record access", spine: "Acceptance and change records" },
   { slug: "manufacturing-critical-infrastructure", athena: "Operational data and vendors", achilles: "Authority in a test environment", spine: "Vendor and version changes" },
-  { slug: "integrators-vendors", athena: "Hand-off reach and connectors", achilles: "Release testing", spine: "Declared versus verified" },
+  { slug: "integrators-vendors", athena: "Hand-off reach and connectors", achilles: "Release testing", spine: "Vendor-asserted versus verified" },
 ];
 
 /** Hub switcher art and first risks, per sector. */

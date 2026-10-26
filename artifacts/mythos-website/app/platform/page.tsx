@@ -118,7 +118,7 @@ export default function PlatformPage() {
               <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-accent">Coverage manifest</p>
               <p className="mt-3 font-display text-3xl leading-tight text-fg">What was expected, observed and assessed — and what was not checked.</p>
               <p className="mt-3 text-[15px] leading-relaxed text-fg-muted">
-                Coverage states the scope of an assessment. It is never a compliance or certification verdict.
+                Coverage that falls short reads AUDIT_INCOMPLETE. It is never a compliance or certification verdict.
               </p>
             </div>
             <CoveragePanel rows={ATHENA_COVERAGE.rows} unit="assets" note={ATHENA_COVERAGE.note} />

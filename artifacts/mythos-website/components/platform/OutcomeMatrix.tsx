@@ -14,18 +14,18 @@ export interface MatrixRun {
 }
 
 /**
- * The false-block and utility ledger (Launch Guide M05): blocking benign use
- * is counted next to stopping harmful use, so a mitigation cannot look safer
- * simply by refusing more. Two synthetic runs, switchable.
+ * The false-block and precision ledger (Launch Guide M05): legitimate cases
+ * let through are counted next to attacks caught, so a build cannot score
+ * better simply by refusing more. Two synthetic runs, switchable.
  */
 export function OutcomeMatrix({ runs }: { runs: MatrixRun[] }) {
   const [i, setI] = useState(0);
   const run = runs[i];
   const cells = [
-    { row: "Harmful request", col: "Blocked", name: "Exploit stopped", value: run.stopped, tone: "good" },
-    { row: "Harmful request", col: "Allowed", name: "Missed exploit", value: run.missed, tone: "bad" },
+    { row: "Harmful request", col: "Blocked", name: "Attack caught", value: run.stopped, tone: "good" },
+    { row: "Harmful request", col: "Allowed", name: "Attack missed", value: run.missed, tone: "bad" },
     { row: "Benign request", col: "Blocked", name: "False block", value: run.falseBlocks, tone: "bad" },
-    { row: "Benign request", col: "Allowed", name: "Legitimate use served", value: run.allowed, tone: "good" },
+    { row: "Benign request", col: "Allowed", name: "Legitimate case let through", value: run.allowed, tone: "good" },
   ] as const;
 
   return (

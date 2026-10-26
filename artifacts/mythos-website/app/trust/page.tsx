@@ -19,9 +19,10 @@ export const metadata: Metadata = {
 };
 
 /*
- * Trust Center (Launch Guide §14), per the 16 Oct resources fact-check:
- * current controls come from the services agreement template and the engine
- * build records; anything only specified is listed as designed. No badges.
+ * Trust Center (Launch Guide §14), checked against the 26 Oct Mythos Master
+ * Inventory: "in place" lists what its capability and safety sections describe;
+ * "designed, not yet built" lists its limits and work queue. Scope and data
+ * terms come from the services agreement template. No badges.
  */
 
 const SCOPE_NAMES = [
@@ -33,25 +34,29 @@ const SCOPE_NAMES = [
 ];
 
 const IN_PLACE = [
-  { name: "Scope enforced at launch", body: "The scanning engine checks the agreed scope when a scan starts, so it cannot target anything outside what was authorized." },
-  { name: "Constrained network reach", body: "Scanner traffic goes only to allowed destinations, with limits on response size and time." },
-  { name: "Stop controls", body: "Any engine run can be paused, stood down or terminated. The two most serious stops need two separate keys." },
-  { name: "Stops that stop", body: "Scans run as jobs that can be cancelled — and cancelling actually ends the work." },
-  { name: "No raw secrets in evidence", body: "Evidence keeps hashes, metadata and non-sensitive summaries. Secret detection reports the kind and count of a secret, never its value." },
-  { name: "Tamper-evident evidence", body: "Receipts are hashed over their evidence, so later changes are detectable. Achilles engine evidence packs are signed and can be verified offline." },
-  { name: "An attributed record", body: "Observed effects go into a hash-chained ledger; remediation and stop events record who acted and when." },
-  { name: "Honest states", body: "A vendor’s statement is never shown as verified, unknowns never count as passes, and a missing decision never reads as Ready." },
+  { name: "Scope checked at launch", body: "Every scan passes one gate that checks target bounds, consent, the engagement’s authority and its testing window before it starts." },
+  { name: "Constrained network reach", body: "Outbound traffic goes only to allowlisted destinations, with pinned DNS, size and time ceilings, and credentials stripped across origins." },
+  { name: "A stop always gets through", body: "No control, failed read, flood or kill switch may block, delay or drop a stop, pause or revoke. Every engine tests this." },
+  { name: "Three-tier failsafe", body: "Pause, stand-down and terminate are signed operator commands. Stand-down, release and terminate need two distinct operators." },
+  { name: "Signed, verifiable evidence", body: "Receipts are DSSE-signed and verify offline; Athena evidence packs are Ed25519-signed with Merkle proofs. That proves origin, not correctness." },
+  { name: "An attributed record", body: "Every outbound effect is a row in a hash-chained ledger with the authority it ran under. Approvals and remediation checks are chained too." },
+  { name: "No raw secrets in evidence", body: "Achilles evidence is redacted to content hashes in storage, and a leaked customer secret is reported as a masked fingerprint." },
+  { name: "Pinned, guarded core", body: "Every engine pins Mythos-Core by commit behind a pin guard, and an advisories register fails CI on an affected version." },
+  { name: "Secret scanning, safe loading", body: "Secret scanning with push protection runs in CI. Models load as data-only JSON with a checksum — never pickle." },
+  { name: "A restore drill", body: "Backups are tested by a drill that actually restores one, and a chain-birth registry detects a wiped and reseeded chain." },
+  { name: "Runs on Windows", body: "Every repository’s CI includes a Windows run, and stop paths are checked on Windows first." },
+  { name: "Honest states", body: "A vendor’s statement caps at supported, unknown never counts as a pass, and an empty or unfinished scan never reads as Ready." },
 ];
 
 const DESIGNED = [
-  "Isolated, disposable workers for every engine task",
-  "Egress control across the whole platform, not only the scanner",
-  "A credential broker that keeps secrets away from workers",
-  "Tenant isolation and customer-held evidence storage",
-  "Role-based access and single sign-on",
-  "Signed receipts and a public verifier",
-  "Private cloud and air-gapped deployment",
-  "A published incident-response procedure",
+  "External anchoring of the engine record — designed, not built",
+  "Runtime monitor-coverage measurement",
+  "An enforcing request gateway — today it is monitor-only and fails open",
+  "A customer-run or third-party identity collector",
+  "Achilles scan results signed into the platform record",
+  "An independent witness of external effects",
+  "Safe, isolated intake of customer files",
+  "Dashboard sign-in through the backend’s accounts and roles",
 ];
 
 const RESPONSIBILITIES = [
@@ -156,11 +161,11 @@ export default function TrustPage() {
           <div className="grid gap-4 lg:pt-10">
             <p className="flex items-start gap-3 border-l-2 border-state-contradicted bg-panel px-5 py-4 text-[16px] leading-relaxed text-fg">
               <BadgeX size={20} aria-hidden="true" className="mt-0.5 shrink-0 text-state-contradicted-ink" />
-              Mythos does not hold SOC 2, ISO/IEC 27001, FedRAMP, HITRUST or FIPS validation, and does not certify customers’ compliance.
+              Mythos does not hold SOC 2, ISO/IEC 27001, FedRAMP, CMMC, HITRUST or FIPS validation, has had no external audit, and does not certify customers’ compliance.
             </p>
             <p className="text-[15px] leading-relaxed text-fg-muted">
-              Findings are advisory. Mythos does not guarantee it will find every weakness, and it does not certify an AI system as safe. Findings are mapped to NIST SP
-              800-53, OWASP and DoD Zero Trust controls they touch — never marked as satisfied.
+              Findings are advisory. Mythos does not guarantee it will find every weakness, and it does not certify an AI system as safe. Findings are mapped to the NIST
+              SP 800-53, OWASP, OWASP LLM and DoD Zero Trust controls they touch — evidence of gaps, never a certificate.
             </p>
           </div>
         </Container>

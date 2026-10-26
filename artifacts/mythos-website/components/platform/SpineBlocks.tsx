@@ -9,10 +9,10 @@ const TONE = {
   stop: "border-state-contradicted/60 text-state-contradicted-ink",
 } as const;
 
-/** The six deployment decision states. */
+/** The deployment decision states: six plus Paused. */
 export function DecisionStates() {
   return (
-    <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3" data-reveal-group>
+    <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4" data-reveal-group>
       {DECISION_STATES.map((state) => (
         <li key={state.name} className="border border-rule bg-panel p-5 shadow-[0_18px_40px_-34px_rgba(21,35,51,0.45)]">
           <span className={cn("inline-block border px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.2em]", TONE[state.tone])}>
@@ -48,19 +48,19 @@ export function EvidenceLadder() {
             </span>
             <span className={cn("text-sm", level === "Vendor asserted" ? "font-semibold text-fg" : "text-fg-muted")}>
               {level}
-              {level === "Vendor asserted" && <span className="ml-2 text-[10px] uppercase tracking-[0.18em] text-accent">≠ verified</span>}
+              {level === "Vendor asserted" && <span className="ml-2 text-[10px] uppercase tracking-[0.18em] text-accent">caps at supported</span>}
             </span>
           </li>
         ))}
       </ol>
       <p className="mt-5 border-t border-rule pt-4 text-sm leading-relaxed text-fg">
-        A claim is only as strong as its weakest evidence.
+        Confidence is the weakest evidence class — never a probability, and null when unknown.
       </p>
     </figure>
   );
 }
 
-/** How an open question is tracked instead of being guessed. */
+/** How a gap is recorded as not measured instead of being guessed. */
 export function UnknownCard() {
   const u = SPINE_COPY.claims.unknown;
   return (
@@ -69,7 +69,7 @@ export function UnknownCard() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={EVIDENCE_STATE_ICONS.unknown} loading="lazy" alt="" aria-hidden="true" className="h-11 w-11" />
         <span>
-          <span className="block text-[10px] font-semibold uppercase tracking-[0.22em] text-accent">Unknowns register · illustrative</span>
+          <span className="block text-[10px] font-semibold uppercase tracking-[0.22em] text-accent">Not measured · illustrative</span>
           <span className="mt-1 block font-display text-xl leading-snug text-fg">{u.question}</span>
         </span>
       </figcaption>
@@ -82,12 +82,16 @@ export function UnknownCard() {
           <dt className="text-[10px] font-semibold uppercase tracking-[0.2em] text-fg-muted">Evidence needed</dt>
           <dd className="mt-1 text-fg">{u.needed}</dd>
         </div>
+        <div>
+          <dt className="text-[10px] font-semibold uppercase tracking-[0.2em] text-fg-muted">Coverage manifest</dt>
+          <dd className="mt-1 text-fg">{u.outcome}</dd>
+        </div>
       </dl>
     </figure>
   );
 }
 
-/** The four policy effects, most restrictive first. */
+/** The four Action Gate outcomes, most restrictive first. */
 export function PolicyEffects() {
   return (
     <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4" data-reveal-group>
@@ -128,7 +132,7 @@ export function ReceiptCard() {
       <figcaption className="flex items-center gap-3 border-t border-rule bg-marble/60 px-6 py-3.5 text-xs text-fg">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/assets/status/status-evidence-current.svg" loading="lazy" alt="" aria-hidden="true" className="h-8 w-8" />
-        Tamper-evident: hashed over its evidence, so any change can be detected. It proves provenance — not that the conclusion is true.
+        DSSE-signed and verifiable offline, so any change can be detected. It proves provenance — not that the conclusion is true.
       </figcaption>
     </figure>
   );

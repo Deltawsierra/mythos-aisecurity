@@ -1,6 +1,7 @@
 /**
- * Platform Overview copy (blueprint Section 7). Specific capability statements
- * are registered in content/claims.ts for the launch gate.
+ * Platform Overview copy (blueprint Section 7, checked against the Master
+ * Inventory, 26 Oct 2026). Specific capability statements are registered in
+ * content/claims.ts for the launch gate.
  */
 export const OVERVIEW = {
   /** Launch Guide R02 — Platform hero. No reference-plate metrics (10x, 80%, 100%). */
@@ -16,9 +17,9 @@ export const OVERVIEW = {
     answers: [
       {
         question: "What exists?",
-        answer: "Athena maps the systems in scope — models, routes, identities, tools and data — including the ones nobody declared, and reports coverage gaps as plainly as findings.",
+        answer: "Athena discovers the endpoints and routes in scope; SPINE's route map sets declared against inferred, with shadow nodes — and coverage gaps are reported as plainly as findings.",
         href: "/platform/athena",
-        product: "Athena",
+        product: "Athena · SPINE",
       },
       {
         question: "What can it reach?",
@@ -34,13 +35,13 @@ export const OVERVIEW = {
       },
       {
         question: "Can it be manipulated?",
-        answer: "Multi-turn adversarial testing across goal hijack, retrieval leakage, tool misuse and permission boundaries — with Minotaur checking that the tests themselves are valid.",
+        answer: "Multi-turn adversarial testing across goal hijack, retrieval leakage, tool misuse and permission boundaries — with Minotaur measuring the engines against planted benchmarks.",
         href: "/platform/achilles",
         product: "Achilles · Minotaur",
       },
       {
         question: "Can we prove the answer?",
-        answer: "SPINE keeps every conclusion as a claim with its evidence state, its configuration and its receipt — and reopens it when a change undermines the evidence.",
+        answer: "SPINE keeps every conclusion as a claim with its evidence state, its configuration and a signed receipt — and opens a retest when a change undermines the evidence.",
         href: "/platform/spine",
         product: "SPINE",
       },
@@ -49,7 +50,7 @@ export const OVERVIEW = {
   architecture: {
     eyebrow: "System architecture",
     title: "Not five products. *One system with five roles.*",
-    lede: "Athena and Achilles feed SPINE, the system of record. Minotaur validates all three. Hermes carries the model into physical AI. Mythos Core runs underneath every engine.",
+    lede: "Athena and Achilles feed SPINE, the system of record. Minotaur measures the engines and governs release. Hermes, a scaffold today, carries the model to vehicles. Mythos Core runs underneath every engine.",
   },
   lifecycle: {
     eyebrow: "The assurance lifecycle",
@@ -64,12 +65,12 @@ export const OVERVIEW = {
   evidence: {
     eyebrow: "Evidence states and coverage",
     title: "Unknown is better than *false certainty.*",
-    lede: "Every claim carries the state of its evidence, and every assessment says what it did not check. A gap stays visibly Unknown — never a green result.",
+    lede: "Every claim carries the state of its evidence, and every assessment says what it did not check. A gap reads Not measured; short coverage reads Audit incomplete — never green.",
   },
   economics: {
     eyebrow: "Economic consequence",
     title: "From validated failure *to business decision.*",
-    lede: "SPINE Economic Exposure is designed to translate verified technical evidence into financial exposure ranges and remediation economics — scenario, assumptions, currency and horizon shown, and the decision left with your team.",
+    lede: "SPINE Economic Exposure prices verified technical evidence as loss ranges — P10, P50, P90 — with remediation economics, scenario, assumptions and currency shown, and the decision left with your team.",
   },
   outputs: {
     eyebrow: "Outputs",
@@ -79,7 +80,7 @@ export const OVERVIEW = {
   continuous: {
     eyebrow: "Change-driven assurance",
     title: "Passing once does not mean *passing forever.*",
-    lede: "When a model, prompt, tool or permission changes, SPINE works out which conclusions the change touches, closes them, and directs only the retests needed to restore trust.",
+    lede: "When a model, prompt, tool or permission changes, SPINE works out which conclusions the change touches, supersedes them, and opens only the retests needed to restore trust.",
   },
   cta: {
     eyebrow: "See it on your system",

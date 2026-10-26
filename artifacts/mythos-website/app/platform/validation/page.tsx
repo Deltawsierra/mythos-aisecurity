@@ -33,7 +33,7 @@ import { OLYMPUS_MEDIA } from "@/content/media";
 export const metadata: Metadata = {
   title: "How Mythos Validates Itself — Minotaur",
   description:
-    "Minotaur is Mythos’ internal proving ground: known answers, held-out cases and a validity method designed to catch contaminated benchmarks, invalid scorers, false blocks and regressions before anyone relies on a result.",
+    "Minotaur is Mythos’ internal proving ground and release authority: planted benchmarks with known answers, safe twins, Validity Cards and nine release gates — every number a floor measured on planted targets.",
   alternates: { canonical: "/platform/validation/" },
   ...socialImage("platform-validation", "Find What We Missed. Prove What We Test — Mythos AI Security"),
 };
@@ -138,7 +138,7 @@ export default function ValidationPage() {
           <div className="mt-12">
             <SafeTwinCards cases={MINOTAUR_TWINS} />
           </div>
-          <p className="mt-4 text-sm text-fg-muted">Illustrative cases. Inputs are described, never reproduced — corpora and answer keys stay sealed.</p>
+          <p className="mt-4 text-sm text-fg-muted">Illustrative cases. Inputs are described, never reproduced — corpora and answer keys stay internal.</p>
         </Container>
       </section>
 

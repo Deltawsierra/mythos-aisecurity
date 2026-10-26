@@ -1,9 +1,9 @@
 /**
- * SPINE page copy (blueprint Section 7, checked against the SPINE Technical
- * Foundation Spec v0.1 and R&D plan). Every specific capability is registered
- * in content/claims.ts. Avoid: "AI knowledge graph", "unbreakable", "tamper-
- * proof", "continuous compliance guaranteed"; controls are "touched", never
- * "satisfied"; cleared is never "fixed".
+ * SPINE page copy (blueprint Section 7, checked against the Master Inventory,
+ * 26 Oct 2026). Every specific capability is registered in content/claims.ts.
+ * Receipts are DSSE-signed and verify offline. Avoid: "AI knowledge graph",
+ * "unbreakable", "tamper-proof", "continuous compliance guaranteed"; controls
+ * are "touched", never "satisfied"; cleared is never "fixed".
  */
 export const SPINE_COPY = {
   /** Launch Guide R04 — leads with the system of record, never "unified defense against everything". */
@@ -22,8 +22,8 @@ export const SPINE_COPY = {
         body: "Every claim is tied to a system fingerprint, a policy version and an environment — never to a vague “the system.”",
       },
       {
-        name: "Unknown is first-class",
-        body: "We would rather say we do not know yet than turn missing evidence into a green result.",
+        name: "Gaps are named",
+        body: "What was not measured is recorded as not measured — never turned into a green result.",
       },
       {
         name: "Change-aware",
@@ -39,7 +39,7 @@ export const SPINE_COPY = {
   claims: {
     eyebrow: "The claim state machine",
     title: "Declared, observed and verified *are never merged.*",
-    lede: "What a team or vendor says, what Mythos sees running, and what testing proves stay separate truths. A claim is only as strong as its weakest evidence.",
+    lede: "What a team or vendor says, what Mythos sees running, and what testing proves stay separate truths. Confidence is the strength of the weakest evidence — never a probability.",
     clocks: {
       title: "Two clocks, nothing overwritten",
       body: "SPINE keeps when a source saw a fact apart from when that fact was held current — so you can ask what was true on any date, and what was known at the time.",
@@ -48,17 +48,18 @@ export const SPINE_COPY = {
       question: "Does the model provider retain prompts sent by the assistant?",
       why: "Customer data could persist outside your boundary.",
       needed: "The provider’s data-processing terms, or an observed retention test.",
+      outcome: "Recorded as not measured in the coverage manifest. If coverage falls short, the decision reads Audit incomplete — never Ready.",
     },
   },
   authority: {
     eyebrow: "Authority and action lineage",
     title: "Who allowed this, *and did the effect match?*",
-    lede: "Policy decides with four effects, and the most restrictive wins. An unknown input never defaults to allow — it escalates to a human.",
+    lede: "The Achilles Action Gate turns policy into a permit, deny, hold or escalate — deny by default. Each hop of the chain reads proven, unproven or broken.",
   },
   change: {
     eyebrow: "Change intelligence",
     title: "The loop that keeps *evidence current.*",
-    lede: "SPINE fires on events or on a schedule: detect the change, assess its impact, invalidate what it touched, plan the minimal retest, revalidate, restore.",
+    lede: "When a fingerprint moves, SPINE opens a retest: detect the change, assess its impact, invalidate what it touched, plan the minimal re-run, revalidate, restore.",
     supersedes: {
       name: "SUPERSEDES",
       body: "A fresher observation of the same fact replaces the old one. Nothing breaks, and the history is kept.",
@@ -69,35 +70,35 @@ export const SPINE_COPY = {
     },
     drivers: [
       "System fingerprints",
+      "Per-claim input fingerprints",
       "Pinned policy versions",
-      "Event and schedule triggers",
-      "Targeted revalidation",
-      "Human authorization for high-risk retests",
+      "A revalidation planner",
+      "Legal staleness set by a person",
     ],
   },
   decisions: {
     eyebrow: "Deployment decisions",
     title: "A recommendation backed by evidence. *Your team decides.*",
-    lede: "SPINE recalculates the decision whenever the evidence beneath it moves. A missing decision is never Ready.",
+    lede: "Six states plus Paused, worst-of-N: the weakest claim sets the decision. Short coverage reads Audit incomplete, and a missing decision is never Ready.",
   },
   evidence: {
-    eyebrow: "Receipts and packets",
+    eyebrow: "Receipts and dispatch",
     title: "Evidence you can hand *to someone else.*",
-    lede: "An Assurance Receipt records where a result came from — subject, configuration, policy, evaluator, evidence and validity — and is hashed over its evidence, so any change to it can be detected. Signing is planned. A receipt proves provenance, never that the conclusion is true. That is what the evidence is for.",
+    lede: "An Assurance Receipt records where a result came from — subject, configuration, policy, evaluator, evidence and validity — and is DSSE-signed by the engine with its issue time inside the signature. It verifies offline, and every past version still reads back. A receipt proves provenance, never that the conclusion is true.",
     packets: [
       {
-        name: "Vendor Assurance Packet",
-        body: "Declared versus verified evidence about a third-party AI, for procurement and vendor review. In development.",
+        name: "Signed engine evidence packs",
+        body: "Athena evidence packs are signed with Ed25519 and carry Merkle inclusion proofs, checked offline by a standalone tool.",
         icon: "/assets/evidence/evidence-pack.svg",
       },
       {
-        name: "Incident Evidence Pack",
-        body: "What happened, under which authority, with the evidence preserved for review and retest.",
+        name: "Vendor-asserted claims",
+        body: "What a vendor declares about a third-party AI caps at supported. Verified needs non-vendor technical evidence.",
         icon: "/assets/evidence/change-event.svg",
       },
       {
-        name: "Evidence API",
-        body: "Read findings, evidence, unknowns and receipts from your own tooling. Push integrations to ticketing and GRC are in development.",
+        name: "Findings dispatch",
+        body: "Findings go to Jira, GitHub, ServiceNow and Splunk. A lost answer is looked for, not re-pushed, and a stop never waits on a connector.",
         icon: "/assets/evidence/policy-authority-chain.svg",
       },
     ],
@@ -105,7 +106,7 @@ export const SPINE_COPY = {
   economics: {
     eyebrow: "SPINE Economic Exposure",
     title: "A verified effect, *in business terms.*",
-    lede: "Because SPINE knows which effects were verified and which business processes they touch, it is the foundation Economic Exposure is designed to build on: modeled ranges, the cost of a fix, and the exposure that fix could remove — with every source and assumption shown.",
+    lede: "Economic Exposure is a layer inside SPINE. It links observed effects to the business processes they touch and prices the loss as a range — P10, P50, P90 — with the cost of a fix, the exposure it could remove, and every source and assumption shown.",
   },
   teams: {
     eyebrow: "Assurance teams and validity",
@@ -132,10 +133,11 @@ export const SAMPLE_RECEIPT: { field: string; value: string }[] = [
   { field: "Evaluator", value: "Achilles · approval-boundary tests" },
   { field: "Evidence", value: "14 artifacts · 3 observed effects" },
   { field: "Result", value: "Verified" },
-  { field: "Time", value: "Observed 14 Oct 2026, 09:12 UTC" },
+  { field: "Issued", value: "14 Oct 2026, 09:12 UTC · inside the signature" },
   { field: "Validity", value: "Until configuration or policy changes" },
   { field: "Invalidators", value: "New tool · policy edit · model change" },
   { field: "Approval", value: "Security lead" },
+  { field: "Signature", value: "DSSE envelope · verifies offline (sample)" },
 ];
 
 export type GraphNodeId =
@@ -176,6 +178,6 @@ export const GRAPH_TRACES: { question: string; path: GraphNodeId[]; caption: str
   {
     question: "What would a failure mean for the business?",
     path: ["effects", "business", "claims", "evidence"],
-    caption: "Verified effects connect to the business process they touch — the bridge Economic Exposure is designed to build on.",
+    caption: "Verified effects connect to the business process they touch — the bridge Economic Exposure prices as a range.",
   },
 ];

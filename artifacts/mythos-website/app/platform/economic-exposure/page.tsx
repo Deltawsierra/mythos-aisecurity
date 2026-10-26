@@ -32,7 +32,7 @@ import { OLYMPUS_MEDIA } from "@/content/media";
 export const metadata: Metadata = {
   title: "SPINE Economic Exposure — Evidence-Backed Business Decisions",
   description:
-    "SPINE Economic Exposure is designed to connect verified AI findings to scenario-based exposure ranges, remediation economics and reviewer-approved receipts — never an exact loss or a guaranteed return.",
+    "SPINE Economic Exposure connects verified AI findings to priced loss ranges (P10, P50, P90), remediation economics and signed, reviewed receipts — never an exact loss or a guaranteed return.",
   alternates: { canonical: "/platform/economic-exposure/" },
   ...socialImage("platform-economic-exposure", "Evidence-Backed Economic Exposure. Better Business Decisions — Mythos AI Security"),
 };
@@ -207,10 +207,10 @@ export default function EconomicExposurePage() {
               title="Refunds beyond approval"
               rows={EE_RECEIPT}
               visible={6}
-              footer="Not a certification, a materiality finding or an actuarial estimate. Signing is planned."
+              footer="Not a certification, a materiality finding or an actuarial estimate. The signature proves provenance, not that the figures are right."
             />
             <RecordCard
-              kind="Financial Validity Card · synthetic"
+              kind="Validity Card · synthetic"
               title="What this range rests on"
               rows={EE_VALIDITY}
               visible={6}

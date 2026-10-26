@@ -36,13 +36,13 @@ const PHASES = [
   },
   {
     name: "The assessment",
-    steps: [{ name: "Map, test, record", body: "Athena maps what the workflow can reach, Achilles tests what it does, and every claim, unknown and receipt is recorded. The engine enforces the scope; operators can pause or stop." }],
+    steps: [{ name: "Map, test, record", body: "Every scan passes one gate that checks scope, consent, authority and the testing window. Athena maps what the workflow can reach, Achilles tests what it does, and each claim and receipt is recorded with what was not measured. Operators can pause, stand down or terminate, and nothing may block a stop." }],
   },
   {
     name: "After the assessment",
     steps: [
       { name: "Findings and a remediation plan", body: "With a human-approved plan, the evidence package and what risk remains." },
-      { name: "One retest", body: "The original failure, variations of it and the legitimate workflow — after your fix." },
+      { name: "One retest", body: "After your fix: the original failure and six incomplete-repair checks, against a repair contract agreed before the fix. A finding closes only on that retest." },
       { name: "Decision support", body: "A recommendation with restrictions and open unknowns. Your release owner decides." },
       { name: "Optional: change-triggered reassessment", body: "Reopened when agreed changes happen — model, tool, policy, permission, data source or route. There is no live monitoring." },
     ],

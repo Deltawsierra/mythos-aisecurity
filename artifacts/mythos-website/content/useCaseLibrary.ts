@@ -4,14 +4,17 @@
  *
  * - Every finding, claim and receipt is synthetic and labelled so; no
  *   customer, pilot or design partner exists.
- * - Mythos tests the customer's controls; it never enforces them (the Action
- *   Gate is not built). No answer-quality, bias or code-quality testing.
- * - Effective access is computed from the access configuration supplied;
- *   cloud, identity and repository connectors need customer credentials.
- * - No live monitoring: change-triggered reassessment works on supplied
- *   changes and scans. Receipts are hashed, not signed.
- * - UC11 (Hermes) and UC12 (quantum) are strategic-horizon pages: research
- *   framing only, gated by hermes.publication-scope / usecases.quantum-horizon.
+ * - An assessment tests the customer's controls; runtime enforcement through
+ *   the Achilles Action Gate is a separate engagement on supported paths.
+ *   No answer-quality, bias or code-quality testing.
+ * - Effective access is computed from the access configuration supplied; no
+ *   live collection, and no identity-provider or end-user entitlement testing.
+ * - No live monitoring: a changed fingerprint supersedes claims and opens a
+ *   retest. Assurance Receipts are DSSE-signed and verify offline (26 Oct
+ *   inventory). Gaps go to the coverage manifest as Not measured.
+ * - UC11 (Hermes) and UC12 (quantum) are strategic-horizon pages, gated by
+ *   hermes.publication-scope / usecases.quantum-horizon. UC11 follows the
+ *   inventory: a scaffold, every domain INCONCLUSIVE.
  */
 import type { UseCaseContent } from "@/components/use-cases/types";
 import { OLYMPUS_MEDIA } from "@/content/media";
@@ -23,7 +26,7 @@ const sun = { src: OLYMPUS_MEDIA.sunbeams, className: "-inset-[3%]", blend: "scr
 const scene = (src: string, position: string) => [{ src, className: "-inset-[3%]", position, depth: 6, priority: true }, sun];
 
 const RECEIPT_FOOTER =
-  "Synthetic receipt for illustration. Receipts are hashed so later changes are detectable; signing is planned. A receipt shows where a result came from — not that the conclusion is true.";
+  "Synthetic receipt for illustration. Receipts are signed and verify offline, so later changes are detectable. A receipt shows where a result came from — not that the conclusion is true.";
 
 export const USE_CASES: UseCaseContent[] = [
   {
@@ -64,10 +67,10 @@ export const USE_CASES: UseCaseContent[] = [
     },
     approach: {
       title: "Map it, push it, *keep it current.*",
-      lede: "Run in a test tenant with synthetic records. Mythos tests your controls — it does not enforce them.",
+      lede: "Run in a test tenant with synthetic records. An assessment tests your controls; runtime enforcement is a separate engagement.",
       athena: ["Which records, notes and tools the agent can reach, computed from the access configuration you supply", "Where ticket content travels, including logs", "Findings mapped to OWASP Top 10 for LLM applications"],
       achilles: ["Cross-customer access attempts against the retrieval path", "Instructions hidden in ticket content", "Tool misuse and permission boundaries around credits"],
-      spine: ["Each conclusion tied to the configuration it was true of", "Reopened when a role widens, a tool is added or the refund policy changes", "Unknowns recorded, never counted as passes"],
+      spine: ["Each conclusion tied to the configuration it was true of", "Reopened when a role widens, a tool is added or the refund policy changes", "Gaps listed as Not measured, never counted as passes"],
     },
     evidence: {
       title: "What the evidence *looks like.*",
@@ -145,7 +148,7 @@ export const USE_CASES: UseCaseContent[] = [
       lede: "Against the sources, identities and permission data in scope.",
       athena: ["Which indexes and stores the assistant reads, including unmanaged ones", "Data boundaries and where retrieved text is logged", "Lineage at the level of data categories and components"],
       achilles: ["Whether retrieval honors source permissions for different users", "Instructions planted in retrieved documents", "Answers that assemble restricted facts"],
-      spine: ["Claims tied to the source list and permission data they were tested against", "A new retrieval source reopens the access claims", "Stale-policy questions recorded as unknowns until tested"],
+      spine: ["Claims tied to the source list and permission data they were tested against", "A new retrieval source reopens the access claims", "Stale-policy questions listed as Not measured until tested"],
     },
     evidence: {
       title: "What the evidence *looks like.*",
@@ -224,10 +227,10 @@ export const USE_CASES: UseCaseContent[] = [
     },
     approach: {
       title: "Test the controls *you rely on.*",
-      lede: "In a test environment. Mythos tests your authorization, approval and execution controls — it does not enforce them at runtime.",
+      lede: "In a test environment. An assessment tests your authorization, approval and execution controls; runtime enforcement is a separate engagement.",
       athena: ["Tools, skills and routes the agent can reach", "The capability map and the identities behind each tool", "Effective access computed from the configuration supplied"],
-      achilles: ["Tool misuse and permission-boundary scenarios", "Untrusted content steering tool choice", "Attempted versus observed effects in a hash-chained ledger"],
-      spine: ["Deny wins, unknown escalates — never a silent allow", "A changed tool manifest reopens the claims built on it", "Approval-binding tests are designed, not yet built"],
+      achilles: ["Tool misuse and permission-boundary scenarios", "Untrusted content steering tool choice", "Approval binding: eight Action and Approval Authority scenarios"],
+      spine: ["Authority chains read hop by hop: proven, unproven or broken", "A changed tool contract reopens exactly the claims bound to it", "Authority violations kept apart from witnessed effects"],
     },
     evidence: {
       title: "What the evidence *looks like.*",
@@ -241,7 +244,7 @@ export const USE_CASES: UseCaseContent[] = [
           { field: "Observed effect", value: "Role granted in staging" },
           { field: "Evaluator", value: "Achilles · tool misuse" },
           { field: "Identity", value: "svc-agent-staging (synthetic)" },
-          { field: "Ledger entry", value: "sha256:7f02…bb31 (synthetic)" },
+          { field: "Evidence pack", value: "sha256:7f02…bb31 (synthetic)" },
           { field: "Synthetic", value: "Yes" },
         ],
         footer: RECEIPT_FOOTER,
@@ -255,8 +258,8 @@ export const USE_CASES: UseCaseContent[] = [
     limits: {
       title: "What this *does not cover.*",
       items: [
-        "No runtime enforcement: the Action Gate is planned, not built.",
-        "A passed scenario is evidence for that scenario, not for every action.",
+        "Assessment is not enforcement: the Action Gate (policy-as-code, deny by default) is a separate engagement on supported paths.",
+        "A scenario that held is evidence for that scenario, not for every action.",
         "Unknown outcomes are reported as unknown — never as contained.",
       ],
     },
@@ -267,7 +270,7 @@ export const USE_CASES: UseCaseContent[] = [
     number: 4,
     title: "Regulated Workflow Assistant",
     metaDescription:
-      "Can evidence support a controlled, human-reviewed AI workflow? How Mythos records what was tested, what is declared and what remains unknown for regulated work.",
+      "Can evidence support a controlled, human-reviewed AI workflow? How Mythos records what was tested, what is vendor-asserted and what was not measured for regulated work.",
     question: "Can evidence support a controlled, *human-reviewed AI workflow?*",
     lede: LEDE,
     image: "/assets/evidence/policy-authority-chain.svg",
@@ -301,7 +304,7 @@ export const USE_CASES: UseCaseContent[] = [
       lede: "Mapping supports your reviews; it is not compliance, and sector rules are referenced, never mapped.",
       athena: ["Findings mapped to NIST SP 800-53, OWASP and DoD Zero Trust — controls touched, never satisfied", "Where case data flows and who can read it", "Business impact described qualitatively"],
       achilles: ["Manipulation through uploaded documents", "Access by the wrong reviewer group", "Outputs that bypass the review step"],
-      spine: ["Declared, observed and verified kept apart — vendor statements capped as declared", "Unknowns register for what the evidence cannot answer", "Six decision states; a missing decision is never Ready"],
+      spine: ["Vendor-asserted, observed and verified kept apart — vendor claims cap at supported", "A coverage manifest of what was not measured", "Six decision states plus paused; missing evidence is never Ready"],
     },
     evidence: {
       title: "What the evidence *looks like.*",
@@ -314,7 +317,7 @@ export const USE_CASES: UseCaseContent[] = [
           { field: "Subject", value: "Case assistant · staging" },
           { field: "Evaluator", value: "Achilles · permission boundary" },
           { field: "Mapped to", value: "NIST SP 800-53 (controls touched)" },
-          { field: "Vendor claim", value: "Model provider retention — declared only" },
+          { field: "Vendor claim", value: "Provider retention — vendor-asserted, capped" },
           { field: "Reopens when", value: "Policy version or reviewer roles change" },
           { field: "Synthetic", value: "Yes" },
         ],
@@ -322,7 +325,7 @@ export const USE_CASES: UseCaseContent[] = [
       },
       claims: [
         { claim: "No recommendation skips the reviewer", state: "verified", note: "Held for the routes tested." },
-        { claim: "The provider does not retain case data", state: "observed", label: "Declared", note: "Vendor statement recorded, not independently verified." },
+        { claim: "The provider does not retain case data", state: "observed", label: "Vendor-asserted", note: "Vendor statement recorded; capped at supported, not verified." },
         { claim: "Drafts cite the current policy version", state: "stale", note: "Policy updated after testing — needs a retest." },
       ],
     },
@@ -371,11 +374,11 @@ export const USE_CASES: UseCaseContent[] = [
       ],
     },
     approach: {
-      title: "Declared versus *observed.*",
-      lede: "Vendor statements stay declared until something in scope shows them.",
+      title: "Asserted versus *observed.*",
+      lede: "Vendor statements cap at supported until technical evidence in scope shows more.",
       athena: ["A provider profile with the evidence class for each field", "Routes, models and the AI-BOM behind the integration", "Token scopes from the configuration supplied"],
       achilles: ["Untrusted content handled by the vendor’s AI", "Permission boundaries around the connector"],
-      spine: ["Vendor claims recorded as declared — never verified on assertion", "A route change reopens claims such as data residency", "Vendor assurance packets are in development"],
+      spine: ["Vendor-asserted claims cap at supported — never verified on assertion", "A route change reopens claims such as data residency", "Verified needs non-vendor technical evidence"],
     },
     evidence: {
       title: "What the evidence *looks like.*",
@@ -384,10 +387,10 @@ export const USE_CASES: UseCaseContent[] = [
         kind: "Provider profile · synthetic",
         title: "Vendor AI connector",
         rows: [
-          { field: "Data retention", value: "Declared by vendor", tone: "stale" },
+          { field: "Data retention", value: "Vendor-asserted (supported)", tone: "stale" },
           { field: "Token scopes", value: "Observed: read + write on all objects", tone: "contradicted" },
           { field: "Model route", value: "Observed: primary + one fallback" },
-          { field: "Subprocessors", value: "Declared; not verified" },
+          { field: "Subprocessors", value: "Vendor-asserted; not verified" },
           { field: "Reopens when", value: "Vendor route or model changes" },
           { field: "Synthetic", value: "Yes" },
         ],
@@ -395,7 +398,7 @@ export const USE_CASES: UseCaseContent[] = [
       },
       claims: [
         { claim: "The connector is read-only", state: "contradicted", label: "Finding", note: "Observed write scope; narrowed and retested." },
-        { claim: "The vendor does not train on your data", state: "observed", label: "Declared", note: "Vendor statement — not independently verifiable in scope." },
+        { claim: "The vendor does not train on your data", state: "observed", label: "Vendor-asserted", note: "Vendor statement — not independently verifiable in scope." },
         { claim: "Data stays in-region", state: "stale", note: "A route change after testing reopened the claim." },
       ],
     },
@@ -450,9 +453,9 @@ export const USE_CASES: UseCaseContent[] = [
     approach: {
       title: "Through permissions, *not inboxes.*",
       lede: "Assessed through permissions and test accounts in scope. No collection of private communications.",
-      athena: ["Personal-context exposure computed from the signals supplied", "Effective access for the test identities", "Where prompt history is kept"],
-      achilles: ["Retrieval leakage through shared content", "Instructions arriving in incoming messages", "Permission boundaries for drafts and sends"],
-      spine: ["Claims tied to the permission data they were tested against", "A permission change reopens them", "Delegated-approval tests are designed, not yet built"],
+      athena: ["Routes, models and the AI-BOM behind the copilot", "Effective access for the test identities", "Where prompt history is kept"],
+      achilles: ["Retrieval leakage through shared content", "Instructions arriving in incoming messages", "Delegated approval: an approved draft versus a different send"],
+      spine: ["Claims tied to the permission data they were tested against", "A permission change reopens them", "Authority chains from person to effect, each hop proven or not"],
     },
     evidence: {
       title: "What the evidence *looks like.*",
@@ -481,7 +484,7 @@ export const USE_CASES: UseCaseContent[] = [
       items: [
         "Mythos does not read anyone’s mail or meetings.",
         "It does not find all oversharing — only what the scope and test accounts reach.",
-        "Content capture is opt-in; metadata comes first.",
+        "It works from permissions and test accounts, not message content.",
       ],
     },
     industries: ["regulated-enterprise", "financial-services-insurance"],
@@ -528,9 +531,9 @@ export const USE_CASES: UseCaseContent[] = [
     approach: {
       title: "In a disposable *environment.*",
       lede: "A throwaway repository and pipeline with no production secrets. Mythos does not replace code review or code scanners.",
-      athena: ["Routes and the AI-BOM behind the assistant", "Repository and pipeline posture — once you connect credentials", "Where code and secrets can travel"],
+      athena: ["Routes and the AI-BOM behind the assistant", "Secret-leak and software-composition checks on services in scope", "Where code and secrets can travel"],
       achilles: ["Output reaching a parser, query or command", "Instructions planted in repository content", "Tool misuse around commits and pipeline steps"],
-      spine: ["Claims tied to the pipeline configuration tested", "A changed workflow file reopens them", "Two-way CI sync is planned"],
+      spine: ["Claims tied to the pipeline configuration tested", "A changed workflow file reopens them", "Findings dispatch to GitHub or Jira"],
     },
     evidence: {
       title: "What the evidence *looks like.*",
@@ -551,14 +554,14 @@ export const USE_CASES: UseCaseContent[] = [
       claims: [
         { claim: "Agent commits need human review", state: "contradicted", label: "Finding", note: "A bot path merged without review; rule fixed and retested." },
         { claim: "Repository text cannot change pipeline steps", state: "observed", note: "Observed for the content types tested." },
-        { claim: "No secrets reach build logs", state: "unknown", note: "Not covered — needs pipeline credentials in scope." },
+        { claim: "No secrets reach build logs", state: "unknown", note: "Not measured — build logs were outside the scope tested." },
       ],
     },
     limits: {
       title: "What this *does not cover.*",
       items: [
         "Code quality and secure-coding review are not part of it.",
-        "Repository and pipeline connectors need your credentials and are not live by default.",
+        "Mythos does not collect repository or pipeline posture; it tests what is in scope.",
         "It complements code scanners and review — it does not replace them.",
       ],
     },
@@ -603,7 +606,7 @@ export const USE_CASES: UseCaseContent[] = [
       lede: "Security testing — not a fairness, bias or lawfulness evaluation.",
       athena: ["Where recommendations flow and what they can trigger", "Business impact described qualitatively"],
       achilles: ["Recommendations reaching execution without sign-off", "Manipulation through case content", "Outputs reaching downstream systems"],
-      spine: ["Humans own the decision; a missing decision is never Ready", "A policy or threshold change reopens the claims", "Expected business effect is designed through Economic Exposure — synthetic ranges only"],
+      spine: ["Humans own the decision; a missing decision is never Ready", "A policy or threshold change reopens the claims", "Economic Exposure prices a validated failure as a range with sources — never an exact loss"],
     },
     evidence: {
       title: "What the evidence *looks like.*",
@@ -614,7 +617,7 @@ export const USE_CASES: UseCaseContent[] = [
         rows: [
           { field: "Recommendation", value: "Ready with restrictions", tone: "verified" },
           { field: "Restriction", value: "Denials always need a reviewer" },
-          { field: "Open unknowns", value: "2 (listed in the record)" },
+          { field: "Not measured", value: "2 (in the coverage manifest)" },
           { field: "Decision owner", value: "Your release owner (role)" },
           { field: "Reopens when", value: "Model version or threshold changes" },
           { field: "Synthetic", value: "Yes" },
@@ -681,7 +684,7 @@ export const USE_CASES: UseCaseContent[] = [
       lede: "Usually alongside your integrator. Mythos is not an authorizing official and grants no authorization.",
       athena: ["Effective access per role, from the configuration supplied", "Findings mapped to DoD Zero Trust and NIST SP 800-53"],
       achilles: ["Restricted-record access by the wrong role", "Retrieval leakage across case boundaries"],
-      spine: ["Acceptance evidence bound to an exact configuration", "Changes after acceptance reopen the affected claims", "Private and air-gapped deployment are planned, not available"],
+      spine: ["Acceptance evidence bound to an exact configuration", "Changes after acceptance reopen the affected claims", "Private and air-gapped deployment are not offered"],
     },
     evidence: {
       title: "What the evidence *looks like.*",
@@ -701,7 +704,7 @@ export const USE_CASES: UseCaseContent[] = [
       },
       claims: [
         { claim: "Restricted summaries reach only cleared roles", state: "verified", note: "After a scoping fix, held for the five roles tested." },
-        { claim: "Contractor access ends with the assignment", state: "unknown", note: "Requires the identity system in scope." },
+        { claim: "Contractor access ends with the assignment", state: "unknown", note: "Not measured — identity-provider testing is out of scope." },
         { claim: "Accepted configuration is still running", state: "stale", note: "An index refresh after acceptance reopened the claim." },
       ],
     },
@@ -751,10 +754,10 @@ export const USE_CASES: UseCaseContent[] = [
     },
     approach: {
       title: "Map the identities, *test the edges.*",
-      lede: "Live cloud and identity collection needs your credentials and is not wired by default.",
+      lede: "Mythos works from the identities and grants you supply; it does not collect them live.",
       athena: ["Effective access over the identities and grants supplied", "Data boundaries, routes and the AI-BOM", "Where logs and metadata enter model context"],
       achilles: ["Permission boundaries for the service identity", "Retrieval leakage across datasets"],
-      spine: ["A new grant or data source reopens the claims", "Unconfigured collection is never reported as green"],
+      spine: ["A new grant or data source reopens the claims", "What was not assessed reads Not measured, never green"],
     },
     evidence: {
       title: "What the evidence *looks like.*",
@@ -782,7 +785,7 @@ export const USE_CASES: UseCaseContent[] = [
       title: "What this *does not cover.*",
       items: [
         "Not cloud posture management.",
-        "Cloud and identity connectors need your credentials and are not live by default.",
+        "No identity-provider or end-user entitlement testing.",
         "Query lineage is not the same as tracing what influenced a model.",
       ],
     },
@@ -793,12 +796,12 @@ export const USE_CASES: UseCaseContent[] = [
     number: 11,
     title: "AI Vehicle / Physical Systems",
     metaDescription:
-      "What would need to be proven across sensing, prediction, planning, control and incident response? A strategic-horizon view of how Hermes is designed to approach physical AI.",
+      "What would need to be proven across sensing, prediction, planning, control and incident response? A strategic-horizon view of Hermes, a vehicle assurance scaffold today.",
     question: "What would need to be proven across sensing, planning, *control and incident response?*",
-    lede: "A strategic-horizon page. Hermes is a research scaffold: it describes how Mythos is designed to approach physical AI, not a service available today.",
+    lede: "A strategic-horizon page. Hermes is a scaffold today: every domain returns inconclusive, so it is not a service available yet.",
     horizon: {
       label: "Strategic horizon",
-      guardrail: "Hermes is a research scaffold with no customers, pilots or vehicle assessments. Nothing here is a safety certification, and Mythos does not test live vehicles.",
+      guardrail: "Hermes is a scaffold with no customers, pilots or vehicle assessments. It never certifies a vehicle, and Mythos does not test live vehicles.",
     },
     image: "/assets/characters/emblems/hermes-emblem.svg",
     planes: [
@@ -830,11 +833,11 @@ export const USE_CASES: UseCaseContent[] = [
       ],
     },
     approach: {
-      title: "How Hermes is *designed to work.*",
-      lede: "Today Hermes returns “inconclusive” by design. These are planned directions, in order.",
-      athena: ["Model and over-the-air release evidence (planned first)", "Version and configuration inventory for each release"],
-      achilles: ["Scenario testing in simulation or on a bench — never a live vehicle"],
-      spine: ["An update would set aside the evidence for the version it replaces", "Incident evidence and replay (planned)"],
+      title: "How Hermes is *built today.*",
+      lede: "Four questions — can it perceive, decide, fail and change safely — across twelve domains. Every domain returns inconclusive today.",
+      athena: ["Twelve domains, from sensor trust to over-the-air model updates", "Standards mapping (ISO/SAE 21434, ISO 26262, UL 4600) — not certification"],
+      achilles: ["Built: the job API, readiness report and failsafe — no domain logic yet"],
+      spine: ["An update would set aside the evidence for the version it replaces", "A full scan reads “requires additional evidence” today"],
     },
     evidence: {
       title: "What evidence *would need to show.*",
@@ -843,7 +846,8 @@ export const USE_CASES: UseCaseContent[] = [
         kind: "Hermes job · synthetic",
         title: "Readiness report shell",
         rows: [
-          { field: "Result", value: "Inconclusive (by design)", tone: "stale" },
+          { field: "Result", value: "Inconclusive · all twelve domains", tone: "stale" },
+          { field: "Decision", value: "Requires additional evidence" },
           { field: "Scope", value: "Simulation fixture only" },
           { field: "Domain logic", value: "Not implemented" },
           { field: "Synthetic", value: "Yes" },
@@ -852,14 +856,14 @@ export const USE_CASES: UseCaseContent[] = [
       },
       claims: [
         { claim: "Release evidence names its operating conditions", state: "unknown", note: "A design requirement, not a tested result." },
-        { claim: "An update invalidates its predecessor’s evidence", state: "unknown", note: "Designed in SPINE’s taxonomy; not built." },
+        { claim: "An update invalidates its predecessor’s evidence", state: "unknown", note: "SPINE supersedes changed claims; Hermes has no domain logic to feed it yet." },
       ],
     },
     limits: {
       title: "What this *is not.*",
       items: [
         "Not a safety certification, and not a substitute for manufacturers’ safety teams.",
-        "No standards-compliance claims.",
+        "Standards are mapped, never certified — no compliance claims.",
         "An enterprise authorization is not a vehicle safety case.",
       ],
     },

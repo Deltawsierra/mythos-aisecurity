@@ -7,14 +7,14 @@ import { cn } from "@/lib/utils";
 const FILTERS = [
   { id: "all", label: "All outcomes" },
   { id: "security", label: "Security" },
-  { id: "utility", label: "Utility" },
+  { id: "utility", label: "Legitimate use" },
   { id: "controls", label: "Controls" },
 ] as const;
 
 /**
- * Canary, utility and retest (Launch Guide AC07): one synthetic fixture run
- * three times. A fix that stops the attack but refuses legitimate work is not
- * counted as a repair; the filter narrows the rows without moving the reader.
+ * Canary comparison and retest (Launch Guide AC07): one synthetic fixture run
+ * three times. Absent on retest is reported apart from legitimate requests
+ * refused and benign counterparts; the filter narrows the rows in place.
  */
 export function RetestComparison() {
   const [filter, setFilter] = useState<(typeof FILTERS)[number]["id"]>("all");

@@ -45,9 +45,9 @@ const NEXT: NextLink[] = [
 ];
 
 const CONFIDENCE_TONE: Record<string, string> = {
-  Confirmed: "border-state-contradicted text-state-contradicted-ink",
-  Likely: "border-state-stale text-state-stale-ink",
-  Suspicious: "border-rule text-fg-muted",
+  Finding: "border-state-contradicted text-state-contradicted-ink",
+  Inconclusive: "border-state-stale text-state-stale-ink",
+  Informational: "border-rule text-fg-muted",
 };
 
 const c = ATHENA_COPY;
@@ -151,7 +151,7 @@ export default function AthenaPage() {
       <section data-surface="ivory" aria-labelledby="proof-title" className="border-t border-rule py-24">
         <Container>
           <SectionIntro id="proof-title" eyebrow={c.proof.eyebrow} title={<Accent text={c.proof.title} />} lede={c.proof.lede} caps />
-          <ul className="mt-10 grid gap-3 sm:grid-cols-3" aria-label="Finding confidence" data-reveal-group>
+          <ul className="mt-10 grid gap-3 sm:grid-cols-3" aria-label="Finding outcomes" data-reveal-group>
             {ATHENA_CONFIDENCE.map((level) => (
               <li key={level.name} className={`border-l-2 bg-panel px-5 py-4 ${CONFIDENCE_TONE[level.name]}`}>
                 <p className="text-[10px] font-semibold uppercase tracking-[0.22em]">{level.name}</p>
@@ -233,7 +233,7 @@ export default function AthenaPage() {
               ))}
             </dl>
             <p className="mt-4 text-sm leading-relaxed text-fg-muted">
-              None of these is &ldquo;fixed&rdquo; on its own say-so: a remediation counts only when the retest evidence shows it.
+              Closed means the original failure is absent on retest &mdash; not that every legitimate use still works.
             </p>
           </div>
         </Container>

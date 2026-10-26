@@ -31,7 +31,7 @@ const NEXT: NextLink[] = [
   { eyebrow: "Pricing", title: "Scoped assessments and continuing assurance", href: "/pricing" },
 ];
 
-const LEDGER_TICKER = ["09 Oct · tool manifest v8 · 2 claims stale", "11 Oct · retest · 1 contradicted", "11 Oct · decision · Ready → Held"];
+const LEDGER_TICKER = ["09 Oct · tool manifest v8 · 2 claims stale", "11 Oct · retest · 1 contradicted", "11 Oct · decision · Needs remediation"];
 
 const c = CA_COPY;
 

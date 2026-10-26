@@ -1,12 +1,13 @@
 /**
  * Evidence & Receipts page copy (Launch Guide /platform/evidence), checked
- * against the SPINE Technical Foundation Spec and Athena build log (16 Oct
- * fact-check). Built: Assurance Receipts hashed over canonical JSON with an
- * evidence root (not signed — signing is planned), JSON copy/download, a
- * read-only Evidence API, Incident Evidence Packs, and signed Achilles
- * engine evidence packs with offline verification. Partial or planned:
- * vendor packets, claims engine, reviewer approvals, push integrations, a
- * published verifier, CSV export. All sample data is synthetic.
+ * against the Master Inventory (26 Oct 2026). Assurance Receipts are DSSE-
+ * signed by the engine with the issue time inside the signature, verifiable
+ * offline, every past version readable; the dashboard downloads them and
+ * checks the bytes against their hash. Athena evidence packs are Ed25519-
+ * signed with Merkle inclusion proofs (standalone verifier); Achilles packs
+ * are HMAC-anchored, and Achilles scan results are not yet signed into the
+ * record (planned). Findings dispatch to Jira, GitHub, ServiceNow and
+ * Splunk. No Evidence API, Incident Pack or Vendor Packet. Synthetic data.
  */
 import type { ExplorerClaim } from "@/components/platform/ReceiptExplorer";
 import type { TimelineEvent } from "@/components/platform/EvidenceTimeline";
@@ -30,7 +31,7 @@ export const EVIDENCE_COPY = {
   integrity: {
     eyebrow: "Integrity, plainly stated",
     title: "Tamper-evident — *and honest about it.*",
-    lede: "An Assurance Receipt is hashed over its evidence, so any later change can be detected. It proves where a result came from — not that the conclusion is true.",
+    lede: "An Assurance Receipt is DSSE-signed by the engine and verifies offline, so any later change can be detected. It proves where a result came from — not that the conclusion is true.",
   },
   outputs: {
     eyebrow: "Exports and evidence packs",
@@ -50,7 +51,7 @@ export const EVIDENCE_ASSUMPTIONS = [
   { name: "That a pass is still current", body: "Models, tools and permissions change after the test. A result is true of a configuration, not forever." },
   { name: "That the report covered everything", body: "Scope has edges. Unless the gaps are listed, you cannot tell untested from safe." },
   { name: "That a vendor’s claim was checked", body: "What a vendor declares and what was observed are different evidence — and should never share a label." },
-  { name: "That the fix worked", body: "A cleared alert is not a repair. Only a retest against the original failure shows that." },
+  { name: "That the fix worked", body: "A cleared alert is not a repair. A retest shows only whether the original failure is absent." },
 ] as const;
 
 export const EVIDENCE_CLAIMS: ExplorerClaim[] = [
@@ -64,7 +65,7 @@ export const EVIDENCE_CLAIMS: ExplorerClaim[] = [
       { field: "Policy", value: "refunds-policy v12" },
       { field: "Evaluator", value: "Achilles · approval-boundary tests" },
       { field: "Result", value: "Verified", tone: "verified" },
-      { field: "Computed at", value: "16 Oct 2026, 09:12 UTC" },
+      { field: "Issued (signed)", value: "16 Oct 2026, 09:12 UTC" },
       { field: "Evidence root", value: "sha256:41be…77d2 (14 artifacts)" },
       { field: "Validity", value: "Until configuration or policy changes" },
       { field: "Invalidators", value: "New tool · policy edit · model change" },
@@ -88,7 +89,7 @@ export const EVIDENCE_CLAIMS: ExplorerClaim[] = [
       { field: "Policy", value: "crm-access v7" },
       { field: "Evaluator", value: "Athena · effective access" },
       { field: "Result", value: "Stale — revalidation required", tone: "stale" },
-      { field: "Computed at", value: "2 Sep 2026, 14:40 UTC" },
+      { field: "Issued (signed)", value: "2 Sep 2026, 14:40 UTC" },
       { field: "Evidence root", value: "sha256:c0a2…19e5 (6 artifacts)" },
       { field: "Validity", value: "Ended when the CRM role was broadened" },
       { field: "Invalidators", value: "Role change on 9 Oct" },
@@ -112,7 +113,7 @@ export const EVIDENCE_CLAIMS: ExplorerClaim[] = [
       { field: "Policy", value: "refunds-policy v12" },
       { field: "Evaluator", value: "Achilles · approval-boundary tests" },
       { field: "Result", value: "Contradicted", tone: "contradicted" },
-      { field: "Computed at", value: "16 Oct 2026, 09:31 UTC" },
+      { field: "Issued (signed)", value: "16 Oct 2026, 09:31 UTC" },
       { field: "Evidence root", value: "sha256:8be0…44c1 (9 artifacts)" },
       { field: "Validity", value: "Until a fix is retested" },
       { field: "Invalidators", value: "Fix deployed · policy edit" },
@@ -129,20 +130,19 @@ export const EVIDENCE_CLAIMS: ExplorerClaim[] = [
 ];
 
 export const EVIDENCE_OUTPUTS = [
-  { name: "Assurance Receipt (JSON)", status: "Available", body: "Copy or download from the dashboard, for any claim." },
-  { name: "Evidence API", status: "Available", body: "Read findings, evidence, unknowns and receipts from your own tools." },
-  { name: "Incident Evidence Pack", status: "Available", body: "What happened, under which authority, preserved for review." },
-  { name: "Signed engine evidence packs", status: "Available", body: "Achilles evidence packs are signed and can be verified offline." },
-  { name: "Vendor Assurance Packet", status: "In development", body: "Declared versus verified evidence for procurement review." },
-  { name: "Receipt signing and a public verifier", status: "Planned", body: "So anyone can check a receipt without asking Mythos." },
+  { name: "Assurance Receipt (signed)", status: "Available", body: "DSSE-signed; download it and verify offline, without asking Mythos." },
+  { name: "Signed engine evidence packs", status: "Available", body: "Athena packs: Ed25519 with Merkle inclusion proofs, standalone verifier." },
+  { name: "Findings dispatch", status: "Available", body: "To Jira, GitHub, ServiceNow and Splunk; a stop never waits on one." },
+  { name: "Achilles evidence packs", status: "Available", body: "HMAC-anchored and redacted to content hashes in storage." },
+  { name: "Signed Achilles scan results", status: "Planned", body: "So Achilles results enter the platform record alongside receipts." },
 ] as const;
 
 export const EVIDENCE_SIGNOFF: TimelineEvent[] = [
   { label: "Evidence captured", meta: "engine run · versions recorded", detail: "Tests produce artifacts tied to the configuration and policy they ran against.", state: "observed" },
   { label: "Claim updated", meta: "evidence state recalculated", detail: "The claim takes the state its evidence supports — never stronger.", state: "verified" },
   { label: "Technical review", meta: "assigned owner", detail: "A named owner reviews findings and remediation.", state: "observed", stateLabel: "Reviewed" },
-  { label: "Approval recorded", meta: "human owner", detail: "Designed: a named approver signs off on high-risk decisions before export.", state: "unknown", stateLabel: "Designed" },
-  { label: "Exported", meta: "receipt JSON · API · report", detail: "The receipt leaves with its hash, so the recipient can detect any change.", state: "verified", stateLabel: "Available" },
+  { label: "Receipt signed", meta: "DSSE · issue time inside", detail: "The engine signs the receipt; every past version still reads back.", state: "verified", stateLabel: "Signed" },
+  { label: "Exported", meta: "receipt download · dispatch", detail: "The recipient verifies the signature offline and can detect any change.", state: "verified", stateLabel: "Available" },
 ];
 
 /** A synthetic receipt in the shape the dashboard exports. */
@@ -157,7 +157,7 @@ export const EVIDENCE_JSON = {
   evidence: { root: "sha256:41be…77d2", artifacts: 14 },
   validity: { until: "configuration or policy change", invalidators: ["new_tool", "policy_edit", "model_change"] },
   approval: { role: "security_lead" },
-  algorithm: "sha256",
   digest: "sha256:e19c…0b3f",
-  computed_at: "2026-10-16T09:12:00Z",
+  issued_at: "2026-10-16T09:12:00Z",
+  signature: { envelope: "dsse", covers_issue_time: true, verifies_offline: true, sig: "synthetic…a4c0" },
 };

@@ -4,9 +4,10 @@
  * scalar score, contradictory counts, invented staff and real vendor names).
  *
  * "Sample Organization" and everything about it is fictional. Every value is
- * synthetic; vocabulary follows the built semantics (evidence states, six
- * decision states, hashed — not signed — receipts). Economic Exposure is
- * specified only, so the report says so instead of showing figures.
+ * synthetic; vocabulary follows the Master Inventory (26 Oct 2026): evidence
+ * states, six decision states plus Paused, retest verdicts closed / still
+ * open / inconclusive, DSSE-signed receipts, Not measured. This sample
+ * engagement shows no Economic Exposure figures.
  */
 import type { RecordRow } from "@/components/platform/RecordCard";
 import type { PillState } from "@/components/platform/StatePill";
@@ -39,12 +40,12 @@ export const COVER: RecordRow[] = [
 export const SUMMARY = {
   tested: "Whether the servicing copilot reaches only the requesting customer’s records, and whether its credit tool stays within the authority the business intended.",
   findings: [
-    "Retrieval returned another customer’s notes for one query pattern (fixed and retested).",
-    "Split credit requests could exceed the single-credit limit in aggregate (fixed; retest passed).",
-    "A legacy search index was reachable but not documented (still untested).",
+    "Retrieval returned another customer’s notes for one query pattern (fixed; closed on retest).",
+    "Split credit requests could exceed the single-credit limit in aggregate (fixed; closed on retest).",
+    "A legacy search index was reachable but not documented (not measured).",
   ],
   unknowns: ["Escalation timing for account-takeover conversations", "Whether the legacy index follows the same permissions"],
-  recommendation: "Ready with restrictions",
+  recommendation: "Needs more evidence",
 };
 
 export const SYSTEM_MAP: { component: string; kind: string; reaches: string; evidence: string }[] = [
@@ -63,8 +64,8 @@ export const FINDINGS: { id: string; title: string; severity: "High" | "Medium" 
     severity: "High",
     effect: "Notes belonging to a second synthetic customer appeared in a drafted reply.",
     conditions: "Staging tenant; one query pattern; retrieval ranked results before filtering by customer.",
-    confidence: "Confirmed",
-    status: "Fixed and retested",
+    confidence: "Reproduced against a benign control",
+    status: "Closed on retest",
     state: "verified",
   },
   {
@@ -73,8 +74,8 @@ export const FINDINGS: { id: string; title: string; severity: "High" | "Medium" 
     severity: "Medium",
     effect: "Three credits, each under the single-credit limit, exceeded it together within one conversation.",
     conditions: "Staging tenant; synthetic account; no aggregate limit configured.",
-    confidence: "Confirmed",
-    status: "Fixed and retested",
+    confidence: "Reproduced against a benign control",
+    status: "Closed on retest",
     state: "verified",
   },
   {
@@ -83,8 +84,8 @@ export const FINDINGS: { id: string; title: string; severity: "High" | "Medium" 
     severity: "Low",
     effect: "The copilot’s identity can read a legacy search index absent from the design documents.",
     conditions: "Found during mapping from the access configuration supplied; not tested.",
-    confidence: "Likely",
-    status: "Open — recorded as unknown",
+    confidence: "Null — not tested, so unknown",
+    status: "Open — not measured",
     state: "unknown",
   },
 ];
@@ -99,9 +100,9 @@ export const CLAIMS: { claim: string; state: PillState; label?: string; source: 
 ];
 
 export const RETEST: { finding: string; owner: string; fix: string; result: string; state: PillState }[] = [
-  { finding: "F-01", owner: "Customer engineering (role)", fix: "Filter by customer before ranking", result: "Original failure no longer reproduces; legitimate lookups still complete", state: "verified" },
-  { finding: "F-02", owner: "Customer engineering (role)", fix: "Aggregate limit per conversation", result: "Split requests now route to a person; single credits unaffected", state: "verified" },
-  { finding: "F-03", owner: "Customer security (role)", fix: "Document or remove the index", result: "Not retested — awaiting a decision", state: "unknown" },
+  { finding: "F-01", owner: "Customer engineering (role)", fix: "Filter by customer before ranking", result: "Closed: failure absent on retest, with six incomplete-repair controls", state: "verified" },
+  { finding: "F-02", owner: "Customer engineering (role)", fix: "Aggregate limit per conversation", result: "Closed: split requests routed to a person on retest", state: "verified" },
+  { finding: "F-03", owner: "Customer security (role)", fix: "Document or remove the index", result: "Not retested — no verdict until it is", state: "unknown" },
 ];
 
 export const CHANGES: TimelineEvent[] = [
@@ -111,10 +112,10 @@ export const CHANGES: TimelineEvent[] = [
 ];
 
 export const DECISION: RecordRow[] = [
-  { field: "Recommendation", value: "Ready with restrictions", tone: "verified" },
-  { field: "Restrictions", value: "Pilot in one region; credits above the limit go to a person; legacy index access removed" },
-  { field: "Open unknowns", value: "Escalation timing (stale); legacy index permissions" },
-  { field: "Evidence", value: "2 verified · 2 observed · 1 unknown · 1 stale" },
+  { field: "Recommendation", value: "Needs more evidence (worst-of-N)", tone: "stale" },
+  { field: "Path forward", value: "Retest escalation; then pilot in one region, credits above the limit to a person, legacy index removed" },
+  { field: "Not measured", value: "Escalation timing (stale); legacy index permissions" },
+  { field: "Evidence", value: "2 verified · 2 observed · 1 unknown · 1 stale · confidence null" },
   { field: "Reopens when", value: "Model version, prompt template, CRM roles or credit policy change" },
   { field: "Decision", value: "Pending — your release owner decides" },
   { field: "Synthetic", value: "Yes" },
@@ -131,6 +132,7 @@ export const RECEIPT_JSON = {
   evaluator: { engine: "achilles", family: "permission_boundary", run: "R-01" },
   result: { state: "verified", conditions: "staging tenant; query patterns in scope" },
   evidence_root: "sha256:a77d…5f10 (synthetic)",
-  signed: false,
-  note: "Hashed for tamper evidence; signing is planned.",
+  issued_at: "Day 9 (synthetic)",
+  signature: { envelope: "dsse", covers_issue_time: true, verifies_offline: true, sig: "synthetic…7e21" },
+  note: "Proves integrity and provenance, not that the conclusion is true.",
 };

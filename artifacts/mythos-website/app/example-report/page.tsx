@@ -46,7 +46,7 @@ export default function ExampleReportPage() {
       <ScenicHero
         eyebrow="Example Report"
         headline="See the Evidence Behind an AI *Deployment Decision.*"
-        lede="This synthetic sample shows the kinds of claims, findings, retest records and human-reviewed decisions a scoped Mythos engagement is designed to produce. No customer information is represented."
+        lede="This synthetic sample shows the kinds of claims, findings, retest records and human-reviewed decisions a scoped Mythos engagement produces. No customer information is represented."
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Resources", href: "/resources" },
@@ -103,7 +103,7 @@ export default function ExampleReportPage() {
                     </ul>
                   </div>
                   <div className="border border-rule bg-panel p-6">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-accent">Open unknowns</p>
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-accent">Not measured</p>
                     <ul className="mt-3 grid gap-2 text-[15px] leading-relaxed text-fg">
                       {SUMMARY.unknowns.map((u) => (
                         <li key={u} className="flex gap-2.5">
@@ -211,8 +211,8 @@ export default function ExampleReportPage() {
               <Part id="exposure" n={8} title="Economic scenario">
                 <p className="flex items-start gap-3 border border-rule bg-panel px-5 py-4 text-[15px] leading-relaxed text-fg">
                   <Hourglass size={17} aria-hidden="true" className="mt-0.5 shrink-0 text-state-stale-ink" />
-                  Not included. Economic Exposure is specified but not yet producing scores, so this report shows no financial figures. When built, it is designed to express
-                  modeled ranges with their assumptions — never realized losses.
+                  Not included in this sample. Economic Exposure prices a validated failure as a P10–P90 range with a signed receipt; this engagement did not
+                  scope it, so the report shows no financial figures — and never realized losses.
                 </p>
               </Part>
 
@@ -221,7 +221,7 @@ export default function ExampleReportPage() {
               </Part>
 
               <Part id="appendix" n={10} title="Appendix">
-                <p className="mb-5 text-[15px] leading-relaxed text-fg-muted">A sample receipt for the first claim. Copy JSON copies exactly what is shown.</p>
+                <p className="mb-5 text-[15px] leading-relaxed text-fg-muted">A sample signed receipt for the first claim; the signature here is synthetic. Copy JSON copies exactly what is shown.</p>
                 <JsonArtifact title="assurance-receipt.sample.json" data={RECEIPT_JSON} />
               </Part>
             </div>

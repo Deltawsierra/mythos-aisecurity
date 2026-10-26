@@ -27,7 +27,7 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Evidence & Receipts — Proof You Can Inspect",
   description:
-    "Mythos connects every claim to the evidence behind it: tamper-evident Assurance Receipts, a provenance chain from observation to review, and exports you can inspect — with integrity stated plainly.",
+    "Mythos connects every claim to the evidence behind it: signed Assurance Receipts you can verify offline, a provenance chain from observation to review, and exports you can inspect — with integrity stated plainly.",
   alternates: { canonical: "/platform/evidence/" },
   ...socialImage("platform-evidence", "Proof You Can Inspect — Mythos AI Security"),
 };

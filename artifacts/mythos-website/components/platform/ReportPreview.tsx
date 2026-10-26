@@ -20,7 +20,7 @@ const REPORT_PAGES = [
     rows: [
       ["Observed effect", "Refund executed without approval"],
       ["Evidence", "Trace T-0412, ledger diff"],
-      ["Confidence", "Confirmed · reproduced twice"],
+      ["Basis", "Reproduced twice · benign control"],
       ["Next step", "Fix, then retest"],
     ],
   },

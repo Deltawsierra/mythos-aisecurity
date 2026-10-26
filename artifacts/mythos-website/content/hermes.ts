@@ -1,13 +1,14 @@
 /**
  * Hermes page copy (Launch Guide R07), checked against the Platform Roadmap
  * (17 Sep), Session Work Summary, SPINE R&D Plan §10.5, Self-Protection Spec
- * §4 and the Threat Atlas. Today Hermes is an early scaffold whose domain
- * logic returns inconclusive; vehicles, fleets and over-the-air updates come
- * first, other physical AI later. No customers, no pilots, no standards
- * compliance, no certification, no crash-prevention claims. The guide's six
- * layers are not in the sources, so the layers here group the domains the
- * sources do name. V-model, safety-case and timeline content is labelled
- * illustrative. Claims: content/claims.ts (hermes.*).
+ * §4 and the Threat Atlas; status follows the 26 Oct Master Inventory.
+ * Hermes is the vehicle and fleet assurance engine, a scaffold today: four
+ * questions across twelve domains; the job API, readiness report and
+ * failsafe are built and tested; every domain returns INCONCLUSIVE, so a full
+ * scan reads "requires additional evidence". Standards are mapped, never
+ * certified. No customers, no pilots, no crash-prevention claims. The six
+ * layers here group the twelve domains. V-model, safety-case and timeline
+ * content is labelled illustrative. Claims: content/claims.ts (hermes.*).
  */
 import type { LoopStage } from "@/components/platform/PhysicalLoop";
 import type { OperatingLayer } from "@/components/platform/LayerSelector";
@@ -20,15 +21,16 @@ export const HERMES_COPY = {
     eyebrow: "Hermes · physical AI assurance",
     headline: "Physical AI Deserves a *Safer Tomorrow.*",
     lede: "As AI moves beyond the screen, assurance must consider sensing, perception, planning, control, human interaction and system behavior in the physical world. Hermes extends the Mythos evidence philosophy toward these environments.",
-    scope: "Physical AI horizon · early foundation. Scope is defined and technically reviewed per conversation. No vehicle safety certification.",
+    scope: "Physical AI horizon · a scaffold today. Every domain returns inconclusive. Hermes never certifies a vehicle.",
   },
   status: {
     eyebrow: "Where Hermes stands",
     title: "An honest *starting point.*",
-    lede: "Hermes is the newest part of Mythos. It begins with vehicles, fleets and over-the-air updates, and reaches toward other physical AI later.",
+    lede: "Hermes is the newest part of Mythos: the vehicle and fleet assurance engine, a scaffold today.",
     today: [
-      "An early engine foundation that organizes physical-AI assurance work by domain",
-      "Results are reported as inconclusive until the domain checks behind them exist",
+      "Four questions — can it perceive, decide, fail and change safely — across twelve domains",
+      "The job API, readiness report and failsafe are built and tested; a stand-down revokes the vehicle connector credential",
+      "Every domain returns inconclusive, so a full scan reads “requires additional evidence”",
       "No customer deployments or pilots yet",
     ],
     never: [
@@ -36,6 +38,7 @@ export const HERMES_COPY = {
       "Claim to prevent crashes or incidents",
       "Take control of a real vehicle or machine",
       "Replace your safety team’s authority",
+      "Treat a standards mapping as certification",
     ],
   },
   loop: {
@@ -46,7 +49,7 @@ export const HERMES_COPY = {
   layers: {
     eyebrow: "Operating layers",
     title: "Where a physical AI *can go wrong.*",
-    lede: "The layers an assessment would examine, grouped from the domains Hermes is organized around. Illustrative — the checks behind each layer are in development.",
+    lede: "The layers an assessment would examine, grouped from Hermes’s twelve domains. Illustrative — no domain logic is built yet, and every domain reads inconclusive.",
   },
   vmodel: {
     eyebrow: "Lifecycle gates",
@@ -61,12 +64,12 @@ export const HERMES_COPY = {
   domains: {
     eyebrow: "Where it is headed",
     title: "Vehicles and fleets *first.*",
-    lede: "Hermes starts where the evidence questions are sharpest. Other domains are exploratory — none of these is a list of customers or completed assessments.",
+    lede: "Hermes is a vehicle and fleet engine. The other areas are outside its scope today — none of these is a list of customers or completed assessments.",
   },
   trail: {
     eyebrow: "After deployment",
     title: "When the software changes, *so does the evidence.*",
-    lede: "An over-the-air update can change what a vehicle perceives and decides. Hermes is designed to treat each update the way SPINE treats any change: mark what it touched as stale, and retest only that — in simulation and on the bench before the road.",
+    lede: "An over-the-air update can change what a vehicle perceives and decides. SPINE supersedes the claims a change touches and names the minimal re-run. Hermes’s update domain has no logic yet; replay would run in simulation and on the bench before the road.",
   },
   outline: {
     eyebrow: "Safety-case support",
@@ -205,21 +208,21 @@ export const HERMES_DOMAINS = [
   {
     name: "Vehicles and fleets",
     status: "First focus",
-    body: "Autonomy stacks, fleet operations and over-the-air updates — where Hermes begins.",
+    body: "The vehicle AI stack, fleet monitoring and over-the-air model updates — Hermes’s scope.",
     href: "/use-cases/ai-driven-vehicle-systems-hermes",
     link: "See the vehicle use case",
   },
   {
     name: "Industrial and manufacturing AI",
-    status: "Exploratory",
-    body: "Operational AI where equipment, processes and suppliers meet real-world effects.",
+    status: "Outside scope today",
+    body: "Operational AI where equipment, processes and suppliers meet real-world effects — not part of Hermes.",
     href: "/solutions/manufacturing-critical-infrastructure",
     link: "See manufacturing and infrastructure",
   },
   {
     name: "Robotics and logistics",
-    status: "Exploratory",
-    body: "Machines that move goods and work alongside people, studied as a future scope.",
+    status: "Outside scope today",
+    body: "Machines that move goods and work alongside people — not part of Hermes today.",
     href: "/contact?intent=general",
     link: "Talk to us about scope",
   },

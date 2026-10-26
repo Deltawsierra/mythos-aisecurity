@@ -225,13 +225,17 @@ export const HOME_TEAMS = {
   }[],
 } as const;
 
-/** H08 — Economic Exposure is specified, not in production scoring: forward framing. */
+/**
+ * H08 — Economic Exposure prices a validated failure as a range with sources
+ * (ledger.prices-range, 26 Oct inventory); decision support only, and every
+ * figure on the site stays a labelled synthetic example.
+ */
 export const HOME_CONSEQUENCE = {
   eyebrow: "Business consequence",
   headline: "A Technical Finding Should Lead to a *Better Decision.*",
   lede: "Evidence can inform modeled financial exposure, remediation economics and business response — without pretending that uncertainty has disappeared.",
-  chain: ["Verified effect", "Loss pathway", "Modeled range", "Remediation scenario", "Human decision"],
-  note: "Economic Exposure is designed to show ranges with their assumptions and sources — never a guaranteed loss or ROI. The customer keeps every business and materiality decision.",
+  chain: ["Validated failure", "Loss pathway", "Modeled range", "Remediation scenario", "Human decision"],
+  note: "Economic Exposure prices a validated failure as a range, with its assumptions and sources — never an exact loss or a guaranteed ROI. The customer keeps every business and materiality decision.",
 } as const;
 
 /** H09 — six sectors with their own art (Government/Capitol art stays withheld). */

@@ -4,8 +4,9 @@
  * cards read from here so product wording cannot drift page to page.
  *
  * Wording follows the October 2026 blueprint (Section 14, canonical product
- * lines). Any specific capability claim belongs in content/claims.ts, where it
- * carries a verification flag for the launch gate.
+ * lines); capability notes checked against the 26 Oct Master Inventory. Any
+ * specific capability claim belongs in content/claims.ts, where it carries a
+ * verification flag for the launch gate.
  */
 import type { ProjectId } from "@/content/media";
 
@@ -175,14 +176,14 @@ export const PLATFORM_PAGES: ScaffoldPage[] = [
     navDescription: "Maintain the Truth — the assurance system of record.",
     eyebrow: "SPINE",
     headline: "Maintain the Truth.",
-    lede: "Most security tests tell you what was true when the test ran. SPINE maintains whether the evidence supporting that conclusion is still safe to rely on.",
+    lede: "Most security tests tell you what was true when the test ran. SPINE maintains whether the evidence supporting that conclusion still holds.",
     plannedSections: [
       "The Assurance Graph",
       "Claims and evidence states",
       "Authority chain",
       "Change Intelligence",
       "Deployment decisions and coverage",
-      "Assurance Receipts, Vendor Packets and Incident Packs",
+      "Signed Assurance Receipts and retest-gated closure",
       "Economic Exposure",
       "The continuous assurance loop",
     ],
@@ -203,7 +204,7 @@ export const PLATFORM_PAGES: ScaffoldPage[] = [
       "Denial memory, budgets and revocation",
       "Observed effect",
       "Release and canary comparison",
-      "Remediation replay and utility retained",
+      "Remediation replay and benign counterparts",
       "SPINE handoff and Minotaur validation",
     ],
   },
@@ -254,13 +255,13 @@ export const PLATFORM_PAGES: ScaffoldPage[] = [
     navDescription: "What a validated failure could mean financially.",
     eyebrow: "SPINE Economic Exposure",
     headline: "What could this validated failure mean financially?",
-    lede: "Economic Exposure translates verified technical evidence into financial exposure ranges, remediation economics and executive-ready decisions.",
+    lede: "Economic Exposure translates verified technical evidence into financial exposure ranges with their sources, and remediation economics — decision support only.",
     plannedSections: [
       "From finding to loss event",
       "How the model reaches a range",
       "P10 / P50 / P90 and residual exposure",
       "Cost of fix and risk-adjusted return",
-      "The Financial Data Fabric",
+      "Data sources and their limits",
       "Financial Validity Card and Receipt",
       "Continuous financial assurance",
       "Guardrails",
@@ -277,13 +278,13 @@ export const PLATFORM_PAGES: ScaffoldPage[] = [
     lede: "Not another score: the claims, coverage, receipts and deployment decisions a customer can inspect, verify, export and use.",
     plannedSections: [
       "Assurance claims and evidence states",
-      "Coverage Manifest and Unknowns",
+      "Coverage Manifest and audit incomplete",
       "Assurance Receipts",
-      "Evidence, Incident and Vendor packs",
+      "Signed evidence packs and offline verification",
       "Observed effect and authority outcome",
       "Retest proof",
       "Deployment decision states",
-      "Exports and integrations",
+      "Findings dispatch and integrations",
     ],
   },
   {
@@ -346,7 +347,7 @@ export const ARCHITECTURE_LINKS: {
 export const MYTHOS_CORE = {
   name: "Mythos Core",
   tagline: "Shared trust and safety foundation",
-  role: "Shared primitives underneath every engine: evidence chains and a failsafe that can pause, stand down or terminate — the most serious stops need two separate keys — under human authority, without depending on the component being stopped.",
+  role: "Shared primitives every engine pins by commit: safe HTTP, signed evidence chains and a failsafe that can pause, stand down or terminate — the most serious stops need two operators — that nothing may block or delay.",
 } as const;
 
 export type OutputId =
@@ -369,7 +370,7 @@ export const OUTPUTS: { id: OutputId; name: string; plain: string; audience: str
   {
     id: "receipt",
     name: "Assurance Receipt",
-    plain: "A hashed record of what was tested and found, so any later change is detectable.",
+    plain: "A signed record of what was tested and found, verifiable offline.",
     audience: "Audit · Procurement",
     icon: "/assets/evidence/assurance-receipt.svg",
   },
@@ -407,10 +408,11 @@ export const OUTPUTS: { id: OutputId; name: string; plain: string; audience: str
 export const DECISION_STATES: { name: string; meaning: string; tone: "go" | "caution" | "stop" }[] = [
   { name: "Ready", meaning: "Current evidence supports release within the assessed scope.", tone: "go" },
   { name: "Ready with restrictions", meaning: "Supported, but only within stated limits.", tone: "go" },
-  { name: "Needs more evidence", meaning: "Open unknowns must be closed before a decision.", tone: "caution" },
+  { name: "Needs more evidence", meaning: "A claim lacks the evidence a decision needs.", tone: "caution" },
+  { name: "Audit incomplete", meaning: "Coverage fell short of what was expected.", tone: "caution" },
   { name: "Needs remediation", meaning: "Failures must be fixed and retested first.", tone: "caution" },
   { name: "Not recommended", meaning: "The evidence does not support release.", tone: "stop" },
-  { name: "Paused", meaning: "Held while a change or incident is resolved.", tone: "stop" },
+  { name: "Paused", meaning: "Held by a pause; nothing proceeds until it lifts.", tone: "stop" },
 ];
 
 /** Evidence strength, strongest first. A claim is only as strong as its weakest evidence. */
@@ -425,12 +427,12 @@ export const EVIDENCE_STRENGTH = [
   "Not documented",
 ] as const;
 
-/** Policy effects, most restrictive first. Any deny wins; an unknown input escalates. */
+/** Achilles Action Gate outcomes, most restrictive first. Policy-as-code, deny by default. */
 export const POLICY_EFFECTS: { name: string; meaning: string }[] = [
-  { name: "Deny", meaning: "Blocked. Any deny wins." },
-  { name: "Escalate", meaning: "Sent to a human — including whenever an input is unknown." },
-  { name: "Allow with approval", meaning: "Permitted once a named approver signs off." },
-  { name: "Allow", meaning: "Permitted under the pinned policy version." },
+  { name: "Deny", meaning: "Blocked. Policy denies by default." },
+  { name: "Escalate", meaning: "Sent up for a person to decide." },
+  { name: "Hold for approval", meaning: "Waits for the approval in force." },
+  { name: "Permit", meaning: "Bound to the action, policy and authority epoch; spent once, at dispatch." },
 ];
 
 /** Change intelligence, from a change to restored trust. */
@@ -438,7 +440,7 @@ export const CHANGE_PIPELINE: { name: string; detail: string; state: EvidenceSta
   { name: "Verified", detail: "Claim: the support assistant cannot move funds without approval.", state: "verified" },
   { name: "Change detected", detail: "A new tool is connected: payments.refund.", state: "change" },
   { name: "Impact assessed", detail: "The change touches the approval boundary the claim relies on.", state: "observed" },
-  { name: "Invalidated", detail: "INVALIDATES closes the claim. It is now Stale and the decision is recalculated.", state: "stale" },
-  { name: "Minimal retest", detail: "Only the tests that cover the affected boundary run again.", state: "retest" },
+  { name: "Superseded", detail: "The changed fingerprint supersedes the claim and opens a retest; the decision recomposes.", state: "stale" },
+  { name: "Minimal retest", detail: "The revalidation planner names the minimal re-run for the affected boundary.", state: "retest" },
   { name: "Restored", detail: "Fresh evidence verifies the claim against the new configuration.", state: "verified" },
 ];

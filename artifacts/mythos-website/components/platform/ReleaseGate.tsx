@@ -18,9 +18,9 @@ const OUTCOME: Record<GateScenario["outcome"], { state: PillState; label: string
 };
 
 /**
- * Security veto and release support (Launch Guide M07): each synthetic
- * scenario passes or holds on the quality of its evidence, not on an average
- * score. The outcome is advice to the human reviewers who own the decision.
+ * Security veto and release authority (Launch Guide M07): each synthetic
+ * engine-release scenario is decided by the weakest of nine gates or by the
+ * veto outside the score, not by an average. It governs Mythos' own engines.
  */
 export function ReleaseGate({ scenarios }: { scenarios: GateScenario[] }) {
   const [i, setI] = useState(0);
@@ -57,7 +57,7 @@ export function ReleaseGate({ scenarios }: { scenarios: GateScenario[] }) {
         <div className="mt-5 border-t border-rule pt-5">
           <StatePill state={o.state} label={o.label} />
           <p className="mt-3 font-display text-2xl leading-snug text-fg">{s.reason}</p>
-          <p className="mt-3 text-sm text-fg-muted">Minotaur advises. Named human reviewers approve or decline the release.</p>
+          <p className="mt-3 text-sm text-fg-muted">This governs Mythos’ own engine releases. Your deployment decision stays with your people.</p>
         </div>
       </div>
     </div>

@@ -1,12 +1,13 @@
 /**
  * Continuous Assurance page copy (Launch Guide /platform/continuous-assurance),
- * checked against the SPINE Technical Foundation Spec, R&D Plan and Roadmap
- * (16 Oct fact-check). Built: evidence that ages to Stale, decision
- * recalculation, the continuous-assurance view, utility-retained scoring and
- * the Unknowns register. Partial: policy, AI-BOM and fingerprint drift as
- * triggers; INVALIDATES/SUPERSEDES traversal; targeted retest. Not built:
- * live or passive monitoring — Mythos responds to scans and supplied changes.
- * The staleness interval is not published. All examples are synthetic.
+ * checked against the Master Inventory (26 Oct 2026). In place: fingerprint
+ * and per-claim input fingerprints supersede a claim and open a retest; a
+ * revalidation planner names the minimal re-run; decisions recompose worst-
+ * of-N; AI-BOM drift and workflow-contract changes invalidate bound claims;
+ * the coverage manifest records what was not measured. Planned: runtime
+ * monitor coverage, inline retest verdicts in the dashboard record, a
+ * durable-change gate. Not built: live monitoring — the request gateway ships
+ * monitor-only. All examples are synthetic.
  */
 import type { ChangeEvent, TrackedClaim } from "@/components/platform/ChangeTraversal";
 import type { TimelineEvent } from "@/components/platform/EvidenceTimeline";
@@ -32,19 +33,19 @@ export const CA_COPY = {
     inPlace: {
       label: "In place today",
       items: [
-        "Evidence that ages and turns Stale on its own",
-        "Decisions recalculated whenever their evidence moves",
-        "Policy, inventory and fingerprint drift as triggers",
-        "Utility-retained scoring and an Unknowns register",
+        "Fingerprint changes supersede claims and open retests",
+        "Decisions recomposed, worst-of-N, whenever evidence moves",
+        "AI bill of materials drift and workflow changes as triggers",
+        "A revalidation planner that names the minimal re-run",
       ],
     },
     inDevelopment: {
-      label: "In development",
+      label: "Planned",
       items: [
-        "Detection for every change type, from prompts to permissions",
-        "Automatic dependency tracing and retest planning",
-        "A false-block rate tracked alongside every retest",
-        "Ticket sync for open issues",
+        "Runtime monitor coverage, disclosing what a monitor never saw",
+        "Retest verdicts carried inline into the dashboard record",
+        "A durable-change gate for memory, configuration and installs",
+        "A customer-run collector for sign-in and delegation records",
       ],
     },
   },
@@ -87,8 +88,8 @@ export const CA_EVENTS: ChangeEvent[] = [
     detail: "Tool manifest v8 gives the agent a new way to move money.",
     touches: ["refund-dest", "refund-approval"],
     retest: ["Approval-boundary scenarios against v8", "Destination binding for payouts", "Negative controls for legitimate refunds"],
-    decision: "Held for review until the payouts path is retested.",
-    open: "Payout limits are not yet defined in policy — logged to the Unknowns register.",
+    decision: "Needs more evidence until the payouts path is retested.",
+    open: "Payout limits are not yet defined in policy — recorded as not measured.",
   },
   {
     id: "route",
@@ -105,7 +106,7 @@ export const CA_EVENTS: ChangeEvent[] = [
     detail: "The approval threshold moves from $1,000 to $2,500.",
     touches: ["refund-approval"],
     retest: ["Approval scenarios at the new threshold", "Cumulative-limit scenarios"],
-    decision: "Ready, with restrictions, once the new threshold is retested.",
+    decision: "Ready with restrictions, once the new threshold is retested.",
     open: "Three legitimate refunds were blocked in the last retest — a false block to fix.",
   },
   {
@@ -114,7 +115,7 @@ export const CA_EVENTS: ChangeEvent[] = [
     detail: "The assistant’s service account gains read access to all regions.",
     touches: ["crm-read", "no-pii-out"],
     retest: ["Effective-access mapping for the service account", "Cross-customer retrieval tests"],
-    decision: "Held: the access boundary claim is Stale and the decision depends on it.",
+    decision: "Needs more evidence: the access-boundary claim is Stale and the decision rests on it.",
     open: "No owner yet for the regional data boundary.",
   },
 ];
@@ -124,5 +125,5 @@ export const CA_LEDGER: TimelineEvent[] = [
   { label: "Two claims marked Stale", meta: "refund destination · approvals", detail: "Their evidence was true of v7. The other three claims keep theirs.", state: "stale" },
   { label: "Targeted retest", meta: "approval-boundary set · v8", detail: "Only the scenarios that cover the changed path are rerun.", state: "observed", stateLabel: "Retested" },
   { label: "One claim contradicted", meta: "approvals", detail: "A payout above the threshold went through without approval.", state: "contradicted" },
-  { label: "Decision recalculated", meta: "Ready → Held", detail: "Held until a fix is retested. Your team decides what happens next.", state: "held" },
+  { label: "Decision recomposed", meta: "Ready → Needs remediation", detail: "Until a fix closes on retest. Your team decides what happens next.", state: "held" },
 ];

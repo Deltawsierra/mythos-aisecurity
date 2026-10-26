@@ -12,8 +12,9 @@
  *   (claim `pricing.offer-structure`).
  * - The strategy's tier inclusions describe the completed platform. Here each
  *   capability is split into "available today" and "planned", matching the
- *   product pages (Action Gate not built; Policy-as-Code in development;
- *   Economic Exposure specified; Validity Cards planned; no live monitoring).
+ *   26 Oct Master Inventory (Action Gate is runtime enforcement, a separate
+ *   offer; Economic Exposure runs on fixture feeds, uncalibrated; monitor
+ *   coverage, signed Achilles results and an identity collector are planned).
  * - Private items stay off the page: specialist catalog, additional-system
  *   rates, retest percentages, design-partner terms and credits.
  */
@@ -86,7 +87,7 @@ export const ASSESSMENTS: AssessmentOffer[] = [
 /** Assessments quoted only after a consultation. */
 export const CONSULT_ASSESSMENTS = [
   { name: "High-Risk / Regulated Assessment", body: "Banking, insurance, healthcare and other high-consequence systems: expanded controls, evidence depth and reporting." },
-  { name: "Incident Evidence", body: "After an AI-related incident: preserve evidence, reconstruct what happened, verify the fix. Replay tooling is planned; scope follows triage." },
+  { name: "Incident Evidence", body: "After an AI-related incident: preserve evidence, reconstruct what happened, verify the fix. Engine records are hash-chained and signed; scope follows triage." },
 ];
 
 export interface Tier {
@@ -104,24 +105,24 @@ export const TIERS: Tier[] = [
     name: "Launch",
     scope: "1 primary system",
     fit: "One critical production system kept under evidence-backed assurance — not a scan subscription.",
-    available: ["Mapping of data, tools and access", "Scheduled Achilles testing", "Claims and hashed receipts", "Evidence, remediation and retest"],
-    planned: ["Economic Exposure bands"],
+    available: ["Mapping of data, tools and access", "Scheduled Achilles testing", "Claims and signed receipts", "Evidence, remediation and retest"],
+    planned: ["Exposure ranges on live feeds"],
     price: null,
   },
   {
     name: "Growth",
     scope: "2–4 systems",
     fit: "Several connected systems or agents, with enough context to prioritize remediation.",
-    available: ["Broader Achilles campaigns", "Vendor and provider profiles (declared vs verified)", "Reassessment when agreed changes happen", "Executive summaries"],
-    planned: ["Release comparison and gating", "Exposure ranges and remediation economics", "Cross-channel tool-chain testing"],
+    available: ["Broader Achilles campaigns and cross-channel chains", "Vendor and provider profiles (declared vs verified)", "Reassessment and release canary comparison", "Executive summaries"],
+    planned: ["Exposure ranges on live feeds", "Monitor coverage disclosure", "New agent-attack carriers (image, OCR, renderer)"],
     price: null,
   },
   {
     name: "Enterprise",
     scope: "5–10 systems",
     fit: "Complex or regulated AI estates that need formal deployment decisions at scale.",
-    available: ["Full mapping, testing and claims across systems", "Deployment decision support", "Findings mapped to NIST SP 800-53, OWASP and DoD Zero Trust"],
-    planned: ["Runtime Action Gate", "Policy-as-Code (in development)", "Full Economic Exposure", "Validity Cards"],
+    available: ["Full mapping, testing and claims across systems", "Deployment decision support", "Findings mapped to NIST SP 800-53, OWASP, OWASP LLM and DoD Zero Trust"],
+    planned: ["Runtime monitor coverage", "Customer-run identity collector", "Economic Exposure on live feeds", "Signed Achilles scan results"],
     price: null,
   },
   {
@@ -145,7 +146,7 @@ export const TIERS: Tier[] = [
 export const EXPAND = {
   title: "Expand as *your estate grows.*",
   lede: "Coverage can be added after a scope review. Rates are set in your proposal.",
-  items: ["Additional AI systems", "Additional business units", "Vendor assurance packets (in development)", "Advanced Achilles campaigns", "Deeper regulated evidence", "Additional retest campaigns", "Incident assurance sprints"],
+  items: ["Additional AI systems", "Additional business units", "Vendor claim review (declared vs verified)", "Advanced Achilles campaigns", "Deeper regulated evidence", "Additional retest campaigns", "Incident assurance sprints"],
   partners: "Design-partner opportunities for qualified enterprises — discuss scope with Mythos.",
 };
 
@@ -174,7 +175,7 @@ export const PRICING_FAQ = [
   { q: "Can we start without an annual commitment?", a: "Yes. A scoped assessment can address one defined system or decision before you choose whether to move into recurring assurance." },
   { q: "What are we paying for?", a: "Coverage of important AI systems, depth of adversarial testing, evidence and remediation quality, revalidation cadence, and the business consequence of failure — not arbitrary scan counts." },
   { q: "How is recurring assurance different?", a: "An assessment answers a defined question at a point in time. Annual assurance revisits the evidence as systems, permissions, models, tools and vendors change — reassessing on the changes you share and on scheduled scans. There is no live monitoring." },
-  { q: "Is Economic Exposure included?", a: "Today, business impact is described qualitatively. Economic Exposure is designed to add modeled financial ranges, at increasing depth by tier; it is specified, not yet producing scores." },
+  { q: "Is Economic Exposure included?", a: "Economic Exposure prices a validated failure as a range with its sources, at increasing depth by tier — decision support only. Its feeds are fixtures until keys and a licence review, and it is not yet calibrated." },
   { q: "Does an assessment include a retest?", a: "Many substantive assessments are planned with one remediation retest. The included retest scope and timing are stated in your statement of work." },
   { q: "Do you certify AI as safe?", a: "No. Mythos provides evidence, testing, findings and decision support within an agreed scope. It does not guarantee safety or issue an independent regulatory certification." },
   { q: "What about private networks or physical AI?", a: "Those need a feasibility and authorization discussion first. Private and air-gapped deployment are planned, not available; physical AI work is exploratory and Mythos does not promise vehicle safety certification." },

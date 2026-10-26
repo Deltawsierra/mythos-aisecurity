@@ -9,18 +9,19 @@
  * - No customers, partners, open roles or milestones exist — pages say so
  *   plainly instead of implying them.
  * - Investors: thesis only. No round size, valuation, runway or use of funds.
+ * - Product maturity notes re-checked 26 Oct against the Mythos Master Inventory.
  */
 
 export type Maturity = "Built" | "In development" | "Internal" | "Specified" | "Exploratory";
 
 /** Honest maturity per product, matching what each product page states. */
 export const PRODUCT_MATURITY: { name: string; href: string; maturity: Maturity; note: string }[] = [
-  { name: "Athena", href: "/platform/athena", maturity: "Built", note: "System and access mapping; findings mapped to NIST SP 800-53, OWASP and DoD Zero Trust." },
-  { name: "Achilles", href: "/platform/achilles", maturity: "Built", note: "Adversarial behavior testing; engine evidence packs are signed and verifiable offline." },
-  { name: "SPINE", href: "/platform/spine", maturity: "In development", note: "Claims, hashed receipts, evidence ageing and drift triggers in place; signing and wider change tracing planned." },
-  { name: "Minotaur", href: "/platform/validation", maturity: "Internal", note: "An internal target range with a sealed answer key, used to test Mythos itself." },
-  { name: "Economic Exposure", href: "/platform/economic-exposure", maturity: "Specified", note: "Specified, not yet producing scores; every example on the site is synthetic." },
-  { name: "Hermes", href: "/platform/hermes", maturity: "Exploratory", note: "A research scaffold for physical AI; no customer work." },
+  { name: "Athena", href: "/platform/athena", maturity: "Built", note: "27 scanners, each finding decided against a benign control; Ed25519-signed evidence packs." },
+  { name: "Achilles", href: "/platform/achilles", maturity: "Built", note: "Attacks LLMs and agents over HTTP across 32 scenarios; scan results not yet signed into the record." },
+  { name: "SPINE", href: "/platform/spine", maturity: "In development", note: "Claims, DSSE-signed receipts, coverage and retest-gated closure in place; a customer-run identity collector is planned." },
+  { name: "Minotaur", href: "/platform/validation", maturity: "Internal", note: "Measures Athena and Achilles on planted benchmarks and governs their release. Never sold." },
+  { name: "Economic Exposure", href: "/platform/economic-exposure", maturity: "In development", note: "Prices scenarios as ranges on fixture feeds, not yet calibrated; every example on the site is synthetic." },
+  { name: "Hermes", href: "/platform/hermes", maturity: "Exploratory", note: "A scaffold for physical AI: every domain reads inconclusive today; no customer work." },
 ];
 
 export const COMPANY = {
@@ -99,7 +100,7 @@ export const INVESTORS = {
     items: [
       { name: "Start with one consequential workflow", body: "A paid, scoped assessment of an AI workflow a buyer must decide about — first in financial services, insurance and regulated enterprise, and with AI vendors whose customers ask for proof." },
       { name: "Leave evidence that survives change", body: "SPINE ties every conclusion to the configuration it was true of, and reopens only what a change affects. That record is what customers keep — and what makes retesting cheaper than starting over." },
-      { name: "Bridge to business consequence", body: "Economic Exposure is designed to translate observed effects into ranges a risk owner can use. It is specified, not yet built, and will be decision support — never underwriting or legal advice." },
+      { name: "Bridge to business consequence", body: "Economic Exposure prices observed effects as ranges, with their sources, for a risk owner to use. Its feeds are fixtures and it is not yet calibrated — decision support, never underwriting or legal advice." },
       { name: "Grow into continuing assurance", body: "Assessment, then evidence and retest proof, then annual or change-triggered assurance as models, tools and permissions keep moving." },
     ],
   },

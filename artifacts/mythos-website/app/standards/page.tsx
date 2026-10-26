@@ -18,20 +18,23 @@ export const metadata: Metadata = {
   ...socialImage("standards", "Mapped to Tests and Evidence — Never Certified — Mythos AI Security"),
 };
 
-/* Per the 16 Oct resources fact-check: four mappings built (self-reported);
-   everything else referenced; interoperability formats are designed. */
+/* Per the 26 Oct Master Inventory: SPINE's compliance map covers four frameworks
+   plus vertical packs (evidence of gaps, never a certificate); Minotaur keeps a
+   15-standard, 86-clause map with no badges; DSSE, Ed25519 and OpenTelemetry
+   GenAI conventions are formats in use. Everything else is referenced only. */
 
 const LADDER = [
-  { name: "Mapped", body: "Findings are tagged to the controls they touch, in four frameworks. Self-reported, not audited.", Icon: Check, tone: "border-state-verified text-state-verified-ink" },
+  { name: "Mapped", body: "Findings are tagged to the controls they touch, in four frameworks plus vertical packs. Evidence of gaps — self-reported, not audited.", Icon: Check, tone: "border-state-verified text-state-verified-ink" },
   { name: "Referenced", body: "Frameworks scoping draws on so evidence can support your own reviews. No mapping is claimed.", Icon: Minus, tone: "border-rule text-fg-muted" },
   { name: "Certified", body: "Not offered. Mythos does not certify, attest or declare compliance with any framework.", Icon: Minus, tone: "border-state-contradicted text-state-contradicted-ink" },
 ];
 
 const MAPPED = [
-  { name: "NIST SP 800-53", note: "Security and privacy controls, in the sense of its risk management framework — not the NIST AI RMF." },
-  { name: "OWASP Top 10", note: "Web application risks." },
-  { name: "OWASP Top 10 for LLM Applications", note: "Risks specific to applications built on language models." },
+  { name: "NIST SP 800-53", note: "Security and privacy controls." },
+  { name: "OWASP Top 10 (2021)", note: "Web application risks." },
+  { name: "OWASP Top 10 for LLM Applications (2025)", note: "Risks specific to applications built on language models." },
   { name: "DoD Zero Trust", note: "Zero-trust reference architecture and strategy capabilities." },
+  { name: "Vertical packs", note: "Healthcare, financial services, federal and general AI, layered on the four above." },
 ];
 
 const REFERENCED = [
@@ -41,7 +44,14 @@ const REFERENCED = [
   { group: "Sector and public sector", items: ["US Treasury financial-services AI risk framework", "NYDFS Insurance Circular Letter No. 7", "OMB M-25-21 and M-25-22", "NIST critical-infrastructure AI profile", "EU Cyber Resilience Act"] },
 ];
 
-const INTEROP = ["OSCAL", "W3C PROV", "CycloneDX / SPDX", "OpenTelemetry GenAI", "SCITT", "Cedar", "SPIFFE"];
+const INTEROP = [
+  { name: "DSSE envelopes", inUse: true },
+  { name: "Ed25519 signatures", inUse: true },
+  { name: "Merkle inclusion proofs", inUse: true },
+  { name: "OpenTelemetry GenAI conventions", inUse: true },
+  { name: "ISO 4217 currencies", inUse: true },
+  { name: "OPA or Cedar policy adapter", inUse: false },
+];
 
 /** Standards & Control Mapping — Launch Guide §04 /standards. */
 export default function StandardsPage() {
@@ -89,8 +99,8 @@ export default function StandardsPage() {
           <div>
             <SectionIntro id="mapped-title" eyebrow="Mapping built" title={<Accent text="Four frameworks, *touched not satisfied.*" />} caps />
             <p className="mt-6 text-[15px] leading-relaxed text-fg-muted">
-              A mapped control is one a finding touches — never one Mythos marks as satisfied. Findings that fit no control are listed as unmapped rather than forced in, and
-              they keep their original CWE and MITRE references.
+              A mapped control is one a finding touches — never one Mythos marks as satisfied. The map is evidence of gaps, not a certificate. Separately, Minotaur maps
+              its own benchmarks to 15 standards and 86 clauses, with no badges.
             </p>
           </div>
           <ul className="divide-y divide-rule border-y border-rule" data-reveal-group>
@@ -139,12 +149,17 @@ export default function StandardsPage() {
       <section data-surface="ivory" aria-labelledby="interop-title" className="pb-16 pt-8">
         <Container className="grid gap-12 lg:grid-cols-2">
           <div>
-            <SectionIntro id="interop-title" eyebrow="Designed to interoperate" title={<Accent text="Open formats, *by design.*" />} lede="Evidence is designed to travel in these formats. Interoperability is specified, not yet built." caps />
+            <SectionIntro id="interop-title" eyebrow="Formats in use" title={<Accent text="Open formats, *in use.*" />} lede="Receipts, signatures and traces use these published formats today. A policy adapter for OPA or Cedar is planned, on customer demand." caps />
             <ul className="mt-8 flex flex-wrap gap-2">
               {INTEROP.map((f) => (
-                <li key={f} className="inline-flex items-center gap-1.5 border border-rule bg-panel px-3 py-1.5 text-[13px] text-fg">
-                  <Hourglass size={12} aria-hidden="true" className="text-state-stale-ink" />
-                  {f}
+                <li key={f.name} className="inline-flex items-center gap-1.5 border border-rule bg-panel px-3 py-1.5 text-[13px] text-fg">
+                  {f.inUse ? (
+                    <Check size={12} aria-hidden="true" className="text-state-verified-ink" />
+                  ) : (
+                    <Hourglass size={12} aria-hidden="true" className="text-state-stale-ink" />
+                  )}
+                  {f.name}
+                  {!f.inUse && <span className="text-fg-muted">(planned)</span>}
                 </li>
               ))}
             </ul>
@@ -152,8 +167,8 @@ export default function StandardsPage() {
           <div className="border border-rule bg-panel p-8 lg:mt-[4.5rem]">
             <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-accent">Not listed, on purpose</p>
             <p className="mt-3 text-[15px] leading-relaxed text-fg">
-              SOC 2, ISO/IEC 27001, PCI DSS, HIPAA, HITRUST, GDPR, CMMC and FedRAMP are not mapped. A supplier’s SOC 2 report can be recorded as declared evidence about that
-              supplier — never as a Mythos result.
+              SOC 2, ISO/IEC 27001, PCI DSS, HIPAA, HITRUST, GDPR, CMMC and FedRAMP are not mapped. A supplier’s SOC 2 report can be recorded as a vendor-asserted claim,
+              which caps at supported — never as a Mythos result.
             </p>
           </div>
         </Container>

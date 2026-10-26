@@ -22,17 +22,17 @@ export const metadata: Metadata = {
 
 type Status = "Built" | "Partly built" | "Planned";
 
-/* Launch Guide §14 output table, statuses per the 16 Oct resources fact-check. */
+/* Launch Guide §14 output table, statuses per the Master Inventory (26 Oct 2026). */
 const OUTPUTS: { name: string; what: string; today: string; status: Status }[] = [
-  { name: "Scope & Authorization Record", what: "What the review may touch and what was excluded.", today: "A written, agreed scope that the engine enforces when testing starts.", status: "Partly built" },
-  { name: "AI System & Authority Map", what: "Which identities, models, tools, routes and data connect.", today: "Maps what is declared and observed in scope; effective access is computed from the configuration supplied.", status: "Partly built" },
-  { name: "Observed Finding", what: "What was tested and observed, how confident we are, and what remains uncertain.", today: "Findings with evidence, confidence and the conditions they were found under.", status: "Built" },
-  { name: "Assurance Receipt", what: "Links a claim to its evidence, version and time.", today: "Machine-readable and hashed so changes are detectable; signing is planned.", status: "Built" },
-  { name: "Remediation Plan", what: "What to fix, who owns it and how it will be checked.", today: "Owners, assignments and review states; fixes stay human-approved.", status: "Built" },
-  { name: "Retest Record", what: "Whether the original failure still happens after a change.", today: "Retest results read unchanged, review, blocked or unmeasured; false-block tracking is in development.", status: "Partly built" },
-  { name: "Deployment Decision Support", what: "What the evidence supports, under which restrictions, with which unknowns.", today: "Six recommendation states; never defaults to Ready. Recording the human approver is designed.", status: "Built" },
-  { name: "Economic Exposure Scenario", what: "What an observed effect could mean financially, under stated assumptions.", today: "Specified only. Every example on this site is synthetic.", status: "Planned" },
-  { name: "Executive & Audit Export", what: "A readable summary backed by inspectable proof.", today: "Receipts as JSON, an evidence API and incident evidence packs. Other formats are planned.", status: "Partly built" },
+  { name: "Scope & Authorization Record", what: "What the review may touch and what was excluded.", today: "One gate checks target bounds, consent, authority and the testing window before any scan launches.", status: "Built" },
+  { name: "AI System & Authority Map", what: "Which identities, models, tools, routes and data connect.", today: "Capability map, effective access and a route map of declared against inferred edges; authority chains hop by hop.", status: "Built" },
+  { name: "Observed Finding", what: "What was tested and observed, how strong the evidence is, and what was not measured.", today: "Each finding decided by a differential against a benign control: no baseline, no finding.", status: "Built" },
+  { name: "Assurance Receipt", what: "Links a claim to its evidence, version and time.", today: "DSSE-signed with the issue time inside the signature; verifies offline, every version readable.", status: "Built" },
+  { name: "Remediation Plan", what: "What to fix, who owns it and how it will be checked.", today: "A repair contract names the prohibited effect and what a fix must preserve; findings dispatch to Jira, GitHub, ServiceNow and Splunk.", status: "Built" },
+  { name: "Retest Record", what: "Whether the original failure is absent after a change.", today: "Verdicts read closed, still open or inconclusive; a cached pass is not a retest. Inline verdicts in the dashboard are planned.", status: "Partly built" },
+  { name: "Deployment Decision Support", what: "What the evidence supports, under which restrictions, and what was not measured.", today: "Six states plus Paused, worst-of-N; never defaults to Ready. Evidence for a human decision, not the decision.", status: "Built" },
+  { name: "Economic Exposure Scenario", what: "What an observed effect could mean financially, under stated assumptions.", today: "P10/P50/P90 with a signed receipt. Feeds are fixtures until licensed; no calibration yet. Examples here are synthetic.", status: "Partly built" },
+  { name: "Executive & Audit Export", what: "A readable summary backed by inspectable proof.", today: "Signed receipts download and verify offline; a compliance map shows evidence of gaps, never a certificate.", status: "Partly built" },
 ];
 
 const TONE: Record<Status, string> = {
@@ -41,7 +41,7 @@ const TONE: Record<Status, string> = {
   Planned: "border-rule text-fg-muted",
 };
 
-const DECISIONS = ["Ready", "Ready with restrictions", "Requires additional evidence", "Requires remediation", "Not recommended", "Paused"];
+const DECISIONS = ["Ready", "Ready with restrictions", "Needs more evidence", "Audit incomplete", "Needs remediation", "Not recommended", "Paused"];
 
 const NEXT: NextLink[] = [
   { eyebrow: "Example Report", title: "A synthetic report, section by section", href: "/example-report" },
@@ -56,7 +56,7 @@ export default function OutputsPage() {
       <ScenicHero
         eyebrow="What Mythos Produces"
         headline="From Finding to Evidence *to Decision.*"
-        lede="Every output an engagement is designed to deliver, what each one is for, and how far along it is today."
+        lede="Every output an engagement delivers, what each one is for, and how far along it is today."
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Resources", href: "/resources" },
@@ -103,7 +103,7 @@ export default function OutputsPage() {
       >
         <Container className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
-            <SectionIntro id="decision-title" eyebrow="One output up close" title={<Accent text="Decision support, *not a verdict.*" />} lede="Six recommendation states. A missing decision never reads as Ready, and your release owner makes the call." caps />
+            <SectionIntro id="decision-title" eyebrow="One output up close" title={<Accent text="Decision support, *not a verdict.*" />} lede="Six states plus Paused, worst-of-N. A missing decision never reads as Ready, and your release owner makes the call." caps />
             <ul className="mt-8 flex flex-wrap gap-2">
               {DECISIONS.map((d) => (
                 <li key={d} className="border border-rule bg-panel px-3 py-1.5 text-[13px] text-fg">
@@ -118,8 +118,8 @@ export default function OutputsPage() {
             rows={[
               { field: "Recommendation", value: "Ready with restrictions", tone: "verified" },
               { field: "Restriction", value: "One region; credits above limit go to a person" },
-              { field: "Evidence", value: "4 verified · 1 observed · 2 unknown" },
-              { field: "Open unknowns", value: "Escalation timing; legacy index access" },
+              { field: "Evidence", value: "4 verified · 1 observed" },
+              { field: "Coverage", value: "Expected, observed and assessed match; legacy index out of scope" },
               { field: "Reopens when", value: "Model version, CRM roles or refund policy change" },
               { field: "Decision owner", value: "Your release owner (role)" },
               { field: "Synthetic", value: "Yes" },

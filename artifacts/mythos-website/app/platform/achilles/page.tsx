@@ -32,7 +32,7 @@ import { CTA } from "@/lib/constants";
 export const metadata: Metadata = {
   title: "Achilles — Constantly Tested AI Never Fights Alone",
   description:
-    "Achilles challenges AI systems and agents against declared permissions, tool boundaries, approvals and expected effects — and records what actually happened, not what the agent said.",
+    "Achilles challenges AI systems and agents against declared permissions, tool boundaries, approvals and expected effects — and reports what the AI actually did, not what it said.",
   alternates: { canonical: "/platform/achilles/" },
   ...socialImage("platform-achilles", "Constantly Tested AI Never Fights Alone — Mythos AI Security"),
 };
@@ -107,12 +107,12 @@ export default function AchillesPage() {
                 <span>Turn 6</span>
               </div>
               <p className="mt-5 text-sm leading-relaxed text-fg">
-                Pressure that builds over a conversation — scored on whether the policy still holds at the end, and whether
-                legitimate requests still get through.
+                Crescendo pressure that builds over a conversation — scored on signals in the target’s response, never on the
+                model’s own account of what it did.
               </p>
             </figure>
             <div className="border border-rule bg-panel p-6" data-reveal>
-              <ChainFlow steps={ACHILLES_CHAIN} label="Across channels · illustrative chain" />
+              <ChainFlow steps={ACHILLES_CHAIN} label="One of six chains · illustrative" />
             </div>
           </div>
         </Container>
