@@ -193,7 +193,7 @@ export default function AchillesPage() {
       <ClosingVista
         from="parchment"
         title="Find out what your agents *can actually do.*"
-        primary={{ label: "Request an Agent Safety Assessment", href: CTA_LINKS.assessment }}
+        primary={{ label: "Request an Agent Authority Assessment", href: CTA_LINKS.assessment }}
         secondary={{ label: "How Mythos Validates Itself", href: "/platform/validation" }}
         layers={[
           { src: OLYMPUS_MEDIA.panorama.src, className: "object-[30%_45%]", parallax: 4 },

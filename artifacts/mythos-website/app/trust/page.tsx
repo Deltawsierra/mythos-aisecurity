@@ -85,7 +85,7 @@ export default function TrustPage() {
         secondaryCta={{ label: "Contact", href: "/contact" }}
         planes={[
           { src: OLYMPUS_MEDIA.cloudSea.src, className: "-inset-[3%]", position: "50% 55%", depth: 6, priority: true },
-          { src: OLYMPUS_MEDIA.athena.src, className: "right-[4%] bottom-[6%] h-[84%] w-[34%]", fit: "contain", position: "50% 100%", depth: 14, desktopOnly: true },
+          { src: OLYMPUS_MEDIA.athenaR6.src, className: "right-[4%] bottom-[6%] h-[84%] w-[34%]", fit: "contain", position: "50% 100%", depth: 14, desktopOnly: true },
           { src: OLYMPUS_MEDIA.sunbeams, className: "-inset-[3%]", blend: "screen", opacity: 0.45, position: "100% 0%", depth: 10 },
         ]}
         into="ivory"

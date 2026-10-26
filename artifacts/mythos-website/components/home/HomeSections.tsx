@@ -52,7 +52,7 @@ export function TruthSection() {
   );
 }
 
-/** H07 — the five teams in a dusk sky, energy kept to their own lanes. */
+/** H07 — the four roles in a dusk sky, energy kept to their own lanes. */
 export function TeamsSection() {
   return (
     <Scene

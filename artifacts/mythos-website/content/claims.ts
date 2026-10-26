@@ -14,6 +14,7 @@ export type ClaimStatus =
   | "unverified" // still needs an owner or commercial decision before launch
   | "verified" // in the Master Inventory as a current capability — present tense allowed
   | "forward" // in the inventory as planned or not yet built — forward wording only
+  | "approved" // not a capability claim: an owner or commercial ruling, recorded with its date
   | "rejected"; // not supported by the inventory — must not appear in copy
 
 export interface Claim {
@@ -29,6 +30,7 @@ export interface Claim {
 }
 
 const INV = "Master Inventory, 26 Oct 2026";
+const RULING = "Owner ruling, 26 Oct 2026";
 
 export const CLAIMS: Claim[] = [
   // ── Claims ledger (Master Inventory p.18–19): the external claims the site may make.
@@ -459,11 +461,11 @@ export const CLAIMS: Claim[] = [
   },
   {
     id: "hermes.publication-scope",
-    text: "the Hermes page itself is approved for publication",
-    status: "unverified",
-    source: "Launch Guide R07 ('Launch if scope approved')",
+    text: "the Hermes page is published, describing a scaffold whose every domain returns inconclusive",
+    status: "approved",
+    source: `${RULING}; ${INV} — Hermes`,
     usedIn: ["/platform/hermes", "/use-cases/ai-driven-vehicle-systems-hermes"],
-    note: "Owner decision. The inventory confirms Hermes is a scaffold with every domain INCONCLUSIVE; the page can describe that honestly if leadership approves publishing.",
+    note: "Published as a scaffold. Never certifies a vehicle; does not replace an OEM safety team.",
   },
   {
     id: "hermes.update-evidence",
@@ -530,11 +532,11 @@ export const CLAIMS: Claim[] = [
   },
   {
     id: "home.five-teams",
-    text: "red, blue, purple, green and white assurance teams working inside authorized test scopes",
-    status: "unverified",
-    source: "Red, Gray and Green Teaming guide (28 Sep 2026) §2; Launch Guide H07",
+    text: "red, blue, purple and evaluator as separate credentials, working inside authorized test scopes",
+    status: "verified",
+    source: `${INV} — roles, campaigns and effects; ${RULING}`,
     usedIn: ["/ (H07)", "/platform/spine"],
-    note: "Owner decision: the 26 Oct inventory names red, blue, purple and evaluator credentials only; green and white teams are not in it.",
+    note: "Green and white teams were cut: they are not in the inventory. The evaluator uses the white-team figure until it has its own art.",
   },
   {
     id: "home.targeted-revalidation",
@@ -547,27 +549,42 @@ export const CLAIMS: Claim[] = [
   // ── Commercial and owner decisions.
   {
     id: "solutions.offer-names",
-    text: "starting engagements named on the solution pages",
-    status: "unverified",
-    source: "Fact-check 16 Oct (Banking Dossier, Regulation Strategy, Market Landscape)",
+    text: "solution pages name their starting point as one of the three engagement offers",
+    status: "verified",
+    source: `${INV} — the three engagement offers; ${RULING}`,
     usedIn: ["/solutions/*"],
-    note: "Needs commercial sign-off. The inventory frames everything as three engagement offers: assessment, release assurance and runtime enforcement.",
+    note: "Assessment, release assurance and runtime enforcement, kept distinct.",
   },
   {
     id: "solutions.framework-references",
-    text: "frameworks referenced in scoping: US Treasury FS AI risk framework, NYDFS Circular Letter 7, NIST AI RMF, ISO/IEC 42001, OMB M-25-21/M-25-22, NIST critical-infrastructure AI profile, OWASP agentic guidance, NIST AI 100-2",
-    status: "unverified",
-    source: "Fact-check 16 Oct",
-    usedIn: ["/solutions", "/solutions/*"],
-    note: "Referenced only — never mapped or certified. Not in the inventory's compliance map; needs commercial or legal sign-off.",
+    text: "solution pages list only the inventory's compliance map (NIST SP 800-53, OWASP 2021, OWASP LLM 2025, DoD Zero Trust) and its vertical packs",
+    status: "verified",
+    source: `${INV} — connectors and compliance; ${RULING}`,
+    usedIn: ["/solutions/*"],
+    note: "Sector frameworks outside the map (Treasury, NYDFS, AI RMF, ISO 42001, OMB, NIST AI 100-2) were cut from solution pages. /standards still names them as referenced only.",
   },
   {
     id: "pricing.offer-structure",
-    text: "Assess / Assure / Expand; System Under Assurance; assessment and tier names",
+    text: "assessment and tier names; the System Under Assurance definition",
     status: "unverified",
     source: "Pricing Strategy: Public vs Consultation (internal, 16 Oct 2026)",
     usedIn: ["/pricing"],
-    note: "Release blocker until the price book is signed (D03). The inventory's three engagement offers (assessment, release assurance, runtime enforcement) do not match 'Expand'; reconcile before launch.",
+    note: "Release blocker until the price book is signed (D03). The framing above them is the inventory's three offers (pricing.three-offers).",
+  },
+  {
+    id: "pricing.three-offers",
+    text: "three engagement offers, kept distinct: assessment, release assurance and runtime enforcement",
+    status: "verified",
+    source: `${INV} — the three engagement offers; ${RULING}`,
+    usedIn: ["/pricing", "/solutions/*"],
+  },
+  {
+    id: "pricing.planned-deployments",
+    text: "private cloud and air-gapped deployment, and exploratory physical AI scope, listed as planned",
+    status: "approved",
+    source: RULING,
+    usedIn: ["/pricing"],
+    note: "Not in the inventory. Kept on the owner's ruling as public roadmap items; always worded as planned, never available.",
   },
   {
     id: "usecases.effective-access-declared",
@@ -578,11 +595,10 @@ export const CLAIMS: Claim[] = [
   },
   {
     id: "usecases.quantum-horizon",
-    text: "use case 12 (quantum-adjacent AI R&D) published as research questions only",
-    status: "unverified",
-    source: "Launch Guide UC12",
-    usedIn: ["/use-cases/quantum-adjacent-ai-integration"],
-    note: "Owner decision: nothing in the inventory mentions quantum work.",
+    text: "use case 12 (quantum-adjacent AI R&D)",
+    status: "rejected",
+    source: `Launch Guide UC12; ${RULING}`,
+    note: "Held from launch: nothing in the inventory mentions quantum work. Source kept in content/useCaseLibrary.ts (HELD).",
   },
   {
     id: "trust.controls-in-place",

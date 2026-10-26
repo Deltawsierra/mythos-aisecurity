@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { UseCasePage } from "@/components/use-cases/UseCasePage";
 import { USE_CASES, getUseCase } from "@/content/useCaseLibrary";
 
-// Static export: pre-render exactly the twelve scenarios.
+// Static export: pre-render exactly the eleven published scenarios.
 export const dynamicParams = false;
 
 export function generateStaticParams() {

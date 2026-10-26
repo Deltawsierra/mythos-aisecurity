@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   description:
     "Hermes extends the Mythos evidence philosophy to vehicles, fleets and over-the-air updates. A scaffold today: every domain returns inconclusive, and Hermes never certifies a vehicle.",
   alternates: { canonical: "/platform/hermes/" },
-  ...socialImage("platform-hermes", "Physical AI Deserves a Safer Tomorrow — Mythos AI Security"),
+  ...socialImage("platform-hermes", "Physical AI Deserves Better Evidence — Mythos AI Security"),
 };
 
 const SKY = "radial-gradient(ellipse 45% 55% at 40% 55%, rgba(229,197,143,0.42), transparent 70%), radial-gradient(ellipse 35% 45% at 75% 45%, rgba(91,143,199,0.32), transparent 70%)";

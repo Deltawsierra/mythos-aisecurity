@@ -19,7 +19,7 @@ import type { TimelineEvent } from "@/components/platform/EvidenceTimeline";
 export const HERMES_COPY = {
   hero: {
     eyebrow: "Hermes · physical AI assurance",
-    headline: "Physical AI Deserves a *Safer Tomorrow.*",
+    headline: "Physical AI Deserves *Better Evidence.*",
     lede: "As AI moves beyond the screen, assurance must consider sensing, perception, planning, control, human interaction and system behavior in the physical world. Hermes extends the Mythos evidence philosophy toward these environments.",
     scope: "Physical AI horizon · a scaffold today. Every domain returns inconclusive. Hermes never certifies a vehicle.",
   },

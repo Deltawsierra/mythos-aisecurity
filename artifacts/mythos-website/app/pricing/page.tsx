@@ -17,7 +17,7 @@ import { OLYMPUS_MEDIA } from "@/content/media";
 export const metadata: Metadata = {
   title: "Pricing — Assurance That Scales With Your AI Estate",
   description:
-    "Assess, assure, expand: scoped assessments, annual assurance priced by Systems Under Assurance, and what changes a quote. Prices are quoted after scoping.",
+    "Three offers, kept distinct: assessment, release assurance and runtime enforcement — scoped assessments, annual assurance priced by Systems Under Assurance, and what changes a quote. Prices are quoted after scoping.",
   alternates: { canonical: "/pricing/" },
   ...socialImage("pricing", "Assurance That Scales With Your AI Estate — Mythos AI Security"),
 };
@@ -58,10 +58,10 @@ export default function PricingPage() {
         into="ivory"
       />
 
-      {/* Assess → Assure → Expand */}
+      {/* The three engagement offers */}
       <section data-surface="ivory" aria-labelledby="motions-title" className="pb-24 pt-10">
         <Container>
-          <SectionIntro id="motions-title" eyebrow="How pricing works" title={<Accent text="Assess. Assure. *Expand.*" />} lede="Three ways to buy, in the order most organizations use them." caps />
+          <SectionIntro id="motions-title" eyebrow="How engagements work" title={<Accent text="Three offers, *kept distinct.*" />} lede="Testing, a release decision and runtime enforcement are different promises. Each is scoped on its own." caps />
           <ol className="mt-12 grid gap-4 lg:grid-cols-3" data-reveal-group>
             {MOTIONS.map((m, i) => (
               <li key={m.id} className="relative flex flex-col border border-rule bg-panel p-7">
@@ -99,10 +99,10 @@ export default function PricingPage() {
         </Container>
       </section>
 
-      {/* Assess */}
+      {/* Assessment */}
       <section data-surface="ivory" aria-labelledby="assess-title" className="py-24">
         <Container>
-          <SectionIntro id="assess-title" eyebrow="Assess" title={<Accent text="Four ways *to start.*" />} lede="One defined system, one decision. Pricing is per scoped engagement." caps />
+          <SectionIntro id="assess-title" eyebrow="Assessment" title={<Accent text="Four ways *to start.*" />} lede="One defined system, one decision. Pricing is per scoped engagement." caps />
           <ul className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-4" data-reveal-group>
             {ASSESSMENTS.map((a) => (
               <li key={a.name} className="flex flex-col border border-antique-gold/40 bg-panel p-6 shadow-[0_30px_60px_-46px_rgba(22,26,28,0.55)]">
@@ -135,7 +135,7 @@ export default function PricingPage() {
         </Container>
       </section>
 
-      {/* Assure: annual tiers */}
+      {/* Release Assurance: annual tiers */}
       <Scene
         surface="navy"
         labelledBy="assure-title"
@@ -148,7 +148,7 @@ export default function PricingPage() {
         <Container>
           <SectionIntro
             id="assure-title"
-            eyebrow="Assure"
+            eyebrow="Release Assurance"
             title={<Accent text="Annual assurance, *by Systems Under Assurance.*" />}
             lede="Each tier lists what is available today and what is planned. Planned items are not part of a tier until they ship."
             caps
@@ -203,7 +203,7 @@ export default function PricingPage() {
       <section data-surface="parchment" aria-labelledby="expand-title" className="pb-24 pt-8">
         <Container className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
-            <SectionIntro id="expand-title" eyebrow="Expand" title={<Accent text={EXPAND.title} />} lede={EXPAND.lede} caps />
+            <SectionIntro id="expand-title" eyebrow="Growing scope" title={<Accent text={EXPAND.title} />} lede={EXPAND.lede} caps />
             <ul className="mt-8 flex flex-wrap gap-2">
               {EXPAND.items.map((x) => (
                 <li key={x} className="border border-rule bg-panel px-3 py-1.5 text-[14px] text-fg">
@@ -259,8 +259,8 @@ export default function PricingPage() {
             <thead>
               <tr className="border-b border-rule text-[10px] font-semibold uppercase tracking-[0.2em] text-champagne">
                 <th scope="col" className="py-3 pr-4 font-semibold">Included</th>
-                <th scope="col" className="w-24 py-3 text-center font-semibold sm:w-28">Assess</th>
-                <th scope="col" className="w-24 py-3 text-center font-semibold sm:w-28">Assure</th>
+                <th scope="col" className="w-24 py-3 text-center font-semibold sm:w-32">Assessment</th>
+                <th scope="col" className="w-24 py-3 text-center font-semibold sm:w-32">Release Assurance</th>
               </tr>
             </thead>
             <tbody>

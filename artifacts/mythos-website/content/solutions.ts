@@ -26,7 +26,7 @@ export const SOLUTION_PAGES: SolutionPage[] = [
     headline: "AI assurance for a more resilient financial future.",
     lede: "Servicing copilots, customer data, AI suppliers and approval boundaries — one scoped workflow at a time.",
     media: "financial-services",
-    startingPoint: "Regulated / High-Risk Assessment",
+    startingPoint: "Assessment, then Release Assurance",
     built: true,
     plannedSections: [
       "Where AI meets money and customers",
@@ -46,7 +46,7 @@ export const SOLUTION_PAGES: SolutionPage[] = [
     headline: "Evidence for AI that works with sensitive records.",
     lede: "Sensitive records, research data, AI-assisted operations and vendor AI — with evidence and change control for regulated review.",
     media: "healthcare-life-sciences",
-    startingPoint: "High-Risk / Compliance Evidence Assessment",
+    startingPoint: "Assessment",
     built: true,
     plannedSections: [
       "Sensitive data and AI-assisted workflows",
@@ -65,7 +65,7 @@ export const SOLUTION_PAGES: SolutionPage[] = [
     headline: "Ship AI features your enterprise customers can trust.",
     lede: "Tenant boundaries, RAG leakage, agent actions and customer security reviews — with signed receipts your buyers can verify.",
     media: "technology-ai-saas",
-    startingPoint: "Agent Safety or Growth Assurance",
+    startingPoint: "Assessment · Agent Authority",
     built: true,
     plannedSections: [
       "Tenant boundaries and RAG leakage",
@@ -83,7 +83,7 @@ export const SOLUTION_PAGES: SolutionPage[] = [
     eyebrow: "Regulated Enterprise",
     headline: "Assurance for enterprise copilots and decision support.",
     lede: "Enterprise copilots, decision support, procurement and internal workflows — with audit, access and change drift in view.",
-    startingPoint: "Deployment Assurance / Enterprise",
+    startingPoint: "Release Assurance",
     built: true,
     plannedSections: [
       "Copilots and decision support",
@@ -100,7 +100,7 @@ export const SOLUTION_PAGES: SolutionPage[] = [
     eyebrow: "Public Sector & Mission",
     headline: "High-assurance evidence for mission workflows.",
     lede: "Sensitive workflows, authorization, restricted records and private deployment considerations — with human control kept explicit.",
-    startingPoint: "Mission / High Assurance",
+    startingPoint: "Release Assurance · Mission scope",
     built: true,
     plannedSections: [
       "Authorization and restricted records",
@@ -118,7 +118,7 @@ export const SOLUTION_PAGES: SolutionPage[] = [
     headline: "Assurance where AI meets operations.",
     lede: "Operational AI, industrial workflows, vendor systems and cyber-physical dependencies — with downtime and economic consequence in view.",
     media: "manufacturing-critical-infrastructure",
-    startingPoint: "High-Risk / Mission",
+    startingPoint: "Assessment",
     built: true,
     plannedSections: [
       "Operational and industrial AI",
@@ -135,7 +135,7 @@ export const SOLUTION_PAGES: SolutionPage[] = [
     eyebrow: "Systems Integrators & AI Vendors",
     headline: "Evidence that travels with what you deliver.",
     lede: "Use Mythos evidence to support customer releases, vendor-claim review, implementation validation and recurring customer assurance.",
-    startingPoint: "Partnership / Enterprise Portfolio",
+    startingPoint: "Release Assurance · Enterprise Portfolio",
     built: true,
     plannedSections: [
       "Release and implementation validation",

@@ -1,15 +1,17 @@
 /**
- * Pricing page content (Launch Guide §13), structured by the internal Pricing
- * Strategy (Public vs Consultation, 16 Oct 2026): Assess → Assure → Expand,
- * priced by Systems Under Assurance.
+ * Pricing page content (Launch Guide §13). Framed by the Master Inventory's
+ * three engagement offers, kept distinct (owner ruling, 26 Oct 2026):
+ * Assessment, Release Assurance and Runtime Enforcement. Assessments and the
+ * annual Systems Under Assurance tiers come from the internal Pricing
+ * Strategy (Public vs Consultation, 16 Oct 2026).
  *
  * - No price is shown until the price book is signed (decision D03). Each
  *   offer has a `price` field; while it is null the page says "Quoted after
  *   scoping". Publishing a signed "from" price is a one-line change here —
  *   plus retiring the `pricing.offer-structure` claim.
- * - Offer and tier names, the System Under Assurance definition and the
- *   design-partner line are proposals pending commercial sign-off
- *   (claim `pricing.offer-structure`).
+ * - Assessment and tier names, the System Under Assurance definition and the
+ *   design-partner line are proposals pending the price book
+ *   (claim `pricing.offer-structure`). The three offers are `pricing.three-offers`.
  * - The strategy's tier inclusions describe the completed platform. Here each
  *   capability is split into "available today" and "planned", matching the
  *   26 Oct Master Inventory (Action Gate is runtime enforcement, a separate
@@ -27,10 +29,11 @@ export const PRICING_HERO = {
   lede: "Start with one defined system or workflow. Expand assurance as models, tools, permissions and business consequence grow. Every engagement begins with a scoped review and a clear evidence plan.",
 };
 
+/** The three engagement offers (Master Inventory), kept distinct in every description. */
 export const MOTIONS = [
-  { id: "assess", name: "Assess", lede: "One decision about one defined AI system.", body: "A fixed or capped scope: findings, evidence, remediation guidance and an agreed retest.", next: "Move to annual assurance if the system keeps changing." },
-  { id: "assure", name: "Assure", lede: "Evidence that stays current.", body: "Annual assurance of agreed Systems Under Assurance — named systems, depth, cadence and business criticality.", next: "Add systems, integrations and assurance depth." },
-  { id: "expand", name: "Expand", lede: "From systems to a portfolio.", body: "More systems and business units, deeper campaigns and constrained deployments, under one assurance program.", next: "Enterprise Portfolio or Mission scope." },
+  { id: "assessment", name: "Assessment", lede: "Tests and reports.", body: "One defined system, one decision: findings, evidence, what was not measured, remediation guidance and an agreed retest.", next: "Move to release assurance when a deployment decision is due." },
+  { id: "release", name: "Release Assurance", lede: "A recommendation bound to an exact deployment.", body: "The deployment decision tied to the fingerprint, policy and environment it was made on — and kept current for agreed Systems Under Assurance as they change.", next: "Add systems as your estate grows." },
+  { id: "runtime", name: "Runtime Enforcement", lede: "Mediates supported paths.", body: "The Action Gate: policy as code, deny by default, permitting only the exact action approved, on supported paths. Scoped separately from testing.", next: "Supported paths are confirmed during scoping." },
 ] as const;
 
 export const SUA = {
@@ -69,14 +72,14 @@ export const ASSESSMENTS: AssessmentOffer[] = [
     cta: "Discuss Data Exposure",
   },
   {
-    name: "Agent Safety",
+    name: "Agent Authority",
     fit: "Tool-using agents and workflows that take actions.",
     outputs: "Permission boundaries, tool-misuse tests, how your approval controls hold up, and evidence.",
     price: null,
     cta: "Scope an Agent Assessment",
   },
   {
-    name: "Deployment Assurance",
+    name: "Go / No-Go Review",
     fit: "A pilot or production go / no-go decision.",
     outputs: "Discovery, authority mapping, adversarial tests, evidence, remediation and a decision recommendation.",
     price: null,

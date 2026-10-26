@@ -5,10 +5,10 @@ import { TEAM_MEDIA, CHARACTER_MEDIA } from "@/content/media";
 import { HOME_TEAMS } from "@/content/home";
 import { cn } from "@/lib/utils";
 
-const LANES_X = [100, 300, 500, 700, 900];
+const LANES_X = [125, 375, 625, 875];
 
 /**
- * H07 — the five assurance teams (Launch Guide S06). One team at a time, as
+ * H07 — the four assurance roles (Launch Guide S06; Master Inventory). One team at a time, as
  * accessible tabs: the selected lane carries light up to SPINE and, on
  * desktop with motion allowed, that team's loop plays. Team colours stay
  * inside their own lanes and cards; the surrounding world stays warm.
@@ -84,7 +84,7 @@ export function AssuranceTeams() {
         />
       </div>
 
-      <div role="tablist" aria-label="Assurance teams" className="-mx-6 flex snap-x snap-mandatory gap-3 overflow-x-auto px-6 pb-2 lg:mx-0 lg:grid lg:grid-cols-5 lg:overflow-visible lg:px-0" onKeyDown={onKeyDown}>
+      <div role="tablist" aria-label="Assurance teams" className="-mx-6 flex snap-x snap-mandatory gap-3 overflow-x-auto px-6 pb-2 lg:mx-0 lg:grid lg:grid-cols-4 lg:overflow-visible lg:px-0" onKeyDown={onKeyDown}>
         {teams.map((t, i) => {
           const media = TEAM_MEDIA[t.id];
           const selected = i === active;

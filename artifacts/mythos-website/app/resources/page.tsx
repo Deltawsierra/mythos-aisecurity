@@ -49,7 +49,7 @@ const SHELVES: { name: string; lede: string; items: { title: string; body: strin
     name: "Scenarios and buying",
     lede: "Where risk shows up and how to start.",
     items: [
-      { title: "Use Cases", body: "Twelve scenarios, from support agents to decision support.", href: "/use-cases" },
+      { title: "Use Cases", body: "Eleven scenarios, from support agents to decision support.", href: "/use-cases" },
       { title: "Solutions by Industry", body: "Seven environments, one method.", href: "/solutions" },
       { title: "How Engagement Starts", body: "From the first note to a scoped assessment and a retest.", href: "/engagement" },
       { title: "Pricing", body: "What determines price, and what is included.", href: "/pricing" },

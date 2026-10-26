@@ -22,9 +22,11 @@ import { INTERIM_SCENES, OLYMPUS_MEDIA } from "@/content/media";
 const ASSESSMENT = "/contact?intent=assessment";
 const sun = (position = "100% 0%") => ({ src: OLYMPUS_MEDIA.sunbeams, className: "-inset-[3%]", blend: "screen" as const, opacity: 0.45, position, depth: 10 });
 
+/** The Master Inventory's compliance map. Solution pages show only these plus a vertical pack (owner ruling, 26 Oct). */
 const MAPPED_CORE = [
   { name: "NIST SP 800-53", status: "mapped" as const, note: "Findings are tagged to the controls they touch — never marked as satisfied." },
-  { name: "OWASP Top 10 for LLM applications", status: "mapped" as const, note: "Used as threat coverage for testing, not as a certificate." },
+  { name: "OWASP Top 10 (2021)", status: "mapped" as const, note: "Web application risks, tagged to findings." },
+  { name: "OWASP Top 10 for LLM Applications (2025)", status: "mapped" as const, note: "Used as threat coverage for testing, not as a certificate." },
 ];
 
 export const INDUSTRIES: IndustryContent[] = [
@@ -78,8 +80,7 @@ export const INDUSTRIES: IndustryContent[] = [
       lede: "Evidence is organized so your security, model-risk and compliance teams can use it in their own reviews.",
       items: [
         ...MAPPED_CORE,
-        { name: "US Treasury financial-services AI risk framework", status: "reference", note: "Findings can be mapped to it where relevant during scoping." },
-        { name: "NYDFS Insurance Circular Letter No. 7", status: "reference", note: "Evidence can feed an insurer’s own model-risk review of AI suppliers." },
+        { name: "Financial services pack", status: "mapped", note: "Layered on the core map — evidence of gaps, never a certificate." },
       ],
     },
     proof: {
@@ -104,7 +105,7 @@ export const INDUSTRIES: IndustryContent[] = [
       ],
     },
     closing: { title: "Start with *one financial workflow.*", body: "A scoped assessment of one AI workflow, with evidence your reviewers can use and a plan for what to retest when it changes." },
-    startingPoint: "Banking AI workflow assurance assessment · insurance AI change evidence",
+    startingPoint: "Assessment of one banking or insurance AI workflow, then release assurance",
   },
   {
     slug: "healthcare-life-sciences",
@@ -155,7 +156,7 @@ export const INDUSTRIES: IndustryContent[] = [
       lede: "Sector requirements are confirmed with your team during scoping. Mythos evidence supports those reviews; it does not establish compliance.",
       items: [
         ...MAPPED_CORE,
-        { name: "Sector and quality frameworks", status: "reference", note: "Privacy, research and quality requirements that apply to you are identified with your team during scoping." },
+        { name: "Healthcare pack", status: "mapped", note: "Layered on the core map — evidence of gaps, never a certificate." },
       ],
     },
     proof: {
@@ -180,7 +181,7 @@ export const INDUSTRIES: IndustryContent[] = [
       ],
     },
     closing: { title: "Start with *one sensitive workflow.*", body: "A scoped assessment on test data, with evidence your privacy and security teams can review." },
-    startingPoint: "High-risk AI evidence assessment",
+    startingPoint: "Assessment of one high-risk AI workflow",
   },
   {
     slug: "ai-saas",
@@ -228,12 +229,10 @@ export const INDUSTRIES: IndustryContent[] = [
     useCases: { title: "Scenarios for *SaaS teams.*", slugs: ["customer-support-ai-agent", "ai-agent-tools-actions", "data-platform-cloud-ai-integration", "developer-ai-assistant"] },
     controls: {
       title: "Threat coverage, *stated honestly.*",
-      lede: "Testing coverage is described against public threat taxonomies. Supplier attestations cap at supported until technical evidence shows more.",
+      lede: "Findings are tagged to the OWASP web and LLM lists and NIST SP 800-53. Supplier attestations stay supported, never verified, until technical evidence shows more.",
       items: [
         ...MAPPED_CORE,
-        { name: "OWASP guidance for agentic applications", status: "reference", note: "Used as threat coverage for agent features." },
-        { name: "NIST AI 100-2 adversarial ML taxonomy", status: "reference", note: "Used to describe attack classes in reports." },
-        { name: "Your vendors’ SOC 2 reports", status: "reference", note: "Recorded as vendor-asserted evidence — capped at supported, never verified." },
+        { name: "General AI pack", status: "mapped", note: "Layered on the core map — evidence of gaps, never a certificate." },
       ],
     },
     proof: {
@@ -258,7 +257,7 @@ export const INDUSTRIES: IndustryContent[] = [
       ],
     },
     closing: { title: "Ship the next AI feature *with evidence.*", body: "A scoped release assessment, with receipts your customers’ security teams can read." },
-    startingPoint: "AI workflow release assurance",
+    startingPoint: "Release assurance for one AI workflow",
   },
   {
     slug: "regulated-enterprise",
@@ -270,7 +269,7 @@ export const INDUSTRIES: IndustryContent[] = [
       eyebrow: "Regulated Enterprise",
       headline: "Meet Requirements. *Move Faster.*",
       lede: "A changing AI estate requires evidence about what systems do, which policies apply, and which decisions require human ownership.",
-      primaryCta: { label: "Request Deployment Assurance", href: ASSESSMENT },
+      primaryCta: { label: "Request Release Assurance", href: ASSESSMENT },
       planes: [{ src: OLYMPUS_MEDIA.marbleCity.src, className: "-inset-[3%]", position: "75% 40%", depth: 6, priority: true }, sun()],
     },
     risks: {
@@ -306,11 +305,10 @@ export const INDUSTRIES: IndustryContent[] = [
     useCases: { title: "Scenarios for *regulated teams.*", slugs: ["regulated-workflow-assistant", "internal-knowledge-rag-assistant", "executive-employee-copilot", "ai-powered-decision-support"] },
     controls: {
       title: "Supporting reviews, *not replacing them.*",
-      lede: "Frameworks are referenced so evidence can be used in your reviews. None of this is a certification or a legal safe harbor.",
+      lede: "Findings are mapped so evidence can be used in your reviews. None of this is a certification or a legal safe harbor.",
       items: [
         ...MAPPED_CORE,
-        { name: "NIST AI Risk Management Framework", status: "reference", note: "A voluntary framework, referenced in scoping; not part of the built mapping." },
-        { name: "ISO/IEC 42001", status: "reference", note: "A management-system standard — evidence about a system supports it but does not prove it." },
+        { name: "General AI pack", status: "mapped", note: "Layered on the core map — evidence of gaps, never a certificate." },
         { name: "State AI and privacy requirements", status: "reference", note: "Identified with your counsel during scoping." },
       ],
     },
@@ -336,7 +334,7 @@ export const INDUSTRIES: IndustryContent[] = [
       ],
     },
     closing: { title: "Bring evidence to *your next review.*", body: "A scoped assessment of one consequential workflow, with evidence your compliance and legal teams can use." },
-    startingPoint: "Privacy and consequential-decision evidence",
+    startingPoint: "Assessment covering privacy and consequential decisions",
   },
   {
     slug: "public-sector-mission",
@@ -388,7 +386,7 @@ export const INDUSTRIES: IndustryContent[] = [
       items: [
         { name: "NIST SP 800-53", status: "mapped", note: "Findings are tagged to the controls they touch — never marked as satisfied." },
         { name: "DoD Zero Trust", status: "mapped", note: "Findings are tagged to the relevant capabilities." },
-        { name: "OMB AI memoranda (M-25-21, M-25-22)", status: "reference", note: "Acceptance and change evidence can support what programs document under them." },
+        { name: "Federal pack", status: "mapped", note: "Layered on the core map — evidence of gaps, never a certificate." },
       ],
     },
     proof: {
@@ -413,7 +411,7 @@ export const INDUSTRIES: IndustryContent[] = [
       ],
     },
     closing: { title: "Start with *one mission workflow.*", body: "Acceptance and change evidence for one system, delivered within an agreed scope." },
-    startingPoint: "AI acceptance and change evidence, through an integrator",
+    startingPoint: "Release assurance, delivered through an integrator",
   },
   {
     slug: "manufacturing-critical-infrastructure",
@@ -464,7 +462,7 @@ export const INDUSTRIES: IndustryContent[] = [
       lede: "Operational and safety standards that apply to you are identified during scoping. Mythos makes no safety certification.",
       items: [
         ...MAPPED_CORE,
-        { name: "NIST critical-infrastructure AI profile", status: "reference", note: "Referenced as context for evidence." },
+        { name: "General AI pack", status: "mapped", note: "Layered on the core map — evidence of gaps, never a certificate." },
         { name: "Your safety and OT security standards", status: "reference", note: "Identified with your team; physical safety stays with your safety owners." },
       ],
     },
@@ -490,7 +488,7 @@ export const INDUSTRIES: IndustryContent[] = [
       ],
     },
     closing: { title: "Start with *one operational workflow.*", body: "A scoped assessment in a test environment, with evidence your operations and security teams can use." },
-    startingPoint: "High-risk AI assessment",
+    startingPoint: "Assessment of one high-risk AI system",
   },
   {
     slug: "integrators-vendors",
@@ -570,7 +568,7 @@ export const INDUSTRIES: IndustryContent[] = [
       ],
     },
     closing: { title: "Deliver AI *with evidence attached.*", body: "Talk to us about how Mythos evidence could travel with what you deliver." },
-    startingPoint: "Delivery partnership · third-party AI vendor assurance",
+    startingPoint: "Assessment of third-party AI vendor claims, through a delivery partner",
   },
 ];
 

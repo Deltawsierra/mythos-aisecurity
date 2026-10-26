@@ -12,9 +12,10 @@
  * - No live monitoring: a changed fingerprint supersedes claims and opens a
  *   retest. Assurance Receipts are DSSE-signed and verify offline (26 Oct
  *   inventory). Gaps go to the coverage manifest as Not measured.
- * - UC11 (Hermes) and UC12 (quantum) are strategic-horizon pages, gated by
- *   hermes.publication-scope / usecases.quantum-horizon. UC11 follows the
- *   inventory: a scaffold, every domain INCONCLUSIVE.
+ * - UC11 (Hermes) is a strategic-horizon page that follows the inventory: a
+ *   scaffold, every domain INCONCLUSIVE (published on the owner's ruling).
+ * - UC12 (quantum) is held from launch: nothing in the inventory supports it.
+ *   Its source stays below so it can return; HELD keeps it out of the build.
  */
 import type { UseCaseContent } from "@/components/use-cases/types";
 import { OLYMPUS_MEDIA } from "@/content/media";
@@ -28,7 +29,7 @@ const scene = (src: string, position: string) => [{ src, className: "-inset-[3%]
 const RECEIPT_FOOTER =
   "Synthetic receipt for illustration. Receipts are signed and verify offline, so later changes are detectable. A receipt shows where a result came from — not that the conclusion is true.";
 
-export const USE_CASES: UseCaseContent[] = [
+const LIBRARY: UseCaseContent[] = [
   {
     slug: "customer-support-ai-agent",
     number: 1,
@@ -931,6 +932,11 @@ export const USE_CASES: UseCaseContent[] = [
     industries: ["regulated-enterprise"],
   },
 ];
+
+/** Held from launch (owner ruling, 26 Oct 2026). */
+const HELD = new Set(["quantum-adjacent-ai-integration"]);
+
+export const USE_CASES = LIBRARY.filter((u) => !HELD.has(u.slug));
 
 export function getUseCase(slug: string) {
   return USE_CASES.find((u) => u.slug === slug);

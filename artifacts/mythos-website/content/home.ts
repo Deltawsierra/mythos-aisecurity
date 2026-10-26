@@ -14,7 +14,7 @@ export const HOME_HERO = {
   category: "AI Deployment Assurance",
   proofline: "See what AI can access. Test what it can do. Maintain the evidence behind every decision.",
   body: "AI can expand what people create, discover and deliver. Mythos helps organizations move forward with evidence about access, authority, behavior, business consequence and change — so bold AI initiatives rest on stronger decisions.",
-  ladder: ["People", "Ideas", "Industries", "A safer tomorrow"],
+  ladder: ["People", "Ideas", "Industries", "A trusted tomorrow"],
 } as const;
 
 export const HOME_CHALLENGE = {
@@ -160,14 +160,14 @@ export const HOME_TRUTH = {
 } as const;
 
 /**
- * H07 — the five assurance teams. Definitions follow the Mythos Red, Gray and
- * Green Teaming guide (28 Sep 2026); the Launch Guide's draft called green
- * "operational utility", which the source assigns to the gray user role.
+ * H07 — the four assurance roles. The Master Inventory (26 Oct 2026) names
+ * red, blue, purple and evaluator as separate credentials; green and white
+ * teams are not in it and were cut on the owner's ruling (26 Oct).
  */
 export const HOME_TEAMS = {
-  eyebrow: "Red · Blue · Purple · Green · White",
+  eyebrow: "Red · Blue · Purple · Evaluator",
   headline: "Stronger Together, *Tested From Every Angle.*",
-  lede: "Adversarial challenge, defense, shared learning, a safe test range and independent governance reinforce one another — inside defined, authorized test scopes.",
+  lede: "Adversarial challenge, defense, shared learning and independent scoring run as separate credentials — inside defined, authorized test scopes.",
   teams: [
     {
       id: "red",
@@ -175,7 +175,7 @@ export const HOME_TEAMS = {
       role: "Adversarial challenge",
       body: "Authorized adversarial testing of an agreed objective and its technical paths.",
       delivers: "Reproducible failure evidence, attempted paths and observed effects.",
-      boundary: "Cannot expand scope or waive stop conditions.",
+      boundary: "Never reads the answer key; cannot expand scope or waive a stop.",
       color: "#c0573f",
     },
     {
@@ -184,7 +184,7 @@ export const HOME_TEAMS = {
       role: "Defense",
       body: "Prevention, detection, containment, recovery and repair.",
       delivers: "Proposed fixes, operational controls and recovery evidence.",
-      boundary: "Cannot mark its own fix as independently verified.",
+      boundary: "Reaches production only by a two-operator signed release; cannot mark its own fix verified.",
       color: "#5b8fc7",
     },
     {
@@ -193,25 +193,16 @@ export const HOME_TEAMS = {
       role: "Shared learning",
       body: "Joint analysis that turns adversarial findings into defensive change.",
       delivers: "Causal explanation, repair contract and retest plan.",
-      boundary: "Does not replace independent judgement of the outcome.",
+      boundary: "Does not replace the evaluator’s judgement of the outcome.",
       color: "#9b7cc9",
     },
     {
-      id: "green",
-      name: "Green Team",
-      role: "Safe test range",
-      body: "Test infrastructure, safety controls, resets, observability and recovery.",
-      delivers: "A trustworthy test environment and continuity evidence.",
-      boundary: "The agent under test cannot control the safety controller.",
-      color: "#5e9e72",
-    },
-    {
-      id: "white",
-      name: "White Team",
-      role: "Governance",
-      body: "Scope, rules of engagement, adjudication, approvals and stop authority.",
-      delivers: "Rules of engagement and the final acceptance decision.",
-      boundary: "Stays outside adversarial reward optimisation.",
+      id: "evaluator",
+      name: "Evaluator",
+      role: "Independent scoring",
+      body: "Scores each run against answers keyed in advance — recall and precision, with decoys beside the real targets.",
+      delivers: "Scores read as floors on planted targets, with known gaps counted apart from misses.",
+      boundary: "Nobody writes the sealed rule set; a campaign ends only on two operators’ approval.",
       color: "#e5c58f",
     },
   ] as {
@@ -241,7 +232,7 @@ export const HOME_CONSEQUENCE = {
 /** H09 — six sectors with their own art (Government/Capitol art stays withheld). */
 export const HOME_SECTORS = {
   eyebrow: "Built for what matters",
-  headline: "Secure AI Across the *Environments That Matter.*",
+  headline: "Evidence for AI Across the *Environments That Matter.*",
   lede: "From financial services and healthcare to enterprise platforms, the mission is the same: understand what an AI system can reach, prove how it behaves, and keep evidence current.",
   cards: [
     { slug: "financial-services-insurance", image: "/assets/industries/financial-services-card.webp", position: "50% 40%" },
@@ -268,6 +259,6 @@ export const HOME_ENGAGE = {
 } as const;
 
 export const HOME_FINAL = {
-  headline: "Secure Today. *Empower Tomorrow.*",
+  headline: "Tested Today. *Trusted Tomorrow.*",
   body: "The goal is not to slow human ambition. It is to give teams better proof before they trust AI with meaningful actions.",
 } as const;

@@ -54,7 +54,7 @@ export default function UseCasesPage() {
       <ScenicHero
         eyebrow="Use Cases"
         headline="Where AI Deployment Risk *Shows Up.*"
-        lede="Twelve scenarios, each starting from the question a buyer has to answer about one AI workflow — and ending with what the evidence can and cannot show."
+        lede="Eleven scenarios, each starting from the question a buyer has to answer about one AI workflow — and ending with what the evidence can and cannot show."
         breadcrumbs={[{ label: "Home", href: "/" }]}
         current="Use Cases"
         secondaryCta={{ label: "Browse the Scenarios", href: "#library-title" }}
@@ -115,10 +115,10 @@ export default function UseCasesPage() {
             id="horizon-title"
             eyebrow="Strategic horizon"
             title={<Accent text="Questions we are *exploring, not selling.*" />}
-            lede="Two pages describe directions under research. Neither is a service available today."
+            lede="One page describes a direction under research. It is not a service available today."
             caps
           />
-          <ul className="mt-12 grid gap-4 md:grid-cols-2" data-reveal-group>
+          <ul className="mt-12 grid max-w-3xl gap-4" data-reveal-group>
             {HORIZON.map((u) => (
               <li key={u.slug}>
                 <Link href={`/use-cases/${u.slug}`} className="group flex h-full gap-5 border border-rule bg-panel p-6 hover:border-antique-gold/60">

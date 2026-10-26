@@ -110,9 +110,9 @@ export const SPINE_COPY = {
   },
   teams: {
     eyebrow: "Assurance teams and validity",
-    title: "Five teams, *one evidence loop.*",
-    lede: "Red, blue, purple, green and white teams work inside defined, authorized scopes and feed the same claims. Minotaur stands apart from all five, checking that the tests themselves are valid.",
-    minotaur: "Minotaur holds out scenarios, replays results and can hold a release on evidence quality. It is Mythos’ internal proving ground — not a sixth team and not a separate product.",
+    title: "Four roles, *one evidence loop.*",
+    lede: "Red, blue, purple and evaluator are separate credentials, working inside defined, authorized scopes and feeding the same claims. Minotaur stands apart from all four, checking that the tests themselves are valid.",
+    minotaur: "Minotaur holds out scenarios, replays results and can hold a release on evidence quality. It is Mythos’ internal proving ground — not a fifth role and not a separate product.",
   },
   revalidate: {
     eyebrow: "Revalidation",

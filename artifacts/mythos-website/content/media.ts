@@ -19,7 +19,7 @@ export interface ImageAsset {
 }
 
 export type ProjectId = "athena" | "spine" | "achilles" | "minotaur" | "hermes";
-export type TeamId = "red" | "blue" | "purple" | "green" | "white";
+export type TeamId = "red" | "blue" | "purple" | "evaluator";
 export type IndustryId =
   | "financial-services"
   | "insurance"
@@ -208,7 +208,8 @@ export const CHARACTER_MEDIA: Record<ProjectId, CharacterMedia> = {
   },
 };
 
-const team = (id: TeamId): TeamMedia => ({
+// The evaluator uses the white-team figure until it has art of its own.
+const team = (id: string): TeamMedia => ({
   poster: poster(`/assets/teams/${id}-team-poster.webp`, 540, 960),
   idle: `/assets/teams/${id}-team-idle.webm`,
   engaged: `/assets/teams/${id}-team-engaged.webm`,
@@ -219,8 +220,7 @@ export const TEAM_MEDIA: Record<TeamId, TeamMedia> = {
   red: team("red"),
   blue: team("blue"),
   purple: team("purple"),
-  green: team("green"),
-  white: team("white"),
+  evaluator: team("white"),
 };
 
 // Government / Mission is withheld until its card no longer depicts the US Capitol.
