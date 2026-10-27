@@ -294,7 +294,7 @@ export const CHARACTER_MEDIA: Record<ProjectId, CharacterMedia> = {
     poster: poster("/assets/characters/achilles-poster.webp", 643, 1164),
     emblem: "/assets/characters/emblems/achilles-emblem.svg",
     crop: { left: 5, top: 2 },
-    face: { x: 60, y: 19, zoom: 3.2 },
+    face: { x: 72, y: 19, zoom: 3.2 },
   },
   minotaur: {
     poster: poster("/assets/characters/minotaur-poster.webp", 631, 1164),
