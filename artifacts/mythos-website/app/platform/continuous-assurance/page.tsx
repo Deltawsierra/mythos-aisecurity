@@ -15,7 +15,7 @@ import { ChangeTraversal } from "@/components/platform/ChangeTraversal";
 import { ChangeFlow } from "@/components/platform/ChangeFlow";
 import { EvidenceTimeline } from "@/components/platform/EvidenceTimeline";
 import { CA_CHANGES, CA_CLAIMS, CA_COPY, CA_EVENTS, CA_LEDGER } from "@/content/continuousAssurance";
-import { OLYMPUS_MEDIA, SCENES } from "@/content/media";
+import { OLYMPUS_MEDIA, SCENES, scenePlanes } from "@/content/media";
 
 export const metadata: Metadata = {
   title: "Continuous AI Assurance & Revalidation",
@@ -55,7 +55,7 @@ export default function ContinuousAssurancePage() {
         ]}
         current="Continuous Assurance"
         secondaryCta={{ label: "Explore the Platform", href: "/platform" }}
-        planes={[{ src: SCENES.continuousAssurance.src, mobileSrc: SCENES.continuousAssurance.phone, className: "-inset-[3%]", position: "55% 50%", depth: 6, priority: true }]}
+        planes={scenePlanes(SCENES.continuousAssurance, "55% 50%")}
         figure={<OrbitFigure entries={LEDGER_TICKER} className="absolute right-[6%] top-[14%] w-[min(36vw,33rem)]" />}
         mobileFigure={<OrbitFigure entries={LEDGER_TICKER} className="relative mx-auto w-72" />}
         into="ivory"

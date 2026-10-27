@@ -17,7 +17,7 @@
  *   approval (register: solutions.offer-names). Prices are never shown.
  */
 import type { IndustryContent } from "@/components/solutions/types";
-import { OLYMPUS_MEDIA, PHONE_ART, SCENES } from "@/content/media";
+import { OLYMPUS_MEDIA, PHONE_ART, SCENES, scenePlanes } from "@/content/media";
 
 const ASSESSMENT = "/contact?intent=assessment";
 const sun = (position = "100% 0%") => ({ src: OLYMPUS_MEDIA.sunbeams, className: "-inset-[3%]", blend: "screen" as const, opacity: 0.45, position, depth: 10 });
@@ -41,7 +41,7 @@ export const INDUSTRIES: IndustryContent[] = [
       headline: "AI Assurance for a More Resilient *Financial Future.*",
       lede: "From assistants and agentic workflows to regulated decision support, financial AI needs controlled access, trustworthy evidence and a clear view of business consequence.",
       primaryCta: { label: "Request a Financial AI Assessment", href: ASSESSMENT },
-      planes: [{ src: SCENES.financialServices.src, mobileSrc: SCENES.financialServices.phone, className: "-inset-[3%]", position: "60% 50%", depth: 6, priority: true }],
+      planes: scenePlanes(SCENES.financialServices, "60% 50%"),
     },
     risks: {
       title: "Where financial AI *goes wrong.*",
@@ -270,7 +270,7 @@ export const INDUSTRIES: IndustryContent[] = [
       headline: "Meet Requirements. *Move Faster.*",
       lede: "A changing AI estate requires evidence about what systems do, which policies apply, and which decisions require human ownership.",
       primaryCta: { label: "Request Release Assurance", href: ASSESSMENT },
-      planes: [{ src: SCENES.regulatedEnterprise.src, mobileSrc: SCENES.regulatedEnterprise.phone, className: "-inset-[3%]", position: "60% 50%", depth: 6, priority: true }],
+      planes: scenePlanes(SCENES.regulatedEnterprise, "60% 50%"),
     },
     risks: {
       title: "Evidence that has to *keep up.*",
@@ -347,7 +347,7 @@ export const INDUSTRIES: IndustryContent[] = [
       headline: "Enable Innovation *With Assurance.*",
       lede: "For mission-sensitive work, authorization, scope control, traceability and reliable evidence matter as much as detection.",
       primaryCta: { label: "Discuss Mission Assurance", href: ASSESSMENT },
-      planes: [{ src: SCENES.publicSector.src, mobileSrc: SCENES.publicSector.phone, className: "-inset-[3%]", position: "60% 50%", depth: 6, priority: true }],
+      planes: scenePlanes(SCENES.publicSector, "60% 50%"),
     },
     risks: {
       title: "What an evaluation *has to show.*",
@@ -501,7 +501,7 @@ export const INDUSTRIES: IndustryContent[] = [
       headline: "Build Customer Trust Into *Every Deployment.*",
       lede: "Give buyers and delivery teams a repeatable way to define scope, validate permissions, produce evidence and retest changes before handoff.",
       primaryCta: { label: "Discuss a Partnership", href: "/contact?intent=partner" },
-      planes: [{ src: SCENES.integratorsVendors.src, mobileSrc: SCENES.integratorsVendors.phone, className: "-inset-[3%]", position: "55% 50%", depth: 6, priority: true }],
+      planes: scenePlanes(SCENES.integratorsVendors, "55% 50%"),
     },
     risks: {
       title: "What your *customers will ask.*",

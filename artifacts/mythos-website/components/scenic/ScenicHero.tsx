@@ -16,6 +16,8 @@ export interface HeroPlane {
   src: string;
   /** Portrait composition for phones (below md); shown full-bleed and centred. */
   mobileSrc?: string;
+  /** Flattened scene for md up to lg, where a back layer's desktopOnly planes are hidden. */
+  tabletSrc?: string;
   /** Position and size of the plane, e.g. "inset-0" or "right-0 bottom-[12%] w-[58%]". */
   className: string;
   fit?: "cover" | "contain";
@@ -27,9 +29,38 @@ export interface HeroPlane {
   depth?: number;
   /** Scroll drift, px. */
   drift?: number;
-  /** Only from lg up (planes that crowd phones). */
+  /** Only from lg up (planes that crowd phones); never downloaded below lg. */
   desktopOnly?: boolean;
   priority?: boolean;
+}
+
+/** 1x1 transparent GIF: the source a desktop-only plane resolves to below lg, so it is never fetched there. */
+const BLANK = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+
+/** One plane, positioned by its own classes and moved by PageMotion (data-depth, data-drift). */
+export function HeroPlaneImage({ plane }: { plane: HeroPlane }) {
+  return (
+    <div className={cn("absolute", plane.className, plane.desktopOnly && "hidden lg:block")} data-depth={plane.depth} data-drift={plane.drift}>
+      <picture>
+        {plane.mobileSrc && <source media="(max-width: 767px)" srcSet={plane.mobileSrc} />}
+        {plane.tabletSrc && <source media="(max-width: 1023px)" srcSet={plane.tabletSrc} />}
+        {plane.desktopOnly && <source media="(max-width: 1023px)" srcSet={BLANK} />}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={plane.src}
+          alt=""
+          loading={plane.priority || plane.desktopOnly ? "eager" : "lazy"}
+          fetchPriority={plane.priority ? "high" : undefined}
+          className={cn(
+            "h-full w-full max-w-none",
+            plane.fit === "contain" ? "object-contain" : "object-cover",
+            plane.mobileSrc && "max-md:![object-position:50%_50%]",
+          )}
+          style={{ objectPosition: plane.position, opacity: plane.opacity ?? 1, mixBlendMode: plane.blend }}
+        />
+      </picture>
+    </div>
+  );
 }
 
 export interface Crumb {
@@ -101,29 +132,7 @@ export function ScenicHero({
     >
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
         {planes.map((plane) => (
-          <div
-            key={plane.src + plane.className}
-            className={cn("absolute", plane.className, plane.desktopOnly && "hidden lg:block")}
-            data-depth={plane.depth}
-            data-drift={plane.drift}
-          >
-            <picture>
-              {plane.mobileSrc && <source media="(max-width: 767px)" srcSet={plane.mobileSrc} />}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={plane.src}
-                alt=""
-                loading={plane.priority ? "eager" : "lazy"}
-                fetchPriority={plane.priority ? "high" : undefined}
-                className={cn(
-                  "h-full w-full max-w-none",
-                  plane.fit === "contain" ? "object-contain" : "object-cover",
-                  plane.mobileSrc && "max-md:![object-position:50%_50%]",
-                )}
-                style={{ objectPosition: plane.position, opacity: plane.opacity ?? 1, mixBlendMode: plane.blend }}
-              />
-            </picture>
-          </div>
+          <HeroPlaneImage key={plane.src + plane.className} plane={plane} />
         ))}
         <div
           className="absolute inset-0"

@@ -9,7 +9,7 @@ import { ScenicHero } from "@/components/scenic/ScenicHero";
 import { Scene } from "@/components/scenic/Scene";
 import { ClosingVista } from "@/components/scenic/ClosingVista";
 import { PARTNERSHIPS } from "@/content/company";
-import { OLYMPUS_MEDIA, SCENES } from "@/content/media";
+import { OLYMPUS_MEDIA, SCENES, scenePlanes } from "@/content/media";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -38,7 +38,7 @@ export default function PartnershipsPage() {
         current="Partnerships"
         primaryCta={DISCUSS}
         secondaryCta={{ label: "For Integrators & Vendors", href: "/solutions/integrators-vendors" }}
-        planes={[{ src: SCENES.partnerships.src, mobileSrc: SCENES.partnerships.phone, className: "-inset-[3%]", position: "60% 50%", depth: 6, priority: true }]}
+        planes={scenePlanes(SCENES.partnerships, "60% 50%")}
         copySide="right"
         into="ivory"
       />

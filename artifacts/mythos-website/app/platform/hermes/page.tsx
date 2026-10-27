@@ -25,7 +25,7 @@ import {
   HERMES_TRAIL,
   HERMES_VMODEL,
 } from "@/content/hermes";
-import { BACKDROPS, OLYMPUS_MEDIA, SCENES } from "@/content/media";
+import { BACKDROPS, OLYMPUS_MEDIA, SCENES, scenePlanes } from "@/content/media";
 
 export const metadata: Metadata = {
   title: "Hermes: Physical AI Assurance",
@@ -59,7 +59,7 @@ export default function HermesPage() {
         current="Hermes"
         primaryCta={{ label: "Discuss Physical AI Assurance", href: INQUIRY }}
         secondaryCta={{ label: "Explore the Platform", href: "/platform" }}
-        planes={[{ src: SCENES.hermes.src, mobileSrc: SCENES.hermes.phone, className: "-inset-[3%]", position: "60% 40%", depth: 6, priority: true }]}
+        planes={scenePlanes(SCENES.hermes, "60% 40%")}
         into="ivory"
       />
 

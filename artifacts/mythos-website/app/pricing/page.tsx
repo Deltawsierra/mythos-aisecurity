@@ -12,7 +12,7 @@ import { Scene } from "@/components/scenic/Scene";
 import { ClosingVista } from "@/components/scenic/ClosingVista";
 import { Faq } from "@/components/platform/Faq";
 import { ASSESSMENTS, CONSULT_ASSESSMENTS, EXPAND, INCLUDED, MOTIONS, PRICING_FAQ, PRICING_HERO, QUOTE_FACTORS, SUA, TIERS } from "@/content/pricing";
-import { BACKDROPS, OLYMPUS_MEDIA, SCENES } from "@/content/media";
+import { BACKDROPS, OLYMPUS_MEDIA, SCENES, scenePlanes } from "@/content/media";
 
 export const metadata: Metadata = {
   title: "Pricing: AI Assessment & Assurance",
@@ -51,7 +51,7 @@ export default function PricingPage() {
         current="Pricing"
         primaryCta={ASSESSMENT}
         secondaryCta={ANNUAL}
-        planes={[{ src: SCENES.pricing.src, mobileSrc: SCENES.pricing.phone, className: "-inset-[3%]", position: "60% 50%", depth: 6, priority: true }]}
+        planes={scenePlanes(SCENES.pricing, "60% 50%")}
         into="ivory"
       />
 

@@ -26,7 +26,7 @@ import {
   ATHENA_RETEST,
   ATHENA_TRACES,
 } from "@/content/athena";
-import { BACKDROPS, OLYMPUS_MEDIA, SCENES } from "@/content/media";
+import { BACKDROPS, OLYMPUS_MEDIA, SCENES, scenePlanes } from "@/content/media";
 import { CTA_LINKS } from "@/content/navigation";
 import { CTA } from "@/lib/constants";
 
@@ -74,7 +74,7 @@ export default function AthenaPage() {
         primaryCta={{ label: "Explore an Example Assessment", href: "/example-report" }}
         secondaryCta={{ label: CTA.DEMO, href: CTA_LINKS.demo }}
         copySide="right"
-        planes={[{ src: SCENES.athena.src, mobileSrc: SCENES.athena.phone, className: "-inset-[3%]", position: "35% 50%", depth: 6, priority: true }]}
+        planes={scenePlanes(SCENES.athena, "35% 50%")}
         into="ivory"
       />
 

@@ -28,7 +28,7 @@ import {
   MINOTAUR_TRAIL,
   MINOTAUR_TWINS,
 } from "@/content/minotaur";
-import { BACKDROPS, OLYMPUS_MEDIA, SCENES } from "@/content/media";
+import { BACKDROPS, OLYMPUS_MEDIA, SCENES, scenePlanes } from "@/content/media";
 
 export const metadata: Metadata = {
   title: "Minotaur: Validating AI Security Tests",
@@ -68,7 +68,7 @@ export default function ValidationPage() {
         current="How Mythos Validates Itself"
         primaryCta={{ label: "Read the Methodology", href: "#labyrinth-title" }}
         secondaryCta={{ label: "Explore SPINE", href: "/platform/spine" }}
-        planes={[{ src: SCENES.minotaur.src, mobileSrc: SCENES.minotaur.phone, className: "-inset-[3%]", position: "60% 50%", depth: 6, priority: true }]}
+        planes={scenePlanes(SCENES.minotaur, "60% 50%")}
         figure={<CharacterNiche project="minotaur" glow={EMBER} className="absolute bottom-[33%] right-[9%] h-[50%]" />}
         mobileFigure={<CharacterNiche project="minotaur" glow={EMBER} className="relative mx-auto h-[44svh]" />}
         into="ivory"

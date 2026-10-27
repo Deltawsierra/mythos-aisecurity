@@ -5,7 +5,7 @@ import { PageMotion } from "@/components/motion/PageMotion";
 import { ScenicHero } from "@/components/scenic/ScenicHero";
 import { GlossaryIndex } from "@/components/resources/GlossaryIndex";
 import { GLOSSARY } from "@/content/glossary";
-import { OLYMPUS_MEDIA, SCENES } from "@/content/media";
+import { OLYMPUS_MEDIA, SCENES, scenePlanes } from "@/content/media";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { absoluteUrl } from "@/lib/seo";
 
@@ -32,7 +32,7 @@ export default function GlossaryPage() {
         current="Glossary"
         primaryCta={{ label: "Search the Terms", href: "#glossary" }}
         secondaryCta={{ label: "Standards & Mapping", href: "/standards" }}
-        planes={[{ src: SCENES.glossary.src, mobileSrc: SCENES.glossary.phone, className: "-inset-[3%]", position: "55% 50%", depth: 6, priority: true }]}
+        planes={scenePlanes(SCENES.glossary, "55% 50%")}
         compact
         into="ivory"
       />

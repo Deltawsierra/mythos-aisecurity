@@ -21,7 +21,7 @@ import {
   EVIDENCE_OUTPUTS,
   EVIDENCE_SIGNOFF,
 } from "@/content/evidence";
-import { OLYMPUS_MEDIA, SCENES } from "@/content/media";
+import { OLYMPUS_MEDIA, SCENES, scenePlanes } from "@/content/media";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -61,7 +61,7 @@ export default function EvidencePage() {
         ]}
         current="Evidence & Receipts"
         secondaryCta={{ label: "Explore the Platform", href: "/platform" }}
-        planes={[{ src: SCENES.evidence.src, mobileSrc: SCENES.evidence.phone, className: "-inset-[3%]", position: "50% 50%", depth: 6, priority: true }]}
+        planes={scenePlanes(SCENES.evidence, "50% 50%")}
         figure={
           <div data-surface="parchment" className="absolute right-[6%] top-[24%] w-[min(40vw,36rem)] bg-transparent" data-depth="16">
             <ReportPreview />

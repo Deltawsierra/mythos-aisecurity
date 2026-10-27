@@ -42,6 +42,23 @@ be checked against product terminology before reuse.
 
 ## Changes made while staging
 
+- **Parallax layers (27 Oct):** `/assets/scenes/layers/<key>-l<n>.webp` and
+  `/assets/use-cases/layers/uc-NN-l<n>.webp`, back to front, for 30 scenes:
+  the 21 that passed the parallax review (W2-07–09, W2-11–16, W4-01, W4-03–05,
+  W4-07–09, W4-14, W4-15, W4-18–20) plus the nine "Original Paired Layers"
+  packages (F3 Careers, V2 Pricing, C4 Minotaur (marked provisional by the
+  studio), G6-01–04, G6-07, G6-08). Every stack was checked against the live
+  flat hero before encoding (correlation 0.996–0.999). Each plane is
+  centre-cropped to the flat hero's frame and cover-fit to 1920×1080 the same
+  way, so the stack rebuilds the flat image at rest; L0 is opaque RGB WebP q78,
+  upper planes alpha WebP q80 (about 200–730 KB a stack, against 200–340 KB
+  flat). The studio motion budgets (11 / 18 / 32 source px) are listed in
+  `LAYERED` (`content/media.ts`); `scenePlanes()` sets pointer depth to 0.75 ×
+  the budget so the smallest desktop hero stays inside it. Desktop only (lg,
+  fine pointer): tablets get the flat hero, phones the phone art, and the upper
+  planes resolve to a blank source below lg so they are never downloaded.
+  W4-21 (G6-12) is not staged: it belongs to the held use case. The Mac HEVC
+  alpha handoff (27 Oct) is a conversion kit with no movies; nothing staged.
 - **Athena R6 (24 Oct, trial):** `/assets/athena/athena-figure-r6.webp`, the
   W1-05 R6 assembled export (2208×3264, a declared 2× enlargement) trimmed to the
   figure plus 24 px and resized to 1195×1800 (387 KB). It replaces the Batch 04

@@ -11,7 +11,7 @@ import { Scene } from "@/components/scenic/Scene";
 import { ClosingVista } from "@/components/scenic/ClosingVista";
 import { MaturityList } from "@/components/company/MaturityList";
 import { COMPANY } from "@/content/company";
-import { BACKDROPS, OLYMPUS_MEDIA, SCENES } from "@/content/media";
+import { BACKDROPS, OLYMPUS_MEDIA, SCENES, scenePlanes } from "@/content/media";
 
 export const metadata: Metadata = {
   title: "About Mythos: Principles & Products",
@@ -35,7 +35,7 @@ export default function CompanyPage() {
         current="Company"
         primaryCta={{ label: "Explore the Platform", href: "/platform" }}
         secondaryCta={{ label: "Get in Touch", href: "/contact" }}
-        planes={[{ src: SCENES.company.src, mobileSrc: SCENES.company.phone, className: "-inset-[3%]", position: "60% 50%", depth: 6, priority: true }]}
+        planes={scenePlanes(SCENES.company, "60% 50%")}
         into="ivory"
       />
 

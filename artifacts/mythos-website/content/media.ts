@@ -4,6 +4,8 @@
  * docs/design/ASSET_INVENTORY.md.
  */
 
+import type { HeroPlane } from "@/components/scenic/ScenicHero";
+
 /** Percent of the source image's width (left/right) or height (top/bottom) to hide. */
 export interface MediaCrop {
   left?: number;
@@ -90,21 +92,85 @@ export const OLYMPUS_MEDIA = {
 export interface SceneArt extends ImageAsset {
   /** 1080x1920 portrait composition for phones. */
   phone: string;
+  /** Parallax planes, back to front, framed exactly like `src`: [file, studio motion budget in source px]. */
+  layers?: readonly (readonly [string, number])[];
 }
+
+/**
+ * Scenes whose layered masters passed the 27 Oct parallax review: the planes
+ * rebuild the flat hero exactly and leave no holes at the studio's certified
+ * offsets (11 / 18 / 32 source px, back to front). Desktop translation only;
+ * phones and tablets keep the flat art. Minotaur's pairing is marked
+ * provisional by the studio; it matches the approved hero all the same.
+ */
+const LAYERED: Record<string, readonly number[]> = {
+  "scenes/platform": [11, 18, 32],
+  "scenes/spine": [11, 18, 32],
+  "scenes/achilles": [11, 18, 32],
+  "scenes/minotaur": [11, 18, 32],
+  "scenes/economic-exposure": [11, 18, 32],
+  "scenes/evidence": [11, 18, 32],
+  "scenes/continuous-assurance": [11, 32],
+  "scenes/hermes": [11, 18, 32],
+  "scenes/athena": [11, 32],
+  "scenes/resources": [11, 32],
+  "scenes/company": [11, 18, 32],
+  "scenes/careers": [11, 18, 32],
+  "scenes/partnerships": [11, 18, 32],
+  "scenes/not-found": [11, 18, 32],
+  "scenes/standards": [11, 18, 32],
+  "scenes/pricing": [11, 32],
+  "scenes/outputs": [11, 18, 32],
+  "scenes/glossary": [11, 18, 32],
+  "scenes/investors": [11, 18, 32],
+  "use-cases/uc-01": [11, 32],
+  "use-cases/uc-02": [11, 32],
+  "use-cases/uc-03": [11, 32],
+  "use-cases/uc-04": [11, 18, 32],
+  "use-cases/uc-05": [11, 32],
+  "use-cases/uc-06": [11, 32],
+  "use-cases/uc-07": [11, 32],
+  "use-cases/uc-08": [11, 32],
+  "use-cases/uc-09": [11, 32],
+  "use-cases/uc-10": [11, 32],
+  "use-cases/uc-11": [11, 32],
+};
 
 const art = (dir: string, key: string): SceneArt => ({
   src: `/assets/${dir}/${key}-hero.webp`,
   phone: `/assets/${dir}/${key}-phone.webp`,
   width: 1920,
   height: 1080,
+  layers: LAYERED[`${dir}/${key}`]?.map((motion, i) => [`/assets/${dir}/layers/${key}-l${i}.webp`, motion] as const),
 });
+
+/**
+ * Pointer depth per plane. PageMotion moves a plane by up to half its depth;
+ * at 0.75 x the studio budget, the smallest desktop hero (1024 px wide, cover
+ * from a 2720 px canvas) still stays inside each plane's certified offset.
+ */
+const LAYER_DEPTH = 0.75;
+
+/**
+ * Hero planes for a scene: the layered stack on desktop where the masters are
+ * in hand (flat art below lg, phone art below md), else the single flat plane.
+ */
+export function scenePlanes(scene: SceneArt, position: string): HeroPlane[] {
+  const frame = { className: "-inset-[3%]", position };
+  if (!scene.layers) return [{ ...frame, src: scene.src, mobileSrc: scene.phone, depth: 6, priority: true }];
+  return scene.layers.map(([src, motion], i) =>
+    i === 0
+      ? { ...frame, src, mobileSrc: scene.phone, tabletSrc: scene.src, depth: Math.round(motion * LAYER_DEPTH), priority: true }
+      : { ...frame, src, depth: Math.round(motion * LAYER_DEPTH), desktopOnly: true },
+  );
+}
 
 /**
  * Final art collection (27 Oct 2026), approved in the art review: flattened
  * scene composites (declared ~1.6x upscales) at 1920x1080 with the studio's
- * own phone compositions. Flat until the layered source masters are in hand.
- * Achilles, Hermes and Athena are painted into their scenes, so those pages
- * drop their separate figures.
+ * own phone compositions, layered for desktop parallax where LAYERED lists
+ * them. Achilles, Hermes and Athena are painted into their scenes, so those
+ * pages drop their separate figures.
  */
 export const SCENES = {
   platform: art("scenes", "platform"),

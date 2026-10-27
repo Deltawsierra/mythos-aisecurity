@@ -27,7 +27,7 @@ import {
   EE_SOURCE_TYPES,
   EE_VALIDITY,
 } from "@/content/economicExposure";
-import { BACKDROPS, OLYMPUS_MEDIA, SCENES } from "@/content/media";
+import { BACKDROPS, OLYMPUS_MEDIA, SCENES, scenePlanes } from "@/content/media";
 
 export const metadata: Metadata = {
   title: "Economic Exposure: Quantify AI Risk",
@@ -61,7 +61,7 @@ export default function EconomicExposurePage() {
         current="Economic Exposure"
         primaryCta={{ label: "Explore a Modeled Example", href: "#bands-title" }}
         secondaryCta={{ label: "Speak to Mythos", href: INQUIRY }}
-        planes={[{ src: SCENES.economicExposure.src, mobileSrc: SCENES.economicExposure.phone, className: "-inset-[3%]", position: "60% 50%", depth: 6, priority: true }]}
+        planes={scenePlanes(SCENES.economicExposure, "60% 50%")}
         into="parchment"
       />
 

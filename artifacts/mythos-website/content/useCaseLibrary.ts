@@ -18,14 +18,14 @@
  *   Its source stays below so it can return; HELD keeps it out of the build.
  */
 import type { UseCaseContent } from "@/components/use-cases/types";
-import { OLYMPUS_MEDIA, USE_CASE_ART } from "@/content/media";
+import { OLYMPUS_MEDIA, USE_CASE_ART, scenePlanes } from "@/content/media";
 
 const LEDE =
   "Mythos evaluates the authorized scope, actual pathways and relevant behaviors of this AI workflow, then records what was observed, what remains uncertain and what should be retested when the system changes.";
 
 const sun = { src: OLYMPUS_MEDIA.sunbeams, className: "-inset-[3%]", blend: "screen" as const, opacity: 0.45, position: "100% 0%", depth: 10 };
 /** G6 use-case plate n (0-based), with its phone composition; the headline sits on the quiet left wall. */
-const useCasePlates = (n: number) => [{ src: USE_CASE_ART[n].src, mobileSrc: USE_CASE_ART[n].phone, className: "-inset-[3%]", position: "60% 50%", depth: 6, priority: true }];
+const useCasePlates = (n: number) => scenePlanes(USE_CASE_ART[n], "60% 50%");
 
 const RECEIPT_FOOTER =
   "Synthetic receipt for illustration. Receipts are signed and verify offline, so later changes are detectable. A receipt shows where a result came from — not that the conclusion is true.";

@@ -10,7 +10,7 @@ import { Inline, plainText } from "@/components/articles/Inline";
 import { Faq } from "@/components/platform/Faq";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { RED_TEAM_AI_AGENTS as A } from "@/content/articles/redTeamAiAgents";
-import { SCENES } from "@/content/media";
+import { SCENES, scenePlanes } from "@/content/media";
 import { absoluteUrl, SITE_URL } from "@/lib/seo";
 
 const SOCIAL_KEY = "resources-how-to-red-team-ai-agents";
@@ -61,7 +61,7 @@ export default function RedTeamAiAgentsPage() {
         current="How to Red-Team an AI Agent"
         primaryCta={{ label: "Request an Agent Assessment", href: "/contact" }}
         secondaryCta={{ label: "Get the Checklist", href: "#how-do-you-start-with-one-consequential-workflow" }}
-        planes={[{ src: SCENES.achilles.src, mobileSrc: SCENES.achilles.phone, className: "-inset-[3%]", position: "62% 50%", depth: 6, priority: true }]}
+        planes={scenePlanes(SCENES.achilles, "62% 50%")}
         into="ivory"
       />
 

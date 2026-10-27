@@ -9,7 +9,7 @@ import { ScenicHero } from "@/components/scenic/ScenicHero";
 import { Scene } from "@/components/scenic/Scene";
 import { ClosingVista } from "@/components/scenic/ClosingVista";
 import { RecordCard } from "@/components/platform/RecordCard";
-import { BACKDROPS, OLYMPUS_MEDIA, SCENES } from "@/content/media";
+import { BACKDROPS, OLYMPUS_MEDIA, SCENES, scenePlanes } from "@/content/media";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -63,7 +63,7 @@ export default function OutputsPage() {
         ]}
         current="What Mythos Produces"
         secondaryCta={{ label: "See the Example Report", href: "/example-report" }}
-        planes={[{ src: SCENES.outputs.src, mobileSrc: SCENES.outputs.phone, className: "-inset-[3%]", position: "55% 50%", depth: 6, priority: true }]}
+        planes={scenePlanes(SCENES.outputs, "55% 50%")}
         into="ivory"
       />
 

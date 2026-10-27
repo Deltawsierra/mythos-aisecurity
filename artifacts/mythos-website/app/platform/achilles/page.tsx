@@ -24,7 +24,7 @@ import {
   ACHILLES_HANDOFF,
   ACHILLES_LEDGER,
 } from "@/content/achilles";
-import { BACKDROPS, OLYMPUS_MEDIA, SCENES } from "@/content/media";
+import { BACKDROPS, OLYMPUS_MEDIA, SCENES, scenePlanes } from "@/content/media";
 import { CTA_LINKS } from "@/content/navigation";
 import { CTA } from "@/lib/constants";
 
@@ -61,7 +61,7 @@ export default function AchillesPage() {
         current="Achilles"
         primaryCta={{ label: "Explore the Validation Method", href: "/platform/validation" }}
         secondaryCta={{ label: CTA.DEMO, href: CTA_LINKS.demo }}
-        planes={[{ src: SCENES.achilles.src, mobileSrc: SCENES.achilles.phone, className: "-inset-[3%]", position: "62% 50%", depth: 6, priority: true }]}
+        planes={scenePlanes(SCENES.achilles, "62% 50%")}
         into="ivory"
       />
 

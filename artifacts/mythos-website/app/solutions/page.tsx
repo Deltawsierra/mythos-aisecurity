@@ -13,7 +13,7 @@ import { EvidenceTimeline } from "@/components/platform/EvidenceTimeline";
 import { IndustrySwitcher, type SwitcherIndustry } from "@/components/solutions/IndustrySwitcher";
 import { INDUSTRIES, SOLUTIONS_BRIDGE, SOLUTIONS_HUB, SOLUTIONS_SWITCHER } from "@/content/industries";
 import { PROJECTS } from "@/content/platform";
-import { BACKDROPS, OLYMPUS_MEDIA, SCENES } from "@/content/media";
+import { BACKDROPS, OLYMPUS_MEDIA, SCENES, scenePlanes } from "@/content/media";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -74,7 +74,7 @@ export default function SolutionsPage() {
         breadcrumbs={[{ label: "Home", href: "/" }]}
         current="Solutions"
         secondaryCta={{ label: "Find Your Environment", href: "#switcher-title" }}
-        planes={[{ src: SCENES.solutionsHub.src, mobileSrc: SCENES.solutionsHub.phone, className: "-inset-[3%]", position: "60% 50%", depth: 6, priority: true }]}
+        planes={scenePlanes(SCENES.solutionsHub, "60% 50%")}
         into="ivory"
       />
 

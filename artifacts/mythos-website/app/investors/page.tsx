@@ -10,7 +10,7 @@ import { Scene } from "@/components/scenic/Scene";
 import { ClosingVista } from "@/components/scenic/ClosingVista";
 import { MaturityList } from "@/components/company/MaturityList";
 import { INVESTORS } from "@/content/company";
-import { BACKDROPS, OLYMPUS_MEDIA, SCENES } from "@/content/media";
+import { BACKDROPS, OLYMPUS_MEDIA, SCENES, scenePlanes } from "@/content/media";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -39,7 +39,7 @@ export default function InvestorsPage() {
         current="Investors"
         primaryCta={CONVERSATION}
         secondaryCta={{ label: "Explore the Platform", href: "/platform" }}
-        planes={[{ src: SCENES.investors.src, mobileSrc: SCENES.investors.phone, className: "-inset-[3%]", position: "60% 50%", depth: 6, priority: true }]}
+        planes={scenePlanes(SCENES.investors, "60% 50%")}
         into="ivory"
       />
 

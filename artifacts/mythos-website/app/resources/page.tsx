@@ -8,7 +8,7 @@ import { PageMotion } from "@/components/motion/PageMotion";
 import { SectionIntro } from "@/components/sections/SectionIntro";
 import { ScenicHero } from "@/components/scenic/ScenicHero";
 import { ClosingVista } from "@/components/scenic/ClosingVista";
-import { OLYMPUS_MEDIA, SCENES } from "@/content/media";
+import { OLYMPUS_MEDIA, SCENES, scenePlanes } from "@/content/media";
 
 export const metadata: Metadata = {
   title: "Resources: AI Assurance Library",
@@ -77,7 +77,7 @@ export default function ResourcesPage() {
         current="Resources"
         primaryCta={{ label: "Explore the Library", href: "#library" }}
         secondaryCta={{ label: "Request an Expert Conversation", href: "/contact?intent=general" }}
-        planes={[{ src: SCENES.resources.src, mobileSrc: SCENES.resources.phone, className: "-inset-[3%]", position: "60% 50%", depth: 6, priority: true }]}
+        planes={scenePlanes(SCENES.resources, "60% 50%")}
         into="ivory"
       />
 

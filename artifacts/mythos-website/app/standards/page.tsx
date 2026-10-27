@@ -8,7 +8,7 @@ import { SectionIntro } from "@/components/sections/SectionIntro";
 import { ScenicHero } from "@/components/scenic/ScenicHero";
 import { Scene } from "@/components/scenic/Scene";
 import { ClosingVista } from "@/components/scenic/ClosingVista";
-import { BACKDROPS, OLYMPUS_MEDIA, SCENES } from "@/content/media";
+import { BACKDROPS, OLYMPUS_MEDIA, SCENES, scenePlanes } from "@/content/media";
 
 export const metadata: Metadata = {
   title: "AI Control Mapping: NIST & OWASP LLM",
@@ -67,7 +67,7 @@ export default function StandardsPage() {
         ]}
         current="Standards"
         secondaryCta={{ label: "What Mythos Produces", href: "/outputs" }}
-        planes={[{ src: SCENES.standards.src, mobileSrc: SCENES.standards.phone, className: "-inset-[3%]", position: "55% 50%", depth: 6, priority: true }]}
+        planes={scenePlanes(SCENES.standards, "55% 50%")}
         into="ivory"
       />
 

@@ -19,7 +19,7 @@ import { DecisionStates, EvidenceLadder, PolicyEffects, ReceiptCard, UnknownCard
 import { ClaimInvalidation } from "@/components/home/ClaimInvalidation";
 import { AssuranceTeams } from "@/components/home/AssuranceTeams";
 import { SPINE_COPY } from "@/content/spine";
-import { BACKDROPS, OLYMPUS_MEDIA, SCENES, SPINE_CORE_MEDIA } from "@/content/media";
+import { BACKDROPS, OLYMPUS_MEDIA, SCENES, SPINE_CORE_MEDIA, scenePlanes } from "@/content/media";
 import { CTA_LINKS } from "@/content/navigation";
 import { CTA } from "@/lib/constants";
 
@@ -70,7 +70,7 @@ export default function SpinePage() {
         current="SPINE"
         primaryCta={{ label: "Explore the Evidence Model", href: "#claims-title" }}
         secondaryCta={{ label: CTA.DEMO, href: CTA_LINKS.demo }}
-        planes={[{ src: SCENES.spine.src, mobileSrc: SCENES.spine.phone, className: "-inset-[3%]", position: "40% 50%", depth: 6, priority: true }]}
+        planes={scenePlanes(SCENES.spine, "40% 50%")}
         figure={<CoreFigure className="absolute right-[8%] top-[16%] w-[min(34vw,32rem)]" />}
         mobileFigure={<CoreFigure className="relative mx-auto w-64" />}
         into="ivory"

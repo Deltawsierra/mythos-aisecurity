@@ -22,7 +22,7 @@ import { ReportPreview } from "@/components/platform/ReportPreview";
 import { OVERVIEW } from "@/content/platformOverview";
 import { ATHENA_COVERAGE } from "@/content/athena";
 import { PROJECTS } from "@/content/platform";
-import { BACKDROPS, OLYMPUS_MEDIA, SCENES } from "@/content/media";
+import { BACKDROPS, OLYMPUS_MEDIA, SCENES, scenePlanes } from "@/content/media";
 import { CTA_LINKS } from "@/content/navigation";
 import { CTA } from "@/lib/constants";
 
@@ -53,7 +53,7 @@ export default function PlatformPage() {
         current="Platform"
         primaryCta={{ label: "Explore SPINE", href: "/platform/spine" }}
         secondaryCta={{ label: CTA.DEMO, href: CTA_LINKS.demo }}
-        planes={[{ src: SCENES.platform.src, mobileSrc: SCENES.platform.phone, className: "-inset-[3%]", position: "60% 50%", depth: 6, priority: true }]}
+        planes={scenePlanes(SCENES.platform, "60% 50%")}
         into="ivory"
       />
 
