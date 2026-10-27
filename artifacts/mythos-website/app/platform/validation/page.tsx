@@ -31,9 +31,9 @@ import {
 import { BACKDROPS, OLYMPUS_MEDIA, SCENES } from "@/content/media";
 
 export const metadata: Metadata = {
-  title: "How Mythos Validates Itself — Minotaur",
+  title: "Minotaur: Validating AI Security Tests",
   description:
-    "Minotaur is Mythos’ internal proving ground and release authority: planted benchmarks with known answers, safe twins, Validity Cards and nine release gates — every number a floor measured on planted targets.",
+    "Minotaur is Mythos' internal proving ground: benchmarks with planted answers, decoys, Validity Cards and nine release gates. Every score is a floor.",
   alternates: { canonical: "/platform/validation/" },
   ...socialImage("platform-validation", "Find What We Missed. Prove What We Test — Mythos AI Security"),
 };

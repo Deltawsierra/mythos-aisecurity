@@ -11,9 +11,9 @@ import { ClosingVista } from "@/components/scenic/ClosingVista";
 import { BACKDROPS, OLYMPUS_MEDIA } from "@/content/media";
 
 export const metadata: Metadata = {
-  title: "Trust Center — Trust Requires More Than a Claim",
+  title: "Trust Center: Authorization & Data",
   description:
-    "How Mythos handles authorization, testing scope, evidence integrity and data — what is in place today, what is designed but not built, and which certifications Mythos does not hold.",
+    "How Mythos handles authorization, test scope, evidence integrity and data: what's in place, what is not built yet, and which certifications it lacks.",
   alternates: { canonical: "/trust/" },
   ...socialImage("trust", "Trust Requires More Than a Claim — Mythos AI Security"),
 };

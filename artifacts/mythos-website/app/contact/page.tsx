@@ -11,9 +11,9 @@ import { ContactForm } from "@/components/forms/ContactForm";
 import { OLYMPUS_MEDIA } from "@/content/media";
 
 export const metadata: Metadata = {
-  title: "Contact — Start With a Defined Scope",
+  title: "Contact Mythos: Request an Assessment",
   description:
-    "Tell Mythos what you are building or reviewing — an assessment, a demo, an investor or partnership conversation — without exposing confidential systems through a public form.",
+    "Request an AI assessment or a demo, or start an investor or partnership conversation, without exposing confidential systems through a public form.",
   alternates: { canonical: "/contact/" },
   ...socialImage("contact", "Start With a Defined Scope — Mythos AI Security"),
 };

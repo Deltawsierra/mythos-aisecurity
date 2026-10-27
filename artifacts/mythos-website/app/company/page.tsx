@@ -14,7 +14,7 @@ import { COMPANY } from "@/content/company";
 import { BACKDROPS, OLYMPUS_MEDIA, SCENES } from "@/content/media";
 
 export const metadata: Metadata = {
-  title: "Company — Built to Put Evidence Behind Ambition",
+  title: "About Mythos: Principles & Products",
   description:
     "Why Mythos exists, the principles behind its evidence, where each product stands today, and how Mythos works with the people it tests for.",
   alternates: { canonical: "/company/" },

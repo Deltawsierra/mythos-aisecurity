@@ -29,9 +29,9 @@ import { CTA_LINKS } from "@/content/navigation";
 import { CTA } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Achilles — Constantly Tested AI Never Fights Alone",
+  title: "Achilles: AI Agent & LLM Red Teaming",
   description:
-    "Achilles challenges AI systems and agents against declared permissions, tool boundaries, approvals and expected effects — and reports what the AI actually did, not what it said.",
+    "Achilles tests AI agents and LLM apps against their permissions, tool boundaries and approvals, and reports what the AI did, not what it said.",
   alternates: { canonical: "/platform/achilles/" },
   ...socialImage("platform-achilles", "Constantly Tested AI Never Fights Alone — Mythos AI Security"),
 };

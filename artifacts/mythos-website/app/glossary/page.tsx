@@ -6,11 +6,13 @@ import { ScenicHero } from "@/components/scenic/ScenicHero";
 import { GlossaryIndex } from "@/components/resources/GlossaryIndex";
 import { GLOSSARY } from "@/content/glossary";
 import { OLYMPUS_MEDIA, SCENES } from "@/content/media";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { absoluteUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "AI Assurance Glossary — The Language in Plain English",
+  title: "AI Assurance Glossary",
   description:
-    "Plain-English definitions of the terms used across Mythos: evidence states, receipts, scope, effective access, retests and deployment decisions — with planned things marked as planned.",
+    "Plain-English definitions of AI assurance terms: evidence states, receipts, scope, effective access, retests and deployment decisions.",
   alternates: { canonical: "/glossary/" },
   ...socialImage("glossary", "The Language of AI Assurance, in Plain English — Mythos AI Security"),
 };
@@ -36,6 +38,16 @@ export default function GlossaryPage() {
       />
       <section id="glossary" data-surface="ivory" aria-label="Glossary terms" className="scroll-mt-24 pb-24 pt-8">
         <Container>
+          <JsonLd
+            data={{
+              "@context": "https://schema.org",
+              "@type": "DefinedTermSet",
+              "@id": `${absoluteUrl("/glossary")}#terms`,
+              name: "AI Assurance Glossary",
+              url: absoluteUrl("/glossary"),
+              hasDefinedTerm: GLOSSARY.map((g) => ({ "@type": "DefinedTerm", name: g.term, description: g.plain, ...(g.href ? { url: absoluteUrl(g.href) } : {}) })),
+            }}
+          />
           <GlossaryIndex terms={GLOSSARY} />
         </Container>
       </section>

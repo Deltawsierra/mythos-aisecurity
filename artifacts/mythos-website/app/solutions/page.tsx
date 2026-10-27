@@ -17,9 +17,9 @@ import { BACKDROPS, OLYMPUS_MEDIA, SCENES } from "@/content/media";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Solutions — AI Assurance for Real-World Impact",
+  title: "AI Assurance Solutions by Industry",
   description:
-    "How Mythos applies evidence-backed AI assurance across financial services, healthcare, SaaS, regulated enterprise, public sector, operations and delivery partners — without one-size-fits-all promises.",
+    "How Mythos applies AI assurance in financial services, healthcare, SaaS, regulated enterprise, the public sector, operations and partner delivery.",
   alternates: { canonical: "/solutions/" },
   ...socialImage("solutions", "AI Assurance for Real-World Impact — Mythos AI Security"),
 };

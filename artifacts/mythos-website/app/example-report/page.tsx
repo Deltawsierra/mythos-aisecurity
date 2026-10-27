@@ -14,9 +14,9 @@ import { OLYMPUS_MEDIA } from "@/content/media";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Example Report — The Evidence Behind an AI Deployment Decision",
+  title: "Sample AI Security Assessment Report",
   description:
-    "A fully synthetic sample report for a fictional organization: scope, system map, findings, claim states, remediation and retest, change history and a deployment recommendation.",
+    "A fully synthetic sample report: scope, system map, findings, claim states, remediation and retest, change history and a deployment recommendation.",
   alternates: { canonical: "/example-report/" },
   ...socialImage("example-report", "See the Evidence Behind an AI Deployment Decision — Mythos AI Security"),
 };

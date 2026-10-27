@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 import { submitInquiry } from "@/lib/submitInquiry";
+import { track } from "@/lib/analytics";
 import { INTENT_EVENT } from "@/lib/intent";
 import {
   INQUIRIES,
@@ -53,6 +54,7 @@ export function ContactForm() {
   const [status, setStatus] = useState<SubmitStatus>("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const statusRef = useRef<HTMLDivElement>(null);
+  const startedRef = useRef(false);
   const renderedAtRef = useRef<number | null>(null);
 
   const def = getInquiry(inquiryType);
@@ -121,8 +123,12 @@ export function ContactForm() {
     const result = await submitInquiry(payload);
     if (result.ok) {
       setStatus("success");
+      // GA4 key event; only the inquiry type travels, never form contents.
+      track("form_completed", { inquiry_type: inquiryType });
+      track("generate_lead", { inquiry_type: inquiryType });
     } else {
       setStatus("error");
+      track("form_error", { inquiry_type: inquiryType });
       setErrorMessage(result.error ?? null);
     }
   }
@@ -150,7 +156,15 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-8">
+    <form
+      onSubmit={handleSubmit}
+      onFocusCapture={() => {
+        if (startedRef.current) return;
+        startedRef.current = true;
+        track("form_started", { inquiry_type: inquiryType });
+      }}
+      className="flex flex-col gap-8"
+    >
       {/* Honeypot — visually hidden; bots that fill it are silently dropped. */}
       <div
         aria-hidden="true"

@@ -16,9 +16,9 @@ import { INDUSTRIES } from "@/content/industries";
 import { BACKDROPS, CHALLENGE_MEDIA, OLYMPUS_MEDIA } from "@/content/media";
 
 export const metadata: Metadata = {
-  title: "Use Cases — Where AI Deployment Risk Shows Up",
+  title: "AI Use Cases: Deployment Risk Scenarios",
   description:
-    "Ten assessment scenarios and two strategic-horizon pages: the question each AI workflow raises, what can go wrong, how Mythos tests it and what the evidence looks like. Every example is synthetic.",
+    "Eleven AI workflows, from support agents to decision support: the question each raises, what can go wrong, how Mythos tests it. Every example is synthetic.",
   alternates: { canonical: "/use-cases/" },
   ...socialImage("use-cases", "Where AI Deployment Risk Shows Up — Mythos AI Security"),
 };

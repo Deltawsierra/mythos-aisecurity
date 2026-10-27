@@ -30,9 +30,9 @@ import {
 import { BACKDROPS, OLYMPUS_MEDIA, SCENES } from "@/content/media";
 
 export const metadata: Metadata = {
-  title: "SPINE Economic Exposure — Evidence-Backed Business Decisions",
+  title: "Economic Exposure: Quantify AI Risk",
   description:
-    "SPINE Economic Exposure connects verified AI findings to priced loss ranges (P10, P50, P90), remediation economics and signed, reviewed receipts — never an exact loss or a guaranteed return.",
+    "Prices a validated AI failure as a loss range (P10, P50, P90) with its sources, remediation economics and signed receipts. Decision support only.",
   alternates: { canonical: "/platform/economic-exposure/" },
   ...socialImage("platform-economic-exposure", "Evidence-Backed Economic Exposure. Better Business Decisions — Mythos AI Security"),
 };

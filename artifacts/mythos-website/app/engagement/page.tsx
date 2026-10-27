@@ -12,9 +12,9 @@ import { ClosingVista } from "@/components/scenic/ClosingVista";
 import { BACKDROPS, OLYMPUS_MEDIA } from "@/content/media";
 
 export const metadata: Metadata = {
-  title: "How Engagement Starts — From Inquiry to Evidence",
+  title: "How an AI Assessment Engagement Works",
   description:
-    "What happens after you request an assessment: scoping one workflow, written authorization before any testing, the assessment, remediation, one retest and decision support.",
+    "After you request an assessment: one scoped workflow, written authorization before testing, the assessment, remediation, one retest and decision support.",
   alternates: { canonical: "/engagement/" },
   ...socialImage("engagement", "What Happens After You Request an Assessment — Mythos AI Security"),
 };

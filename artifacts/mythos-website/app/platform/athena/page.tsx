@@ -31,9 +31,9 @@ import { CTA_LINKS } from "@/content/navigation";
 import { CTA } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Athena — See Every Risk, Understand Every Exposure",
+  title: "Athena: AI Exposure & Access Mapping",
   description:
-    "Athena reveals how systems, identities, data, tools and models connect within an agreed scope — what is exposed, what is controlled, what was not checked, and where remediation is needed.",
+    "Athena maps how an AI system's identities, data, tools and models connect within scope: what is exposed, what is controlled and what was not checked.",
   alternates: { canonical: "/platform/athena/" },
   ...socialImage("platform-athena", "See Every Risk. Understand Every Exposure. Prove Every Decision — Mythos AI Security"),
 };

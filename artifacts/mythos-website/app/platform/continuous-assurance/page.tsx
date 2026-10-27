@@ -18,9 +18,9 @@ import { CA_CHANGES, CA_CLAIMS, CA_COPY, CA_EVENTS, CA_LEDGER } from "@/content/
 import { OLYMPUS_MEDIA, SCENES } from "@/content/media";
 
 export const metadata: Metadata = {
-  title: "Continuous Assurance — When AI Changes, Your Evidence Should Respond",
+  title: "Continuous AI Assurance & Revalidation",
   description:
-    "When data, identity, model route, tools or policies change, Mythos targets the claims that change affects and asks whether revalidation is required — responding to scans and the changes you supply.",
+    "When an AI system's data, identity, model route, tools or policies change, Mythos finds the claims affected and targets the retest. No live monitoring.",
   alternates: { canonical: "/platform/continuous-assurance/" },
   ...socialImage("platform-continuous-assurance", "When AI Changes, Your Evidence Should Respond — Mythos AI Security"),
 };

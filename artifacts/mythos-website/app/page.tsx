@@ -16,9 +16,9 @@ import {
 } from "@/components/home/HomeSections";
 
 export const metadata: Metadata = {
-  title: { absolute: "AI Deployment Assurance | Mythos AI Security" },
+  title: { absolute: "Mythos AI Security | Adversarial AI Testing & Assurance" },
   description:
-    "Mythos is the assurance layer for operational AI: evidence about what AI can reach, what authority it has, how it behaves and what it affects — kept current as systems change.",
+    "Mythos AI Security maps what AI systems can reach, tests agents and LLM apps under adversarial pressure and keeps signed evidence current as they change.",
   alternates: { canonical: "/" },
 };
 

@@ -18,7 +18,7 @@ export const ACHILLES_COPY = {
   hero: {
     eyebrow: "Achilles · test the AI",
     headline: "Constantly Tested AI *Never Fights Alone.*",
-    lede: "Achilles challenges the behavior of AI systems and agents against declared permissions, tool boundaries, approvals and expected effects — before unchecked authority becomes a business problem.",
+    lede: "Achilles red-teams LLM applications and AI agents — prompt injection, jailbreaks, tool misuse — against declared permissions, tool boundaries, approvals and expected effects, before unchecked authority becomes a business problem.",
   },
   families: {
     eyebrow: "Capability families",
@@ -66,7 +66,7 @@ export const ACHILLES_FAMILIES: Group[] = [
   {
     name: "Goal hijack",
     question: "Can someone redirect what the AI is trying to do?",
-    items: ["Direct instructions, and instructions hidden in content it reads", "A web-retrieval chain that carries the hijack in"],
+    items: ["Direct prompt injection, and instructions hidden in content it reads", "A web-retrieval chain that carries the hijack in"],
   },
   {
     name: "RAG leakage",

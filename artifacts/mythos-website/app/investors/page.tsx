@@ -14,9 +14,9 @@ import { BACKDROPS, OLYMPUS_MEDIA, SCENES } from "@/content/media";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Investors — The Assurance Layer for Operational AI",
+  title: "Investors: The AI Assurance Layer",
   description:
-    "The thesis behind Mythos: deployment assurance as a category, one consequential workflow as the wedge, and evidence that survives change as the layer customers keep.",
+    "The thesis behind Mythos: deployment assurance as a category, one consequential workflow as the wedge, and evidence that survives change as the moat.",
   alternates: { canonical: "/investors/" },
   ...socialImage("investors", "Building the Assurance Layer for Operational AI — Mythos AI Security"),
 };

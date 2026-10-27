@@ -9,6 +9,8 @@ export interface UseCaseContent {
   slug: string;
   number: number;
   title: string;
+  /** Search title (without the site suffix), written for how buyers search; falls back to the title. */
+  seoTitle?: string;
   metaDescription: string;
   /** H1: the buyer's question; *starred* words take the gold accent. */
   question: string;

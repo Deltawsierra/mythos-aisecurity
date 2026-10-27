@@ -3,6 +3,7 @@ import { Inter, Cormorant_Garamond } from "next/font/google";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { CookieConsent } from "@/components/consent/CookieConsent";
+import { AnalyticsBridge } from "@/components/seo/AnalyticsBridge";
 import { GA_MEASUREMENT_ID } from "@/lib/consentScripts";
 import "./globals.css";
 
@@ -69,7 +70,7 @@ export const metadata: Metadata = {
     default: "Mythos AI Security | AI Deployment Assurance",
   },
   description:
-    "Mythos is an AI deployment assurance company. It maps what AI systems can reach, tests what they do under pressure and keeps the evidence current as they change — so accountable people can decide.",
+    "Mythos AI Security maps what AI systems can reach, tests what they do under pressure and keeps signed evidence current as they change.",
   robots: {
     index: true,
     follow: true,
@@ -122,6 +123,7 @@ export default function RootLayout({
         </main>
         <SiteFooter />
         <CookieConsent />
+        <AnalyticsBridge />
       </body>
     </html>
   );

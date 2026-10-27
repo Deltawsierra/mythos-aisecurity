@@ -17,6 +17,7 @@ export type AnalyticsEvent =
   | "standards_filter_use"
   | "form_started"
   | "form_completed"
+  | "generate_lead"
   | "form_error"
   | "video_start"
   | "video_complete";

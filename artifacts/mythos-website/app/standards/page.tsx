@@ -11,9 +11,9 @@ import { ClosingVista } from "@/components/scenic/ClosingVista";
 import { BACKDROPS, OLYMPUS_MEDIA, SCENES } from "@/content/media";
 
 export const metadata: Metadata = {
-  title: "Standards & Control Mapping — Mapped, Never Certified",
+  title: "AI Control Mapping: NIST & OWASP LLM",
   description:
-    "Which frameworks Mythos findings are mapped to today (NIST SP 800-53, OWASP Top 10 and LLM Top 10, DoD Zero Trust), which are referenced in scoping, and where mapping ends and audit begins.",
+    "Mythos findings map to NIST SP 800-53, OWASP Top 10, the OWASP LLM Top 10 and DoD Zero Trust. Where mapping ends and audit begins. Never a certificate.",
   alternates: { canonical: "/standards/" },
   ...socialImage("standards", "Mapped to Tests and Evidence — Never Certified — Mythos AI Security"),
 };

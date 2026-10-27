@@ -24,9 +24,9 @@ import { CTA_LINKS } from "@/content/navigation";
 import { CTA } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "SPINE — Continuous Assurance, Evidence That Holds Together",
+  title: "SPINE: AI Assurance System of Record",
   description:
-    "SPINE is the assurance system of record: it links claims, controls, authority, observations and decisions, and flags dependent conclusions for review or targeted revalidation when something material changes.",
+    "SPINE links an AI system's claims, controls, authority and evidence, recommends a release decision and flags what to retest when something changes.",
   alternates: { canonical: "/platform/spine/" },
   ...socialImage("platform-spine", "Continuous Assurance. Evidence That Holds Together — Mythos AI Security"),
 };

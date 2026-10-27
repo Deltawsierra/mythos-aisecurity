@@ -17,7 +17,7 @@ export const EE_COPY = {
   hero: {
     eyebrow: "SPINE · Economic Exposure",
     headline: "Evidence-Backed Economic Exposure. *Better Business Decisions.*",
-    lede: "SPINE Economic Exposure connects observed AI behavior and validated technical findings to the business processes they touch, and prices the loss as a range with its sources — assumptions, uncertainty, mitigation cost and remaining risk in view before anyone decides.",
+    lede: "AI risk quantification you can take apart: SPINE Economic Exposure connects observed AI behavior and validated technical findings to the business processes they touch, and prices the loss as a range with its sources — assumptions, uncertainty, mitigation cost and remaining risk in view before anyone decides.",
     scope: "Decision support only. External feeds are fixtures until keys and a licence review, with no calibration or back-testing yet. Every figure here is a synthetic example.",
   },
   chain: {

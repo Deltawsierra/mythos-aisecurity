@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const u = getUseCase(slug);
   if (!u) return {};
   return {
-    title: `${u.title} — Use Case ${String(u.number).padStart(2, "0")}`,
+    title: u.seoTitle ?? u.title,
     description: u.metaDescription,
     alternates: { canonical: `/use-cases/${u.slug}/` },
     ...socialImage(`use-cases-${u.slug}`, `${u.question.replaceAll("*", "")} — Mythos AI Security`),

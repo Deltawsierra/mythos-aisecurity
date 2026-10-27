@@ -35,8 +35,9 @@ const LIBRARY: UseCaseContent[] = [
     slug: "customer-support-ai-agent",
     number: 1,
     title: "Customer Support AI Agent",
+    seoTitle: "Testing a Customer Support AI Agent",
     metaDescription:
-      "Can a support agent reach only the customer records and actions it is authorized to use? How Mythos maps, tests and keeps evidence for customer-facing support AI.",
+      "Can a support agent reach only the customer records and actions it is authorized to use? How Mythos maps, tests and keeps evidence for support AI.",
     question: "Can a support agent reach only the customer records and *actions it is authorized to use?*",
     lede: LEDE,
     image: "/assets/athena/athena-identity.webp",
@@ -114,8 +115,9 @@ const LIBRARY: UseCaseContent[] = [
     slug: "internal-knowledge-rag-assistant",
     number: 2,
     title: "Internal Knowledge / RAG Assistant",
+    seoTitle: "RAG Assistant Permission Testing",
     metaDescription:
-      "Will an internal assistant respect source permissions when retrieval results and prompts are combined? How Mythos tests retrieval boundaries and keeps the evidence current.",
+      "Will an internal RAG assistant respect source permissions when retrieval and prompts combine? How Mythos tests retrieval boundaries and keeps evidence.",
     question: "Will an internal assistant respect source permissions when *retrieval and prompts combine?*",
     lede: LEDE,
     image: "/assets/athena/athena-data-lifecycle.webp",
@@ -191,6 +193,7 @@ const LIBRARY: UseCaseContent[] = [
     slug: "ai-agent-tools-actions",
     number: 3,
     title: "AI Agent With Tools and Actions",
+    seoTitle: "AI Agent Tool & Action Testing",
     metaDescription:
       "Can an AI agent perform a harmful action despite apparently approved tool permissions? How Mythos tests tool authority, approvals and observed effects.",
     question: "Can an AI agent cause a harmful action despite *apparently approved permissions?*",
@@ -266,8 +269,9 @@ const LIBRARY: UseCaseContent[] = [
     slug: "regulated-workflow-assistant",
     number: 4,
     title: "Regulated Workflow Assistant",
+    seoTitle: "Evidence for Regulated AI Workflows",
     metaDescription:
-      "Can evidence support a controlled, human-reviewed AI workflow? How Mythos records what was tested, what is vendor-asserted and what was not measured for regulated work.",
+      "Can evidence support a controlled, human-reviewed AI workflow? Mythos records what was tested, what is vendor-asserted and what was not measured.",
     question: "Can evidence support a controlled, *human-reviewed AI workflow?*",
     lede: LEDE,
     image: "/assets/evidence/policy-authority-chain.svg",
@@ -340,8 +344,9 @@ const LIBRARY: UseCaseContent[] = [
     slug: "partner-vendor-ai-integration",
     number: 5,
     title: "Partner / Vendor AI Integration",
+    seoTitle: "Third-Party AI Vendor Risk Testing",
     metaDescription:
-      "What is the effective exposure of a third-party AI tool once connected? How Mythos separates vendor claims from observed evidence and retests after vendor changes.",
+      "What can a third-party AI tool reach once connected? How Mythos separates vendor claims from observed evidence and retests after vendor changes.",
     question: "What is the effective exposure of a third-party AI tool *once it is connected?*",
     lede: LEDE,
     image: "/assets/athena/athena-surfaces.webp",
@@ -413,6 +418,7 @@ const LIBRARY: UseCaseContent[] = [
     slug: "executive-employee-copilot",
     number: 6,
     title: "Executive / Employee Copilot",
+    seoTitle: "Enterprise Copilot Access Testing",
     metaDescription:
       "What private context or delegated authority could an enterprise copilot expose? How Mythos assesses copilot reach through permissions and test accounts.",
     question: "What private context or delegated authority could *an enterprise copilot expose?*",
@@ -486,6 +492,7 @@ const LIBRARY: UseCaseContent[] = [
     slug: "developer-ai-assistant",
     number: 7,
     title: "Developer AI Assistant",
+    seoTitle: "Coding Agent & AI Assistant Testing",
     metaDescription:
       "Can generated code or an agentic commit weaken production controls? How Mythos tests coding agents' boundaries in disposable repositories and pipelines.",
     question: "Can generated code or an agentic commit *weaken production controls?*",
@@ -559,8 +566,9 @@ const LIBRARY: UseCaseContent[] = [
     slug: "ai-powered-decision-support",
     number: 8,
     title: "AI-Powered Decision Support",
+    seoTitle: "AI Decision Support Boundary Testing",
     metaDescription:
-      "Can an AI recommendation cross the boundary into unauthorized execution? How Mythos tests where recommendation becomes action and keeps human decisions on the record.",
+      "Can an AI recommendation cross into unauthorized execution? How Mythos tests where recommendation becomes action and keeps human decisions on record.",
     question: "Can an AI recommendation cross the boundary *into unauthorized execution?*",
     lede: LEDE,
     image: "/assets/athena/athena-remediation.webp",
@@ -632,8 +640,9 @@ const LIBRARY: UseCaseContent[] = [
     slug: "public-sector-mission-workflow",
     number: 9,
     title: "Public Sector / Mission AI Workflow",
+    seoTitle: "Public Sector Mission AI Evidence",
     metaDescription:
-      "Can a mission-facing agent operate within restricted records and authorization constraints? Acceptance and change evidence for mission AI — with no authorization claims.",
+      "Can a mission agent stay within restricted records and authorization limits? Acceptance and change evidence for mission AI, with no authorization claims.",
     question: "Can a mission-facing agent stay within restricted records and *authorization constraints?*",
     lede: LEDE,
     image: "/assets/evidence/deployment-decision-gate.svg",
@@ -705,8 +714,9 @@ const LIBRARY: UseCaseContent[] = [
     slug: "data-platform-cloud-ai-integration",
     number: 10,
     title: "Data Platform / Cloud AI Integration",
+    seoTitle: "Cloud & Data Platform AI Access Mapping",
     metaDescription:
-      "Which service routes and credentials can model-and-data workflows reach? How Mythos maps service identities and data boundaries for AI on cloud data platforms.",
+      "Which service routes and credentials can AI workflows reach on a cloud data platform? How Mythos maps service identities and data boundaries.",
     question: "Which service routes and credentials can *model-and-data workflows reach?*",
     lede: LEDE,
     image: "/assets/athena/athena-cloud-posture.webp",
@@ -778,8 +788,9 @@ const LIBRARY: UseCaseContent[] = [
     slug: "ai-driven-vehicle-systems-hermes",
     number: 11,
     title: "AI Vehicle / Physical Systems",
+    seoTitle: "AI Vehicle & Physical Systems (Hermes)",
     metaDescription:
-      "What would need to be proven across sensing, prediction, planning, control and incident response? A strategic-horizon view of Hermes, a vehicle assurance scaffold today.",
+      "What would need to be proven across sensing, planning, control and incident response? A strategic-horizon view of Hermes, a vehicle assurance scaffold.",
     question: "What would need to be proven across sensing, planning, *control and incident response?*",
     lede: "A strategic-horizon page. Hermes is a scaffold today: every domain returns inconclusive, so it is not a service available yet.",
     horizon: {

@@ -15,9 +15,9 @@ import { ASSESSMENTS, CONSULT_ASSESSMENTS, EXPAND, INCLUDED, MOTIONS, PRICING_FA
 import { BACKDROPS, OLYMPUS_MEDIA, SCENES } from "@/content/media";
 
 export const metadata: Metadata = {
-  title: "Pricing — Assurance That Scales With Your AI Estate",
+  title: "Pricing: AI Assessment & Assurance",
   description:
-    "Three offers, kept distinct: assessment, release assurance and runtime enforcement — scoped assessments, annual assurance priced by Systems Under Assurance, and what changes a quote. Prices are quoted after scoping.",
+    "Three distinct offers: assessment, release assurance and runtime enforcement. Annual assurance is priced by Systems Under Assurance; quotes follow scoping.",
   alternates: { canonical: "/pricing/" },
   ...socialImage("pricing", "Assurance That Scales With Your AI Estate — Mythos AI Security"),
 };

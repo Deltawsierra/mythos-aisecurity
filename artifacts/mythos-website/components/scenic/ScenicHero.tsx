@@ -8,6 +8,8 @@ import type { Surface } from "@/components/sections/SectionBlend";
 import { CTA_LINKS } from "@/content/navigation";
 import { CTA } from "@/lib/constants";
 import { cn } from "@/lib/utils";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { breadcrumbLd } from "@/lib/seo";
 
 /** One painted plane of a hero scene, positioned freely (cut-outs) or full-bleed. */
 export interface HeroPlane {
@@ -159,6 +161,7 @@ export function ScenicHero({
         )}
       >
         <div className={cn("max-w-[38rem] xl:max-w-[42rem]", copyRight && "lg:ml-auto lg:mr-[2%]")}>
+          <JsonLd data={breadcrumbLd(breadcrumbs, current)} />
           <nav aria-label="Breadcrumb" className="hero-rise mb-7" style={{ animationDelay: "80ms" }}>
             <ol className="flex flex-wrap items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-ivory/70">
               {breadcrumbs.map((crumb) => (

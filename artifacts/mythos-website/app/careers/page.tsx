@@ -10,9 +10,9 @@ import { CAREERS } from "@/content/company";
 import { OLYMPUS_MEDIA, SCENES } from "@/content/media";
 
 export const metadata: Metadata = {
-  title: "Careers — Build the Systems That Test AI",
+  title: "Careers: Build Systems That Test AI",
   description:
-    "What building Mythos involves. There are no open roles right now; when one opens it will be listed here with its team, location, eligibility and how to apply.",
+    "What building Mythos involves. No open roles right now; when one opens it will be listed here with its team, location, eligibility and how to apply.",
   alternates: { canonical: "/careers/" },
   ...socialImage("careers", "Build the Systems That Test AI — Mythos AI Security"),
 };

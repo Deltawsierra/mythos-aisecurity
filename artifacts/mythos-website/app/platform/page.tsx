@@ -27,9 +27,9 @@ import { CTA_LINKS } from "@/content/navigation";
 import { CTA } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Platform — AI Assurance from Risk to Resilience",
+  title: "AI Assurance Platform: Map, Test, Prove",
   description:
-    "One approach to understanding an AI system, testing its boundaries, recording proof and keeping critical claims current as its models, data, tools and permissions change.",
+    "One platform to map what an AI system can reach, test how it behaves under attack, sign the evidence and retest when models, data or tools change.",
   alternates: { canonical: "/platform/" },
   ...socialImage("platform", "AI Assurance from Risk to Resilience — Mythos AI Security"),
 };

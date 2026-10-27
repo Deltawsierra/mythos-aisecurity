@@ -13,9 +13,9 @@ import { OLYMPUS_MEDIA, SCENES } from "@/content/media";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Partnerships — Build Trust Together",
+  title: "AI Assurance Partnerships",
   description:
-    "How integrators, consultancies, platform vendors, researchers and insurers could work with Mythos — and the independence rules that keep evidence honest. No partners are listed yet.",
+    "How integrators, consultancies, platform vendors, researchers and insurers could work with Mythos, and the independence rules that keep evidence honest.",
   alternates: { canonical: "/partnerships/" },
   ...socialImage("partnerships", "Build Trust Together — Mythos AI Security"),
 };

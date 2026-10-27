@@ -25,9 +25,9 @@ import { OLYMPUS_MEDIA, SCENES } from "@/content/media";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Evidence & Receipts — Proof You Can Inspect",
+  title: "Signed AI Evidence & Assurance Receipts",
   description:
-    "Mythos connects every claim to the evidence behind it: signed Assurance Receipts you can verify offline, a provenance chain from observation to review, and exports you can inspect — with integrity stated plainly.",
+    "Every claim tied to its evidence: Assurance Receipts that verify offline, and a provenance chain from observation to review. Integrity, stated plainly.",
   alternates: { canonical: "/platform/evidence/" },
   ...socialImage("platform-evidence", "Proof You Can Inspect — Mythos AI Security"),
 };

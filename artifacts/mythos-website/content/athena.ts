@@ -18,7 +18,7 @@ export const ATHENA_COPY = {
   hero: {
     eyebrow: "Athena · see the system",
     headline: "See Every Risk. Understand Every Exposure. *Prove Every Decision.*",
-    lede: "Athena reveals how systems, identities, data, tools and models connect — what is exposed, what is controlled, and where investigation or remediation is needed.",
+    lede: "Athena maps how an AI system’s identities, data, tools and models connect — what is exposed, what it can access, what is controlled, and where investigation or remediation is needed.",
     scope: "Within an agreed, authorized scope — and what falls outside it is reported, not assumed.",
   },
   map: {

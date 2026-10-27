@@ -11,9 +11,9 @@ import { ClosingVista } from "@/components/scenic/ClosingVista";
 import { OLYMPUS_MEDIA, SCENES } from "@/content/media";
 
 export const metadata: Metadata = {
-  title: "Resources — The Mythos Knowledge Archive",
+  title: "Resources: AI Assurance Library",
   description:
-    "The evidence, methods and ideas behind assurance for operational AI: a synthetic example report, outputs, standards mapping, a glossary, scenarios and how engagements work.",
+    "A synthetic example report, deliverables, standards mapping, a glossary, use cases and how engagements work: the evidence and methods behind Mythos.",
   alternates: { canonical: "/resources/" },
   ...socialImage("resources", "The Mythos Knowledge Archive — Mythos AI Security"),
 };

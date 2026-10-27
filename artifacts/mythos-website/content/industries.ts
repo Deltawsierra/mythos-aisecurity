@@ -33,7 +33,7 @@ export const INDUSTRIES: IndustryContent[] = [
   {
     slug: "financial-services-insurance",
     name: "Financial Services & Insurance",
-    metaTitle: "AI Assurance for Financial Services & Insurance",
+    metaTitle: "AI Assurance for Banks & Insurers",
     metaDescription:
       "Evidence for AI that touches customer data, approvals and suppliers in banks and insurers — scoped, tested and kept current, without compliance promises.",
     hero: {
@@ -110,7 +110,7 @@ export const INDUSTRIES: IndustryContent[] = [
   {
     slug: "healthcare-life-sciences",
     name: "Healthcare & Life Sciences",
-    metaTitle: "AI Assurance for Healthcare & Life Sciences",
+    metaTitle: "Healthcare & Life Sciences AI Assurance",
     metaDescription:
       "Scoped evidence for AI working with sensitive records, research data and operational workflows — with no patient-safety or compliance promises.",
     hero: {
@@ -264,7 +264,7 @@ export const INDUSTRIES: IndustryContent[] = [
     name: "Regulated Enterprise",
     metaTitle: "AI Assurance for Regulated Enterprises",
     metaDescription:
-      "Evidence about what enterprise AI systems do, which policies apply and which decisions need human ownership — supporting reviews, never promising compliance.",
+      "Evidence about what enterprise AI does, which policies apply and which decisions need human ownership — supporting reviews, never promising compliance.",
     hero: {
       eyebrow: "Regulated Enterprise",
       headline: "Meet Requirements. *Move Faster.*",
@@ -339,9 +339,9 @@ export const INDUSTRIES: IndustryContent[] = [
   {
     slug: "public-sector-mission",
     name: "Public Sector & Mission",
-    metaTitle: "AI Assurance for Public Sector & Mission",
+    metaTitle: "AI Assurance for the Public Sector",
     metaDescription:
-      "Acceptance and change evidence for mission AI workflows — which version, data and permissions an evaluation covered — with no authorization or approval claims.",
+      "Acceptance and change evidence for mission AI workflows: which version, data and permissions an evaluation covered. No authorization or approval claims.",
     hero: {
       eyebrow: "Public Sector & Mission",
       headline: "Enable Innovation *With Assurance.*",
@@ -416,9 +416,9 @@ export const INDUSTRIES: IndustryContent[] = [
   {
     slug: "manufacturing-critical-infrastructure",
     name: "Manufacturing & Critical Infrastructure",
-    metaTitle: "AI Assurance for Manufacturing & Critical Infrastructure",
+    metaTitle: "Critical Infrastructure AI Assurance",
     metaDescription:
-      "Evidence for AI in operational environments — data, vendors and authority — kept separate from physical safety, with no live-system testing or safety claims.",
+      "Evidence for AI in operational environments (data, vendors and authority), kept separate from physical safety. No live-system testing or safety claims.",
     hero: {
       eyebrow: "Manufacturing & Critical Infrastructure",
       headline: "Keep the World *Running.*",
@@ -493,9 +493,9 @@ export const INDUSTRIES: IndustryContent[] = [
   {
     slug: "integrators-vendors",
     name: "Systems Integrators & AI Vendors",
-    metaTitle: "AI Assurance for Systems Integrators & AI Vendors",
+    metaTitle: "AI Assurance for Integrators & Vendors",
     metaDescription:
-      "Release evidence, vendor-asserted versus verified evidence and change records that travel with what you deliver — with roles and independence made explicit.",
+      "Release evidence, vendor-asserted versus verified claims and change records that travel with what you deliver, with roles and independence made explicit.",
     hero: {
       eyebrow: "Systems Integrators & AI Vendors",
       headline: "Build Customer Trust Into *Every Deployment.*",

@@ -13,9 +13,9 @@ import { BACKDROPS, OLYMPUS_MEDIA, SCENES } from "@/content/media";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "What Mythos Produces — From Finding to Evidence to Decision",
+  title: "AI Assessment Deliverables & Outputs",
   description:
-    "The nine outputs of a Mythos engagement — scope record, system map, findings, receipts, remediation, retest, decision support, exposure scenarios and exports — with how far along each one is.",
+    "The nine outputs of a Mythos engagement, from scope record and system map to receipts, retests and decision support, with how far along each one is.",
   alternates: { canonical: "/outputs/" },
   ...socialImage("outputs", "From Finding to Evidence to Decision — Mythos AI Security"),
 };
@@ -56,7 +56,7 @@ export default function OutputsPage() {
       <ScenicHero
         eyebrow="What Mythos Produces"
         headline="From Finding to Evidence *to Decision.*"
-        lede="Every output an engagement delivers, what each one is for, and how far along it is today."
+        lede="Every deliverable an AI assessment produces, what each one is for, and how far along it is today."
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Resources", href: "/resources" },
