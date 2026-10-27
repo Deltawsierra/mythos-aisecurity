@@ -42,6 +42,16 @@ be checked against product terminology before reuse.
 
 ## Changes made while staging
 
+- **Presence loops (27 Oct):** `/assets/presence/<id>-{idle,engaged}.webm` are the studio's
+  native-card VP9-alpha loops, byte-identical to the "Current Presence" portable packs (receipts
+  checked). `<id>-poster.webp` is the idle native-card poster resized to 560 px wide;
+  `<product>-backdrop.webp` is each product page's scene pre-cut to the 52:100 card and
+  `team-backdrop.webp` is backdrop A at 9:14. Homepage product cards play the engaged loop on
+  hover/focus only (Launch Guide H05); the selected team card plays its idle loop and a hovered or
+  focused team card its engaged loop (H07). Loops run only at >=1024 px with a hovering pointer
+  and motion allowed, only while on screen, and never in Safari until the HEVC-alpha exports
+  arrive. The old Motion V2 character loops and the static team portraits were removed. Green's
+  loop is not staged (not an inventory role).
 - **Parallax layers (27 Oct):** `/assets/scenes/layers/<key>-l<n>.webp` and
   `/assets/use-cases/layers/uc-NN-l<n>.webp`, back to front, for 30 scenes:
   the 21 that passed the parallax review (W2-07–09, W2-11–16, W4-01, W4-03–05,

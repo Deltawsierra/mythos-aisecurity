@@ -1,20 +1,24 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { TEAM_MEDIA, CHARACTER_MEDIA } from "@/content/media";
+import { TEAM_MEDIA, TEAM_PRESENCE, CHARACTER_MEDIA, presence } from "@/content/media";
 import { HOME_TEAMS } from "@/content/home";
+import { PresenceFigure, usePresenceMotion } from "@/components/scenic/PresenceFigure";
 import { cn } from "@/lib/utils";
 
 const LANES_X = [125, 375, 625, 875];
 
 /**
  * H07 — the four assurance roles (Launch Guide S06; Master Inventory). One team at a time, as
- * accessible tabs: the selected lane carries light up to SPINE. Portraits are
- * the 27 Oct team-kit stills (no loops for these designs yet). Team colours
- * stay inside their own lanes and cards; the surrounding world stays warm.
+ * accessible tabs: the selected lane carries light up to SPINE. On desktop with
+ * motion allowed the selected card plays its idle presence loop and a hovered or
+ * focused card its engaged loop; other cards stay stills. Team colours stay
+ * inside their own lanes and cards; the surrounding world stays warm.
  */
 export function AssuranceTeams() {
   const [active, setActive] = useState(0);
+  const [hovered, setHovered] = useState<number | null>(null);
+  const motion = usePresenceMotion();
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
   const teams = HOME_TEAMS.teams;
   const team = teams[active];
@@ -62,6 +66,7 @@ export function AssuranceTeams() {
         {teams.map((t, i) => {
           const media = TEAM_MEDIA[t.id];
           const selected = i === active;
+          const state = !motion ? null : hovered === i ? "engaged" : selected ? "idle" : null;
           return (
             <button
               key={t.id}
@@ -75,6 +80,10 @@ export function AssuranceTeams() {
               aria-controls="team-panel"
               tabIndex={selected ? 0 : -1}
               onClick={() => setActive(i)}
+              onPointerEnter={() => setHovered(i)}
+              onPointerLeave={() => setHovered(null)}
+              onFocus={() => setHovered(i)}
+              onBlur={() => setHovered(null)}
               className="group w-[42vw] max-w-[13rem] shrink-0 snap-center text-left sm:w-[13rem] lg:w-auto lg:max-w-none"
             >
               <span
@@ -84,8 +93,7 @@ export function AssuranceTeams() {
                 )}
                 style={selected ? { borderColor: t.color, boxShadow: `0 0 0 1px ${t.color}, 0 26px 60px -24px ${t.color}` } : undefined}
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={media.poster.src} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover object-top" />
+                <PresenceFigure media={presence(TEAM_PRESENCE[t.id])} state={state} />
                 <span aria-hidden="true" className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 55%, rgba(18,21,23,0.9) 100%)" }} />
                 <span className="absolute inset-x-0 bottom-0 flex items-center gap-2 p-3">
                   {/* eslint-disable-next-line @next/next/no-img-element */}

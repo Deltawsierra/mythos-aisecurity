@@ -31,22 +31,14 @@ export type IndustryId =
 
 export interface CharacterMedia {
   poster: ImageAsset;
-  idle: string;
-  /** Hover/focus loop. Absent where the delivered loop is not usable yet. */
-  engaged?: string;
   emblem?: string;
-  /**
-   * The Batch 4 posters (and the Motion V2 loops rendered from them) carry a
-   * baked card-frame edge. One crop serves both poster and loop; values were
-   * measured per character and checked at every corner.
-   */
+  /** The Batch 4 posters carry a baked card-frame edge; crops were measured per character and checked at every corner. */
   crop: MediaCrop;
   /** Where the face sits in the poster (% of width/height) and how far to zoom for a portrait medallion. */
   face: { x: number; y: number; zoom: number };
 }
 
 export interface TeamMedia {
-  poster: ImageAsset;
   emblem: string;
 }
 
@@ -289,38 +281,28 @@ export const LIFECYCLE_MEDALLIONS = {
 export const CHARACTER_MEDIA: Record<ProjectId, CharacterMedia> = {
   athena: {
     poster: poster("/assets/characters/athena-poster.webp", 640, 1164),
-    idle: "/assets/characters/athena-idle.webm",
-    engaged: "/assets/characters/athena-engaged.webm",
     crop: { left: 1, top: 1 },
     face: { x: 52, y: 21, zoom: 3.2 },
   },
   spine: {
     poster: poster("/assets/characters/spine-poster.webp", 631, 1164),
-    idle: "/assets/characters/spine-idle.webm",
-    engaged: "/assets/characters/spine-engaged.webm",
     emblem: "/assets/characters/emblems/spine-emblem.svg",
     crop: { left: 3.5, top: 1.5 },
     face: { x: 52, y: 19, zoom: 3.2 },
   },
   achilles: {
     poster: poster("/assets/characters/achilles-poster.webp", 643, 1164),
-    idle: "/assets/characters/achilles-idle.webm",
-    engaged: "/assets/characters/achilles-engaged.webm",
     emblem: "/assets/characters/emblems/achilles-emblem.svg",
     crop: { left: 5, top: 2 },
     face: { x: 60, y: 19, zoom: 3.2 },
   },
   minotaur: {
     poster: poster("/assets/characters/minotaur-poster.webp", 631, 1164),
-    idle: "/assets/characters/minotaur-idle.webm",
-    // minotaur-engaged.webm withheld: 3.2s instead of 5s, visible jump at the loop.
     crop: { left: 5.5, top: 2 },
     face: { x: 64, y: 22, zoom: 3 },
   },
   hermes: {
     poster: poster("/assets/characters/hermes-poster.webp", 655, 1164),
-    idle: "/assets/characters/hermes-idle.webm",
-    engaged: "/assets/characters/hermes-engaged.webm",
     emblem: "/assets/characters/emblems/hermes-emblem.svg",
     crop: { left: 8.5, top: 2 },
     // His face is at the poster's right edge (~93% across), so the portrait
@@ -329,11 +311,37 @@ export const CHARACTER_MEDIA: Record<ProjectId, CharacterMedia> = {
   },
 };
 
-/** Team kit portraits (27 Oct): White, the "Ivory Evidence Oracle", serves the evaluator. Static: no loops for these designs yet. */
+/** Team kit emblems (27 Oct): White, the "Ivory Evidence Oracle", serves the evaluator. */
 const team = (id: TeamId, emblem: string): TeamMedia => ({
-  poster: poster(`/assets/teams/${id}-team-portrait.webp`, 640, 960),
   emblem: `/assets/teams/emblems/${emblem}-team-emblem.svg`,
 });
+
+export type PresenceId = ProjectId | "red" | "blue" | "purple" | "white" | "green";
+
+export interface PresenceMedia {
+  /** Idle native-card still (alpha), resized to card width. */
+  poster: string;
+  /** VP9-alpha WebM, 5 s at 20 fps. Safari needs the HEVC-alpha exports, which are not delivered yet. */
+  idle: string;
+  engaged: string;
+  /** Opaque card-shaped backdrop painted behind the transparent figure. */
+  backdrop: string;
+}
+
+/**
+ * 27 Oct "Current Presence" loops: source-locked figures where only light, motes and trails
+ * move. Native-card renditions, used as delivered: the card must hide the figure's cut edges,
+ * so they are only ever cropped further in, never shown wider.
+ */
+export const presence = (id: PresenceId): PresenceMedia => ({
+  poster: `/assets/presence/${id}-poster.webp`,
+  idle: `/assets/presence/${id}-idle.webm`,
+  engaged: `/assets/presence/${id}-engaged.webm`,
+  backdrop: id in CHARACTER_MEDIA ? `/assets/presence/${id}-backdrop.webp` : "/assets/presence/team-backdrop.webp",
+});
+
+/** The evaluator borrows White's art until it has its own. */
+export const TEAM_PRESENCE: Record<TeamId, PresenceId> = { red: "red", blue: "blue", purple: "purple", evaluator: "white" };
 
 export const TEAM_MEDIA: Record<TeamId, TeamMedia> = {
   red: team("red", "red"),

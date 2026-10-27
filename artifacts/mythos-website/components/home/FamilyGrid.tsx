@@ -1,35 +1,26 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { CHARACTER_MEDIA } from "@/content/media";
+import { presence } from "@/content/media";
 import { PROJECTS } from "@/content/platform";
 import { HOME_FAMILY } from "@/content/home";
-import { cropStyle } from "@/lib/media";
+import { PresenceFigure, usePresenceMotion } from "@/components/scenic/PresenceFigure";
 
 /**
- * The five guardians (Launch Guide H05): poster first; desktop with motion
- * allowed cross-fades to the character's engaged loop on hover or focus — one
- * card at a time, never autoplaying the whole row.
+ * The five guardians (Launch Guide H05), each on its own page's scene: poster
+ * first; desktop with motion allowed plays the character's engaged presence
+ * loop on hover or focus — one card at a time, never autoplaying the whole row.
  */
 export function FamilyGrid() {
   const [hovered, setHovered] = useState<string | null>(null);
-  const [motion, setMotion] = useState(false);
-
-  useEffect(() => {
-    const q = window.matchMedia("(prefers-reduced-motion: no-preference) and (hover: hover) and (min-width: 1024px)");
-    const update = () => setMotion(q.matches);
-    update();
-    q.addEventListener("change", update);
-    return () => q.removeEventListener("change", update);
-  }, []);
+  const motion = usePresenceMotion();
 
   return (
     <ul className="grid gap-x-4 gap-y-10 sm:grid-cols-2 lg:grid-cols-5" data-reveal-group>
       {HOME_FAMILY.products.map((item) => {
         const project = PROJECTS.find((p) => p.id === item.id)!;
-        const media = CHARACTER_MEDIA[item.id];
         const live = motion && hovered === item.id;
         return (
           <li key={item.id}>
@@ -42,20 +33,7 @@ export function FamilyGrid() {
               className="group block"
             >
               <span className="relative block aspect-[52/100] overflow-hidden border border-champagne/30 shadow-[0_30px_60px_-34px_rgba(0,0,0,0.9)] transition-[border-color,box-shadow,transform] duration-500 group-hover:-translate-y-1 group-hover:border-champagne/80 group-hover:shadow-[0_36px_70px_-30px_rgba(208,164,90,0.5)]">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={media.poster.src} alt="" loading="lazy" style={cropStyle(media.crop)} />
-                {live && (
-                  <video
-                    className="lc-fade"
-                    style={cropStyle(media.crop)}
-                    src={media.engaged ?? media.idle}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    aria-hidden="true"
-                  />
-                )}
+                <PresenceFigure media={presence(item.id)} state={live ? "engaged" : null} />
                 <span aria-hidden="true" className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 55%, rgba(18,21,23,0.88) 100%)" }} />
                 {item.badge && (
                   <span className="absolute left-3 top-3 border border-champagne/50 bg-charcoal/75 px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.2em] text-champagne backdrop-blur-sm">
