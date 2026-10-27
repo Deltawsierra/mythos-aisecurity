@@ -50,6 +50,7 @@ const STRUCTURED_DATA = {
       url: "https://www.mythosaisecurity.com/",
       logo: "https://www.mythosaisecurity.com/assets/brand/crest-512.png",
       email: "info@mythosaisecurity.com",
+      founder: { "@type": "Person", name: "David Smith", jobTitle: "Co-founder and Principal Software Engineer" },
       description: "AI deployment assurance: mapping, testing and evidence for AI systems with real access and authority.",
     },
     {

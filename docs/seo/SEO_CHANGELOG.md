@@ -193,3 +193,16 @@ Re-measured from a fresh build:
 3. **Off-site signals.** Create the company LinkedIn page and any GitHub or research profiles, then add them as `sameAs` in the Organization JSON-LD (`app/layout.tsx`). Earn a few links from AI-security directories, OWASP-adjacent communities and partner sites.
 4. **Measurement setup (in the tools, not the code).** In GA4, mark `generate_lead` as a key event and register `inquiry_type`, `location` and `link_text` as custom dimensions. Add the site to Google Search Console and Bing Webmaster Tools and submit the sitemap. Check Search Console's coverage report a week after launch.
 5. **Copy recommendation:** the Athena H1 "See Every Risk…" (see the Athena entry).
+
+## New page — `/resources/how-to-red-team-ai-agents/` (27 Oct 2026)
+
+The first guide, by David Smith, published from the owner's draft with the approved review fixes.
+
+- **Search setup.** Title "How to Red-Team an AI Agent" (48 with suffix). Description 149. Canonical set. A social card is rendered from the hero. The first paragraph gives the direct answer that search engines and AI assistants quote.
+- **Structured data.** `TechArticle` (headline, author as a Person, published and research-checked dates, publisher, the 13 cited sources), `BreadcrumbList` and `FAQPage` for the six buyer questions. The Organization data now names David Smith as founder (owner-approved).
+- **Links.** "Where Mythos fits" notes and the Mythos section now link Athena, Achilles, Minotaur, SPINE, Evidence & Receipts, Continuous Assurance, the example report and the glossary (the draft sent all three product links to /platform). External sources open in a new tab; all 13 return 200.
+- **Accessibility.** The expected-vs-observed diagram has a full text description as alt text. A sticky table of contents sits on desktop. Tables use row headers.
+- **Content fixes applied:** "plus six cross-channel chains"; planted-case scores read as floors for those cases; the Mythos section leads with what each part does, then its limit; "Access is modelled from the configuration you supply". The protection-capabilities paragraph stands on the owner's 27 Oct ruling (claim `article.protections-in-progress`, worded as in progress).
+- **Lead capture.** The checklist PDF is hosted at `/assets/downloads/mythos-ai-agent-red-teaming-checklist.pdf` (free, no form). Its "Request an agent assessment" link now carries `utm_source=checklist&utm_medium=pdf&utm_campaign=agent-red-teaming`, so leads from the printed or forwarded PDF show up in GA4. On site, PDF downloads send `resource_download` and guide opens send `article_open`.
+- **Discovery.** Linked from the top of the Resources hub (new "Guides and checklists" shelf), the Resources mega menu, the footer, the sitemap (45 URLs) and `llms.txt`. The Resources notice now says the first guide is here.
+- **Company page.** New "Who is building Mythos" section naming David Smith (name, title and focus only), linking to the guide.

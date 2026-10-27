@@ -7,11 +7,14 @@ import { track, type AnalyticsEvent } from "@/lib/analytics";
  * One delegated click listener that turns the site's key links into GA4
  * events, so every CTA is measured without wiring each button. Header and
  * mobile-nav CTAs track themselves (SiteHeader) and are skipped here. Only the
- * link's destination, its visible label and the page path are sent — never
+ * link's destination, its visible label and the page path are sent (PDF
+ * downloads and guide opens included) — never
  * form contents. Consent Mode v2 still governs what GA stores.
  */
 function classify(url: URL): AnalyticsEvent | null {
   const p = url.pathname;
+  if (p.endsWith(".pdf")) return "resource_download";
+  if (p.startsWith("/resources/") && p.length > "/resources/".length) return "article_open";
   if (p.startsWith("/contact")) return url.searchParams.get("intent") === "demo" ? "cta_request_demo" : "cta_request_assessment";
   if (p.startsWith("/use-cases/") && p.length > "/use-cases/".length) return "use_case_open";
   if (p.startsWith("/platform/economic-exposure")) return "economic_exposure_open";

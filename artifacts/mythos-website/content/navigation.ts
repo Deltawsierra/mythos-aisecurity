@@ -183,6 +183,11 @@ export const PRIMARY_NAV: NavNode[] = [
         heading: "Learn and buy",
         items: [
           {
+            label: "Guide: Red-Teaming AI Agents",
+            href: "/resources/how-to-red-team-ai-agents",
+            description: "What to test before an agent touches real systems.",
+          },
+          {
             label: "Use Cases",
             href: "/use-cases",
             description: "Where AI deployment risk shows up, scenario by scenario.",
@@ -271,6 +276,7 @@ export const FOOTER_NAV: FooterGroup[] = [
     label: "Resources",
     items: [
       { label: "All Resources", href: "/resources" },
+      { label: "Red-Teaming AI Agents", href: "/resources/how-to-red-team-ai-agents" },
       { label: "Use Cases", href: "/use-cases" },
       { label: "Example Report", href: "/example-report" },
       { label: "What Mythos Produces", href: "/outputs" },

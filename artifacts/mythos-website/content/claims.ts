@@ -594,6 +594,22 @@ export const CLAIMS: Claim[] = [
     usedIn: ["/use-cases/*", "/outputs"],
   },
   {
+    id: "article.protections-in-progress",
+    text: "protection capabilities being added: action-bound permits; credential brokers; data, recipient and visible-exit controls; document and download intake; whole-agent containment; workflow and record authorization; cumulative work and spending budgets; connector admission and change control; verified-agent access lanes; persistent-memory and multi-agent provenance; verified revocation; continuous authorized adversarial validation",
+    status: "approved",
+    source: "Owner ruling, 27 Oct 2026 (work in progress now)",
+    usedIn: ["/resources/how-to-red-team-ai-agents"],
+    note: "Beyond the 26 Oct inventory's planned list. Forward wording only: in progress, not available or validated today; availability depends on the integration.",
+  },
+  {
+    id: "company.author-named",
+    text: "David Smith, Co-founder and Principal Software Engineer, named as article author and on the Company page",
+    status: "approved",
+    source: "Owner ruling, 27 Oct 2026",
+    usedIn: ["/company", "/resources/how-to-red-team-ai-agents"],
+    note: "Only the name, title and focus the owner supplied. No other founders, biographies or credentials.",
+  },
+  {
     id: "usecases.quantum-horizon",
     text: "use case 12 (quantum-adjacent AI R&D)",
     status: "rejected",

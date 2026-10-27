@@ -4,8 +4,9 @@
  * Landscape, Weekly Synthesis, Roadmap, Red/Gray/Green guide and the services
  * agreement template.
  *
- * - No founder names, biographies, dates, location, legal entity or veteran
- *   status are sourced or approved (decision D08 open) — none appear.
+ * - People: only what the owner approved on 27 Oct (claim company.author-named):
+ *   David Smith's name, title and focus. No other founders, biographies, dates,
+ *   location, legal entity or veteran status (decision D08 otherwise open).
  * - No customers, partners, open roles or milestones exist — pages say so
  *   plainly instead of implying them.
  * - Investors: thesis only. No round size, valuation, runway or use of funds.
@@ -55,6 +56,18 @@ export const COMPANY = {
     eyebrow: "What we are building",
     title: "Each part, *at its real maturity.*",
     lede: "One system for mapping, testing and keeping evidence current. Here is where each part stands today.",
+  },
+  people: {
+    eyebrow: "Who is building Mythos",
+    title: "The people *behind the evidence.*",
+    people: [
+      {
+        name: "David Smith",
+        role: "Co-founder and Principal Software Engineer",
+        focus: "Enterprise software and AI deployment assurance.",
+        writing: { label: "How to Red-Team an AI Agent", href: "/resources/how-to-red-team-ai-agents" },
+      },
+    ],
   },
   work: {
     eyebrow: "How we work",

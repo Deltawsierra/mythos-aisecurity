@@ -15,6 +15,7 @@ const STATIC_ROUTES = [
   "/solutions",
   "/use-cases",
   "/resources",
+  "/resources/how-to-red-team-ai-agents",
   "/pricing",
   "/example-report",
   "/investors",

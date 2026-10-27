@@ -11,6 +11,8 @@ export type AnalyticsEvent =
   | "pricing_tier_view"
   | "pricing_cta"
   | "example_report_download"
+  | "resource_download"
+  | "article_open"
   | "use_case_open"
   | "platform_project_open"
   | "economic_exposure_open"

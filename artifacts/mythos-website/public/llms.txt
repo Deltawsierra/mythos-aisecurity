@@ -22,6 +22,11 @@ Key facts, stated as on the site:
 - [Economic Exposure](https://www.mythosaisecurity.com/platform/economic-exposure/): failure cost as a range with sources
 - [Hermes](https://www.mythosaisecurity.com/platform/hermes/): physical-AI assurance (scaffold)
 
+## Guides
+
+- [How to Red-Team an AI Agent](https://www.mythosaisecurity.com/resources/how-to-red-team-ai-agents/): what to test before an agent touches real systems, by David Smith (27 Oct 2026)
+- [Agent red-teaming checklist (PDF)](https://www.mythosaisecurity.com/assets/downloads/mythos-ai-agent-red-teaming-checklist.pdf)
+
 ## Buying and trust
 
 - [Pricing](https://www.mythosaisecurity.com/pricing/): the three engagement offers; quoted after scoping
