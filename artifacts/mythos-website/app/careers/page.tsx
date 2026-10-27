@@ -7,7 +7,7 @@ import { PageMotion } from "@/components/motion/PageMotion";
 import { SectionIntro } from "@/components/sections/SectionIntro";
 import { ScenicHero } from "@/components/scenic/ScenicHero";
 import { CAREERS } from "@/content/company";
-import { OLYMPUS_MEDIA } from "@/content/media";
+import { OLYMPUS_MEDIA, SCENES } from "@/content/media";
 
 export const metadata: Metadata = {
   title: "Careers — Build the Systems That Test AI",
@@ -34,11 +34,7 @@ export default function CareersPage() {
         current="Careers"
         primaryCta={{ label: "See Open Roles", href: "#roles-title" }}
         secondaryCta={{ label: "About Mythos", href: "/company" }}
-        planes={[
-          { src: OLYMPUS_MEDIA.cloudSea.src, className: "-inset-[3%]", position: "50% 60%", depth: 6, priority: true },
-          { src: OLYMPUS_MEDIA.viaduct.src, className: "inset-x-[-4%] bottom-[16%] h-[34%]", fit: "contain", position: "50% 100%", depth: 12 },
-          { src: OLYMPUS_MEDIA.sunbeams, className: "-inset-[3%]", blend: "screen", opacity: 0.45, position: "100% 0%", depth: 10 },
-        ]}
+        planes={[{ src: SCENES.careers.src, mobileSrc: SCENES.careers.phone, className: "-inset-[3%]", position: "60% 50%", depth: 6, priority: true }]}
         compact
         into="ivory"
       />

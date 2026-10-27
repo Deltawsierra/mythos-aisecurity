@@ -18,13 +18,14 @@
  *   Its source stays below so it can return; HELD keeps it out of the build.
  */
 import type { UseCaseContent } from "@/components/use-cases/types";
-import { OLYMPUS_MEDIA } from "@/content/media";
+import { OLYMPUS_MEDIA, USE_CASE_ART } from "@/content/media";
 
 const LEDE =
   "Mythos evaluates the authorized scope, actual pathways and relevant behaviors of this AI workflow, then records what was observed, what remains uncertain and what should be retested when the system changes.";
 
 const sun = { src: OLYMPUS_MEDIA.sunbeams, className: "-inset-[3%]", blend: "screen" as const, opacity: 0.45, position: "100% 0%", depth: 10 };
-const scene = (src: string, position: string) => [{ src, className: "-inset-[3%]", position, depth: 6, priority: true }, sun];
+/** G6 use-case plate n (0-based), with its phone composition; the headline sits on the quiet left wall. */
+const useCasePlates = (n: number) => [{ src: USE_CASE_ART[n].src, mobileSrc: USE_CASE_ART[n].phone, className: "-inset-[3%]", position: "60% 50%", depth: 6, priority: true }];
 
 const RECEIPT_FOOTER =
   "Synthetic receipt for illustration. Receipts are signed and verify offline, so later changes are detectable. A receipt shows where a result came from — not that the conclusion is true.";
@@ -39,7 +40,7 @@ const LIBRARY: UseCaseContent[] = [
     question: "Can a support agent reach only the customer records and *actions it is authorized to use?*",
     lede: LEDE,
     image: "/assets/athena/athena-identity.webp",
-    planes: scene("/assets/industries/technology-ai-saas-hero.webp", "65% 40%"),
+    planes: useCasePlates(0),
     facets: { industry: ["financial-services-insurance", "ai-saas"], product: ["Athena", "Achilles", "SPINE"], risk: ["Data exposure", "Untrusted content", "Tool & action authority"] },
     workflow: {
       title: "A support agent with *a refund button.*",
@@ -118,7 +119,7 @@ const LIBRARY: UseCaseContent[] = [
     question: "Will an internal assistant respect source permissions when *retrieval and prompts combine?*",
     lede: LEDE,
     image: "/assets/athena/athena-data-lifecycle.webp",
-    planes: scene(OLYMPUS_MEDIA.marbleCity.src, "75% 40%"),
+    planes: useCasePlates(1),
     facets: { industry: ["regulated-enterprise", "healthcare-life-sciences", "public-sector-mission"], product: ["Athena", "Achilles", "SPINE"], risk: ["Data exposure", "Untrusted content", "Change & stale evidence"] },
     workflow: {
       title: "One question, *many sources.*",
@@ -195,12 +196,7 @@ const LIBRARY: UseCaseContent[] = [
     question: "Can an AI agent cause a harmful action despite *apparently approved permissions?*",
     lede: LEDE,
     image: "/assets/athena/athena-routes.webp",
-    planes: [
-      { src: OLYMPUS_MEDIA.cloudSea.src, className: "-inset-[3%]", position: "50% 55%", depth: 6, priority: true },
-      { src: OLYMPUS_MEDIA.mountains.src, className: "inset-x-0 top-[38%] h-[20%]", fit: "contain", position: "60% 100%", opacity: 0.75, depth: 8 },
-      { src: OLYMPUS_MEDIA.viaduct.src, className: "inset-x-[-6%] bottom-[14%] h-[30%]", fit: "contain", position: "50% 100%", depth: 12 },
-      sun,
-    ],
+    planes: useCasePlates(2),
     facets: { industry: ["ai-saas", "financial-services-insurance", "integrators-vendors"], product: ["Athena", "Achilles", "SPINE"], risk: ["Tool & action authority", "Identity & delegation", "Untrusted content"] },
     workflow: {
       title: "From a request *to an effect.*",
@@ -275,7 +271,7 @@ const LIBRARY: UseCaseContent[] = [
     question: "Can evidence support a controlled, *human-reviewed AI workflow?*",
     lede: LEDE,
     image: "/assets/evidence/policy-authority-chain.svg",
-    planes: scene("/assets/industries/insurance-hero.webp", "70% 40%"),
+    planes: useCasePlates(3),
     facets: { industry: ["regulated-enterprise", "healthcare-life-sciences"], product: ["Athena", "Achilles", "SPINE"], risk: ["Evidence & audit", "Untrusted content", "Change & stale evidence"] },
     workflow: {
       title: "AI drafts, *a person decides.*",
@@ -349,7 +345,7 @@ const LIBRARY: UseCaseContent[] = [
     question: "What is the effective exposure of a third-party AI tool *once it is connected?*",
     lede: LEDE,
     image: "/assets/athena/athena-surfaces.webp",
-    planes: [{ src: OLYMPUS_MEDIA.panorama.src, className: "-inset-[3%]", position: "60% 40%", depth: 6, priority: true }, { src: OLYMPUS_MEDIA.sunrays, className: "-inset-[3%]", blend: "screen", opacity: 0.6, position: "60% 40%", depth: 10 }],
+    planes: useCasePlates(4),
     facets: { industry: ["integrators-vendors", "financial-services-insurance", "manufacturing-critical-infrastructure"], product: ["Athena", "Achilles", "SPINE"], risk: ["Data exposure", "Identity & delegation", "Change & stale evidence"] },
     workflow: {
       title: "Their AI, *your data.*",
@@ -422,11 +418,7 @@ const LIBRARY: UseCaseContent[] = [
     question: "What private context or delegated authority could *an enterprise copilot expose?*",
     lede: LEDE,
     image: "/assets/athena/athena-personal-context.webp",
-    planes: [
-      { src: OLYMPUS_MEDIA.cloudSea.src, className: "-inset-[3%]", position: "50% 55%", depth: 6, priority: true },
-      { src: OLYMPUS_MEDIA.cliffTemple.src, className: "-right-[3%] bottom-[10%] h-[58%] w-[56%]", fit: "contain", position: "100% 100%", depth: 12, desktopOnly: true },
-      sun,
-    ],
+    planes: useCasePlates(5),
     facets: { industry: ["regulated-enterprise", "financial-services-insurance"], product: ["Athena", "Achilles", "SPINE"], risk: ["Data exposure", "Identity & delegation", "Untrusted content"] },
     workflow: {
       title: "A copilot that *acts as you.*",
@@ -499,12 +491,7 @@ const LIBRARY: UseCaseContent[] = [
     question: "Can generated code or an agentic commit *weaken production controls?*",
     lede: LEDE,
     image: "/assets/athena/athena-pipeline.webp",
-    planes: [
-      { src: OLYMPUS_MEDIA.cloudSea.src, className: "-inset-[3%]", position: "50% 60%", depth: 6, priority: true },
-      { src: OLYMPUS_MEDIA.mountains.src, className: "inset-x-0 top-[38%] h-[20%]", fit: "contain", position: "60% 100%", opacity: 0.75, depth: 8 },
-      { src: OLYMPUS_MEDIA.evergreenCliff.src, className: "-right-[4%] bottom-[8%] h-[64%] w-[44%] -scale-x-100", fit: "contain", position: "100% 100%", depth: 12, desktopOnly: true },
-      sun,
-    ],
+    planes: useCasePlates(6),
     facets: { industry: ["ai-saas", "integrators-vendors"], product: ["Athena", "Achilles", "SPINE"], risk: ["Tool & action authority", "Untrusted content", "Change & stale evidence"] },
     workflow: {
       title: "From a prompt *to a release.*",
@@ -577,7 +564,7 @@ const LIBRARY: UseCaseContent[] = [
     question: "Can an AI recommendation cross the boundary *into unauthorized execution?*",
     lede: LEDE,
     image: "/assets/athena/athena-remediation.webp",
-    planes: scene("/assets/industries/financial-services-hero.webp", "75% 40%"),
+    planes: useCasePlates(7),
     facets: { industry: ["regulated-enterprise", "financial-services-insurance", "healthcare-life-sciences"], product: ["Athena", "Achilles", "SPINE"], risk: ["Tool & action authority", "Untrusted content", "Evidence & audit"] },
     workflow: {
       title: "Advice that *should stay advice.*",
@@ -650,12 +637,7 @@ const LIBRARY: UseCaseContent[] = [
     question: "Can a mission-facing agent stay within restricted records and *authorization constraints?*",
     lede: LEDE,
     image: "/assets/evidence/deployment-decision-gate.svg",
-    planes: [
-      { src: OLYMPUS_MEDIA.cloudSea.src, className: "-inset-[3%]", position: "50% 50%", depth: 6, priority: true },
-      { src: OLYMPUS_MEDIA.mountains.src, className: "inset-x-0 top-[36%] h-[20%]", fit: "contain", position: "60% 100%", opacity: 0.8, depth: 8 },
-      { src: OLYMPUS_MEDIA.cliffTemple.src, className: "-right-[3%] bottom-[12%] h-[56%] w-[58%]", fit: "contain", position: "100% 100%", depth: 12, desktopOnly: true },
-      sun,
-    ],
+    planes: useCasePlates(8),
     facets: { industry: ["public-sector-mission"], product: ["Athena", "Achilles", "SPINE"], risk: ["Data exposure", "Identity & delegation", "Evidence & audit"] },
     workflow: {
       title: "Restricted records, *explicit authority.*",
@@ -728,7 +710,7 @@ const LIBRARY: UseCaseContent[] = [
     question: "Which service routes and credentials can *model-and-data workflows reach?*",
     lede: LEDE,
     image: "/assets/athena/athena-cloud-posture.webp",
-    planes: scene("/assets/industries/manufacturing-critical-infrastructure-hero.webp", "70% 40%"),
+    planes: useCasePlates(9),
     facets: { industry: ["ai-saas", "public-sector-mission", "manufacturing-critical-infrastructure"], product: ["Athena", "Achilles", "SPINE"], risk: ["Identity & delegation", "Data exposure", "Change & stale evidence"] },
     workflow: {
       title: "Service identities *all the way down.*",
@@ -805,11 +787,7 @@ const LIBRARY: UseCaseContent[] = [
       guardrail: "Hermes is a scaffold with no customers, pilots or vehicle assessments. It never certifies a vehicle, and Mythos does not test live vehicles.",
     },
     image: "/assets/characters/emblems/hermes-emblem.svg",
-    planes: [
-      { src: OLYMPUS_MEDIA.cloudSea.src, className: "-inset-[3%]", position: "50% 60%", depth: 6, priority: true },
-      { src: OLYMPUS_MEDIA.waterfallCliffs.src, className: "-right-[2%] bottom-[10%] h-[58%] w-[50%]", fit: "contain", position: "100% 100%", depth: 12, desktopOnly: true },
-      sun,
-    ],
+    planes: useCasePlates(10),
     facets: { industry: ["manufacturing-critical-infrastructure"], product: ["Hermes"], risk: ["Change & stale evidence", "Evidence & audit"] },
     workflow: {
       title: "From component *to system.*",

@@ -8,7 +8,7 @@ import { SectionIntro } from "@/components/sections/SectionIntro";
 import { ScenicHero } from "@/components/scenic/ScenicHero";
 import { Scene } from "@/components/scenic/Scene";
 import { ClosingVista } from "@/components/scenic/ClosingVista";
-import { OLYMPUS_MEDIA } from "@/content/media";
+import { BACKDROPS, OLYMPUS_MEDIA, SCENES } from "@/content/media";
 
 export const metadata: Metadata = {
   title: "Standards & Control Mapping — Mapped, Never Certified",
@@ -67,11 +67,7 @@ export default function StandardsPage() {
         ]}
         current="Standards"
         secondaryCta={{ label: "What Mythos Produces", href: "/outputs" }}
-        planes={[
-          { src: OLYMPUS_MEDIA.cloudSea.src, className: "-inset-[3%]", position: "50% 55%", depth: 6, priority: true },
-          { src: OLYMPUS_MEDIA.cliffTemple.src, className: "-right-[3%] bottom-[10%] h-[58%] w-[56%]", fit: "contain", position: "100% 100%", depth: 12, desktopOnly: true },
-          { src: OLYMPUS_MEDIA.sunbeams, className: "-inset-[3%]", blend: "screen", opacity: 0.45, position: "100% 0%", depth: 10 },
-        ]}
+        planes={[{ src: SCENES.standards.src, mobileSrc: SCENES.standards.phone, className: "-inset-[3%]", position: "55% 50%", depth: 6, priority: true }]}
         into="ivory"
       />
 
@@ -119,7 +115,7 @@ export default function StandardsPage() {
       <Scene
         surface="navy"
         labelledBy="referenced-title"
-        layers={[{ src: OLYMPUS_MEDIA.cloudSea.src, className: "object-[50%_70%]", parallax: 4 }]}
+        layers={[{ src: BACKDROPS.b.src, mobileSrc: BACKDROPS.b.phone, className: "object-[50%_50%]", parallax: 4 }]}
         scrim="linear-gradient(180deg, rgba(21,35,51,0.5) 0, rgba(21,35,51,0.9) clamp(14rem,22vw,22rem), rgba(21,35,51,0.94) 72%, rgba(21,35,51,0.72) 100%)"
         top={{ into: "parchment", height: "clamp(8rem,14vw,14rem)" }}
         bottom={{ into: "ivory", height: "clamp(7rem,12vw,12rem)" }}
@@ -178,10 +174,7 @@ export default function StandardsPage() {
         from="ivory"
         title="Evidence *your reviewers can map.*"
         secondary={{ label: "Read the Glossary", href: "/glossary" }}
-        layers={[
-          { src: OLYMPUS_MEDIA.panorama.src, className: "object-[55%_45%]", parallax: 4 },
-          { src: OLYMPUS_MEDIA.sunrays, blend: "screen", opacity: 0.6, className: "object-[55%_45%]" },
-        ]}
+        vista="d"
       />
     </PageMotion>
   );

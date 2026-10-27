@@ -9,7 +9,7 @@ import { ScenicHero } from "@/components/scenic/ScenicHero";
 import { Scene } from "@/components/scenic/Scene";
 import { ClosingVista } from "@/components/scenic/ClosingVista";
 import { PARTNERSHIPS } from "@/content/company";
-import { OLYMPUS_MEDIA } from "@/content/media";
+import { OLYMPUS_MEDIA, SCENES } from "@/content/media";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -38,12 +38,7 @@ export default function PartnershipsPage() {
         current="Partnerships"
         primaryCta={DISCUSS}
         secondaryCta={{ label: "For Integrators & Vendors", href: "/solutions/integrators-vendors" }}
-        planes={[
-          { src: OLYMPUS_MEDIA.cloudSea.src, className: "-inset-[3%]", position: "50% 55%", depth: 6, priority: true },
-          { src: OLYMPUS_MEDIA.waterfallCliffs.src, className: "-left-[6%] bottom-[10%] h-[52%] w-[44%] -scale-x-100", fit: "contain", position: "0% 100%", depth: 10, desktopOnly: true },
-          { src: OLYMPUS_MEDIA.viaduct.src, className: "inset-x-[-6%] bottom-[12%] h-[30%]", fit: "contain", position: "50% 100%", depth: 12 },
-          { src: OLYMPUS_MEDIA.sunbeams, className: "-inset-[3%]", blend: "screen", opacity: 0.45, position: "100% 0%", depth: 10 },
-        ]}
+        planes={[{ src: SCENES.partnerships.src, mobileSrc: SCENES.partnerships.phone, className: "-inset-[3%]", position: "60% 50%", depth: 6, priority: true }]}
         copySide="right"
         into="ivory"
       />
@@ -118,10 +113,7 @@ export default function PartnershipsPage() {
         title="Build trust *into what you deliver.*"
         primary={DISCUSS}
         secondary={{ label: "About Mythos", href: "/company" }}
-        layers={[
-          { src: OLYMPUS_MEDIA.panorama.src, className: "object-[55%_45%]", parallax: 4 },
-          { src: OLYMPUS_MEDIA.sunrays, blend: "screen", opacity: 0.6, className: "object-[55%_45%]" },
-        ]}
+        vista="c"
       />
     </PageMotion>
   );

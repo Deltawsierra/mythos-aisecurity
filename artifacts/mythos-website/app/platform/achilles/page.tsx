@@ -8,7 +8,6 @@ import { NextLinks, type NextLink } from "@/components/sections/NextLinks";
 import { ScenicHero } from "@/components/scenic/ScenicHero";
 import { Scene } from "@/components/scenic/Scene";
 import { ClosingVista } from "@/components/scenic/ClosingVista";
-import { CharacterNiche } from "@/components/scenic/CharacterNiche";
 import { GroupList } from "@/components/platform/GroupList";
 import { ChainFlow } from "@/components/platform/ChainFlow";
 import { ActionGate } from "@/components/platform/ActionGate";
@@ -25,7 +24,7 @@ import {
   ACHILLES_HANDOFF,
   ACHILLES_LEDGER,
 } from "@/content/achilles";
-import { OLYMPUS_MEDIA } from "@/content/media";
+import { BACKDROPS, OLYMPUS_MEDIA, SCENES } from "@/content/media";
 import { CTA_LINKS } from "@/content/navigation";
 import { CTA } from "@/lib/constants";
 
@@ -46,9 +45,6 @@ const NEXT: NextLink[] = [
 const TURNS = [1, 2, 3, 4, 5, 6];
 const c = ACHILLES_COPY;
 
-const ARENA_GLOW =
-  "radial-gradient(ellipse 40% 50% at 20% 60%, rgba(192,87,63,0.45), transparent 70%), radial-gradient(ellipse 40% 50% at 80% 55%, rgba(91,143,199,0.45), transparent 70%)";
-
 /** Achilles — Launch Guide R05 (AC01–AC09). */
 export default function AchillesPage() {
   return (
@@ -65,14 +61,7 @@ export default function AchillesPage() {
         current="Achilles"
         primaryCta={{ label: "Explore the Validation Method", href: "/platform/validation" }}
         secondaryCta={{ label: CTA.DEMO, href: CTA_LINKS.demo }}
-        planes={[
-          { src: OLYMPUS_MEDIA.cloudSea.src, className: "-inset-[3%]", position: "50% 30%", depth: 6, priority: true },
-          { src: OLYMPUS_MEDIA.viaduct.src, className: "inset-x-[-4%] bottom-[10%] h-[30%]", fit: "contain", position: "50% 100%", opacity: 0.9, depth: 12 },
-          { src: OLYMPUS_MEDIA.sunbeams, className: "-inset-[3%]", blend: "screen", opacity: 0.4, position: "100% 0%", depth: 10 },
-        ]}
-        scrim="linear-gradient(180deg, rgba(18,21,23,0.35), rgba(18,21,23,0.25)), radial-gradient(ellipse 32% 45% at 8% 78%, rgba(192,87,63,0.32), transparent 70%), radial-gradient(ellipse 32% 45% at 96% 70%, rgba(91,143,199,0.3), transparent 70%)"
-        figure={<CharacterNiche project="achilles" glow={ARENA_GLOW} className="absolute bottom-[9%] right-[8%] h-[70%]" />}
-        mobileFigure={<CharacterNiche project="achilles" glow={ARENA_GLOW} className="relative mx-auto h-[46svh]" />}
+        planes={[{ src: SCENES.achilles.src, mobileSrc: SCENES.achilles.phone, className: "-inset-[3%]", position: "62% 50%", depth: 6, priority: true }]}
         into="ivory"
       />
 
@@ -122,7 +111,7 @@ export default function AchillesPage() {
       <Scene
         surface="navy"
         labelledBy="gate-title"
-        layers={[{ src: OLYMPUS_MEDIA.cloudSea.src, className: "object-[50%_70%]", parallax: 4 }]}
+        layers={[{ src: BACKDROPS.a.src, mobileSrc: BACKDROPS.a.phone, className: "object-[50%_50%]", parallax: 4 }]}
         scrim="linear-gradient(180deg, rgba(21,35,51,0.5) 0, rgba(21,35,51,0.9) clamp(14rem,22vw,22rem), rgba(21,35,51,0.94) 72%, rgba(21,35,51,0.72) 100%)"
         top={{ into: "parchment", height: "clamp(8rem,14vw,14rem)" }}
         bottom={{ into: "ivory", height: "clamp(7rem,12vw,12rem)" }}
@@ -195,10 +184,7 @@ export default function AchillesPage() {
         title="Find out what your agents *can actually do.*"
         primary={{ label: "Request an Agent Authority Assessment", href: CTA_LINKS.assessment }}
         secondary={{ label: "How Mythos Validates Itself", href: "/platform/validation" }}
-        layers={[
-          { src: OLYMPUS_MEDIA.panorama.src, className: "object-[30%_45%]", parallax: 4 },
-          { src: OLYMPUS_MEDIA.mist, opacity: 0.9, className: "object-[30%_45%]", drift: 50 },
-        ]}
+        vista="a"
       />
     </PageMotion>
   );

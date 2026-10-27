@@ -12,6 +12,8 @@ import { cn } from "@/lib/utils";
 /** One painted plane of a hero scene, positioned freely (cut-outs) or full-bleed. */
 export interface HeroPlane {
   src: string;
+  /** Portrait composition for phones (below md); shown full-bleed and centred. */
+  mobileSrc?: string;
   /** Position and size of the plane, e.g. "inset-0" or "right-0 bottom-[12%] w-[58%]". */
   className: string;
   fit?: "cover" | "contain";
@@ -103,15 +105,22 @@ export function ScenicHero({
             data-depth={plane.depth}
             data-drift={plane.drift}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={plane.src}
-              alt=""
-              loading={plane.priority ? "eager" : "lazy"}
-              fetchPriority={plane.priority ? "high" : undefined}
-              className={cn("h-full w-full max-w-none", plane.fit === "contain" ? "object-contain" : "object-cover")}
-              style={{ objectPosition: plane.position, opacity: plane.opacity ?? 1, mixBlendMode: plane.blend }}
-            />
+            <picture>
+              {plane.mobileSrc && <source media="(max-width: 767px)" srcSet={plane.mobileSrc} />}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={plane.src}
+                alt=""
+                loading={plane.priority ? "eager" : "lazy"}
+                fetchPriority={plane.priority ? "high" : undefined}
+                className={cn(
+                  "h-full w-full max-w-none",
+                  plane.fit === "contain" ? "object-contain" : "object-cover",
+                  plane.mobileSrc && "max-md:![object-position:50%_50%]",
+                )}
+                style={{ objectPosition: plane.position, opacity: plane.opacity ?? 1, mixBlendMode: plane.blend }}
+              />
+            </picture>
           </div>
         ))}
         <div

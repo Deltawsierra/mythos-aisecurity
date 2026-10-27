@@ -6,7 +6,7 @@
  * sources and the difference is noted inline.
  */
 import type { LifecycleStageId } from "@/content/platform";
-import { INTERIM_SCENES, type ProjectId, type TeamId } from "@/content/media";
+import { SCENE_CARDS, type ProjectId, type TeamId } from "@/content/media";
 
 export const HOME_HERO = {
   eyebrow: "AI security for a braver tomorrow",
@@ -235,11 +235,11 @@ export const HOME_SECTORS = {
   headline: "Evidence for AI Across the *Environments That Matter.*",
   lede: "From financial services and healthcare to enterprise platforms, the mission is the same: understand what an AI system can reach, prove how it behaves, and keep evidence current.",
   cards: [
-    { slug: "financial-services-insurance", image: "/assets/industries/financial-services-card.webp", position: "50% 40%" },
+    { slug: "financial-services-insurance", image: SCENE_CARDS.financialServices, position: "50% 50%" },
     { slug: "healthcare-life-sciences", image: "/assets/industries/healthcare-life-sciences-card.webp", position: "50% 35%" },
     { slug: "ai-saas", image: "/assets/industries/technology-ai-saas-card.webp", position: "50% 40%" },
-    { slug: "regulated-enterprise", image: "/assets/olympus/marble-city.webp", position: "82% 18%" },
-    { slug: "public-sector-mission", image: INTERIM_SCENES.publicSectorCard.src, position: "50% 40%" },
+    { slug: "regulated-enterprise", image: SCENE_CARDS.regulatedEnterprise, position: "50% 50%" },
+    { slug: "public-sector-mission", image: SCENE_CARDS.publicSector, position: "50% 50%" },
     { slug: "manufacturing-critical-infrastructure", image: "/assets/industries/manufacturing-critical-infrastructure-card.webp", position: "50% 40%" },
   ],
 } as const;

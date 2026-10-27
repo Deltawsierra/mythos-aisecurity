@@ -19,7 +19,7 @@ import { DecisionStates, EvidenceLadder, PolicyEffects, ReceiptCard, UnknownCard
 import { ClaimInvalidation } from "@/components/home/ClaimInvalidation";
 import { AssuranceTeams } from "@/components/home/AssuranceTeams";
 import { SPINE_COPY } from "@/content/spine";
-import { OLYMPUS_MEDIA, SPINE_CORE_MEDIA } from "@/content/media";
+import { BACKDROPS, OLYMPUS_MEDIA, SCENES, SPINE_CORE_MEDIA } from "@/content/media";
 import { CTA_LINKS } from "@/content/navigation";
 import { CTA } from "@/lib/constants";
 
@@ -70,12 +70,7 @@ export default function SpinePage() {
         current="SPINE"
         primaryCta={{ label: "Explore the Evidence Model", href: "#claims-title" }}
         secondaryCta={{ label: CTA.DEMO, href: CTA_LINKS.demo }}
-        planes={[
-          { src: OLYMPUS_MEDIA.cloudSea.src, className: "-inset-[3%]", position: "50% 55%", depth: 6, priority: true },
-          { src: OLYMPUS_MEDIA.mountains.src, className: "inset-x-0 top-[34%] h-[22%]", fit: "contain", position: "50% 100%", opacity: 0.8, depth: 8 },
-          { src: OLYMPUS_MEDIA.waterfallCliffs.src, className: "-right-[4%] bottom-[8%] h-[58%] w-[62%]", fit: "contain", position: "100% 100%", depth: 14, desktopOnly: true },
-          { src: OLYMPUS_MEDIA.sunbeams, className: "-inset-[3%]", blend: "screen", opacity: 0.55, position: "100% 0%", depth: 10 },
-        ]}
+        planes={[{ src: SCENES.spine.src, mobileSrc: SCENES.spine.phone, className: "-inset-[3%]", position: "40% 50%", depth: 6, priority: true }]}
         figure={<CoreFigure className="absolute right-[8%] top-[16%] w-[min(34vw,32rem)]" />}
         mobileFigure={<CoreFigure className="relative mx-auto w-64" />}
         into="ivory"
@@ -101,7 +96,7 @@ export default function SpinePage() {
       <Scene
         surface="navy"
         labelledBy="graph-title"
-        layers={[{ src: OLYMPUS_MEDIA.cloudSea.src, className: "object-[50%_70%]", parallax: 4 }]}
+        layers={[{ src: BACKDROPS.a.src, mobileSrc: BACKDROPS.a.phone, className: "object-[50%_50%]", parallax: 4 }]}
         scrim="linear-gradient(180deg, rgba(21,35,51,0.5) 0, rgba(21,35,51,0.9) clamp(14rem,22vw,22rem), rgba(21,35,51,0.94) 72%, rgba(21,35,51,0.72) 100%)"
         top={{ into: "ivory", height: "clamp(8rem,14vw,14rem)" }}
         bottom={{ into: "parchment", height: "clamp(7rem,12vw,12rem)" }}
@@ -281,10 +276,7 @@ export default function SpinePage() {
         from="parchment"
         title="See what SPINE *keeps true about your AI.*"
         secondary={{ label: "See Evidence & Receipts", href: "/platform/evidence" }}
-        layers={[
-          { src: OLYMPUS_MEDIA.marbleCity.src, className: "object-[70%_45%]", parallax: 4 },
-          { src: OLYMPUS_MEDIA.sunbeams, blend: "screen", opacity: 0.55, className: "object-[85%_0%]" },
-        ]}
+        vista="a"
       />
     </PageMotion>
   );

@@ -5,6 +5,7 @@ import { Accent, plain } from "@/components/ui/Headline";
 import { Scene, type SceneLayer } from "@/components/scenic/Scene";
 import { CTA_LINKS } from "@/content/navigation";
 import { CANONICAL } from "@/content/platform";
+import { VISTAS } from "@/content/media";
 import { CTA } from "@/lib/constants";
 
 interface ClosingVistaProps {
@@ -13,7 +14,10 @@ interface ClosingVistaProps {
   body?: string;
   primary?: { label: string; href: string };
   secondary?: { label: string; href: string };
-  layers: SceneLayer[];
+  /** Custom scenery; pages normally pick one of the four G1 closing vistas instead. */
+  layers?: SceneLayer[];
+  /** G1 closing vista: a dawn temples, b valley road, c harbour, d moonlit. */
+  vista?: keyof typeof VISTAS;
   /** Surface of the section above: the top cloud bank rises out of it. */
   from: Surface;
 }
@@ -29,13 +33,15 @@ export function ClosingVista({
   primary = { label: CTA.PRIMARY, href: CTA_LINKS.assessment },
   secondary = { label: CTA.DEMO, href: CTA_LINKS.demo },
   layers,
+  vista = "a",
   from,
 }: ClosingVistaProps) {
+  const scenery = layers ?? [{ src: VISTAS[vista].src, mobileSrc: VISTAS[vista].phone, className: "object-[50%_60%]", parallax: 4 }];
   return (
     <Scene
       surface="charcoal"
       labelledBy="closing-title"
-      layers={layers}
+      layers={scenery}
       scrim="radial-gradient(ellipse 46% 44% at 50% 64%, rgba(18,21,23,0.8) 0%, rgba(18,21,23,0.5) 58%, rgba(18,21,23,0) 100%), linear-gradient(180deg, rgba(22,26,28,0) 58%, rgba(26,29,31,0.85) 93%, #1a1d1f 100%)"
       top={{ into: from, height: "clamp(9rem,18vw,18rem)" }}
       className="flex min-h-[80vh] items-center"

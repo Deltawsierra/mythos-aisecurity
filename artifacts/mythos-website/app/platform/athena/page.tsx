@@ -26,7 +26,7 @@ import {
   ATHENA_RETEST,
   ATHENA_TRACES,
 } from "@/content/athena";
-import { INTERIM_SCENES, OLYMPUS_MEDIA } from "@/content/media";
+import { BACKDROPS, OLYMPUS_MEDIA, SCENES } from "@/content/media";
 import { CTA_LINKS } from "@/content/navigation";
 import { CTA } from "@/lib/constants";
 
@@ -74,29 +74,7 @@ export default function AthenaPage() {
         primaryCta={{ label: "Explore an Example Assessment", href: "/example-report" }}
         secondaryCta={{ label: CTA.DEMO, href: CTA_LINKS.demo }}
         copySide="right"
-        planes={[{ src: INTERIM_SCENES.athena.src, className: "-inset-[3%]", position: "40% 50%", depth: 6, priority: true }]}
-        figure={
-          <div className="absolute bottom-[6%] left-[4%] h-[86%] xl:left-[7%]" data-depth="22">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={OLYMPUS_MEDIA.athenaR6.src}
-              alt=""
-              className="hero-rise h-full w-auto max-w-none drop-shadow-[0_30px_50px_rgba(18,21,23,0.55)]"
-              style={{ animationDelay: "160ms" }}
-            />
-          </div>
-        }
-        mobileFigure={
-          // She dissolves into the scene (not into a solid ivory band, which left a
-          // seam above the rest of the hero); the cloud bank resolves to ivory.
-          <div
-            className="relative h-[52svh] overflow-hidden"
-            style={{ WebkitMaskImage: "linear-gradient(180deg, #000 62%, transparent 100%)", maskImage: "linear-gradient(180deg, #000 62%, transparent 100%)" }}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={OLYMPUS_MEDIA.athenaR6.src} alt="" className="absolute left-1/2 top-0 h-[124%] w-auto max-w-none -translate-x-1/2" />
-          </div>
-        }
+        planes={[{ src: SCENES.athena.src, mobileSrc: SCENES.athena.phone, className: "-inset-[3%]", position: "35% 50%", depth: 6, priority: true }]}
         into="ivory"
       />
 
@@ -114,7 +92,7 @@ export default function AthenaPage() {
       <Scene
         surface="navy"
         labelledBy="map-title"
-        layers={[{ src: OLYMPUS_MEDIA.cloudSea.src, className: "object-[50%_70%]", parallax: 4 }]}
+        layers={[{ src: BACKDROPS.a.src, mobileSrc: BACKDROPS.a.phone, className: "object-[50%_50%]", parallax: 4 }]}
         scrim="linear-gradient(180deg, rgba(21,35,51,0.5) 0, rgba(21,35,51,0.9) clamp(14rem,22vw,22rem), rgba(21,35,51,0.94) 72%, rgba(21,35,51,0.72) 100%)"
         top={{ into: "ivory", height: "clamp(8rem,14vw,14rem)" }}
         bottom={{ into: "parchment", height: "clamp(7rem,12vw,12rem)" }}
@@ -251,11 +229,7 @@ export default function AthenaPage() {
         from="ivory"
         title="See your system *the way Athena does.*"
         secondary={{ label: CTA.SAMPLE_REPORT, href: "/example-report" }}
-        layers={[
-          { src: OLYMPUS_MEDIA.cloudSea.src, className: "object-[50%_45%]", parallax: 4 },
-          { src: OLYMPUS_MEDIA.cliffTemple.src, className: "!object-contain object-[50%_92%]", parallax: 6 },
-          { src: OLYMPUS_MEDIA.sunbeams, blend: "screen", opacity: 0.55, className: "object-[80%_0%]" },
-        ]}
+        vista="a"
       />
     </PageMotion>
   );

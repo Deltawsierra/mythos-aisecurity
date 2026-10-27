@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { TEAM_MEDIA, CHARACTER_MEDIA } from "@/content/media";
 import { HOME_TEAMS } from "@/content/home";
 import { cn } from "@/lib/utils";
@@ -9,41 +9,15 @@ const LANES_X = [125, 375, 625, 875];
 
 /**
  * H07 — the four assurance roles (Launch Guide S06; Master Inventory). One team at a time, as
- * accessible tabs: the selected lane carries light up to SPINE and, on
- * desktop with motion allowed, that team's loop plays. Team colours stay
- * inside their own lanes and cards; the surrounding world stays warm.
+ * accessible tabs: the selected lane carries light up to SPINE. Portraits are
+ * the 27 Oct team-kit stills (no loops for these designs yet). Team colours
+ * stay inside their own lanes and cards; the surrounding world stays warm.
  */
 export function AssuranceTeams() {
   const [active, setActive] = useState(0);
-  const [motion, setMotion] = useState(false);
-  // Loops only start once the section is near the viewport, so the homepage
-  // doesn't download a team video on first view.
-  const [near, setNear] = useState(false);
-  const root = useRef<HTMLDivElement>(null);
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
   const teams = HOME_TEAMS.teams;
   const team = teams[active];
-
-  useEffect(() => {
-    const q = window.matchMedia("(prefers-reduced-motion: no-preference) and (min-width: 1024px)");
-    const update = () => setMotion(q.matches);
-    update();
-    q.addEventListener("change", update);
-    return () => q.removeEventListener("change", update);
-  }, []);
-
-  useEffect(() => {
-    const el = root.current;
-    if (!el) return;
-    const io = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        setNear(true);
-        io.disconnect();
-      }
-    }, { rootMargin: "600px 0px" });
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
 
   const onKeyDown = (e: React.KeyboardEvent) => {
     const keys: Record<string, number> = { ArrowRight: 1, ArrowLeft: -1 };
@@ -58,7 +32,7 @@ export function AssuranceTeams() {
   };
 
   return (
-    <div ref={root}>
+    <div>
       {/* Lanes converge on SPINE (decorative). */}
       <div aria-hidden="true" className="relative mx-auto hidden h-44 max-w-5xl lg:block">
         <svg viewBox="0 0 1000 176" className="absolute inset-0 h-full w-full" preserveAspectRatio="none">
@@ -112,9 +86,6 @@ export function AssuranceTeams() {
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={media.poster.src} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover object-top" />
-                {selected && motion && near && (
-                  <video key={t.id} className="lc-fade absolute inset-0 h-full w-full object-cover object-top" src={media.idle} autoPlay muted loop playsInline aria-hidden="true" />
-                )}
                 <span aria-hidden="true" className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 55%, rgba(18,21,23,0.9) 100%)" }} />
                 <span className="absolute inset-x-0 bottom-0 flex items-center gap-2 p-3">
                   {/* eslint-disable-next-line @next/next/no-img-element */}

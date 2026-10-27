@@ -10,7 +10,6 @@ import { SectionIntro } from "@/components/sections/SectionIntro";
 import { ScenicHero } from "@/components/scenic/ScenicHero";
 import { Scene } from "@/components/scenic/Scene";
 import { ClosingVista } from "@/components/scenic/ClosingVista";
-import { CharacterNiche } from "@/components/scenic/CharacterNiche";
 import { PhysicalLoop } from "@/components/platform/PhysicalLoop";
 import { LayerSelector } from "@/components/platform/LayerSelector";
 import { VModel } from "@/components/platform/VModel";
@@ -26,7 +25,7 @@ import {
   HERMES_TRAIL,
   HERMES_VMODEL,
 } from "@/content/hermes";
-import { INTERIM_SCENES, OLYMPUS_MEDIA } from "@/content/media";
+import { BACKDROPS, OLYMPUS_MEDIA, SCENES } from "@/content/media";
 
 export const metadata: Metadata = {
   title: "Hermes — Physical AI Assurance",
@@ -36,7 +35,6 @@ export const metadata: Metadata = {
   ...socialImage("platform-hermes", "Physical AI Deserves Better Evidence — Mythos AI Security"),
 };
 
-const SKY = "radial-gradient(ellipse 45% 55% at 40% 55%, rgba(229,197,143,0.42), transparent 70%), radial-gradient(ellipse 35% 45% at 75% 45%, rgba(91,143,199,0.32), transparent 70%)";
 const INQUIRY = "/contact?intent=general";
 const c = HERMES_COPY;
 
@@ -61,9 +59,7 @@ export default function HermesPage() {
         current="Hermes"
         primaryCta={{ label: "Discuss Physical AI Assurance", href: INQUIRY }}
         secondaryCta={{ label: "Explore the Platform", href: "/platform" }}
-        planes={[{ src: INTERIM_SCENES.hermes.src, className: "-inset-[3%]", position: "55% 45%", depth: 6, priority: true }]}
-        figure={<CharacterNiche project="hermes" glow={SKY} className="absolute bottom-[30%] right-[9%] h-[56%]" />}
-        mobileFigure={<CharacterNiche project="hermes" glow={SKY} className="relative mx-auto h-[44svh]" />}
+        planes={[{ src: SCENES.hermes.src, mobileSrc: SCENES.hermes.phone, className: "-inset-[3%]", position: "60% 40%", depth: 6, priority: true }]}
         into="ivory"
       />
 
@@ -112,7 +108,7 @@ export default function HermesPage() {
       <Scene
         surface="navy"
         labelledBy="layers-title"
-        layers={[{ src: OLYMPUS_MEDIA.cloudSea.src, className: "object-[50%_70%]", parallax: 4 }]}
+        layers={[{ src: BACKDROPS.a.src, mobileSrc: BACKDROPS.a.phone, className: "object-[50%_50%]", parallax: 4 }]}
         scrim="linear-gradient(180deg, rgba(21,35,51,0.5) 0, rgba(21,35,51,0.9) clamp(14rem,22vw,22rem), rgba(21,35,51,0.94) 72%, rgba(21,35,51,0.72) 100%)"
         top={{ into: "ivory", height: "clamp(8rem,14vw,14rem)" }}
         bottom={{ into: "ivory", height: "clamp(7rem,12vw,12rem)" }}
@@ -239,11 +235,7 @@ export default function HermesPage() {
         body="Tell us what you are building or reviewing. We will be clear about what Hermes can and cannot evidence today."
         primary={{ label: "Discuss Physical AI Assurance", href: INQUIRY }}
         secondary={{ label: "Explore the Platform", href: "/platform" }}
-        layers={[
-          { src: OLYMPUS_MEDIA.cloudSea.src, className: "object-[50%_45%]", parallax: 4 },
-          { src: OLYMPUS_MEDIA.viaduct.src, className: "!object-contain object-[50%_86%]", parallax: 6, drift: 60 },
-          { src: OLYMPUS_MEDIA.sunbeams, blend: "screen", opacity: 0.55, className: "object-[80%_0%]" },
-        ]}
+        vista="a"
       />
     </PageMotion>
   );

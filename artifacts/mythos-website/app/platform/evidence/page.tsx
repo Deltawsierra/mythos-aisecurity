@@ -21,7 +21,7 @@ import {
   EVIDENCE_OUTPUTS,
   EVIDENCE_SIGNOFF,
 } from "@/content/evidence";
-import { OLYMPUS_MEDIA } from "@/content/media";
+import { OLYMPUS_MEDIA, SCENES } from "@/content/media";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -61,10 +61,7 @@ export default function EvidencePage() {
         ]}
         current="Evidence & Receipts"
         secondaryCta={{ label: "Explore the Platform", href: "/platform" }}
-        planes={[
-          { src: OLYMPUS_MEDIA.marbleCity.src, className: "-inset-[3%]", position: "70% 40%", depth: 6, priority: true },
-          { src: OLYMPUS_MEDIA.sunbeams, className: "-inset-[3%]", blend: "screen", opacity: 0.45, position: "100% 0%", depth: 10 },
-        ]}
+        planes={[{ src: SCENES.evidence.src, mobileSrc: SCENES.evidence.phone, className: "-inset-[3%]", position: "50% 50%", depth: 6, priority: true }]}
         figure={
           <div data-surface="parchment" className="absolute right-[6%] top-[24%] w-[min(40vw,36rem)] bg-transparent" data-depth="16">
             <ReportPreview />
@@ -155,11 +152,7 @@ export default function EvidencePage() {
         from="parchment"
         title="See the evidence *behind your AI.*"
         secondary={{ label: "Explore the Platform", href: "/platform" }}
-        layers={[
-          { src: OLYMPUS_MEDIA.cloudSea.src, className: "object-[50%_45%]", parallax: 4 },
-          { src: OLYMPUS_MEDIA.cliffTemple.src, className: "!object-contain object-[50%_92%]", parallax: 6 },
-          { src: OLYMPUS_MEDIA.sunbeams, blend: "screen", opacity: 0.5, className: "object-[80%_0%]" },
-        ]}
+        vista="a"
       />
     </PageMotion>
   );

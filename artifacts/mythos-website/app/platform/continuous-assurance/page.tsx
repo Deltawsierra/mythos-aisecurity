@@ -15,7 +15,7 @@ import { ChangeTraversal } from "@/components/platform/ChangeTraversal";
 import { ChangeFlow } from "@/components/platform/ChangeFlow";
 import { EvidenceTimeline } from "@/components/platform/EvidenceTimeline";
 import { CA_CHANGES, CA_CLAIMS, CA_COPY, CA_EVENTS, CA_LEDGER } from "@/content/continuousAssurance";
-import { INTERIM_SCENES, OLYMPUS_MEDIA } from "@/content/media";
+import { OLYMPUS_MEDIA, SCENES } from "@/content/media";
 
 export const metadata: Metadata = {
   title: "Continuous Assurance — When AI Changes, Your Evidence Should Respond",
@@ -55,7 +55,7 @@ export default function ContinuousAssurancePage() {
         ]}
         current="Continuous Assurance"
         secondaryCta={{ label: "Explore the Platform", href: "/platform" }}
-        planes={[{ src: INTERIM_SCENES.continuousAssurance.src, className: "-inset-[3%]", position: "60% 50%", depth: 6, priority: true }]}
+        planes={[{ src: SCENES.continuousAssurance.src, mobileSrc: SCENES.continuousAssurance.phone, className: "-inset-[3%]", position: "55% 50%", depth: 6, priority: true }]}
         figure={<OrbitFigure entries={LEDGER_TICKER} className="absolute right-[6%] top-[14%] w-[min(36vw,33rem)]" />}
         mobileFigure={<OrbitFigure entries={LEDGER_TICKER} className="relative mx-auto w-72" />}
         into="ivory"
@@ -150,10 +150,7 @@ export default function ContinuousAssurancePage() {
         from="parchment"
         title="Keep your evidence *as current as your AI.*"
         secondary={{ label: "Explore the Platform", href: "/platform" }}
-        layers={[
-          { src: OLYMPUS_MEDIA.panorama.src, className: "object-[55%_45%]", parallax: 4 },
-          { src: OLYMPUS_MEDIA.sunrays, blend: "screen", opacity: 0.6, className: "object-[55%_45%]" },
-        ]}
+        vista="a"
       />
     </PageMotion>
   );

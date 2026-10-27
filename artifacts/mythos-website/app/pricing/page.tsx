@@ -12,7 +12,7 @@ import { Scene } from "@/components/scenic/Scene";
 import { ClosingVista } from "@/components/scenic/ClosingVista";
 import { Faq } from "@/components/platform/Faq";
 import { ASSESSMENTS, CONSULT_ASSESSMENTS, EXPAND, INCLUDED, MOTIONS, PRICING_FAQ, PRICING_HERO, QUOTE_FACTORS, SUA, TIERS } from "@/content/pricing";
-import { OLYMPUS_MEDIA } from "@/content/media";
+import { BACKDROPS, OLYMPUS_MEDIA, SCENES } from "@/content/media";
 
 export const metadata: Metadata = {
   title: "Pricing — Assurance That Scales With Your AI Estate",
@@ -51,10 +51,7 @@ export default function PricingPage() {
         current="Pricing"
         primaryCta={ASSESSMENT}
         secondaryCta={ANNUAL}
-        planes={[
-          { src: OLYMPUS_MEDIA.panorama.src, className: "-inset-[3%]", position: "60% 40%", depth: 6, priority: true },
-          { src: OLYMPUS_MEDIA.sunrays, className: "-inset-[3%]", blend: "screen", opacity: 0.6, position: "60% 40%", depth: 10 },
-        ]}
+        planes={[{ src: SCENES.pricing.src, mobileSrc: SCENES.pricing.phone, className: "-inset-[3%]", position: "60% 50%", depth: 6, priority: true }]}
         into="ivory"
       />
 
@@ -139,7 +136,7 @@ export default function PricingPage() {
       <Scene
         surface="navy"
         labelledBy="assure-title"
-        layers={[{ src: OLYMPUS_MEDIA.cloudSea.src, className: "object-[50%_70%]", parallax: 4 }]}
+        layers={[{ src: BACKDROPS.a.src, mobileSrc: BACKDROPS.a.phone, className: "object-[50%_50%]", parallax: 4 }]}
         scrim="linear-gradient(180deg, rgba(21,35,51,0.5) 0, rgba(21,35,51,0.9) clamp(14rem,22vw,22rem), rgba(21,35,51,0.94) 72%, rgba(21,35,51,0.72) 100%)"
         top={{ into: "ivory", height: "clamp(8rem,14vw,14rem)" }}
         bottom={{ into: "parchment", height: "clamp(7rem,12vw,12rem)" }}
@@ -301,10 +298,7 @@ export default function PricingPage() {
         body="Tell us the system you need reviewed, what it can reach or do, and the decision your team is preparing to make. We will propose an assessment or an assurance path."
         primary={ASSESSMENT}
         secondary={{ label: "Talk to an Expert", href: "/contact?intent=general" }}
-        layers={[
-          { src: OLYMPUS_MEDIA.panorama.src, className: "object-[55%_45%]", parallax: 4 },
-          { src: OLYMPUS_MEDIA.sunrays, blend: "screen", opacity: 0.6, className: "object-[55%_45%]" },
-        ]}
+        vista="c"
       />
     </PageMotion>
   );

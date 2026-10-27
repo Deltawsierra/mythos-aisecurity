@@ -1,21 +1,21 @@
 import type { ReactNode } from "react";
 import { Container } from "@/components/ui/Container";
 import { Accent } from "@/components/ui/Headline";
-import { OLYMPUS_MEDIA } from "@/content/media";
+import { SCENES } from "@/content/media";
 
 /**
- * The shared frame for the 404 and error pages: the cloud sea and the temple
- * on its cliff, a shade pool behind the copy, and whatever recovery tools the
+ * The shared frame for the 404 and error pages: the road that ends in cloud (F5), a shade pool behind the copy, and whatever recovery tools the
  * page passes in. All copy is DOM.
  */
 export function LostPath({ code, title, body, children }: { code: string; title: string; body: string; children: ReactNode }) {
   return (
     <section data-surface="charcoal" aria-labelledby="lost-title" className="relative isolate -mt-16 min-h-[100svh] overflow-hidden lg:-mt-20">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={OLYMPUS_MEDIA.cloudSea.src} alt="" className="absolute inset-0 h-full w-full object-cover object-[50%_60%]" />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={OLYMPUS_MEDIA.cliffTemple.src} alt="" className="absolute -right-[4%] bottom-[6%] hidden h-[58%] w-[52%] object-contain object-[100%_100%] lg:block" />
+        <picture>
+          <source media="(max-width: 767px)" srcSet={SCENES.notFound.phone} />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={SCENES.notFound.src} alt="" className="absolute inset-0 h-full w-full object-cover object-[60%_50%]" />
+        </picture>
         <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(18,21,23,0.9) 0%, rgba(18,21,23,0.62) 40%, rgba(18,21,23,0.7) 100%)" }} />
         <div className="absolute inset-0 hidden lg:block" style={{ background: "radial-gradient(ellipse 44% 60% at 30% 50%, rgba(18,21,23,0.82) 0%, rgba(18,21,23,0.5) 60%, rgba(18,21,23,0) 90%)" }} />
       </div>

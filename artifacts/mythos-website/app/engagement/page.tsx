@@ -9,7 +9,7 @@ import { SectionIntro } from "@/components/sections/SectionIntro";
 import { ScenicHero } from "@/components/scenic/ScenicHero";
 import { Scene } from "@/components/scenic/Scene";
 import { ClosingVista } from "@/components/scenic/ClosingVista";
-import { OLYMPUS_MEDIA } from "@/content/media";
+import { BACKDROPS, OLYMPUS_MEDIA } from "@/content/media";
 
 export const metadata: Metadata = {
   title: "How Engagement Starts — From Inquiry to Evidence",
@@ -111,7 +111,7 @@ export default function EngagementPage() {
       <Scene
         surface="navy"
         labelledBy="agreement-title"
-        layers={[{ src: OLYMPUS_MEDIA.cloudSea.src, className: "object-[50%_70%]", parallax: 4 }]}
+        layers={[{ src: BACKDROPS.a.src, mobileSrc: BACKDROPS.a.phone, className: "object-[50%_50%]", parallax: 4 }]}
         scrim="linear-gradient(180deg, rgba(21,35,51,0.5) 0, rgba(21,35,51,0.9) clamp(14rem,22vw,22rem), rgba(21,35,51,0.94) 72%, rgba(21,35,51,0.72) 100%)"
         top={{ into: "ivory", height: "clamp(8rem,14vw,14rem)" }}
         bottom={{ into: "parchment", height: "clamp(7rem,12vw,12rem)" }}
@@ -165,10 +165,7 @@ export default function EngagementPage() {
         from="parchment"
         title="Define the system. *Start with evidence.*"
         secondary={{ label: "Trust Center", href: "/trust" }}
-        layers={[
-          { src: OLYMPUS_MEDIA.panorama.src, className: "object-[55%_45%]", parallax: 4 },
-          { src: OLYMPUS_MEDIA.sunrays, blend: "screen", opacity: 0.6, className: "object-[55%_45%]" },
-        ]}
+        vista="c"
       />
     </PageMotion>
   );

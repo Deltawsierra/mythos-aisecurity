@@ -13,7 +13,7 @@ import { EvidenceTimeline } from "@/components/platform/EvidenceTimeline";
 import { IndustrySwitcher, type SwitcherIndustry } from "@/components/solutions/IndustrySwitcher";
 import { INDUSTRIES, SOLUTIONS_BRIDGE, SOLUTIONS_HUB, SOLUTIONS_SWITCHER } from "@/content/industries";
 import { PROJECTS } from "@/content/platform";
-import { OLYMPUS_MEDIA } from "@/content/media";
+import { BACKDROPS, OLYMPUS_MEDIA, SCENES } from "@/content/media";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -74,12 +74,7 @@ export default function SolutionsPage() {
         breadcrumbs={[{ label: "Home", href: "/" }]}
         current="Solutions"
         secondaryCta={{ label: "Find Your Environment", href: "#switcher-title" }}
-        planes={[
-          { src: OLYMPUS_MEDIA.cloudSea.src, className: "-inset-[3%]", position: "50% 60%", depth: 6, priority: true },
-          { src: OLYMPUS_MEDIA.mountains.src, className: "inset-x-0 top-[38%] h-[20%]", fit: "contain", position: "50% 100%", opacity: 0.75, depth: 8 },
-          { src: OLYMPUS_MEDIA.waterfallCliffs.src, className: "-right-[2%] bottom-[10%] h-[60%] w-[52%]", fit: "contain", position: "100% 100%", depth: 12, desktopOnly: true },
-          { src: OLYMPUS_MEDIA.sunbeams, className: "-inset-[3%]", blend: "screen", opacity: 0.45, position: "100% 0%", depth: 10 },
-        ]}
+        planes={[{ src: SCENES.solutionsHub.src, mobileSrc: SCENES.solutionsHub.phone, className: "-inset-[3%]", position: "60% 50%", depth: 6, priority: true }]}
         into="ivory"
       />
 
@@ -97,7 +92,7 @@ export default function SolutionsPage() {
       <Scene
         surface="navy"
         labelledBy="pillars-title"
-        layers={[{ src: OLYMPUS_MEDIA.cloudSea.src, className: "object-[50%_70%]", parallax: 4 }]}
+        layers={[{ src: BACKDROPS.a.src, mobileSrc: BACKDROPS.a.phone, className: "object-[50%_50%]", parallax: 4 }]}
         scrim="linear-gradient(180deg, rgba(21,35,51,0.5) 0, rgba(21,35,51,0.9) clamp(14rem,22vw,22rem), rgba(21,35,51,0.94) 72%, rgba(21,35,51,0.72) 100%)"
         top={{ into: "ivory", height: "clamp(8rem,14vw,14rem)" }}
         bottom={{ into: "parchment", height: "clamp(7rem,12vw,12rem)" }}
@@ -231,10 +226,7 @@ export default function SolutionsPage() {
         title="Start with *the workflow that matters most.*"
         body="Tell us your environment and the AI system you are most concerned about. We will suggest a scoped first engagement."
         secondary={{ label: "Explore the Platform", href: "/platform" }}
-        layers={[
-          { src: OLYMPUS_MEDIA.panorama.src, className: "object-[55%_45%]", parallax: 4 },
-          { src: OLYMPUS_MEDIA.sunrays, blend: "screen", opacity: 0.6, className: "object-[55%_45%]" },
-        ]}
+        vista="b"
       />
     </PageMotion>
   );

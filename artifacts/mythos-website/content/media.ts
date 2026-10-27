@@ -45,8 +45,6 @@ export interface CharacterMedia {
 
 export interface TeamMedia {
   poster: ImageAsset;
-  idle: string;
-  engaged: string;
   emblem: string;
 }
 
@@ -89,23 +87,80 @@ export const OLYMPUS_MEDIA = {
   sunbeams: "/assets/olympus/sunbeams.webp",
 } as const;
 
+export interface SceneArt extends ImageAsset {
+  /** 1080x1920 portrait composition for phones. */
+  phone: string;
+}
+
+const art = (dir: string, key: string): SceneArt => ({
+  src: `/assets/${dir}/${key}-hero.webp`,
+  phone: `/assets/${dir}/${key}-phone.webp`,
+  width: 1920,
+  height: 1080,
+});
+
 /**
- * Interim flat heroes from the Wave 2 art delivery (19 Oct): delivered layers
- * flattened at their native 1672×941 with solid alpha clamped to 255. Flat
- * until rebuilt layered masters arrive. Continuous Assurance leaves out the
- * painted ring and Hermes the painted figure, because those pages draw their
- * own orbit and character. Resources uses the final-look image (its layers
- * have no floor).
+ * Final art collection (27 Oct 2026), approved in the art review: flattened
+ * scene composites (declared ~1.6x upscales) at 1920x1080 with the studio's
+ * own phone compositions. Flat until the layered source masters are in hand.
+ * Achilles, Hermes and Athena are painted into their scenes, so those pages
+ * drop their separate figures.
  */
-export const INTERIM_SCENES = {
-  publicSector: poster("/assets/scenes/public-sector-mission-hero.webp", 1672, 941),
-  /** 3:4 crop of the same scene for the homepage sector card. */
-  publicSectorCard: poster("/assets/scenes/public-sector-mission-card.webp", 480, 640),
-  continuousAssurance: poster("/assets/scenes/continuous-assurance-hero.webp", 1672, 941),
-  hermes: poster("/assets/scenes/hermes-hero.webp", 1672, 941),
-  athena: poster("/assets/scenes/athena-hero.webp", 1672, 941),
-  resources: poster("/assets/scenes/resources-hero.webp", 1672, 941),
+export const SCENES = {
+  platform: art("scenes", "platform"),
+  spine: art("scenes", "spine"),
+  achilles: art("scenes", "achilles"),
+  minotaur: art("scenes", "minotaur"),
+  economicExposure: art("scenes", "economic-exposure"),
+  evidence: art("scenes", "evidence"),
+  continuousAssurance: art("scenes", "continuous-assurance"),
+  hermes: art("scenes", "hermes"),
+  athena: art("scenes", "athena"),
+  resources: art("scenes", "resources"),
+  solutionsHub: art("scenes", "solutions-hub"),
+  publicSector: art("scenes", "public-sector-mission"),
+  regulatedEnterprise: art("scenes", "regulated-enterprise"),
+  integratorsVendors: art("scenes", "integrators-vendors"),
+  financialServices: art("scenes", "financial-services"),
+  company: art("scenes", "company"),
+  careers: art("scenes", "careers"),
+  partnerships: art("scenes", "partnerships"),
+  notFound: art("scenes", "not-found"),
+  standards: art("scenes", "standards"),
+  pricing: art("scenes", "pricing"),
+  outputs: art("scenes", "outputs"),
+  glossary: art("scenes", "glossary"),
+  investors: art("scenes", "investors"),
 } as const;
+
+/** 3:4 industry cards (art-directed, 600x800). */
+export const SCENE_CARDS = {
+  publicSector: "/assets/scenes/public-sector-mission-card.webp",
+  regulatedEnterprise: "/assets/scenes/regulated-enterprise-card.webp",
+  integratorsVendors: "/assets/scenes/integrators-vendors-card.webp",
+  financialServices: "/assets/scenes/financial-services-card.webp",
+} as const;
+
+/** Phone compositions for scenes whose desktop art predates the final collection. */
+export const PHONE_ART = {
+  marbleCity: "/assets/olympus/marble-city-phone.webp",
+  panorama: "/assets/olympus/panorama-phone.webp",
+  healthcare: "/assets/industries/healthcare-life-sciences-phone.webp",
+  manufacturing: "/assets/industries/manufacturing-critical-infrastructure-phone.webp",
+} as const;
+
+/** G6 use-case plates, in use-case order (1-11; the twelfth serves the held use case). */
+export const USE_CASE_ART: SceneArt[] = Array.from({ length: 11 }, (_, i) => art("use-cases", `uc-${String(i + 1).padStart(2, "0")}`));
+
+/** G1 closing vistas (1920x800, 1080x1350 phone): a dawn temples, b valley road, c harbour, d moonlit. */
+export const VISTAS = Object.fromEntries(
+  (["a", "b", "c", "d"] as const).map((v) => [v, { src: `/assets/vistas/vista-${v}.webp`, phone: `/assets/vistas/vista-${v}-phone.webp` }]),
+) as Record<"a" | "b" | "c" | "d", { src: string; phone: string }>;
+
+/** G2 quiet dark backdrops for charcoal and navy bands: a night sky, b colonnade, c library. */
+export const BACKDROPS = Object.fromEntries(
+  (["a", "b", "c"] as const).map((v) => [v, { src: `/assets/backdrops/backdrop-${v}.webp`, phone: `/assets/backdrops/backdrop-${v}-phone.webp` }]),
+) as Record<"a" | "b" | "c", { src: string; phone: string }>;
 
 /**
  * Batch 06 causeway layers on a shared 2048×1152 canvas (the placeholder
@@ -208,19 +263,17 @@ export const CHARACTER_MEDIA: Record<ProjectId, CharacterMedia> = {
   },
 };
 
-// The evaluator uses the white-team figure until it has art of its own.
-const team = (id: string): TeamMedia => ({
-  poster: poster(`/assets/teams/${id}-team-poster.webp`, 540, 960),
-  idle: `/assets/teams/${id}-team-idle.webm`,
-  engaged: `/assets/teams/${id}-team-engaged.webm`,
-  emblem: `/assets/teams/emblems/${id}-team-emblem.svg`,
+/** Team kit portraits (27 Oct): White, the "Ivory Evidence Oracle", serves the evaluator. Static: no loops for these designs yet. */
+const team = (id: TeamId, emblem: string): TeamMedia => ({
+  poster: poster(`/assets/teams/${id}-team-portrait.webp`, 640, 960),
+  emblem: `/assets/teams/emblems/${emblem}-team-emblem.svg`,
 });
 
 export const TEAM_MEDIA: Record<TeamId, TeamMedia> = {
-  red: team("red"),
-  blue: team("blue"),
-  purple: team("purple"),
-  evaluator: team("white"),
+  red: team("red", "red"),
+  blue: team("blue", "blue"),
+  purple: team("purple", "purple"),
+  evaluator: team("evaluator", "white"),
 };
 
 // Government / Mission is withheld until its card no longer depicts the US Capitol.

@@ -8,7 +8,7 @@ import { PageMotion } from "@/components/motion/PageMotion";
 import { SectionIntro } from "@/components/sections/SectionIntro";
 import { ScenicHero } from "@/components/scenic/ScenicHero";
 import { ClosingVista } from "@/components/scenic/ClosingVista";
-import { INTERIM_SCENES, OLYMPUS_MEDIA } from "@/content/media";
+import { OLYMPUS_MEDIA, SCENES } from "@/content/media";
 
 export const metadata: Metadata = {
   title: "Resources — The Mythos Knowledge Archive",
@@ -69,7 +69,7 @@ export default function ResourcesPage() {
         current="Resources"
         primaryCta={{ label: "Explore the Library", href: "#library" }}
         secondaryCta={{ label: "Request an Expert Conversation", href: "/contact?intent=general" }}
-        planes={[{ src: INTERIM_SCENES.resources.src, className: "-inset-[3%]", position: "55% 50%", depth: 6, priority: true }]}
+        planes={[{ src: SCENES.resources.src, mobileSrc: SCENES.resources.phone, className: "-inset-[3%]", position: "60% 50%", depth: 6, priority: true }]}
         into="ivory"
       />
 
@@ -109,10 +109,7 @@ export default function ResourcesPage() {
         title="Have a question *the library doesn’t answer?*"
         primary={{ label: "Request an Expert Conversation", href: "/contact?intent=general" }}
         secondary={{ label: "How Engagement Starts", href: "/engagement" }}
-        layers={[
-          { src: OLYMPUS_MEDIA.panorama.src, className: "object-[55%_45%]", parallax: 4 },
-          { src: OLYMPUS_MEDIA.sunrays, blend: "screen", opacity: 0.6, className: "object-[55%_45%]" },
-        ]}
+        vista="c"
       />
     </PageMotion>
   );

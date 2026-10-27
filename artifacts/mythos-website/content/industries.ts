@@ -17,7 +17,7 @@
  *   approval (register: solutions.offer-names). Prices are never shown.
  */
 import type { IndustryContent } from "@/components/solutions/types";
-import { INTERIM_SCENES, OLYMPUS_MEDIA } from "@/content/media";
+import { OLYMPUS_MEDIA, PHONE_ART, SCENES } from "@/content/media";
 
 const ASSESSMENT = "/contact?intent=assessment";
 const sun = (position = "100% 0%") => ({ src: OLYMPUS_MEDIA.sunbeams, className: "-inset-[3%]", blend: "screen" as const, opacity: 0.45, position, depth: 10 });
@@ -41,7 +41,7 @@ export const INDUSTRIES: IndustryContent[] = [
       headline: "AI Assurance for a More Resilient *Financial Future.*",
       lede: "From assistants and agentic workflows to regulated decision support, financial AI needs controlled access, trustworthy evidence and a clear view of business consequence.",
       primaryCta: { label: "Request a Financial AI Assessment", href: ASSESSMENT },
-      planes: [{ src: "/assets/industries/financial-services-hero.webp", className: "-inset-[3%]", position: "75% 40%", depth: 6, priority: true }, sun()],
+      planes: [{ src: SCENES.financialServices.src, mobileSrc: SCENES.financialServices.phone, className: "-inset-[3%]", position: "60% 50%", depth: 6, priority: true }],
     },
     risks: {
       title: "Where financial AI *goes wrong.*",
@@ -118,7 +118,7 @@ export const INDUSTRIES: IndustryContent[] = [
       headline: "AI Assurance for People, *Patients, and Progress.*",
       lede: "Support the safe adoption of AI in sensitive clinical, research and operational settings with measurable boundaries and evidence that stands up to review.",
       primaryCta: { label: "Discuss High-Risk AI Assurance", href: ASSESSMENT },
-      planes: [{ src: "/assets/industries/healthcare-life-sciences-hero.webp", className: "-inset-[3%]", position: "70% 40%", depth: 6, priority: true }, sun()],
+      planes: [{ src: "/assets/industries/healthcare-life-sciences-hero.webp", mobileSrc: PHONE_ART.healthcare, className: "-inset-[3%]", position: "70% 40%", depth: 6, priority: true }, sun()],
     },
     risks: {
       title: "Sensitive data, *serious consequences.*",
@@ -270,7 +270,7 @@ export const INDUSTRIES: IndustryContent[] = [
       headline: "Meet Requirements. *Move Faster.*",
       lede: "A changing AI estate requires evidence about what systems do, which policies apply, and which decisions require human ownership.",
       primaryCta: { label: "Request Release Assurance", href: ASSESSMENT },
-      planes: [{ src: OLYMPUS_MEDIA.marbleCity.src, className: "-inset-[3%]", position: "75% 40%", depth: 6, priority: true }, sun()],
+      planes: [{ src: SCENES.regulatedEnterprise.src, mobileSrc: SCENES.regulatedEnterprise.phone, className: "-inset-[3%]", position: "60% 50%", depth: 6, priority: true }],
     },
     risks: {
       title: "Evidence that has to *keep up.*",
@@ -347,7 +347,7 @@ export const INDUSTRIES: IndustryContent[] = [
       headline: "Enable Innovation *With Assurance.*",
       lede: "For mission-sensitive work, authorization, scope control, traceability and reliable evidence matter as much as detection.",
       primaryCta: { label: "Discuss Mission Assurance", href: ASSESSMENT },
-      planes: [{ src: INTERIM_SCENES.publicSector.src, className: "-inset-[3%]", position: "70% 40%", depth: 6, priority: true }, sun()],
+      planes: [{ src: SCENES.publicSector.src, mobileSrc: SCENES.publicSector.phone, className: "-inset-[3%]", position: "60% 50%", depth: 6, priority: true }],
     },
     risks: {
       title: "What an evaluation *has to show.*",
@@ -424,7 +424,7 @@ export const INDUSTRIES: IndustryContent[] = [
       headline: "Keep the World *Running.*",
       lede: "As AI enters operational environments, evidence must account for equipment, processes, vendors, cyber-physical dependencies and real-world effects.",
       primaryCta: { label: "Explore Operational Assurance", href: ASSESSMENT },
-      planes: [{ src: "/assets/industries/manufacturing-critical-infrastructure-hero.webp", className: "-inset-[3%]", position: "70% 40%", depth: 6, priority: true }, sun()],
+      planes: [{ src: "/assets/industries/manufacturing-critical-infrastructure-hero.webp", mobileSrc: PHONE_ART.manufacturing, className: "-inset-[3%]", position: "70% 40%", depth: 6, priority: true }, sun()],
     },
     risks: {
       title: "Where operational AI *needs evidence.*",
@@ -501,10 +501,7 @@ export const INDUSTRIES: IndustryContent[] = [
       headline: "Build Customer Trust Into *Every Deployment.*",
       lede: "Give buyers and delivery teams a repeatable way to define scope, validate permissions, produce evidence and retest changes before handoff.",
       primaryCta: { label: "Discuss a Partnership", href: "/contact?intent=partner" },
-      planes: [
-        { src: OLYMPUS_MEDIA.panorama.src, className: "-inset-[3%]", position: "60% 40%", depth: 6, priority: true },
-        { src: OLYMPUS_MEDIA.sunrays, className: "-inset-[3%]", blend: "screen", opacity: 0.6, position: "60% 40%", depth: 10 },
-      ],
+      planes: [{ src: SCENES.integratorsVendors.src, mobileSrc: SCENES.integratorsVendors.phone, className: "-inset-[3%]", position: "55% 50%", depth: 6, priority: true }],
     },
     risks: {
       title: "What your *customers will ask.*",
@@ -628,15 +625,11 @@ export const SOLUTIONS_BRIDGE: { slug: string; athena: string; achilles: string;
 
 /** Hub switcher art and first risks, per sector. */
 export const SOLUTIONS_SWITCHER: Record<string, { image: string; position: string; overlay?: { src: string; className: string } }> = {
-  "financial-services-insurance": { image: "/assets/industries/financial-services-hero.webp", position: "75% 40%" },
+  "financial-services-insurance": { image: SCENES.financialServices.src, position: "60% 50%" },
   "healthcare-life-sciences": { image: "/assets/industries/healthcare-life-sciences-hero.webp", position: "70% 40%" },
   "ai-saas": { image: "/assets/industries/technology-ai-saas-hero.webp", position: "65% 40%" },
-  "regulated-enterprise": { image: "/assets/olympus/marble-city.webp", position: "75% 40%" },
-  "public-sector-mission": {
-    image: "/assets/olympus/cloud-sea.webp",
-    position: "50% 55%",
-    overlay: { src: "/assets/olympus/cliff-temple.webp", className: "-right-[4%] bottom-[18%] h-[62%] w-[72%] object-[100%_100%]" },
-  },
+  "regulated-enterprise": { image: SCENES.regulatedEnterprise.src, position: "60% 50%" },
+  "public-sector-mission": { image: SCENES.publicSector.src, position: "60% 50%" },
   "manufacturing-critical-infrastructure": { image: "/assets/industries/manufacturing-critical-infrastructure-hero.webp", position: "70% 40%" },
-  "integrators-vendors": { image: "/assets/olympus/panorama.webp", position: "60% 40%" },
+  "integrators-vendors": { image: SCENES.integratorsVendors.src, position: "55% 50%" },
 };

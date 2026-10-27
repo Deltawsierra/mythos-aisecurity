@@ -10,7 +10,7 @@ import { Scene } from "@/components/scenic/Scene";
 import { ClosingVista } from "@/components/scenic/ClosingVista";
 import { MaturityList } from "@/components/company/MaturityList";
 import { INVESTORS } from "@/content/company";
-import { OLYMPUS_MEDIA } from "@/content/media";
+import { BACKDROPS, OLYMPUS_MEDIA, SCENES } from "@/content/media";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -39,12 +39,7 @@ export default function InvestorsPage() {
         current="Investors"
         primaryCta={CONVERSATION}
         secondaryCta={{ label: "Explore the Platform", href: "/platform" }}
-        planes={[
-          { src: OLYMPUS_MEDIA.cloudSea.src, className: "-inset-[3%]", position: "50% 55%", depth: 6, priority: true },
-          { src: OLYMPUS_MEDIA.mountains.src, className: "inset-x-0 top-[38%] h-[20%]", fit: "contain", position: "60% 100%", opacity: 0.75, depth: 8 },
-          { src: OLYMPUS_MEDIA.evergreenCliff.src, className: "-right-[4%] bottom-[8%] h-[66%] w-[46%] -scale-x-100", fit: "contain", position: "100% 100%", depth: 12, desktopOnly: true },
-          { src: OLYMPUS_MEDIA.sunbeams, className: "-inset-[3%]", blend: "screen", opacity: 0.45, position: "100% 0%", depth: 10 },
-        ]}
+        planes={[{ src: SCENES.investors.src, mobileSrc: SCENES.investors.phone, className: "-inset-[3%]", position: "60% 50%", depth: 6, priority: true }]}
         into="ivory"
       />
 
@@ -89,7 +84,7 @@ export default function InvestorsPage() {
       <Scene
         surface="navy"
         labelledBy="maturity-title"
-        layers={[{ src: OLYMPUS_MEDIA.cloudSea.src, className: "object-[50%_70%]", parallax: 4 }]}
+        layers={[{ src: BACKDROPS.a.src, mobileSrc: BACKDROPS.a.phone, className: "object-[50%_50%]", parallax: 4 }]}
         scrim="linear-gradient(180deg, rgba(21,35,51,0.5) 0, rgba(21,35,51,0.9) clamp(14rem,22vw,22rem), rgba(21,35,51,0.94) 72%, rgba(21,35,51,0.72) 100%)"
         top={{ into: "parchment", height: "clamp(8rem,14vw,14rem)" }}
         bottom={{ into: "ivory", height: "clamp(7rem,12vw,12rem)" }}
@@ -137,10 +132,7 @@ export default function InvestorsPage() {
         title="Talk to us *about the thesis.*"
         primary={CONVERSATION}
         secondary={{ label: "About Mythos", href: "/company" }}
-        layers={[
-          { src: OLYMPUS_MEDIA.panorama.src, className: "object-[55%_45%]", parallax: 4 },
-          { src: OLYMPUS_MEDIA.sunrays, blend: "screen", opacity: 0.6, className: "object-[55%_45%]" },
-        ]}
+        vista="c"
       />
     </PageMotion>
   );

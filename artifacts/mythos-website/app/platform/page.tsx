@@ -22,7 +22,7 @@ import { ReportPreview } from "@/components/platform/ReportPreview";
 import { OVERVIEW } from "@/content/platformOverview";
 import { ATHENA_COVERAGE } from "@/content/athena";
 import { PROJECTS } from "@/content/platform";
-import { OLYMPUS_MEDIA } from "@/content/media";
+import { BACKDROPS, OLYMPUS_MEDIA, SCENES } from "@/content/media";
 import { CTA_LINKS } from "@/content/navigation";
 import { CTA } from "@/lib/constants";
 
@@ -53,11 +53,7 @@ export default function PlatformPage() {
         current="Platform"
         primaryCta={{ label: "Explore SPINE", href: "/platform/spine" }}
         secondaryCta={{ label: CTA.DEMO, href: CTA_LINKS.demo }}
-        planes={[
-          { src: OLYMPUS_MEDIA.panorama.src, className: "-inset-[3%]", position: "62% 40%", depth: 8, priority: true },
-          { src: OLYMPUS_MEDIA.sunrays, className: "-inset-[3%]", position: "62% 40%", blend: "screen", opacity: 0.65, depth: 14 },
-          { src: OLYMPUS_MEDIA.mist, className: "-inset-[3%]", position: "62% 40%", opacity: 0.8, drift: 60 },
-        ]}
+        planes={[{ src: SCENES.platform.src, mobileSrc: SCENES.platform.phone, className: "-inset-[3%]", position: "60% 50%", depth: 6, priority: true }]}
         into="ivory"
       />
 
@@ -73,7 +69,7 @@ export default function PlatformPage() {
       <Scene
         surface="navy"
         labelledBy="architecture-title"
-        layers={[{ src: OLYMPUS_MEDIA.cloudSea.src, className: "object-[50%_60%]", parallax: 4 }]}
+        layers={[{ src: BACKDROPS.a.src, mobileSrc: BACKDROPS.a.phone, className: "object-[50%_50%]", parallax: 4 }]}
         scrim="linear-gradient(180deg, rgba(21,35,51,0.55) 0, rgba(21,35,51,0.9) clamp(14rem,22vw,22rem), rgba(21,35,51,0.94) 70%, rgba(21,35,51,0.7) 100%)"
         top={{ into: "ivory", height: "clamp(8rem,14vw,14rem)" }}
         bottom={{ into: "ivory", height: "clamp(7rem,12vw,12rem)" }}
@@ -201,11 +197,7 @@ export default function PlatformPage() {
       <ClosingVista
         from="parchment"
         title="See the whole system *on one of yours.*"
-        layers={[
-          { src: OLYMPUS_MEDIA.cloudSea.src, className: "object-[50%_45%]", parallax: 4 },
-          { src: OLYMPUS_MEDIA.viaduct.src, className: "!object-contain object-[50%_88%]", parallax: 6 },
-          { src: OLYMPUS_MEDIA.sunbeams, blend: "screen", opacity: 0.6, className: "object-[80%_10%]" },
-        ]}
+        vista="a"
       />
     </PageMotion>
   );

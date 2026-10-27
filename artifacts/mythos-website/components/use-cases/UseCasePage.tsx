@@ -13,7 +13,7 @@ import { WorkflowPath } from "@/components/use-cases/WorkflowPath";
 import type { UseCaseContent } from "@/components/use-cases/types";
 import { INDUSTRIES } from "@/content/industries";
 import { PROJECTS } from "@/content/platform";
-import { OLYMPUS_MEDIA } from "@/content/media";
+import { BACKDROPS, OLYMPUS_MEDIA } from "@/content/media";
 
 const PRODUCT_HREF = Object.fromEntries(PROJECTS.map((p) => [p.name, p.href]));
 
@@ -89,7 +89,7 @@ export function UseCasePage({ c, prev, next }: { c: UseCaseContent; prev?: UseCa
       <Scene
         surface="navy"
         labelledBy="approach-title"
-        layers={[{ src: OLYMPUS_MEDIA.cloudSea.src, className: "object-[50%_70%]", parallax: 4 }]}
+        layers={[{ src: BACKDROPS.a.src, mobileSrc: BACKDROPS.a.phone, className: "object-[50%_50%]", parallax: 4 }]}
         scrim="linear-gradient(180deg, rgba(21,35,51,0.5) 0, rgba(21,35,51,0.9) clamp(14rem,22vw,22rem), rgba(21,35,51,0.94) 72%, rgba(21,35,51,0.72) 100%)"
         top={{ into: "parchment", height: "clamp(8rem,14vw,14rem)" }}
         bottom={{ into: "ivory", height: "clamp(7rem,12vw,12rem)" }}
@@ -194,10 +194,7 @@ export function UseCasePage({ c, prev, next }: { c: UseCaseContent; prev?: UseCa
         title="Scope this workflow *with evidence.*"
         body="A scoped assessment of one workflow: what it can reach, what it does under pressure, and what to retest when it changes."
         secondary={{ label: "All Use Cases", href: "/use-cases" }}
-        layers={[
-          { src: OLYMPUS_MEDIA.panorama.src, className: "object-[55%_45%]", parallax: 4 },
-          { src: OLYMPUS_MEDIA.sunrays, blend: "screen", opacity: 0.6, className: "object-[55%_45%]" },
-        ]}
+        vista="b"
       />
     </PageMotion>
   );

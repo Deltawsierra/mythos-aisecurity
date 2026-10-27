@@ -27,7 +27,7 @@ import {
   EE_SOURCE_TYPES,
   EE_VALIDITY,
 } from "@/content/economicExposure";
-import { OLYMPUS_MEDIA } from "@/content/media";
+import { BACKDROPS, OLYMPUS_MEDIA, SCENES } from "@/content/media";
 
 export const metadata: Metadata = {
   title: "SPINE Economic Exposure — Evidence-Backed Business Decisions",
@@ -61,10 +61,7 @@ export default function EconomicExposurePage() {
         current="Economic Exposure"
         primaryCta={{ label: "Explore a Modeled Example", href: "#bands-title" }}
         secondaryCta={{ label: "Speak to Mythos", href: INQUIRY }}
-        planes={[
-          { src: "/assets/industries/financial-services-hero.webp", className: "-inset-[3%]", position: "75% 40%", depth: 6, priority: true },
-          { src: OLYMPUS_MEDIA.sunbeams, className: "-inset-[3%]", blend: "screen", opacity: 0.45, position: "100% 0%", depth: 10 },
-        ]}
+        planes={[{ src: SCENES.economicExposure.src, mobileSrc: SCENES.economicExposure.phone, className: "-inset-[3%]", position: "60% 50%", depth: 6, priority: true }]}
         into="parchment"
       />
 
@@ -182,7 +179,7 @@ export default function EconomicExposurePage() {
       <Scene
         surface="navy"
         labelledBy="sensitivity-title"
-        layers={[{ src: OLYMPUS_MEDIA.cloudSea.src, className: "object-[50%_70%]", parallax: 4 }]}
+        layers={[{ src: BACKDROPS.a.src, mobileSrc: BACKDROPS.a.phone, className: "object-[50%_50%]", parallax: 4 }]}
         scrim="linear-gradient(180deg, rgba(21,35,51,0.5) 0, rgba(21,35,51,0.9) clamp(14rem,22vw,22rem), rgba(21,35,51,0.94) 72%, rgba(21,35,51,0.72) 100%)"
         top={{ into: "ivory", height: "clamp(8rem,14vw,14rem)" }}
         bottom={{ into: "parchment", height: "clamp(7rem,12vw,12rem)" }}
@@ -235,10 +232,7 @@ export default function EconomicExposurePage() {
         body="A scoped conversation about one AI system: what was observed, what it could mean financially, and what we would need to say it with confidence."
         primary={{ label: "Speak to Mythos", href: INQUIRY }}
         secondary={{ label: "See Financial Services", href: "/solutions/financial-services-insurance" }}
-        layers={[
-          { src: OLYMPUS_MEDIA.marbleCity.src, className: "object-[70%_45%]", parallax: 4 },
-          { src: OLYMPUS_MEDIA.sunbeams, blend: "screen", opacity: 0.5, className: "object-[85%_0%]" },
-        ]}
+        vista="a"
       />
     </PageMotion>
   );

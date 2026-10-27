@@ -5,7 +5,7 @@ import { PageMotion } from "@/components/motion/PageMotion";
 import { ScenicHero } from "@/components/scenic/ScenicHero";
 import { GlossaryIndex } from "@/components/resources/GlossaryIndex";
 import { GLOSSARY } from "@/content/glossary";
-import { OLYMPUS_MEDIA } from "@/content/media";
+import { OLYMPUS_MEDIA, SCENES } from "@/content/media";
 
 export const metadata: Metadata = {
   title: "AI Assurance Glossary — The Language in Plain English",
@@ -30,10 +30,7 @@ export default function GlossaryPage() {
         current="Glossary"
         primaryCta={{ label: "Search the Terms", href: "#glossary" }}
         secondaryCta={{ label: "Standards & Mapping", href: "/standards" }}
-        planes={[
-          { src: OLYMPUS_MEDIA.marbleCity.src, className: "-inset-[3%]", position: "80% 35%", depth: 6, priority: true },
-          { src: OLYMPUS_MEDIA.sunbeams, className: "-inset-[3%]", blend: "screen", opacity: 0.45, position: "100% 0%", depth: 10 },
-        ]}
+        planes={[{ src: SCENES.glossary.src, mobileSrc: SCENES.glossary.phone, className: "-inset-[3%]", position: "55% 50%", depth: 6, priority: true }]}
         compact
         into="ivory"
       />

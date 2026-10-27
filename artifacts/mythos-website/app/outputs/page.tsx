@@ -9,7 +9,7 @@ import { ScenicHero } from "@/components/scenic/ScenicHero";
 import { Scene } from "@/components/scenic/Scene";
 import { ClosingVista } from "@/components/scenic/ClosingVista";
 import { RecordCard } from "@/components/platform/RecordCard";
-import { OLYMPUS_MEDIA } from "@/content/media";
+import { BACKDROPS, OLYMPUS_MEDIA, SCENES } from "@/content/media";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -63,10 +63,7 @@ export default function OutputsPage() {
         ]}
         current="What Mythos Produces"
         secondaryCta={{ label: "See the Example Report", href: "/example-report" }}
-        planes={[
-          { src: OLYMPUS_MEDIA.marbleCity.src, className: "-inset-[3%]", position: "75% 40%", depth: 6, priority: true },
-          { src: OLYMPUS_MEDIA.sunbeams, className: "-inset-[3%]", blend: "screen", opacity: 0.45, position: "100% 0%", depth: 10 },
-        ]}
+        planes={[{ src: SCENES.outputs.src, mobileSrc: SCENES.outputs.phone, className: "-inset-[3%]", position: "55% 50%", depth: 6, priority: true }]}
         into="ivory"
       />
 
@@ -95,7 +92,7 @@ export default function OutputsPage() {
       <Scene
         surface="navy"
         labelledBy="decision-title"
-        layers={[{ src: OLYMPUS_MEDIA.cloudSea.src, className: "object-[50%_70%]", parallax: 4 }]}
+        layers={[{ src: BACKDROPS.c.src, mobileSrc: BACKDROPS.c.phone, className: "object-[50%_50%]", parallax: 4 }]}
         scrim="linear-gradient(180deg, rgba(21,35,51,0.5) 0, rgba(21,35,51,0.9) clamp(14rem,22vw,22rem), rgba(21,35,51,0.94) 72%, rgba(21,35,51,0.72) 100%)"
         top={{ into: "ivory", height: "clamp(8rem,14vw,14rem)" }}
         bottom={{ into: "parchment", height: "clamp(7rem,12vw,12rem)" }}
@@ -142,10 +139,7 @@ export default function OutputsPage() {
         from="parchment"
         title="Get evidence *you can act on.*"
         secondary={{ label: "See the Example Report", href: "/example-report" }}
-        layers={[
-          { src: OLYMPUS_MEDIA.panorama.src, className: "object-[55%_45%]", parallax: 4 },
-          { src: OLYMPUS_MEDIA.sunrays, blend: "screen", opacity: 0.6, className: "object-[55%_45%]" },
-        ]}
+        vista="c"
       />
     </PageMotion>
   );

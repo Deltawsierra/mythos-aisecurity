@@ -28,7 +28,7 @@ import {
   MINOTAUR_TRAIL,
   MINOTAUR_TWINS,
 } from "@/content/minotaur";
-import { OLYMPUS_MEDIA } from "@/content/media";
+import { BACKDROPS, OLYMPUS_MEDIA, SCENES } from "@/content/media";
 
 export const metadata: Metadata = {
   title: "How Mythos Validates Itself — Minotaur",
@@ -68,12 +68,7 @@ export default function ValidationPage() {
         current="How Mythos Validates Itself"
         primaryCta={{ label: "Read the Methodology", href: "#labyrinth-title" }}
         secondaryCta={{ label: "Explore SPINE", href: "/platform/spine" }}
-        planes={[
-          { src: OLYMPUS_MEDIA.cloudSea.src, className: "-inset-[3%]", position: "50% 50%", depth: 6, priority: true },
-          { src: OLYMPUS_MEDIA.mountains.src, className: "inset-x-0 top-[38%] h-[18%]", fit: "contain", position: "30% 100%", opacity: 0.75, depth: 8 },
-          { src: OLYMPUS_MEDIA.evergreenCliff.src, className: "-right-[3%] bottom-0 h-[70%] w-[46%] -scale-x-100", fit: "contain", position: "0% 100%", depth: 14, desktopOnly: true },
-          { src: OLYMPUS_MEDIA.sunbeams, className: "-inset-[3%]", blend: "screen", opacity: 0.45, position: "100% 0%", depth: 10 },
-        ]}
+        planes={[{ src: SCENES.minotaur.src, mobileSrc: SCENES.minotaur.phone, className: "-inset-[3%]", position: "60% 50%", depth: 6, priority: true }]}
         figure={<CharacterNiche project="minotaur" glow={EMBER} className="absolute bottom-[33%] right-[9%] h-[50%]" />}
         mobileFigure={<CharacterNiche project="minotaur" glow={EMBER} className="relative mx-auto h-[44svh]" />}
         into="ivory"
@@ -117,7 +112,7 @@ export default function ValidationPage() {
       <Scene
         surface="navy"
         labelledBy="labyrinth-title"
-        layers={[{ src: OLYMPUS_MEDIA.cloudSea.src, className: "object-[50%_70%]", parallax: 4 }]}
+        layers={[{ src: BACKDROPS.a.src, mobileSrc: BACKDROPS.a.phone, className: "object-[50%_50%]", parallax: 4 }]}
         scrim="linear-gradient(180deg, rgba(21,35,51,0.5) 0, rgba(21,35,51,0.9) clamp(14rem,22vw,22rem), rgba(21,35,51,0.94) 72%, rgba(21,35,51,0.72) 100%)"
         top={{ into: "ivory", height: "clamp(8rem,14vw,14rem)" }}
         bottom={{ into: "parchment", height: "clamp(7rem,12vw,12rem)" }}
@@ -203,11 +198,7 @@ export default function ValidationPage() {
         body="We will walk through the method behind a result — what was checked, what was held back, and where the evidence stops."
         primary={{ label: "Talk to the team", href: "/contact?intent=general" }}
         secondary={{ label: "Explore the Platform", href: "/platform" }}
-        layers={[
-          { src: OLYMPUS_MEDIA.cloudSea.src, className: "object-[50%_45%]", parallax: 4 },
-          { src: OLYMPUS_MEDIA.mountains.src, className: "!object-contain object-[50%_80%]", parallax: 6 },
-          { src: OLYMPUS_MEDIA.sunbeams, blend: "screen", opacity: 0.5, className: "object-[80%_0%]" },
-        ]}
+        vista="a"
       />
     </PageMotion>
   );

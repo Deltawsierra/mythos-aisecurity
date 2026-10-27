@@ -233,10 +233,7 @@ export default function ExampleReportPage() {
         from="ivory"
         title="Get this evidence *for your own system.*"
         secondary={{ label: "How Engagement Starts", href: "/engagement" }}
-        layers={[
-          { src: OLYMPUS_MEDIA.panorama.src, className: "object-[55%_45%]", parallax: 4 },
-          { src: OLYMPUS_MEDIA.sunrays, blend: "screen", opacity: 0.6, className: "object-[55%_45%]" },
-        ]}
+        vista="c"
       />
     </PageMotion>
   );

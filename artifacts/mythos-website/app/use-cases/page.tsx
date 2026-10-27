@@ -13,7 +13,7 @@ import { UseCaseFilter, type Facet, type FilterCard } from "@/components/use-cas
 import { HashRedirect } from "@/components/layout/HashRedirect";
 import { RISK_THEMES, USE_CASES } from "@/content/useCaseLibrary";
 import { INDUSTRIES } from "@/content/industries";
-import { CHALLENGE_MEDIA, OLYMPUS_MEDIA } from "@/content/media";
+import { BACKDROPS, CHALLENGE_MEDIA, OLYMPUS_MEDIA } from "@/content/media";
 
 export const metadata: Metadata = {
   title: "Use Cases — Where AI Deployment Risk Shows Up",
@@ -89,7 +89,7 @@ export default function UseCasesPage() {
       <Scene
         surface="navy"
         labelledBy="flow-title"
-        layers={[{ src: OLYMPUS_MEDIA.cloudSea.src, className: "object-[50%_70%]", parallax: 4 }]}
+        layers={[{ src: BACKDROPS.a.src, mobileSrc: BACKDROPS.a.phone, className: "object-[50%_50%]", parallax: 4 }]}
         scrim="linear-gradient(180deg, rgba(21,35,51,0.5) 0, rgba(21,35,51,0.9) clamp(14rem,22vw,22rem), rgba(21,35,51,0.94) 72%, rgba(21,35,51,0.72) 100%)"
         top={{ into: "ivory", height: "clamp(8rem,14vw,14rem)" }}
         bottom={{ into: "parchment", height: "clamp(7rem,12vw,12rem)" }}
@@ -148,10 +148,7 @@ export default function UseCasesPage() {
         title="Bring us *the workflow you are deciding about.*"
         body="A scoped assessment starts from one workflow and the decision you need to make about it."
         secondary={{ label: "How Engagement Starts", href: "/engagement" }}
-        layers={[
-          { src: OLYMPUS_MEDIA.panorama.src, className: "object-[55%_45%]", parallax: 4 },
-          { src: OLYMPUS_MEDIA.sunrays, blend: "screen", opacity: 0.6, className: "object-[55%_45%]" },
-        ]}
+        vista="b"
       />
     </PageMotion>
   );

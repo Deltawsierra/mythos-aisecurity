@@ -11,7 +11,7 @@ import { EvidenceTimeline } from "@/components/platform/EvidenceTimeline";
 import type { IndustryContent } from "@/components/solutions/types";
 import { USE_CASES } from "@/content/useCaseLibrary";
 import { PROJECTS } from "@/content/platform";
-import { OLYMPUS_MEDIA } from "@/content/media";
+import { BACKDROPS, OLYMPUS_MEDIA } from "@/content/media";
 import { cn } from "@/lib/utils";
 
 const PRODUCT_HREF: Record<string, string> = {
@@ -68,7 +68,7 @@ export function IndustryPage({ c }: { c: IndustryContent }) {
       <Scene
         surface="navy"
         labelledBy="capabilities-title"
-        layers={[{ src: OLYMPUS_MEDIA.cloudSea.src, className: "object-[50%_70%]", parallax: 4 }]}
+        layers={[{ src: BACKDROPS.a.src, mobileSrc: BACKDROPS.a.phone, className: "object-[50%_50%]", parallax: 4 }]}
         scrim="linear-gradient(180deg, rgba(21,35,51,0.5) 0, rgba(21,35,51,0.9) clamp(14rem,22vw,22rem), rgba(21,35,51,0.94) 72%, rgba(21,35,51,0.72) 100%)"
         top={{ into: "ivory", height: "clamp(8rem,14vw,14rem)" }}
         bottom={{ into: "parchment", height: "clamp(7rem,12vw,12rem)" }}
@@ -216,10 +216,7 @@ export function IndustryPage({ c }: { c: IndustryContent }) {
         body={c.closing.body}
         primary={c.hero.primaryCta}
         secondary={{ label: "All industries", href: "/solutions" }}
-        layers={[
-          { src: OLYMPUS_MEDIA.panorama.src, className: "object-[55%_45%]", parallax: 4 },
-          { src: OLYMPUS_MEDIA.sunrays, blend: "screen", opacity: 0.6, className: "object-[55%_45%]" },
-        ]}
+        vista="b"
       />
     </PageMotion>
   );

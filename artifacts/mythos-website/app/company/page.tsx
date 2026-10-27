@@ -11,7 +11,7 @@ import { Scene } from "@/components/scenic/Scene";
 import { ClosingVista } from "@/components/scenic/ClosingVista";
 import { MaturityList } from "@/components/company/MaturityList";
 import { COMPANY } from "@/content/company";
-import { OLYMPUS_MEDIA } from "@/content/media";
+import { BACKDROPS, OLYMPUS_MEDIA, SCENES } from "@/content/media";
 
 export const metadata: Metadata = {
   title: "Company — Built to Put Evidence Behind Ambition",
@@ -35,10 +35,7 @@ export default function CompanyPage() {
         current="Company"
         primaryCta={{ label: "Explore the Platform", href: "/platform" }}
         secondaryCta={{ label: "Get in Touch", href: "/contact" }}
-        planes={[
-          { src: OLYMPUS_MEDIA.marbleCity.src, className: "-inset-[3%]", position: "80% 35%", depth: 6, priority: true },
-          { src: OLYMPUS_MEDIA.sunbeams, className: "-inset-[3%]", blend: "screen", opacity: 0.5, position: "100% 0%", depth: 10 },
-        ]}
+        planes={[{ src: SCENES.company.src, mobileSrc: SCENES.company.phone, className: "-inset-[3%]", position: "60% 50%", depth: 6, priority: true }]}
         into="ivory"
       />
 
@@ -74,7 +71,7 @@ export default function CompanyPage() {
       <Scene
         surface="navy"
         labelledBy="products-title"
-        layers={[{ src: OLYMPUS_MEDIA.cloudSea.src, className: "object-[50%_70%]", parallax: 4 }]}
+        layers={[{ src: BACKDROPS.a.src, mobileSrc: BACKDROPS.a.phone, className: "object-[50%_50%]", parallax: 4 }]}
         scrim="linear-gradient(180deg, rgba(21,35,51,0.5) 0, rgba(21,35,51,0.9) clamp(14rem,22vw,22rem), rgba(21,35,51,0.94) 72%, rgba(21,35,51,0.72) 100%)"
         top={{ into: "parchment", height: "clamp(8rem,14vw,14rem)" }}
         bottom={{ into: "ivory", height: "clamp(7rem,12vw,12rem)" }}
@@ -127,10 +124,7 @@ export default function CompanyPage() {
         from="parchment"
         title="Put evidence *behind your next AI decision.*"
         secondary={{ label: "Explore the Platform", href: "/platform" }}
-        layers={[
-          { src: OLYMPUS_MEDIA.panorama.src, className: "object-[55%_45%]", parallax: 4 },
-          { src: OLYMPUS_MEDIA.sunrays, blend: "screen", opacity: 0.6, className: "object-[55%_45%]" },
-        ]}
+        vista="c"
       />
     </PageMotion>
   );
