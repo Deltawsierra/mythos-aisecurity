@@ -155,7 +155,7 @@ export const PRIMARY_NAV: NavNode[] = [
   },
   {
     label: "Resources",
-    match: ["/resources", "/use-cases", "/outputs", "/example-report", "/standards", "/glossary", "/engagement", "/trust", "/pricing"],
+    match: ["/resources", "/ai-risk-explained", "/use-cases", "/outputs", "/example-report", "/standards", "/glossary", "/engagement", "/trust", "/pricing"],
     columns: [
       {
         heading: "Proof",
@@ -182,6 +182,11 @@ export const PRIMARY_NAV: NavNode[] = [
       {
         heading: "Learn and buy",
         items: [
+          {
+            label: "Is Mythos Right for Us?",
+            href: "/ai-risk-explained",
+            description: "AI risk in plain English, with questions for the board.",
+          },
           {
             label: "Guide: Red-Teaming AI Agents",
             href: "/resources/how-to-red-team-ai-agents",
@@ -276,6 +281,7 @@ export const FOOTER_NAV: FooterGroup[] = [
     label: "Resources",
     items: [
       { label: "All Resources", href: "/resources" },
+      { label: "AI Risk in Plain English", href: "/ai-risk-explained" },
       { label: "Red-Teaming AI Agents", href: "/resources/how-to-red-team-ai-agents" },
       { label: "Use Cases", href: "/use-cases" },
       { label: "Example Report", href: "/example-report" },

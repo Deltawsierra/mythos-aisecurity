@@ -29,6 +29,8 @@ const SHELVES: { name: string; lede: string; items: { title: string; body: strin
     name: "Guides and checklists",
     lede: "Practical guidance, written and reviewed by the people building Mythos.",
     items: [
+      { title: "AI Risk, Explained in Plain English", body: "For readers with no technical background: nine common situations, what Mythos would examine, and twelve questions for the board.", href: "/ai-risk-explained", tag: "Start here" },
+      { title: "Board Questions on AI Risk", body: "Twelve questions and one reusable sentence on one printable page. Free, no form.", href: "/assets/downloads/mythos-board-ai-risk-questions.pdf", tag: "PDF" },
       { title: "How to Red-Team an AI Agent", body: "What to test before an agent touches real systems: eight failure families, scoping, judging results and retesting.", href: "/resources/how-to-red-team-ai-agents", tag: "Guide" },
       { title: "Agent Red-Teaming Checklist", body: "The guide's eight steps on one printable page. Free, no form.", href: "/assets/downloads/mythos-ai-agent-red-teaming-checklist.pdf", tag: "PDF" },
     ],
@@ -85,7 +87,7 @@ export default function ResourcesPage() {
         <Container>
           <p className="flex items-start gap-2.5 border-l-2 border-state-stale bg-panel px-4 py-3 text-sm leading-relaxed text-fg">
             <FlaskConical size={16} aria-hidden="true" className="mt-0.5 shrink-0 text-state-stale-ink" />
-            The first guide is below. More guides, reports and events will appear as they are written and reviewed; this library lists only pages that exist.
+            New to AI risk? Start with the plain-English guide below. More guides, reports and events will appear as they are written and reviewed; this library lists only pages that exist.
           </p>
           <div className="mt-14 grid gap-20">
             {SHELVES.map((shelf, s) => (

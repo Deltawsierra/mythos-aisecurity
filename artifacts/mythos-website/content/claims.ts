@@ -39,7 +39,7 @@ export const CLAIMS: Claim[] = [
     text: "tests whether an AI agent can exceed its approved task, scoped to one agent workflow",
     status: "verified",
     source: `${INV} — claims ledger; Achilles`,
-    usedIn: ["/platform/achilles", "/use-cases/*"],
+    usedIn: ["/platform/achilles", "/use-cases/*", "/ai-risk-explained"],
     note: "Evidence: Achilles decision, evidence tiers, coverage manifest. Goes stale when the agent's route, tools, policy or model change.",
   },
   {
@@ -47,7 +47,7 @@ export const CLAIMS: Claim[] = [
     text: "records a tamper-evident, signed, offline-verifiable trail per scan and per deployment",
     status: "verified",
     source: `${INV} — claims ledger; Athena engine record; Mythos-Core`,
-    usedIn: ["/platform/evidence", "/platform/spine", "/trust"],
+    usedIn: ["/platform/evidence", "/platform/spine", "/trust", "/ai-risk-explained"],
     note: "Row chains, DSSE receipts, Merkle proofs, a standalone verifier. A signed receipt proves integrity and provenance, never correctness.",
   },
   {
@@ -55,7 +55,7 @@ export const CLAIMS: Claim[] = [
     text: "says what was not measured, per scan and per decision",
     status: "verified",
     source: `${INV} — claims ledger; coverage manifest, AUDIT_INCOMPLETE`,
-    usedIn: ["/platform", "/platform/spine", "/platform/athena", "/outputs"],
+    usedIn: ["/platform", "/platform/spine", "/platform/athena", "/outputs", "/ai-risk-explained"],
   },
   {
     id: "ledger.fixed-answer-scoring",
@@ -86,7 +86,7 @@ export const CLAIMS: Claim[] = [
     text: "closes a finding only on independent retest: a repair contract, then retest-gated closure with six incomplete-repair negative controls",
     status: "verified",
     source: `${INV} — claims ledger; SPINE closure`,
-    usedIn: ["/platform/spine", "/platform/evidence", "/outputs"],
+    usedIn: ["/platform/spine", "/platform/evidence", "/outputs", "/ai-risk-explained"],
     note: "Remediation verified means absent on retest, not that legitimate use still works.",
   },
   {
@@ -94,14 +94,14 @@ export const CLAIMS: Claim[] = [
     text: "maps findings to NIST 800-53, OWASP 2021, OWASP LLM 2025 and DoD Zero Trust, with vertical packs for healthcare, financial services, federal and general AI — evidence of gaps, never a certificate",
     status: "verified",
     source: `${INV} — claims ledger; SPINE compliance map`,
-    usedIn: ["/standards", "/platform/athena", "/solutions/*"],
+    usedIn: ["/standards", "/platform/athena", "/solutions/*", "/ai-risk-explained"],
   },
   {
     id: "ledger.unblockable-stop",
     text: "stops on operator command, unblockable: no control, read failure, flood or kill switch may block, delay or drop a stop",
     status: "verified",
     source: `${INV} — claims ledger; absolute stop rule; operator failsafe`,
-    usedIn: ["/trust", "/platform"],
+    usedIn: ["/trust", "/platform", "/ai-risk-explained"],
     note: "Signed failsafe, fault matrices, a 1 s stop bound; pause, stand-down and terminate, with two operators for the most serious.",
   },
   {
@@ -200,7 +200,7 @@ export const CLAIMS: Claim[] = [
     text: "findings dispatch to Jira, GitHub, ServiceNow and Splunk; a stop never waits on a connector",
     status: "verified",
     source: `${INV} — connectors and compliance`,
-    usedIn: ["/platform/evidence", "/outputs"],
+    usedIn: ["/platform/evidence", "/outputs", "/ai-risk-explained"],
   },
   {
     id: "outputs.vendor-incident-packs",
@@ -258,7 +258,7 @@ export const CLAIMS: Claim[] = [
     text: "every finding is decided by a differential against a benign control — no baseline, no finding; informational classes are never scored",
     status: "verified",
     source: `${INV} — Athena engine, scanning; honesty invariants`,
-    usedIn: ["/platform/athena"],
+    usedIn: ["/platform/athena", "/ai-risk-explained"],
   },
   {
     id: "athena.check-groups",

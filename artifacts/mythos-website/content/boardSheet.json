@@ -1,0 +1,20 @@
+{
+  "title": "AI risk: questions for the board",
+  "intro": "Use these questions when management proposes a new AI system, expands an existing one, or reports on cyber risk. None needs a technical background to ask.",
+  "questions": [
+    "Where do we use AI today, and who owns each use?",
+    "What business benefit are we seeking from this AI?",
+    "What information can it access?",
+    "What actions can it take, such as sending messages, changing records or making payments?",
+    "Which actions require a person's approval, and can that approval be bypassed?",
+    "What could materially harm our customers or the business?",
+    "Have our websites and systems been tested against attackers who use AI, even where we do not use AI ourselves?",
+    "What has been tested, and what remains unknown?",
+    "Who owns each unresolved issue?",
+    "What evidence do we need before launch or expansion?",
+    "Who can pause the system if something goes wrong?",
+    "What changes require retesting?"
+  ],
+  "sentence": "Before approving this deployment, we need evidence of what the system can access and do, how approvals are enforced, what testing found, and who owns the remaining risks.",
+  "footnote": "A scoped assessment gives evidence about what was tested, under the conditions tested. It does not guarantee future safety, find every weakness or establish compliance on its own."
+}
