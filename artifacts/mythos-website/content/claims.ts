@@ -618,6 +618,14 @@ export const CLAIMS: Claim[] = [
     note: "Bio shortened from the owner's text; nothing added. Quote is his own. No dates, unit, rank or credentials were supplied, so none are shown.",
   },
   {
+    id: "company.spine-built",
+    text: "SPINE shown as Built in the product maturity list (claims, DSSE-signed receipts, coverage and retest-gated closure in place; customer-run identity collector planned)",
+    status: "approved",
+    source: "Owner ruling, 29 Oct 2026",
+    usedIn: ["/company", "/investors"],
+    note: "Was In development per the 26 Oct inventory. The note keeps the planned identity collector as planned.",
+  },
+  {
     id: "company.cmo-named",
     text: "Shaquille Lyew, Chief Marketing Officer (not a founder), with portrait and 12+ years in sales, customer service and business development including startups",
     status: "approved",

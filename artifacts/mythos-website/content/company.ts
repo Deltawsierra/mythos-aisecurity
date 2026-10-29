@@ -15,7 +15,8 @@
  * - No customers, partners, open roles or milestones exist — pages say so
  *   plainly instead of implying them.
  * - Investors: thesis only. No round size, valuation, runway or use of funds.
- * - Product maturity notes re-checked 26 Oct against the Mythos Master Inventory.
+ * - Product maturity notes re-checked 26 Oct against the Mythos Master Inventory;
+ *   SPINE moved to Built by owner ruling, 29 Oct.
  */
 
 export type Maturity = "Built" | "In development" | "Internal" | "Specified" | "Exploratory";
@@ -24,7 +25,8 @@ export type Maturity = "Built" | "In development" | "Internal" | "Specified" | "
 export const PRODUCT_MATURITY: { name: string; href: string; maturity: Maturity; note: string }[] = [
   { name: "Athena", href: "/platform/athena", maturity: "Built", note: "27 scanners, each finding decided against a benign control; Ed25519-signed evidence packs." },
   { name: "Achilles", href: "/platform/achilles", maturity: "Built", note: "Attacks LLMs and agents over HTTP across 32 scenarios; scan results not yet signed into the record." },
-  { name: "SPINE", href: "/platform/spine", maturity: "In development", note: "Claims, DSSE-signed receipts, coverage and retest-gated closure in place; a customer-run identity collector is planned." },
+  // Built per owner ruling, 29 Oct (claim company.spine-built).
+  { name: "SPINE", href: "/platform/spine", maturity: "Built", note: "Claims, DSSE-signed receipts, coverage and retest-gated closure in place; a customer-run identity collector is planned." },
   { name: "Minotaur", href: "/platform/validation", maturity: "Internal", note: "Measures Athena and Achilles on planted benchmarks and governs their release. Never sold." },
   { name: "Economic Exposure", href: "/platform/economic-exposure", maturity: "In development", note: "Prices scenarios as ranges on fixture feeds, not yet calibrated; every example on the site is synthetic." },
   { name: "Hermes", href: "/platform/hermes", maturity: "Exploratory", note: "A scaffold for physical AI: every domain reads inconclusive today; no customer work." },
