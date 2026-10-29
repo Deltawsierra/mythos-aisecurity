@@ -373,9 +373,15 @@ const HALF_BODY: Partial<Record<PresenceId, { position: string; scale: number }>
  */
 export const presence = (id: PresenceId): PresenceMedia => ({
   poster: HALF_BODY[id] ? `/assets/presence/${id}-card.webp` : `/assets/presence/${id}-poster.webp`,
-  idle: `/assets/presence/${id}-idle.webm`,
-  engaged: `/assets/presence/${id}-engaged.webm`,
-  backdrop: id in CHARACTER_MEDIA ? `/assets/presence/${id}-backdrop.webp` : "/assets/presence/team-backdrop.webp",
+  // Replaced media always gets a new file name: the host caches assets for up to a day
+  // (max-age 3600, stale-while-revalidate 86400), so reusing a name would keep showing old art.
+  idle: HALF_BODY[id] ? `/assets/presence/${id}-half-idle.webm` : `/assets/presence/${id}-idle.webm`,
+  engaged: HALF_BODY[id] ? `/assets/presence/${id}-half-engaged.webm` : `/assets/presence/${id}-engaged.webm`,
+  backdrop: !(id in CHARACTER_MEDIA)
+    ? "/assets/presence/team-backdrop.webp"
+    : id === "athena" || id === "hermes"
+      ? `/assets/presence/${id}-backdrop-clean.webp`
+      : `/assets/presence/${id}-backdrop.webp`,
   ...HALF_BODY[id],
 });
 
