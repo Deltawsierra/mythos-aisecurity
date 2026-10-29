@@ -629,9 +629,9 @@ export const CLAIMS: Claim[] = [
     id: "company.cmo-named",
     text: "Shaquille Lyew, Chief Marketing Officer (not a founder), with portrait and 12+ years in sales, customer service and business development including startups",
     status: "approved",
-    source: "Owner-supplied bio and portrait, 28 Oct 2026",
+    source: "Owner-supplied bio and portrait, 28 Oct 2026; fuller bio approved 29 Oct 2026",
     usedIn: ["/company"],
-    note: "Bio shortened from the owner's text; nothing added. Not a founder and not delivery personnel, so he is not in the buyer packet's page 6.",
+    note: "Bio follows the owner's text with self-descriptions (results-driven, passionate) dropped; nothing added. Not a founder and not delivery personnel, so he is not in the buyer packet's page 6.",
   },
   {
     id: "usecases.quantum-horizon",

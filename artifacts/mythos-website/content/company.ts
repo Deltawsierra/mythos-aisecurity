@@ -98,7 +98,7 @@ export const COMPANY = {
         name: "Shaquille Lyew",
         role: "Chief Marketing Officer",
         focus: "Market presence, customer relationships and business development.",
-        bio: "Over 12 years in sales, customer service and business development, including work with startups.",
+        bio: "Brings over 12 years of experience in sales, customer service and business development, including work with startup businesses. Joined Mythos AI Security to help organizations grow, overcome challenges and find new opportunities, drawing on a background in building customer relationships, driving sales and identifying growth opportunities. Focused on strengthening market presence, improving customer experience and helping Mythos AI Security deliver meaningful value to the organizations it serves.",
         portrait: { src: "/assets/people/shaquille-lyew-480.webp", src2x: "/assets/people/shaquille-lyew-960.webp", width: 480, height: 600 },
       },
     ] as Person[],
