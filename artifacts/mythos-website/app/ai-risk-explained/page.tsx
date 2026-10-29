@@ -152,7 +152,7 @@ export default function AiRiskExplainedPage() {
             id="how-title"
             eyebrow="How it works"
             title={<Accent text="Six steps, *in business terms.*" />}
-            lede="Price, timeline, your team's responsibilities and the retest terms are set out in a written proposal for your scope."
+            lede="Assessments start at USD 15,000. The exact price, timeline, your team's responsibilities and the retest terms are set out in a written proposal for your scope."
             caps
           />
           <ol className="mt-12 grid gap-3 md:grid-cols-2 xl:grid-cols-3" data-reveal-group>

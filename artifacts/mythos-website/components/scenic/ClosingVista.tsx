@@ -6,7 +6,7 @@ import { Scene, type SceneLayer } from "@/components/scenic/Scene";
 import { CTA_LINKS } from "@/content/navigation";
 import { CANONICAL } from "@/content/platform";
 import { VISTAS } from "@/content/media";
-import { CTA } from "@/lib/constants";
+import { CTA, SITE_FULL_NAME } from "@/lib/constants";
 
 interface ClosingVistaProps {
   /** Headline; *starred* words take the gold accent. */
@@ -58,10 +58,11 @@ export function ClosingVista({
             height={80}
             className="mx-auto h-20 w-20 drop-shadow-[0_10px_30px_rgba(18,21,23,0.6)]"
           />
+          <p className="mt-5 text-[11px] font-semibold uppercase tracking-[0.32em] text-champagne/85">{SITE_FULL_NAME}</p>
           <h2
             id="closing-title"
             aria-label={plain(title)}
-            className="display-caps mt-6 font-display text-[2.3rem] text-ivory drop-shadow-[0_4px_24px_rgba(18,21,23,0.6)] sm:text-5xl lg:text-6xl"
+            className="display-caps mt-4 font-display text-[2.3rem] text-ivory drop-shadow-[0_4px_24px_rgba(18,21,23,0.6)] sm:text-5xl lg:text-6xl"
           >
             <Accent text={title} />
           </h2>

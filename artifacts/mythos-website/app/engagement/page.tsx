@@ -147,7 +147,7 @@ export default function EngagementPage() {
             {[
               { label: "What you receive", body: "Nine outputs, and how far along each is.", href: "/outputs" },
               { label: "A synthetic report", body: "What the evidence looks like, section by section.", href: "/example-report" },
-              { label: "Pricing", body: "How scope is priced — figures on request.", href: "/pricing" },
+              { label: "Pricing", body: "From USD 15,000, with a fixed quote for your scope.", href: "/pricing" },
             ].map((l) => (
               <Link key={l.href} href={l.href} className="group flex items-center justify-between gap-4 border border-rule bg-panel px-5 py-4 hover:border-antique-gold/60">
                 <span>

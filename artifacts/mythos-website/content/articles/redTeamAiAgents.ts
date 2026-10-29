@@ -21,8 +21,8 @@ export const RED_TEAM_AI_AGENTS: Article = {
   "readingMinutes": 13,
   "author": {
     "name": "David Smith",
-    "role": "Co-founder and Principal Software Engineer, Mythos AI Security",
-    "bio": "David Smith is Co-founder and Principal Software Engineer at Mythos AI Security. His work focuses on enterprise software and AI deployment assurance."
+    "role": "Co-founder and Chief Operations Officer, Mythos AI Security",
+    "bio": "David Smith is Co-founder and Chief Operations Officer of Mythos AI Security, where he leads product direction, software architecture, development and AI research."
   },
   "checklist": {
     "href": "/assets/downloads/mythos-ai-agent-red-teaming-checklist.pdf",

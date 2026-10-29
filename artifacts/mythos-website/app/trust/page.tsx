@@ -75,7 +75,7 @@ export default function TrustPage() {
       <ScenicHero
         eyebrow="Trust Center"
         headline="Trust Requires *More Than a Claim.*"
-        lede="How Mythos approaches authorization, testing scope, evidence integrity, human decisions and the data you share — including what is not built yet."
+        lede="How Mythos AI Security approaches authorization, testing scope, evidence integrity, human decisions and the data you share — including what is not built yet."
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Resources", href: "/resources" },

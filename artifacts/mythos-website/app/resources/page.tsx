@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 const SHELVES: { name: string; lede: string; items: { title: string; body: string; href: string; tag?: string }[] }[] = [
   {
     name: "Guides and checklists",
-    lede: "Practical guidance, written and reviewed by the people building Mythos.",
+    lede: "Practical guidance, written and reviewed by the people building Mythos AI Security.",
     items: [
       { title: "AI Risk, Explained in Plain English", body: "For readers with no technical background: nine common situations, what Mythos would examine, and twelve questions for the board.", href: "/ai-risk-explained", tag: "Start here" },
       { title: "Board Questions on AI Risk", body: "Twelve questions and one reusable sentence on one printable page. Free, no form.", href: "/assets/downloads/mythos-board-ai-risk-questions.pdf", tag: "PDF" },
@@ -62,7 +62,7 @@ const SHELVES: { name: string; lede: string; items: { title: string; body: strin
       { title: "Use Cases", body: "Eleven scenarios, from support agents to decision support.", href: "/use-cases" },
       { title: "Solutions by Industry", body: "Seven environments, one method.", href: "/solutions" },
       { title: "How Engagement Starts", body: "From the first note to a scoped assessment and a retest.", href: "/engagement" },
-      { title: "Pricing", body: "What determines price, and what is included.", href: "/pricing" },
+      { title: "Pricing", body: "Workflow assessments from USD 15,000, and what changes a quote.", href: "/pricing" },
     ],
   },
 ];

@@ -1,185 +1,145 @@
 /**
- * Pricing page content (Launch Guide §13). Framed by the Master Inventory's
- * three engagement offers, kept distinct (owner ruling, 26 Oct 2026):
- * Assessment, Release Assurance and Runtime Enforcement. Assessments and the
- * annual Systems Under Assurance tiers come from the internal Pricing
- * Strategy (Public vs Consultation, 16 Oct 2026).
+ * Pricing page content, rebuilt 27 Oct 2026 around the one approved starting
+ * offer: the AI Workflow Assessment and Repair Retest, from USD 15,000.
  *
- * - No price is shown until the price book is signed (decision D03). Each
- *   offer has a `price` field; while it is null the page says "Quoted after
- *   scoping". Publishing a signed "from" price is a one-line change here —
- *   plus retiring the `pricing.offer-structure` claim.
- * - Assessment and tier names, the System Under Assurance definition and the
- *   design-partner line are proposals pending the price book
- *   (claim `pricing.offer-structure`). The three offers are `pricing.three-offers`.
- * - The strategy's tier inclusions describe the completed platform. Here each
- *   capability is split into "available today" and "planned", matching the
- *   26 Oct Master Inventory (Action Gate is runtime enforcement, a separate
- *   offer; Economic Exposure runs on fixture feeds, uncalibrated; monitor
- *   coverage, signed Achilles results and an identity collector are planned).
- * - Private items stay off the page: specialist catalog, additional-system
- *   rates, retest percentages, design-partner terms and credits.
+ * Sources: Mythos Pricing and Market Validation (27 Oct 2026) and the AI
+ * Workflow Assessment Offer Specification v0.2 (27 Oct 2026). The USD 15,000
+ * minimum is approved; quotes rise with scope (claim pricing.starting-offer).
+ *
+ * Held until approved (owner ruling, 27 Oct 2026), so not on this page: the
+ * ten-business-day delivery target, the 96 / 36 episode allowances and case
+ * counts, the numeric scope limits (services, operations, profiles, routes),
+ * the retest request and completion windows, payment milestones, data
+ * retention defaults and notification targets. They stay in the statement of
+ * work until a delivery rehearsal confirms them.
+ *
+ * The three engagement offers stay distinct (pricing.three-offers): only the
+ * assessment carries a public price; release assurance and runtime
+ * enforcement are quoted separately. The Systems Under Assurance tiers were
+ * retired with this rebuild: the validation report advises against a
+ * recurring fee until ongoing work and repeat demand are defined.
  */
-
-export type PriceDisplay = string | null;
 
 export const PRICING_HERO = {
   eyebrow: "Pricing",
-  headline: "Assurance That Scales With *Your AI Estate.*",
-  lede: "Start with one defined system or workflow. Expand assurance as models, tools, permissions and business consequence grow. Every engagement begins with a scoped review and a clear evidence plan.",
+  headline: "Start With *One AI Workflow.*",
+  lede: "The AI Workflow Assessment and Repair Retest starts at USD 15,000. Your fixed price is agreed from the scope before any testing begins.",
 };
 
-/** The three engagement offers (Master Inventory), kept distinct in every description. */
+/** The approved starting offer. */
+export const STARTING_OFFER = {
+  name: "AI Workflow Assessment and Repair Retest",
+  price: "USD 15,000",
+  priceNote: "Starting price per engagement. A higher fixed quote applies when your scope goes beyond the starting scope.",
+  statement:
+    "Before an AI workflow goes live, gets more access or takes on more authority, find out what it can reach, which actions it can take and what needs fixing. Mythos assesses one agreed deployment, explains the failures the evidence supports, sets out what a repair must achieve, and retests the agreed fixes, so your release owner decides with better evidence.",
+  scope: [
+    "One named workflow: one business purpose, with its branches listed",
+    "One frozen configuration and one primary model route",
+    "One authorized test environment, outside live production",
+    "The connected services, tool operations and test profiles named in writing",
+    "One repair retest of the agreed fixes, with its scope and timing set in your statement of work",
+  ],
+  outputs: [
+    { name: "Scope and boundary map", body: "What the workflow can reach: its data sources, tools, declared access and consequential paths." },
+    { name: "Test and coverage record", body: "What was planned, attempted and completed, and what could not be measured." },
+    { name: "Findings and repair requirements", body: "Every supported finding, in priority order, with what a fix must achieve and a review session with your owners." },
+    { name: "Evidence index", body: "The records behind each finding, with integrity hashes, and signed receipts where the platform path produces them." },
+    { name: "Executive decision brief", body: "Restrictions, open findings, remaining uncertainty and a scoped recommendation. Your release owner decides." },
+    { name: "Retest addendum", body: "Results for the agreed fixes once you submit an eligible repair, or a record that the retest was not performed." },
+  ],
+  fit: "The strongest fit is a workflow with a named owner, a pending deployment or access decision, and a test environment, such as a bank or insurer connecting an assistant or agent to governed records and business tools.",
+};
+
+/** What "one workflow" means, with the specification's example. */
+export const ONE_WORKFLOW = {
+  title: "What *one workflow* means.",
+  body: "One business purpose, with a named starting role, approved inputs, allowed operations, prohibited effects and a clear finish. Its branches are listed up front.",
+  example: {
+    label: "For example (illustrative)",
+    is: "Summarize an approved vendor document and prepare a payment recommendation for a person to review.",
+    excluded: "Changing a beneficiary, exporting unrelated records and submitting the payment are explicitly out of bounds.",
+    separate: "A second task that actually submits payments is a different authority boundary, so it needs its own scope.",
+  },
+  not: ["A whole customer-service platform", "Every department that uses a model", "All agents in a tenant"],
+};
+
+/** Scope drivers from the specification's client scope and pricing policy. */
+export const QUOTE_FACTORS = [
+  { name: "Workflows and software", body: "Distinct business purposes and branches, application boundaries, supported interfaces and technical complexity." },
+  { name: "AI applications and agents", body: "Distinct configurations, identities, permissions, memory and delegated tasks. Identical copies do not each add a full fee." },
+  { name: "Models and environments", body: "Additional model providers, routes, staging environments, regions or tenants that need their own evidence." },
+  { name: "Systems, data and tools", body: "Connected services, operations, retrieval collections, sensitive data, approval paths and consequential actions." },
+  { name: "Evidence and integration", body: "Which logs and records already show what happened, where observation gaps exist and whether custom instrumentation is needed." },
+  { name: "Depth and delivery", body: "Case combinations, chains between agents, additional repair groups, reporting needs, access constraints and scheduling." },
+];
+
+export const QUOTE_RULES = [
+  "Every quote names the scope drivers, included assets, observation limits, retest allowance, schedule and assumptions.",
+  "Shared setup is counted once. A raw count of agents or systems is not a price formula.",
+  "No surprise overages: anything added needs a written change order for the work, fee and timing.",
+  "A higher quote does not remove technical limits. Missing evidence still needs a plan or a stated exclusion.",
+];
+
+/** The three engagement offers (Master Inventory), kept distinct. Only the first has a public price. */
 export const MOTIONS = [
-  { id: "assessment", name: "Assessment", lede: "Tests and reports.", body: "One defined system, one decision: findings, evidence, what was not measured, remediation guidance and an agreed retest.", next: "Move to release assurance when a deployment decision is due." },
-  { id: "release", name: "Release Assurance", lede: "A recommendation bound to an exact deployment.", body: "The deployment decision tied to the fingerprint, policy and environment it was made on — and kept current for agreed Systems Under Assurance as they change.", next: "Add systems as your estate grows." },
-  { id: "runtime", name: "Runtime Enforcement", lede: "Mediates supported paths.", body: "The Action Gate: policy as code, deny by default, permitting only the exact action approved, on supported paths. Scoped separately from testing.", next: "Supported paths are confirmed during scoping." },
+  { id: "assessment", name: "Assessment", lede: "Tests and reports.", body: "The AI Workflow Assessment and Repair Retest: one workflow, one decision, with evidence and a retest of the agreed fixes.", price: "From USD 15,000" },
+  { id: "release", name: "Release Assurance", lede: "A recommendation bound to an exact deployment.", body: "The deployment decision tied to the fingerprint, policy and environment it was made on, reopened when agreed changes happen.", price: "Quoted separately" },
+  { id: "runtime", name: "Runtime Enforcement", lede: "Mediates supported paths.", body: "The Action Gate: policy as code, deny by default, permitting only the exact action approved, on supported paths.", price: "Quoted separately" },
 ] as const;
 
-export const SUA = {
-  title: "What is a *System Under Assurance?*",
-  body: "A customer-approved AI deployment — or a bounded group of workflows — with a named business owner, an authorized scope, identifiable model routes, connected data, tools and identities, and an agreed policy for when it is retested.",
-  points: [
-    "One agent with many connected tools can be one system — tool calls are not billed one by one.",
-    "Two independently governed applications usually count as two, even on the same model provider.",
-    "Development, staging and production are usually environments of one system, not three.",
-  ],
-  note: "The exact counting rules are agreed in your proposal.",
-};
-
-export interface AssessmentOffer {
-  name: string;
-  fit: string;
-  outputs: string;
-  price: PriceDisplay;
-  cta: string;
-}
-
-/** The four flagship assessments the strategy proposes to show publicly. */
-export const ASSESSMENTS: AssessmentOffer[] = [
-  {
-    name: "AI Readiness",
-    fit: "A first AI initiative, or discovery before launch or expansion.",
-    outputs: "An inventory of risks and unknowns, the key control gaps and a next-step plan.",
-    price: null,
-    cta: "Request Readiness Scope",
-  },
-  {
-    name: "AI Data Exposure",
-    fit: "Sensitive information, retrieval and access-boundary concerns.",
-    outputs: "Data routes, effective access from the configuration you supply, exposure paths, findings and evidence.",
-    price: null,
-    cta: "Discuss Data Exposure",
-  },
-  {
-    name: "Agent Authority",
-    fit: "Tool-using agents and workflows that take actions.",
-    outputs: "Permission boundaries, tool-misuse tests, how your approval controls hold up, and evidence.",
-    price: null,
-    cta: "Scope an Agent Assessment",
-  },
-  {
-    name: "Go / No-Go Review",
-    fit: "A pilot or production go / no-go decision.",
-    outputs: "Discovery, authority mapping, adversarial tests, evidence, remediation and a decision recommendation.",
-    price: null,
-    cta: "Plan a Deployment Review",
-  },
+/** Additional work, each scoped and quoted on its own (specification change control). */
+export const ADDITIONAL_WORK = [
+  "Another model or route",
+  "Custom telemetry or a connector",
+  "Broader web and API security testing",
+  "Further repair rounds or groups",
+  "Economic Exposure analysis",
+  "Recurring assurance",
 ];
 
-/** Assessments quoted only after a consultation. */
-export const CONSULT_ASSESSMENTS = [
-  { name: "High-Risk / Regulated Assessment", body: "Banking, insurance, healthcare and other high-consequence systems: expanded controls, evidence depth and reporting." },
-  { name: "Incident Evidence", body: "After an AI-related incident: preserve evidence, reconstruct what happened, verify the fix. Engine records are hash-chained and signed; scope follows triage." },
-];
-
-export interface Tier {
-  name: string;
-  scope: string;
-  fit: string;
-  available: string[];
-  planned: string[];
-  price: PriceDisplay;
-}
-
-/** Annual Systems Under Assurance tiers, split into today and planned. */
-export const TIERS: Tier[] = [
-  {
-    name: "Launch",
-    scope: "1 primary system",
-    fit: "One critical production system kept under evidence-backed assurance — not a scan subscription.",
-    available: ["Mapping of data, tools and access", "Scheduled Achilles testing", "Claims and signed receipts", "Evidence, remediation and retest"],
-    planned: ["Exposure ranges on live feeds"],
-    price: null,
-  },
-  {
-    name: "Growth",
-    scope: "2–4 systems",
-    fit: "Several connected systems or agents, with enough context to prioritize remediation.",
-    available: ["Broader Achilles campaigns and cross-channel chains", "Vendor and provider profiles (declared vs verified)", "Reassessment and release canary comparison", "Executive summaries"],
-    planned: ["Exposure ranges on live feeds", "Monitor coverage disclosure", "New agent-attack carriers (image, OCR, renderer)"],
-    price: null,
-  },
-  {
-    name: "Enterprise",
-    scope: "5–10 systems",
-    fit: "Complex or regulated AI estates that need formal deployment decisions at scale.",
-    available: ["Full mapping, testing and claims across systems", "Deployment decision support", "Findings mapped to NIST SP 800-53, OWASP, OWASP LLM and DoD Zero Trust"],
-    planned: ["Runtime monitor coverage", "Customer-run identity collector", "Economic Exposure on live feeds", "Signed Achilles scan results"],
-    price: null,
-  },
-  {
-    name: "Enterprise Portfolio",
-    scope: "10–25+ systems",
-    fit: "Shared dependencies and cumulative exposure across business units — not just more volume.",
-    available: ["The Enterprise method across business units and environments"],
-    planned: ["Portfolio assurance graphs", "Cross-system exposure correlation", "Central dashboards"],
-    price: null,
-  },
-  {
-    name: "Mission / High Assurance",
-    scope: "Custom",
-    fit: "Highly constrained, critical or physical AI environments — feasibility first, explicit delivery boundaries.",
-    available: ["Custom authorized scope and evidence requirements"],
-    planned: ["Private cloud deployment", "Air-gapped deployment", "Physical AI scope (exploratory)"],
-    price: null,
-  },
-];
-
-export const EXPAND = {
-  title: "Expand as *your estate grows.*",
-  lede: "Coverage can be added after a scope review. Rates are set in your proposal.",
-  items: ["Additional AI systems", "Additional business units", "Vendor claim review (declared vs verified)", "Advanced Achilles campaigns", "Deeper regulated evidence", "Additional retest campaigns", "Incident assurance sprints"],
-  partners: "Design-partner opportunities for qualified enterprises — discuss scope with Mythos.",
-};
-
-export const QUOTE_FACTORS = [
-  { name: "Systems and complexity", body: "How many AI systems, and how complex each one is." },
-  { name: "Workflows, identities and tools", body: "Connected workflows, the identities they run as and the tools they can use." },
-  { name: "Data and criticality", body: "What the AI can reach, how sensitive it is and what a failure would cost." },
-  { name: "Testing and evidence depth", body: "How deep testing goes and what your reviewers need to see." },
-  { name: "Deployment environment", body: "Where the system runs and what constraints apply to testing it." },
-  { name: "Cadence and service", body: "How often changes are reassessed, the integrations involved and service commitments." },
-];
-
-export const INCLUDED: { name: string; assess: boolean; assure: boolean }[] = [
-  { name: "Written scope and authorization", assess: true, assure: true },
-  { name: "System and access mapping", assess: true, assure: true },
-  { name: "Behavior and permission testing", assess: true, assure: true },
-  { name: "Evidence pack and receipts", assess: true, assure: true },
-  { name: "Remediation guidance", assess: true, assure: true },
-  { name: "Retest (scope stated in your statement of work)", assess: true, assure: true },
-  { name: "Evidence kept current after agreed changes", assess: false, assure: true },
-  { name: "Scheduled testing through the year", assess: false, assure: true },
+/** Outside the base engagement. */
+export const NOT_INCLUDED = [
+  "Production protection or live blocking",
+  "Round-the-clock monitoring",
+  "Incident containment",
+  "Identity-provider audit or every employee's permissions",
+  "Implementing the repairs",
+  "Legal opinions or insurance decisions",
+  "Certification of any kind",
 ];
 
 export const PRICING_FAQ = [
-  { q: "Why aren’t prices listed?", a: "Because every engagement is scoped first. You get a quote after a scoping conversation, based on the factors on this page." },
-  { q: "Can we start without an annual commitment?", a: "Yes. A scoped assessment can address one defined system or decision before you choose whether to move into recurring assurance." },
-  { q: "What are we paying for?", a: "Coverage of important AI systems, depth of adversarial testing, evidence and remediation quality, revalidation cadence, and the business consequence of failure — not arbitrary scan counts." },
-  { q: "How is recurring assurance different?", a: "An assessment answers a defined question at a point in time. Annual assurance revisits the evidence as systems, permissions, models, tools and vendors change — reassessing on the changes you share and on scheduled scans. There is no live monitoring." },
-  { q: "Is Economic Exposure included?", a: "Economic Exposure prices a validated failure as a range with its sources, at increasing depth by tier — decision support only. Its feeds are fixtures until keys and a licence review, and it is not yet calibrated." },
-  { q: "Does an assessment include a retest?", a: "Many substantive assessments are planned with one remediation retest. The included retest scope and timing are stated in your statement of work." },
-  { q: "Do you certify AI as safe?", a: "No. Mythos provides evidence, testing, findings and decision support within an agreed scope. It does not guarantee safety or issue an independent regulatory certification." },
-  { q: "What about private networks or physical AI?", a: "Those need a feasibility and authorization discussion first. Private and air-gapped deployment are planned, not available; physical AI work is exploratory and Mythos does not promise vehicle safety certification." },
+  {
+    q: "What does USD 15,000 cover?",
+    a: "The starting scope: one named workflow in one authorized test environment, with one frozen configuration and model route, the outputs listed on this page, and one repair retest of the agreed fixes. A larger scope gets a higher fixed quote, agreed before testing.",
+  },
+  {
+    q: "Is the retest included?",
+    a: "Yes, one repair retest of the agreed fixes is included for the starting scope. Its scope and timing are set in your statement of work. Every finding stays in the report, and any finding not retested stays open. Further repair rounds are quoted separately.",
+  },
+  {
+    q: "Are there overages?",
+    a: "No automatic overages. Anything added after the quote needs a written change order covering the work, the fee and the timing.",
+  },
+  {
+    q: "Is there a subscription?",
+    a: "No. The assessment is a single engagement. Release assurance, runtime enforcement and recurring work are separate, scoped offers.",
+  },
+  {
+    q: "What if only the AI's replies can be observed?",
+    a: "Then we say so and scope the work as a behavior assessment. Actions are reported as verified only when a record outside the AI shows what actually happened.",
+  },
+  {
+    q: "Is Economic Exposure included?",
+    a: "No. Economic Exposure has its own objectives and inputs and is scoped separately. It is decision support only: its feeds are fixtures until keys and a licence review, and it is not yet calibrated.",
+  },
+  {
+    q: "Do you certify AI as safe?",
+    a: "No. Mythos provides evidence, testing, findings and decision support within an agreed scope. It does not guarantee safety, guarantee a favorable finding, or issue a regulatory certification.",
+  },
+  {
+    q: "What about private networks or physical AI?",
+    a: "Those need a feasibility and authorization discussion first. Private and air-gapped deployment are planned, not available. Physical AI work is exploratory, is not part of this offer, and Mythos does not promise vehicle safety certification.",
+  },
 ];

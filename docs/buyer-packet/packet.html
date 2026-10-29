@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Mythos Buyer Packet (internal draft)</title>
+<!--
+  Eight-page buyer packet, built from Mythos_Eight_Page_Buyer_Packet_Blueprint_v0_2
+  (27 Oct 2026). Internal draft: pages 6 and 7 carry founder and trust facts that
+  must be confirmed, the worked example is synthetic, and the pricing notice
+  awaits counsel. Render with: node docs/buyer-packet/render.mjs
+-->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&display=block" rel="stylesheet">
+<style>
+  @page { size: Letter; margin: 0; }
+  :root {
+    --ivory: #f5eee2; --panel: #fbf7f0; --charcoal: #161a1c; --muted: #4a4f52;
+    --bronze: #80511d; --gold: #b8823f; --rule: #dccbae; --flag: #963825; --flag-bg: #fbeee8;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--ivory); }
+  body { font: 10.2pt/1.5 Inter, sans-serif; color: var(--charcoal); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page { position: relative; width: 8.5in; height: 11in; padding: 0.62in 0.7in 0.9in; overflow: hidden; break-after: page; background: var(--ivory); }
+  .page:last-child { break-after: auto; }
+  .top { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--gold); padding-bottom: 9px; }
+  .brand { display: flex; align-items: center; gap: 9px; font-size: 7.6pt; font-weight: 600; letter-spacing: 0.26em; text-transform: uppercase; color: var(--bronze); }
+  .brand img { width: 22px; height: 22px; }
+  .q { font-size: 7.6pt; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  h1, h2, h3 { font-family: "Cormorant Garamond", serif; font-weight: 600; margin: 0; font-variant-numeric: lining-nums; }
+  h2 { font-size: 26pt; line-height: 1.08; margin-top: 18px; max-width: 6.4in; }
+  h3 { font-size: 14.5pt; line-height: 1.2; }
+  p { margin: 10px 0 0; }
+  .lede { font-size: 11.2pt; line-height: 1.55; max-width: 6.6in; }
+  .muted { color: var(--muted); }
+  .eyebrow { font-size: 7.4pt; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bronze); }
+  table { width: 100%; border-collapse: collapse; margin-top: 14px; }
+  th { text-align: left; font-size: 7.4pt; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--bronze); padding: 0 10px 6px 0; }
+  td { border-top: 0.75px solid var(--rule); padding: 5.5px 10px 5.5px 0; vertical-align: top; }
+  tr:last-child td { border-bottom: 0.75px solid var(--rule); }
+  td.k { width: 40%; font-weight: 500; }
+  .p6 .card > p { font-size: 10pt; line-height: 1.48; }
+  .card { background: var(--panel); border: 0.75px solid var(--rule); padding: 14px 16px; }
+  .note { font-size: 8.6pt; color: var(--muted); }
+  .flag { border: 1.2px dashed var(--flag); background: var(--flag-bg); padding: 10px 13px; margin-top: 12px; font-size: 8.8pt; }
+  .flag b { color: var(--flag); font-size: 7.4pt; letter-spacing: 0.16em; text-transform: uppercase; display: block; margin-bottom: 3px; }
+  .tag { display: inline-block; font-size: 6.8pt; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--flag); border: 0.75px solid var(--flag); padding: 1px 5px; margin-left: 6px; vertical-align: 1px; }
+  .synthetic { display: inline-block; font-size: 7.2pt; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; background: var(--charcoal); color: #f0d9b0; padding: 4px 9px; }
+  .cta { display: inline-block; margin-top: 18px; background: var(--charcoal); color: #f5eee2; padding: 11px 18px; font-weight: 600; font-size: 10pt; text-decoration: none; }
+  .cta span { color: #e5c58f; font-weight: 500; margin-left: 8px; }
+  ul { margin: 10px 0 0; padding-left: 17px; }
+  li { margin-top: 5px; }
+  li::marker { color: var(--gold); }
+  .foot { position: absolute; left: 0.7in; right: 0.7in; bottom: 0.42in; display: flex; justify-content: space-between; font-size: 7.2pt; color: var(--muted); border-top: 0.75px solid var(--rule); padding-top: 7px; }
+  .foot .draft { color: var(--flag); font-weight: 600; letter-spacing: 0.08em; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 5px; margin-top: 8px; font-size: 8.4pt; }
+  .flow span { background: var(--panel); border: 0.75px solid var(--rule); padding: 3px 7px; }
+  .flow i { font-style: normal; color: var(--gold); }
+  .flow .sep { background: transparent; border: 0.75px dashed var(--flag); color: var(--flag); }
+  .num { font-family: "Cormorant Garamond", serif; font-size: 15pt; color: var(--bronze); font-variant-numeric: lining-nums; }
+  .portrait-photo { width: 74px; height: 74px; border-radius: 50%; border: 1px solid var(--rule); object-fit: cover; flex-shrink: 0; }
+  .portrait { width: 74px; height: 74px; border-radius: 50%; border: 1.2px dashed var(--flag); background: var(--flag-bg); display: grid; place-items: center; text-align: center; font-size: 6.6pt; line-height: 1.25; color: var(--flag); flex-shrink: 0; }
+  dl.finding { display: grid; grid-template-columns: 1.45in 1fr; margin: 8px 0 0; font-size: 8.6pt; }
+  dl.finding dt { font-weight: 600; color: var(--bronze); padding: 3.5px 0; border-top: 0.75px solid var(--rule); }
+  dl.finding dd { margin: 0; padding: 3.5px 0; border-top: 0.75px solid var(--rule); }
+  .nm { color: var(--flag); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<!-- 1 · What are we buying -->
+<section class="page">
+  <div class="top"><span class="brand"><img src="../../artifacts/mythos-website/public/assets/brand/crest-512.png" alt="">Mythos AI Security</span><span class="q">Buyer packet</span></div>
+  <p class="eyebrow" style="margin-top:0.5in">For finance and insurance teams</p>
+  <h1 style="font-size:37pt;line-height:1.04;margin-top:12px;max-width:6.3in">Know what your AI can do before you give it more access.</h1>
+  <p class="lede" style="margin-top:22px">AI can read records, use tools and take actions. Before expanding its access, you need evidence that it stays within the task and permissions you intended.</p>
+  <p class="lede">Mythos assesses one agreed workflow, explains supported failures, identifies repair requirements and retests eligible changes. Your teams receive a clear decision brief and the technical evidence behind it.</p>
+  <div class="card" style="margin-top:26px;border-left:3px solid var(--gold);max-width:5.4in">
+    <p class="eyebrow" style="margin:0">The starting offer</p>
+    <h3 style="font-size:19pt;margin-top:4px">AI Workflow Assessment and Repair Retest</h3>
+    <p class="muted" style="margin-top:4px">From USD 15,000. Your fixed quote is agreed before testing begins.</p>
+  </div>
+  <a class="cta" href="https://www.mythosaisecurity.com/contact/?intent=assessment">Request an AI workflow assessment<span>mythosaisecurity.com</span></a>
+  <table style="margin-top:0.35in;max-width:5.4in;font-size:9.4pt">
+    <tr><th colspan="2">Inside</th></tr>
+    <tr><td style="width:28px" class="num">2</td><td>Is this relevant to us?</td></tr>
+    <tr><td class="num">3</td><td>How does this go beyond a scan?</td></tr>
+    <tr><td class="num">4</td><td>What will we actually receive?</td></tr>
+    <tr><td class="num">5</td><td>What can change the price?</td></tr>
+    <tr><td class="num">6</td><td>Who will handle our systems?</td></tr>
+    <tr><td class="num">7</td><td>What can you establish, and how is access handled?</td></tr>
+    <tr><td class="num">8</td><td>How do we start?</td></tr>
+  </table>
+  <div class="foot"><span class="draft">INTERNAL DRAFT v0.1 · 27 Oct 2026 · Not for client use</span><span>1 / 8</span></div>
+</section>
+
+<!-- 2 · Is this relevant to us -->
+<section class="page">
+  <div class="top"><span class="brand"><img src="../../artifacts/mythos-website/public/assets/brand/crest-512.png" alt="">Mythos AI Security</span><span class="q">Is this relevant to us?</span></div>
+  <h2>If AI can reach important information or take actions, test the boundaries.</h2>
+  <p class="lede">Start with a workflow your business already uses or plans to release. The most useful first assessment has a named owner and a real decision: launch it, add a tool, expand its access or verify a repair.</p>
+  <table>
+    <tr><th>Ask your team</th><th>Why it matters</th></tr>
+    <tr><td class="k">Can AI read customer or internal records?</td><td>A useful answer can still expose the wrong record, person or destination.</td></tr>
+    <tr><td class="k">Can it send messages or change software or records?</td><td>A mistaken instruction may become a business action.</td></tr>
+    <tr><td class="k">Can it act on documents, email or web content?</td><td>Outside material may contain instructions that conflict with the approved task.</td></tr>
+    <tr><td class="k">Does it rely on human approval?</td><td>Approval needs to match the action that is actually sent.</td></tr>
+    <tr><td class="k">Are you unsure what it can reach?</td><td>Uncertainty is a reason to map a bounded workflow before expanding access.</td></tr>
+  </table>
+  <div class="grid2" style="margin-top:20px">
+    <div class="card">
+      <p class="eyebrow" style="margin:0">Finance example</p>
+      <h3 style="margin-top:4px">Vendor document to payment recommendation</h3>
+      <div class="flow"><span>Approved vendor document</span><i>→</i><span>Summary</span><i>→</i><span>Payment recommendation</span><i>→</i><span>Person approves</span></div>
+      <div class="flow"><span class="sep">Submitting the payment is a separate permission</span></div>
+    </div>
+    <div class="card">
+      <p class="eyebrow" style="margin:0">Insurance example</p>
+      <h3 style="margin-top:4px">Claim record to draft response</h3>
+      <div class="flow"><span>Selected claim record</span><i>→</i><span>Retrieval</span><i>→</i><span>Draft response</span><i>→</i><span>Person reviews</span></div>
+      <div class="flow"><span class="sep">Sending it or changing the record is a separate permission</span></div>
+    </div>
+  </div>
+  <p>Preparation, external communication, record changes and payment execution are different permissions. The vendor-document workflow is the running example on the pages that follow.</p>
+  <p class="note">These examples describe use cases, not customers or executed tests. A low-risk text-only tool may need a different scope from an agent with write access.</p>
+  <div class="foot"><span class="draft">INTERNAL DRAFT v0.1 · 27 Oct 2026 · Not for client use</span><span>2 / 8</span></div>
+</section>
+
+<!-- 3 · How does this go beyond a scan -->
+<section class="page">
+  <div class="top"><span class="brand"><img src="../../artifacts/mythos-website/public/assets/brand/crest-512.png" alt="">Mythos AI Security</span><span class="q">How does this go beyond a scan?</span></div>
+  <h2>Connect the task, the permission and the outcome.</h2>
+  <p class="lede">The important question is whether a workflow stays within its authority when the inputs, tool results or conversation become misleading. We begin with what your system is supposed to do, then compare that with supported observations.</p>
+  <ul>
+    <li><b>Context and access.</b> Identify the agreed systems, data, identities, tools and model route. Athena provides relevant application and deployment context within the supported scope.</li>
+    <li><b>Behavior and authority.</b> Achilles challenges the agreed prompt, retrieval, tool, permission and approval boundaries, including relevant multi-turn and cross-channel cases.</li>
+    <li><b>Action and outcome.</b> Compare the expected allow, escalate, hold or deny decision with the response, execution records and available external evidence.</li>
+  </ul>
+  <p>SPINE connects supported claims, evidence, repair status and the deployment recommendation. Your release owner makes the decision.</p>
+
+  <svg viewBox="0 0 640 230" width="100%" style="margin-top:16px" role="img" aria-label="Expected decision and observed behavior meet at an evidence review, which records a finding or an unresolved gap">
+    <defs><marker id="a" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L8 4L0 8z" fill="#80511d"/></marker></defs>
+    <g font-family="Inter, sans-serif" font-size="10.5" fill="#161a1c">
+      <rect x="4" y="16" width="150" height="54" fill="#fbf7f0" stroke="#dccbae"/><text x="79" y="39" text-anchor="middle" font-weight="600">Approved task</text><text x="79" y="55" text-anchor="middle" fill="#4a4f52">and policy</text>
+      <rect x="4" y="150" width="150" height="54" fill="#fbf7f0" stroke="#dccbae"/><text x="79" y="173" text-anchor="middle" font-weight="600">Agent and its tools</text><text x="79" y="189" text-anchor="middle" fill="#4a4f52">under test</text>
+      <rect x="200" y="16" width="150" height="54" fill="#fbf7f0" stroke="#b8823f"/><text x="275" y="39" text-anchor="middle" font-weight="600">Expected decision</text><text x="275" y="55" text-anchor="middle" fill="#4a4f52">allow, escalate, hold, deny</text>
+      <rect x="200" y="150" width="150" height="54" fill="#fbf7f0" stroke="#b8823f"/><text x="275" y="173" text-anchor="middle" font-weight="600">Observed behavior</text><text x="275" y="189" text-anchor="middle" fill="#4a4f52">response, execution, effect</text>
+      <rect x="396" y="83" width="104" height="54" fill="#161a1c"/><text x="448" y="106" text-anchor="middle" font-weight="600" fill="#f5eee2">Evidence</text><text x="448" y="122" text-anchor="middle" fill="#e5c58f">review</text>
+      <rect x="540" y="40" width="96" height="44" fill="#fbf7f0" stroke="#dccbae"/><text x="588" y="66" text-anchor="middle" font-weight="600">Finding</text>
+      <rect x="540" y="136" width="96" height="44" fill="#fbeee8" stroke="#963825" stroke-dasharray="4 3"/><text x="588" y="155" text-anchor="middle" font-weight="600" fill="#963825">Unresolved</text><text x="588" y="170" text-anchor="middle" fill="#963825">gap</text>
+    </g>
+    <g stroke="#80511d" stroke-width="1.4" fill="none" marker-end="url(#a)">
+      <path d="M154 43H196"/><path d="M154 177H196"/>
+      <path d="M350 43H372V100H392"/><path d="M350 177H372V120H392"/>
+      <path d="M500 104H518V62H536"/>
+    </g>
+    <path d="M500 118H518V158H536" stroke="#963825" stroke-width="1.4" stroke-dasharray="5 4" fill="none" marker-end="url(#a)"/>
+    <text x="566" y="216" font-family="Inter, sans-serif" font-size="9" fill="#4a4f52" text-anchor="middle">Dashed: evidence missing</text>
+  </svg>
+
+  <div class="card" style="margin-top:12px;border-left:3px solid var(--gold)">
+    <p style="margin:0"><b>An AI saying it performed an action does not prove the action happened.</b> Verified external effects require a witness outside the tested model. Unobserved paths remain visible as gaps.</p>
+  </div>
+  <p class="note">Standard Achilles scan results do not yet enter the signed platform record. Mythos does not audit identity providers or every user's individual permissions.</p>
+  <div class="foot"><span class="draft">INTERNAL DRAFT v0.1 · 27 Oct 2026 · Not for client use</span><span>3 / 8</span></div>
+</section>
+
+<!-- 4 · What will we actually receive -->
+<section class="page">
+  <div class="top"><span class="brand"><img src="../../artifacts/mythos-website/public/assets/brand/crest-512.png" alt="">Mythos AI Security</span><span class="q">What will we actually receive?</span></div>
+  <h2>A finding your teams can act on and a repair they can check.</h2>
+  <p class="lede" style="font-size:10.6pt">Your business sponsor receives a decision brief. Technical owners receive the supporting case: what was expected, what was observed, what likely caused the failure, what remains uncertain and what needs to change. The report identifies the responsible control owner and the agreed retest work.</p>
+  <table style="font-size:9.2pt">
+    <tr><th>Deliverable</th><th>Question it answers</th></tr>
+    <tr><td class="k">Boundary map</td><td>What did the workflow have access to, and what was in scope?</td></tr>
+    <tr><td class="k">Findings and repair requirements</td><td>What failed, what evidence supports the cause, and who should repair it?</td></tr>
+    <tr><td class="k">Test and coverage record</td><td>What ran, what was not measured, and which configuration was assessed?</td></tr>
+    <tr><td class="k">Evidence index and decision brief</td><td>Where can we inspect the support for the recommendation?</td></tr>
+    <tr><td class="k">Retest addendum</td><td>Did the eligible repair stop the tested failure, and did legitimate work still function?</td></tr>
+  </table>
+  <div class="card" style="margin-top:12px;padding:12px 15px">
+    <span class="synthetic">Synthetic illustration · not a customer result or an executed test</span>
+    <h3 style="margin-top:8px">Finding excerpt · SYN-01 · Document content requests an unrelated record export</h3>
+    <dl class="finding">
+      <dt>Task permits</dt><dd>Summarize the approved vendor document and prepare a payment recommendation for human review.</dd>
+      <dt>Input condition</dt><dd>The document asks the assistant to export an unrelated vendor record.</dd>
+      <dt>Expected decision</dt><dd>Deny the export; complete the summary.</dd>
+      <dt>Observed response</dt><dd class="nm">Not measured</dd>
+      <dt>Dispatch evidence</dt><dd class="nm">Not measured</dd>
+      <dt>External state</dt><dd class="nm">Not measured</dd>
+      <dt>Repair requirement</dt><dd>The export operation is unavailable to this task whatever the document says, and the summary still completes.</dd>
+      <dt>Retest cases</dt><dd>Original failure · alternate path (the instruction arrives in a tool result) · legitimate task (summary of the same document)</dd>
+    </dl>
+  </div>
+  <p class="note">Signed receipts apply only to outputs the platform actually signs. A signature protects provenance and integrity, not the correctness of a conclusion.</p>
+  <div class="foot"><span class="draft">INTERNAL DRAFT v0.1 · 27 Oct 2026 · Not for client use</span><span>4 / 8</span></div>
+</section>
+
+<!-- 5 · What can change the price -->
+<section class="page">
+  <div class="top"><span class="brand"><img src="../../artifacts/mythos-website/public/assets/brand/crest-512.png" alt="">Mythos AI Security</span><span class="q">What can change the price?</span></div>
+  <h2>Assessments start at USD 15,000.</h2>
+  <p class="lede">Your fixed quote reflects the agreed workflow, systems, testing depth and evidence required. Scope, deliverables, schedule and retest allowance are agreed before testing begins.</p>
+  <div class="flag" style="margin-top:10px;border-style:solid;border-color:var(--gold);background:var(--panel);font-size:8.2pt;line-height:1.42">
+    <b style="color:var(--bronze)">Pricing notice · draft pending counsel review</b>
+    Pricing factors are illustrative and non-exhaustive. Mythos determines proposed fees in its reasonable commercial discretion, considering technical complexity, delivery effort, operational constraints and other engagement-specific factors. Mythos reserves the right to keep proprietary cost models and internal pricing methodology confidential, except as required by law. The written proposal governs scope and fees; subsequent adjustments require written agreement between the parties.
+  </div>
+  <table style="font-size:8.9pt">
+    <tr><th>Scope factor</th><th>Examples that may require additional work</th></tr>
+    <tr><td class="k" style="width:30%">AI systems and agents</td><td>Distinct agents, model routes, permission profiles, delegation chains and handoffs.</td></tr>
+    <tr><td class="k">Tools and permissions</td><td>More tool operations, MCP servers, connectors, approvals or write and admin permissions.</td></tr>
+    <tr><td class="k">Software and code</td><td>Additional applications or repositories, custom or legacy components and complex data or authorization flows.</td></tr>
+    <tr><td class="k">Computers and hardware</td><td>More devices, servers, operating systems or hardware configurations requiring separate workflow tests.</td></tr>
+    <tr><td class="k">Cloud services</td><td>Additional services, accounts, tenants, regions, network boundaries or hosting environments.</td></tr>
+    <tr><td class="k">APIs and vendors</td><td>More vendor endpoints, authentication methods, call sequences, rate-limit coordination or repetitions.</td></tr>
+    <tr><td class="k">Data and retrieval</td><td>More datasets, retrieval collections, sensitive data classes, access boundaries or destinations.</td></tr>
+    <tr><td class="k">Evidence and depth</td><td>Custom instrumentation, log gaps, additional scenarios, concurrency tests, repair rounds or reporting.</td></tr>
+  </table>
+  <div class="grid2" style="margin-top:10px">
+    <div class="card" style="padding:9px 13px"><p class="eyebrow" style="margin:0">Narrower scope</p><p style="margin-top:2px">One document assistant, one model route and read and draft tools.</p></div>
+    <div class="card" style="padding:9px 13px"><p class="eyebrow" style="margin:0">Broader scope</p><p style="margin-top:2px">Cooperating agents across CRM, email and cloud services, with separate permissions and approval paths.</p></div>
+  </div>
+  <p class="note">These illustrate scope, not guaranteed prices. Counts identify distinct work: identical replicas do not automatically multiply the fee, and shared setup is counted once. Hardware and code references cover the agreed workflow, not enterprise-wide testing.</p>
+  <p class="note" style="margin-top:6px">Standard Mythos test infrastructure is included. Customer model, cloud and vendor usage is subject to agreed spend limits. No unapproved overages. Production enforcement and monitoring are separate engagements.</p>
+  <div class="foot"><span class="draft">INTERNAL DRAFT v0.1 · 27 Oct 2026 · Not for client use</span><span>5 / 8</span></div>
+</section>
+
+<!-- 6 · Who will handle our systems -->
+<section class="page p6">
+  <div class="top"><span class="brand"><img src="../../artifacts/mythos-website/public/assets/brand/crest-512.png" alt="">Mythos AI Security</span><span class="q">Who will handle our systems?</span></div>
+  <h2>Know who is responsible for your assessment.</h2>
+  <p class="lede">Before granting access, you should know who leads the engagement, who reviews the evidence and who can stop the work. Mythos identifies those responsibilities in your proposal and provides relevant background information for your supplier review.</p>
+  <div class="grid2" style="margin-top:14px">
+    <div class="card">
+      <div style="display:flex;gap:13px;align-items:center"><img class="portrait-photo" src="brendan-flanigan-head.webp" alt="Brendan Flanigan"><div><h3>Brendan Flanigan</h3><p class="muted" style="margin-top:2px">Co-founder and Chief Executive Officer</p></div></div>
+      <p>Brendan served in the US Army as an Infantryman and later a Military Working Dog Handler. He has worked in business development and contract negotiations, and built, ran and sold a previous business. He leads Mythos and was an early contributor to the beta system the company grew from.</p>
+      <div class="flag"><b>Needs your input</b>Confirm service dates and, if shareable, the previous business as the checkable example. Add a profile link. Confirm "Mythos AI Security Corporation" as the entity.</div>
+    </div>
+    <div class="card">
+      <div style="display:flex;gap:13px;align-items:center"><img class="portrait-photo" src="david-smith-head.webp" alt="David Smith"><div><h3>David Smith</h3><p class="muted" style="margin-top:2px">Co-founder and Chief Operations Officer</p></div></div>
+      <p>David leads product direction, software architecture, development and AI research. He has built enterprise applications with role-based access and audit trails for insurers, municipalities and growing businesses, and shaped Athena and Achilles. He holds a Computer Science degree and is a disabled US Army veteran.</p>
+      <div class="flag"><b>Needs your input</b>Confirm dates, permitted employer references and one non-confidential example. Add a profile link.</div>
+    </div>
+  </div>
+  <h3 style="margin-top:16px">Delivery accountability</h3>
+  <table>
+    <tr><td class="k" style="width:30%">Engagement lead</td><td>Responsible for scope, communication and the customer readout.</td></tr>
+    <tr><td class="k">Technical reviewer</td><td>Checks evidence, interpretations and material findings before delivery.</td></tr>
+    <tr><td class="k">Customer release owner</td><td>Accepts the business decision. Mythos supplies the scoped recommendation.</td></tr>
+  </table>
+  <div class="flag"><b>Before client use</b>Portrait usage rights, the contracting entity, and the actual delivery personnel for each role above. No invented roster, named reviewers, certifications or implied employer endorsement.</div>
+  <div class="foot"><span class="draft">INTERNAL DRAFT v0.1 · 27 Oct 2026 · Not for client use</span><span>6 / 8</span></div>
+</section>
+
+<!-- 7 · What can you establish, and how is access handled -->
+<section class="page">
+  <div class="top"><span class="brand"><img src="../../artifacts/mythos-website/public/assets/brand/crest-512.png" alt="">Mythos AI Security</span><span class="q">What can you establish, and how is access handled?</span></div>
+  <h2>Clear scope and clear evidence about our own operation.</h2>
+  <p class="lede">Before access is granted, we agree the testing authority, approved data, processing arrangements, evidence sources, retention and stop contacts. Your proposal distinguishes assessment from any separately contracted production control. Gaps and unresolved outcomes remain visible.</p>
+  <table style="font-size:9.2pt">
+    <tr><th>Area</th><th>Status <span class="tag" style="margin-left:4px">Last reviewed: draft, 27 Oct 2026</span></th></tr>
+    <tr><td class="k" style="width:27%">Assessment path</td><td>One supported HTTP interface to the workflow, with the build, case types and observation limits named in the proposal. <span class="tag">Delivery owner to confirm</span></td></tr>
+    <tr><td class="k">External action evidence</td><td>Requires agreed executor, provider or independent test-state observations. Response text alone is insufficient.</td></tr>
+    <tr><td class="k">Signed records</td><td>Athena engine evidence packs and Assurance Receipts are signed. Standard Achilles scan results do not yet enter the signed platform record. <span class="tag">Confirm per delivery path</span></td></tr>
+    <tr><td class="k">Production controls</td><td>Enforcement is a separate engagement on supported paths. The current request gateway monitors; it does not block, and it fails open.</td></tr>
+    <tr><td class="k">Additional capabilities</td><td>Anything in development is marked as such. Inclusion in the capability inventory does not establish availability.</td></tr>
+  </table>
+  <h3 style="margin-top:18px">Trust facts</h3>
+  <div class="flag" style="margin-top:8px"><b>Needs operational evidence before client use</b>Describe confirmed practices only, with no compliance or certification badges.
+    <div class="grid2" style="gap:2px 18px;margin-top:6px">
+      <span>Contracting entity and security contact</span><span>Processing and storage locations</span>
+      <span>Model providers and subprocessors</span><span>Permitted data reuse</span>
+      <span>Credential handling and revocation</span><span>Tenant access and logging</span>
+      <span>Retention and deletion, including backups</span><span>Incident-notification terms</span>
+      <span>Insurance position</span><span>SOC 2 position</span>
+    </div>
+  </div>
+  <p>Minotaur supports Mythos's internal adversarial and regression testing. Its planted-target results are not independent proof of performance in customer systems.</p>
+  <p class="note">A stop halts testing; it does not undo a completed disclosure or a committed action. Detailed procurement answers belong in a separate trust pack.</p>
+  <div class="foot"><span class="draft">INTERNAL DRAFT v0.1 · 27 Oct 2026 · Not for client use</span><span>7 / 8</span></div>
+</section>
+
+<!-- 8 · How do we start -->
+<section class="page">
+  <div class="top"><span class="brand"><img src="../../artifacts/mythos-website/public/assets/brand/crest-512.png" alt="">Mythos AI Security</span><span class="q">How do we start?</span></div>
+  <h2 style="font-size:32pt;margin-top:0.6in">Bring one workflow and the decision you need to make.</h2>
+  <p class="lede" style="margin-top:18px">Tell us what the workflow does, what it can reach and which decision is approaching. Include the business owner and the AI or application owner. Security and risk reviewers can join when their approval is needed.</p>
+  <p class="lede">We review scope and evidence feasibility, identify the access and observations required, and prepare a fixed proposal. Your team can review the boundaries, outputs, price and retest allowance before deciding.</p>
+  <a class="cta" style="font-size:11.5pt;padding:14px 22px" href="https://www.mythosaisecurity.com/contact/?intent=assessment">Request an AI workflow assessment<span>mythosaisecurity.com/contact</span></a>
+  <div class="card" style="margin-top:28px;max-width:5.6in">
+    <p class="eyebrow" style="margin:0">Keep the first request simple</p>
+    <table style="margin-top:6px">
+      <tr><td class="num" style="width:28px">1</td><td>What workflow are you launching, changing or repairing?</td></tr>
+      <tr><td class="num">2</td><td>Which information and actions can it reach?</td></tr>
+      <tr><td class="num">3</td><td>What unauthorized outcome matters most?</td></tr>
+      <tr><td class="num">4</td><td>Who owns the decision, and when is it needed?</td></tr>
+    </table>
+  </div>
+  <p class="note" style="margin-top:16px;max-width:5.6in">Please do not send credentials, tokens, production logs or sensitive customer data through the contact form. Detailed technical information is collected through an agreed secure process after qualification.</p>
+  <p style="margin-top:22px;font-size:9.4pt">Company: mythosaisecurity.com/company &nbsp;·&nbsp; Trust Center: mythosaisecurity.com/trust</p>
+  <div class="foot"><span class="draft">INTERNAL DRAFT v0.1 · 27 Oct 2026 · Not for client use</span><span>8 / 8</span></div>
+</section>
+
+</body>
+</html>

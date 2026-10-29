@@ -13,7 +13,7 @@ export const HOME_HERO = {
   headline: "Human *Ambition* Deserves a *Stronger* Guardian.",
   category: "AI Deployment Assurance",
   proofline: "See what AI can access. Test what it can do. Maintain the evidence behind every decision.",
-  body: "AI can expand what people create, discover and deliver. Mythos helps organizations move forward with evidence about access, authority, behavior, business consequence and change — so bold AI initiatives rest on stronger decisions.",
+  body: "AI can expand what people create, discover and deliver. Mythos AI Security helps organizations move forward with evidence about access, authority, behavior, business consequence and change — so bold AI initiatives rest on stronger decisions.",
   ladder: ["People", "Ideas", "Industries", "A trusted tomorrow"],
 } as const;
 
@@ -126,7 +126,7 @@ export const HOME_CYCLE = {
 
 /** H05 — locked product meanings (Launch Guide Section 03). */
 export const HOME_FAMILY = {
-  eyebrow: "The Mythos product family",
+  eyebrow: "The Mythos AI Security product family",
   headline: "Specialized Capabilities. *One Connected Platform.*",
   lede: "Athena maps. SPINE maintains evidence. Achilles tests behavior. Minotaur challenges the test methods. Hermes extends the mission toward physical AI.",
   products: [

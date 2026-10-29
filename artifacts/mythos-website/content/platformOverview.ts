@@ -13,7 +13,7 @@ export const OVERVIEW = {
   questions: {
     eyebrow: "Five buyer questions",
     title: "Every deployment has to *answer these.*",
-    lede: "Plain enough for a board. Each one opens onto the part of Mythos that does the work.",
+    lede: "Plain enough for a board. Each one opens onto the part of Mythos AI Security that does the work.",
     answers: [
       {
         question: "What exists?",

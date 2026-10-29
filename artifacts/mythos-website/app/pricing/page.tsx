@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { socialImage } from "@/lib/social";
-import { ArrowRight, Check, Hourglass, Minus } from "lucide-react";
+import { Ban, Check } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Accent } from "@/components/ui/Headline";
 import { Button } from "@/components/ui/Button";
@@ -11,35 +11,31 @@ import { ScenicHero } from "@/components/scenic/ScenicHero";
 import { Scene } from "@/components/scenic/Scene";
 import { ClosingVista } from "@/components/scenic/ClosingVista";
 import { Faq } from "@/components/platform/Faq";
-import { ASSESSMENTS, CONSULT_ASSESSMENTS, EXPAND, INCLUDED, MOTIONS, PRICING_FAQ, PRICING_HERO, QUOTE_FACTORS, SUA, TIERS } from "@/content/pricing";
-import { BACKDROPS, OLYMPUS_MEDIA, SCENES, scenePlanes } from "@/content/media";
+import { ADDITIONAL_WORK, MOTIONS, NOT_INCLUDED, ONE_WORKFLOW, PRICING_FAQ, PRICING_HERO, QUOTE_FACTORS, QUOTE_RULES, STARTING_OFFER } from "@/content/pricing";
+import { BACKDROPS, SCENES, scenePlanes } from "@/content/media";
 
 export const metadata: Metadata = {
-  title: "Pricing: AI Assessment & Assurance",
+  title: "Pricing: AI Workflow Assessment from USD 15,000",
   description:
-    "Three distinct offers: assessment, release assurance and runtime enforcement. Annual assurance is priced by Systems Under Assurance; quotes follow scoping.",
+    "The AI Workflow Assessment and Repair Retest starts at USD 15,000: one workflow, evidence-backed findings and a retest of the agreed fixes, at a fixed price agreed before testing.",
   alternates: { canonical: "/pricing/" },
-  ...socialImage("pricing", "Assurance That Scales With Your AI Estate — Mythos AI Security"),
+  ...socialImage("pricing", "Start With One AI Workflow — Mythos AI Security"),
 };
 
 /*
- * Pricing (Launch Guide §13) with the structure of the internal Pricing
- * Strategy. No figures until the price book is signed (D03) — see
- * content/pricing.ts. Names and the SUA definition are pending sign-off
- * (claim pricing.offer-structure).
+ * Pricing, rebuilt 27 Oct 2026 around the approved starting offer — see the
+ * header of content/pricing.ts for what is held back until approved.
  */
 
-const ASSESSMENT = { label: "Request Assessment", href: "/contact?intent=assessment" };
-const ANNUAL = { label: "Discuss Annual Assurance", href: "/contact?intent=assessment" };
-const QUOTED = "Quoted after scoping";
+const QUOTE = { label: "Request a Scoped Quote", href: "/contact?intent=assessment" };
 
 const PROOF: NextLink[] = [
   { eyebrow: "Example Report", title: "A synthetic report, section by section", href: "/example-report" },
-  { eyebrow: "What Mythos Produces", title: "Nine outputs and their maturity", href: "/outputs" },
   { eyebrow: "How Engagement Starts", title: "From inquiry to evidence", href: "/engagement" },
+  { eyebrow: "AI Risk in Plain English", title: "Is Mythos right for us?", href: "/ai-risk-explained" },
 ];
 
-/** Pricing — Launch Guide §13. */
+/** Pricing — the AI Workflow Assessment and Repair Retest. */
 export default function PricingPage() {
   return (
     <PageMotion>
@@ -49,182 +45,95 @@ export default function PricingPage() {
         lede={PRICING_HERO.lede}
         breadcrumbs={[{ label: "Home", href: "/" }]}
         current="Pricing"
-        primaryCta={ASSESSMENT}
-        secondaryCta={ANNUAL}
+        primaryCta={QUOTE}
+        secondaryCta={{ label: "What Changes the Quote", href: "#factors" }}
         planes={scenePlanes(SCENES.pricing, "60% 50%")}
         into="ivory"
       />
 
-      {/* The three engagement offers */}
-      <section data-surface="ivory" aria-labelledby="motions-title" className="pb-24 pt-10">
+      {/* The starting offer */}
+      <section data-surface="ivory" aria-labelledby="offer-title" className="pb-24 pt-10">
         <Container>
-          <SectionIntro id="motions-title" eyebrow="How engagements work" title={<Accent text="Three offers, *kept distinct.*" />} lede="Testing, a release decision and runtime enforcement are different promises. Each is scoped on its own." caps />
-          <ol className="mt-12 grid gap-4 lg:grid-cols-3" data-reveal-group>
-            {MOTIONS.map((m, i) => (
-              <li key={m.id} className="relative flex flex-col border border-rule bg-panel p-7">
-                <span className="font-display text-3xl leading-none text-accent">{String(i + 1).padStart(2, "0")}</span>
-                <p className="display-caps mt-4 font-display text-3xl text-fg">{m.name}</p>
-                <p className="mt-1 text-[15px] font-semibold text-fg">{m.lede}</p>
-                <p className="mt-3 text-[15px] leading-relaxed text-fg-muted">{m.body}</p>
-                <p className="mt-auto flex items-start gap-2 border-t border-rule pt-4 text-sm text-fg-muted">
-                  <ArrowRight size={14} aria-hidden="true" className="mt-0.5 shrink-0 text-accent" />
-                  {m.next}
-                </p>
-              </li>
-            ))}
-          </ol>
-        </Container>
-      </section>
-
-      {/* System Under Assurance */}
-      <section data-surface="parchment" aria-labelledby="sua-title" className="py-24 lg:py-28">
-        <Container className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
-          <div>
-            <SectionIntro id="sua-title" eyebrow="The unit of assurance" title={<Accent text={SUA.title} />} caps />
-            <p className="mt-6 text-[17px] leading-relaxed text-fg">{SUA.body}</p>
+          <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+            <div className="flex flex-col border border-antique-gold/50 bg-panel p-7 shadow-[0_30px_60px_-46px_rgba(22,26,28,0.55)] sm:p-9">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-accent">The starting offer</p>
+              <h2 id="offer-title" className="mt-3 font-display text-[2.1rem] leading-tight text-fg sm:text-[2.6rem]">
+                {STARTING_OFFER.name}
+              </h2>
+              <p className="mt-6 flex flex-wrap items-baseline gap-x-3">
+                <span className="text-[13px] font-semibold uppercase tracking-[0.18em] text-fg-muted">From</span>
+                <span className="font-display text-[3.4rem] leading-none text-fg lining-nums">{STARTING_OFFER.price}</span>
+              </p>
+              <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-fg-muted">{STARTING_OFFER.priceNote}</p>
+              <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-fg">{STARTING_OFFER.statement}</p>
+              <div className="mt-8">
+                <Button href={QUOTE.href} variant="primary" arrow>
+                  {QUOTE.label}
+                </Button>
+              </div>
+            </div>
+            <div className="border border-rule p-7 sm:p-9">
+              <h3 className="font-display text-[1.9rem] leading-tight text-fg">The starting scope</h3>
+              <ul className="mt-6 grid gap-3" data-reveal-group>
+                {STARTING_OFFER.scope.map((s) => (
+                  <li key={s} className="flex items-start gap-3 text-[16px] leading-relaxed text-fg">
+                    <Check size={17} aria-hidden="true" className="mt-1 shrink-0 text-accent" />
+                    {s}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-6 border-t border-rule pt-5 text-[15px] leading-relaxed text-fg-muted">{STARTING_OFFER.fit}</p>
+            </div>
           </div>
-          <div className="lg:pt-10">
-            <ul className="grid gap-3" data-reveal-group>
-              {SUA.points.map((p) => (
-                <li key={p} className="border-l-2 border-accent/60 bg-panel px-5 py-4 text-[15px] leading-relaxed text-fg">
-                  {p}
+
+          <div className="mt-20">
+            <SectionIntro id="outputs-title" eyebrow="What you receive" title={<Accent text="Six outputs, *one decision.*" />} lede="Mythos AI Security recommends; your release owner decides. The engagement never depends on a favorable finding." caps />
+            <ul className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3" data-reveal-group>
+              {STARTING_OFFER.outputs.map((o, i) => (
+                <li key={o.name} className="border border-rule bg-panel p-6">
+                  <span className="font-display text-2xl leading-none text-accent lining-nums">{String(i + 1).padStart(2, "0")}</span>
+                  <p className="mt-2 font-display text-[1.5rem] leading-snug text-fg">{o.name}</p>
+                  <p className="mt-1.5 text-[15px] leading-relaxed text-fg-muted">{o.body}</p>
                 </li>
               ))}
             </ul>
-            <p className="mt-4 text-sm text-fg-muted">{SUA.note}</p>
           </div>
         </Container>
       </section>
 
-      {/* Assessment */}
-      <section data-surface="ivory" aria-labelledby="assess-title" className="py-24">
-        <Container>
-          <SectionIntro id="assess-title" eyebrow="Assessment" title={<Accent text="Four ways *to start.*" />} lede="One defined system, one decision. Pricing is per scoped engagement." caps />
-          <ul className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-4" data-reveal-group>
-            {ASSESSMENTS.map((a) => (
-              <li key={a.name} className="flex flex-col border border-antique-gold/40 bg-panel p-6 shadow-[0_30px_60px_-46px_rgba(22,26,28,0.55)]">
-                <p className="display-caps font-display text-2xl text-fg">{a.name}</p>
-                <p className="mt-2 text-[15px] leading-relaxed text-fg">{a.fit}</p>
-                <p className="mt-3 text-sm leading-relaxed text-fg-muted">
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-fg">You receive · </span>
-                  {a.outputs}
-                </p>
-                <div className="mt-auto pt-6">
-                  <p className="mb-3 text-sm font-semibold text-fg">{a.price ?? QUOTED}</p>
-                  <Button href={ASSESSMENT.href} variant="secondary" size="sm" arrow>
-                    {a.cta}
-                  </Button>
-                </div>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-8 grid gap-3 md:grid-cols-2">
-            {CONSULT_ASSESSMENTS.map((c) => (
-              <div key={c.name} className="border border-rule px-5 py-4">
-                <p className="flex flex-wrap items-baseline justify-between gap-2">
-                  <span className="font-display text-xl text-fg">{c.name}</span>
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-fg-muted">By consultation</span>
-                </p>
-                <p className="mt-1.5 text-sm leading-relaxed text-fg-muted">{c.body}</p>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* Release Assurance: annual tiers */}
-      <Scene
-        surface="navy"
-        labelledBy="assure-title"
-        layers={[{ src: BACKDROPS.a.src, mobileSrc: BACKDROPS.a.phone, className: "object-[50%_50%]", parallax: 4 }]}
-        scrim="linear-gradient(180deg, rgba(21,35,51,0.5) 0, rgba(21,35,51,0.9) clamp(14rem,22vw,22rem), rgba(21,35,51,0.94) 72%, rgba(21,35,51,0.72) 100%)"
-        top={{ into: "ivory", height: "clamp(8rem,14vw,14rem)" }}
-        bottom={{ into: "parchment", height: "clamp(7rem,12vw,12rem)" }}
-        className="pb-[clamp(10rem,15vw,15rem)] pt-[clamp(10rem,17vw,17rem)]"
-      >
-        <Container>
-          <SectionIntro
-            id="assure-title"
-            eyebrow="Release Assurance"
-            title={<Accent text="Annual assurance, *by Systems Under Assurance.*" />}
-            lede="Each tier lists what is available today and what is planned. Planned items are not part of a tier until they ship."
-            caps
-          />
-          <ul className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3" data-reveal-group>
-            {TIERS.map((t) => (
-              <li key={t.name} className="flex flex-col border border-rule bg-panel p-6">
-                <div className="flex flex-wrap items-baseline justify-between gap-2">
-                  <p className="display-caps font-display text-2xl text-champagne">{t.name}</p>
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-fg-muted">{t.scope}</span>
-                </div>
-                <p className="mt-2 text-[15px] leading-relaxed text-fg">{t.fit}</p>
-                <p className="mt-5 text-[10px] font-semibold uppercase tracking-[0.2em] text-fg">Available today</p>
-                <ul className="mt-2 grid gap-1.5 text-sm text-fg">
-                  {t.available.map((x) => (
-                    <li key={x} className="flex items-start gap-2">
-                      <Check size={14} aria-hidden="true" className="mt-0.5 shrink-0 text-state-verified" />
-                      {x}
-                    </li>
-                  ))}
-                </ul>
-                {t.planned.length > 0 && (
-                  <>
-                    <p className="mt-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-fg-muted">Planned</p>
-                    <ul className="mt-2 grid gap-1.5 text-sm text-fg-muted">
-                      {t.planned.map((x) => (
-                        <li key={x} className="flex items-start gap-2">
-                          <Hourglass size={13} aria-hidden="true" className="mt-0.5 shrink-0 text-state-stale" />
-                          {x}
-                        </li>
-                      ))}
-                    </ul>
-                  </>
-                )}
-                <p className="mt-auto border-t border-rule pt-4 text-sm font-semibold text-fg">{t.price ?? (t.scope === "Custom" ? "Custom proposal" : QUOTED)}</p>
-              </li>
-            ))}
-            <li className="flex flex-col justify-center border border-dashed border-champagne/40 p-6">
-              <p className="font-display text-2xl text-fg">Not sure which tier?</p>
-              <p className="mt-2 text-[15px] leading-relaxed text-fg-muted">Start with one assessment, or tell us how many systems matter and how often they change.</p>
-              <div className="mt-5">
-                <Button href={ANNUAL.href} variant="primary" size="sm" arrow>
-                  Talk to an Assurance Specialist
-                </Button>
-              </div>
-            </li>
-          </ul>
-        </Container>
-      </Scene>
-
-      {/* Expand */}
-      <section data-surface="parchment" aria-labelledby="expand-title" className="pb-24 pt-8">
-        <Container className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+      {/* One workflow */}
+      <section data-surface="parchment" aria-labelledby="workflow-title" className="py-24 lg:py-28">
+        <Container className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr]">
           <div>
-            <SectionIntro id="expand-title" eyebrow="Growing scope" title={<Accent text={EXPAND.title} />} lede={EXPAND.lede} caps />
-            <ul className="mt-8 flex flex-wrap gap-2">
-              {EXPAND.items.map((x) => (
+            <SectionIntro id="workflow-title" eyebrow="The unit of work" title={<Accent text={ONE_WORKFLOW.title} />} lede={ONE_WORKFLOW.body} caps />
+            <p className="mt-8 text-[10px] font-semibold uppercase tracking-[0.22em] text-fg-muted">Not one workflow</p>
+            <ul className="mt-3 flex flex-wrap gap-2">
+              {ONE_WORKFLOW.not.map((x) => (
                 <li key={x} className="border border-rule bg-panel px-3 py-1.5 text-[14px] text-fg">
                   {x}
                 </li>
               ))}
             </ul>
           </div>
-          <div className="border border-antique-gold/50 bg-panel p-8 lg:mt-[4.5rem]">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-accent">Design partners</p>
-            <p className="mt-3 font-display text-2xl leading-snug text-fg">{EXPAND.partners}</p>
-            <div className="mt-6">
-              <Button href={ANNUAL.href} variant="secondary" size="sm" arrow>
-                Start a Conversation
-              </Button>
-            </div>
+          <div className="border-l-2 border-antique-gold bg-panel p-7 lg:mt-[4.5rem]">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-accent">{ONE_WORKFLOW.example.label}</p>
+            <p className="mt-3 font-display text-[1.6rem] leading-snug text-fg">{ONE_WORKFLOW.example.is}</p>
+            <p className="mt-4 text-[16px] leading-relaxed text-fg-muted">{ONE_WORKFLOW.example.excluded}</p>
+            <p className="mt-3 text-[16px] leading-relaxed text-fg-muted">{ONE_WORKFLOW.example.separate}</p>
           </div>
         </Container>
       </section>
 
       {/* What changes a quote */}
-      <section data-surface="ivory" aria-labelledby="factors-title" className="py-24">
+      <section id="factors" data-surface="ivory" aria-labelledby="factors-title" className="scroll-mt-20 py-24">
         <Container>
-          <SectionIntro id="factors-title" eyebrow="What changes your quote" title={<Accent text="Scope, *not scan counts.*" />} lede="Every quote begins with an authorized scope and a documented evidence plan." caps />
+          <SectionIntro
+            id="factors-title"
+            eyebrow="What changes your quote"
+            title={<Accent text="Scope, *not scan counts.*" />}
+            lede="Final pricing depends on what is in scope, how it connects, and the evidence and testing it needs. Each engagement gets a fixed scope, deliverables, retest allowance and price before testing begins."
+            caps
+          />
           <ul className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3" data-reveal-group>
             {QUOTE_FACTORS.map((f) => (
               <li key={f.name} className="border border-rule bg-panel p-6">
@@ -233,59 +142,79 @@ export default function PricingPage() {
               </li>
             ))}
           </ul>
+          <ul className="mt-10 grid gap-x-10 gap-y-3 md:grid-cols-2">
+            {QUOTE_RULES.map((r) => (
+              <li key={r} className="flex items-start gap-3 text-[15px] leading-relaxed text-fg">
+                <Check size={16} aria-hidden="true" className="mt-1 shrink-0 text-accent" />
+                {r}
+              </li>
+            ))}
+          </ul>
         </Container>
       </section>
 
-      {/* What is included */}
+      {/* The three offers */}
       <Scene
-        surface="charcoal"
-        labelledBy="included-title"
-        layers={[
-          { src: OLYMPUS_MEDIA.cloudSea.src, className: "object-[50%_40%]", parallax: 4 },
-          { src: OLYMPUS_MEDIA.viaduct.src, className: "!object-contain object-[50%_100%] opacity-45", parallax: 6 },
-        ]}
-        scrim="linear-gradient(180deg, rgba(22,26,28,0.4) 0, rgba(22,26,28,0.88) clamp(14rem,22vw,22rem), rgba(22,26,28,0.93) 75%, rgba(22,26,28,0.78) 100%)"
+        surface="navy"
+        labelledBy="motions-title"
+        layers={[{ src: BACKDROPS.a.src, mobileSrc: BACKDROPS.a.phone, className: "object-[50%_50%]", parallax: 4 }]}
+        scrim="linear-gradient(180deg, rgba(21,35,51,0.5) 0, rgba(21,35,51,0.9) clamp(14rem,22vw,22rem), rgba(21,35,51,0.94) 72%, rgba(21,35,51,0.72) 100%)"
         top={{ into: "ivory", height: "clamp(8rem,14vw,14rem)" }}
-        bottom={{ into: "ivory", height: "clamp(7rem,12vw,12rem)" }}
+        bottom={{ into: "parchment", height: "clamp(7rem,12vw,12rem)" }}
         className="pb-[clamp(10rem,15vw,15rem)] pt-[clamp(10rem,17vw,17rem)]"
       >
-        <Container className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
-          <SectionIntro id="included-title" eyebrow="What is included" title={<Accent text="The same evidence, *kept current.*" />} lede="Methodology and evidence integrity are never premium extras — they come with every engagement." caps />
-          <table className="w-full border-collapse text-left">
-            <caption className="sr-only">What assessments and annual assurance include</caption>
-            <thead>
-              <tr className="border-b border-rule text-[10px] font-semibold uppercase tracking-[0.2em] text-champagne">
-                <th scope="col" className="py-3 pr-4 font-semibold">Included</th>
-                <th scope="col" className="w-24 py-3 text-center font-semibold sm:w-32">Assessment</th>
-                <th scope="col" className="w-24 py-3 text-center font-semibold sm:w-32">Release Assurance</th>
-              </tr>
-            </thead>
-            <tbody>
-              {INCLUDED.map((row) => (
-                <tr key={row.name} className="border-b border-rule">
-                  <th scope="row" className="py-3.5 pr-4 text-[15px] font-normal text-fg">
-                    {row.name}
-                  </th>
-                  {[row.assess, row.assure].map((on, i) => (
-                    <td key={i} className="py-3.5 text-center">
-                      {on ? <Check size={17} aria-label="Included" className="mx-auto text-state-verified" /> : <Minus size={17} aria-label="Not included" className="mx-auto text-fg-muted" />}
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <Container>
+          <SectionIntro
+            id="motions-title"
+            eyebrow="Beyond the first assessment"
+            title={<Accent text="Three offers, *kept distinct.*" />}
+            lede="Testing, a release decision and runtime enforcement are different promises. Each is scoped on its own, and only the assessment has a published starting price."
+            caps
+          />
+          <ol className="mt-12 grid gap-4 lg:grid-cols-3" data-reveal-group>
+            {MOTIONS.map((m, i) => (
+              <li key={m.id} className="flex flex-col border border-rule bg-panel p-7">
+                <span className="font-display text-3xl leading-none text-champagne lining-nums">{String(i + 1).padStart(2, "0")}</span>
+                <p className="display-caps mt-4 font-display text-3xl text-fg">{m.name}</p>
+                <p className="mt-1 text-[15px] font-semibold text-fg">{m.lede}</p>
+                <p className="mt-3 text-[15px] leading-relaxed text-fg-muted">{m.body}</p>
+                <p className="mt-auto border-t border-rule pt-4 text-sm font-semibold text-champagne">{m.price}</p>
+              </li>
+            ))}
+          </ol>
+          <p className="mt-12 text-[10px] font-semibold uppercase tracking-[0.22em] text-champagne">Scoped and quoted separately</p>
+          <ul className="mt-3 flex flex-wrap gap-2">
+            {ADDITIONAL_WORK.map((x) => (
+              <li key={x} className="border border-rule bg-panel px-3 py-1.5 text-[14px] text-fg">
+                {x}
+              </li>
+            ))}
+          </ul>
         </Container>
       </Scene>
 
-      {/* Proof + FAQ */}
-      <section data-surface="ivory" aria-labelledby="proof-title" className="pb-8 pt-8">
-        <Container>
+      {/* Not included + proof */}
+      <section data-surface="parchment" aria-labelledby="excluded-title" className="pb-24 pt-8">
+        <Container className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+          <div>
+            <SectionIntro id="excluded-title" eyebrow="Know the limits" title={<Accent text="Outside the *base engagement.*" />} lede="A scoped assessment gives evidence about what was tested. It does not find every weakness or guarantee future results." caps />
+          </div>
+          <ul className="grid content-start gap-2.5 sm:grid-cols-2 lg:pt-[4.5rem]" data-reveal-group>
+            {NOT_INCLUDED.map((x) => (
+              <li key={x} className="flex items-start gap-3 border border-rule bg-panel px-4 py-3 text-[15px] leading-relaxed text-fg">
+                <Ban size={15} aria-hidden="true" className="mt-1 shrink-0 text-state-contradicted-ink" />
+                {x}
+              </li>
+            ))}
+          </ul>
+        </Container>
+        <Container className="mt-20">
           <SectionIntro id="proof-title" eyebrow="Before you buy" title={<Accent text="Inspect *what you would get.*" />} lede="Every example is a labelled synthetic fixture." caps />
           <NextLinks items={PROOF} />
         </Container>
       </section>
-      <section data-surface="ivory" aria-labelledby="faq-title" className="pb-16 pt-16">
+
+      <section data-surface="ivory" aria-labelledby="faq-title" className="pb-16 pt-24">
         <Container className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
           <SectionIntro id="faq-title" eyebrow="Procurement questions" title={<Accent text="Asked *before every engagement.*" />} caps />
           <Faq items={PRICING_FAQ} />
@@ -295,8 +224,8 @@ export default function PricingPage() {
       <ClosingVista
         from="ivory"
         title="Make your next AI decision *with evidence.*"
-        body="Tell us the system you need reviewed, what it can reach or do, and the decision your team is preparing to make. We will propose an assessment or an assurance path."
-        primary={ASSESSMENT}
+        body="Tell us the workflow, what it can reach or do, and the decision your team is preparing to make. We will confirm the fit and send a fixed quote."
+        primary={QUOTE}
         secondary={{ label: "Talk to an Expert", href: "/contact?intent=general" }}
         vista="c"
       />

@@ -31,7 +31,7 @@ export function SiteFooter() {
       <Container className="relative">
         <div className="flex flex-col gap-8 border-b border-ivory/10 py-14 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-md">
-            <Link href="/" className="group mb-5 inline-flex items-center gap-3" aria-label="Mythos — home">
+            <Link href="/" className="group mb-5 inline-flex items-center gap-3" aria-label={`${SITE_FULL_NAME} — home`}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/assets/brand/crest-flat.webp"
@@ -42,12 +42,15 @@ export function SiteFooter() {
                 style={{ display: "block" }}
                 className="opacity-90 transition-opacity duration-200 group-hover:opacity-100"
               />
-              <span className="font-display text-2xl font-medium uppercase tracking-[0.2em] text-ivory transition-colors duration-200 group-hover:text-champagne">
-                Mythos
+              <span className="flex flex-col leading-none">
+                <span className="font-display text-2xl font-medium uppercase tracking-[0.2em] text-ivory transition-colors duration-200 group-hover:text-champagne">
+                  Mythos
+                </span>{" "}
+                <span className="mt-1.5 text-[10px] font-semibold uppercase tracking-[0.36em] text-champagne/80">AI Security</span>
               </span>
             </Link>
             <p className="font-display text-xl leading-snug text-ivory/90">
-              {CANONICAL.category} for AI systems with real data, real authority and real consequences.
+              {SITE_FULL_NAME}: {CANONICAL.category} for AI systems with real data, real authority and real consequences.
             </p>
           </div>
           <p className="max-w-sm text-sm leading-relaxed text-fg-muted lg:text-right">{CANONICAL.decisionAuthority}</p>

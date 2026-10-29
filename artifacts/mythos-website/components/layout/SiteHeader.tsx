@@ -9,7 +9,7 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { MegaMenu } from "@/components/layout/MegaMenu";
 import { CTA_LINKS, PRIMARY_NAV, type NavNode } from "@/content/navigation";
-import { CTA, SITE_NAME } from "@/lib/constants";
+import { CTA, SITE_FULL_NAME, SITE_NAME } from "@/lib/constants";
 import { track } from "@/lib/analytics";
 import { announceIntent } from "@/lib/intent";
 import { cn } from "@/lib/utils";
@@ -196,7 +196,7 @@ export function SiteHeader() {
         />
         <Container>
           <nav ref={navRef} className="relative flex h-16 items-center justify-between gap-6 lg:h-20" aria-label="Main navigation">
-            <Link href="/" className="group flex items-center gap-2.5" aria-label="Mythos — home">
+            <Link href="/" className="group flex items-center gap-2.5" aria-label={`${SITE_FULL_NAME} — home`}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/assets/brand/monogram.webp"
@@ -206,8 +206,11 @@ export function SiteHeader() {
                 className="block h-8 w-8 shrink-0 opacity-95 transition-opacity duration-200 group-hover:opacity-100"
                 aria-hidden="true"
               />
-              <span className="whitespace-nowrap font-display text-xl font-medium uppercase leading-none tracking-[0.2em] text-ivory transition-colors duration-200 group-hover:text-champagne">
-                {SITE_NAME}
+              <span className="flex flex-col whitespace-nowrap leading-none">
+                <span className="font-display text-xl font-medium uppercase tracking-[0.2em] text-ivory transition-colors duration-200 group-hover:text-champagne">
+                  {SITE_NAME}
+                </span>{" "}
+                <span className="mt-1 text-[8.5px] font-semibold uppercase tracking-[0.36em] text-champagne/80">AI Security</span>
               </span>
             </Link>
 

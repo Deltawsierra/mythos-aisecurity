@@ -6,7 +6,7 @@
  * Every capability line draws on the claims ledger or capability sections of
  * the Master Inventory (26 Oct 2026); limits come from its do-not-claim list.
  * Examples are invented to explain a risk and are labelled that way on the
- * page. No prices, no offer names (pricing.offer-structure is still open).
+ * page. The only price is the approved starting price (pricing.starting-offer).
  * The board questions live in boardSheet.json, shared with the PDF script.
  */
 import BOARD_SHEET from "./boardSheet.json";

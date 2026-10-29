@@ -202,7 +202,7 @@ export const PRIMARY_NAV: NavNode[] = [
           {
             label: "Pricing",
             href: "/pricing",
-            description: "What determines price, and what is included.",
+            description: "Workflow assessments from USD 15,000.",
           },
         ],
       },

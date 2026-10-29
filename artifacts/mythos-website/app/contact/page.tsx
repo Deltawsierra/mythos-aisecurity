@@ -44,7 +44,7 @@ export default function ContactPage() {
   return (
     <PageMotion>
       <ScenicHero
-        eyebrow="Contact Mythos"
+        eyebrow="Contact Mythos AI Security"
         headline="Start With a *Defined Scope.*"
         lede="Tell us what you are building or reviewing. We will help identify the right next conversation without asking you to expose confidential systems through a public form."
         breadcrumbs={[{ label: "Home", href: "/" }]}

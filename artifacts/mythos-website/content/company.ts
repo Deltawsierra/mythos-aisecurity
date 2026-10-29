@@ -5,8 +5,13 @@
  * agreement template.
  *
  * - People: only what the owner approved on 27 Oct (claim company.author-named):
- *   David Smith's name, title and focus. No other founders, biographies, dates,
- *   location, legal entity or veteran status (decision D08 otherwise open).
+ *   David Smith's name, title and focus, plus the portrait he supplied on 28 Oct
+ *   and his bio (Co-founder and COO, 28 Oct).
+ *   Brendan Flanigan (Co-founder and CEO, claim company.ceo-named) and
+ *   Shaquille Lyew (CMO, not a founder, claim company.cmo-named): portraits
+ *   and bios supplied by the owner on 28 Oct, shortened, never extended.
+ *   No dates, location, legal entity ("Corporation" waits on the contracting
+ *   entity) or veteran-owned business status (decision D08 otherwise open).
  * - No customers, partners, open roles or milestones exist — pages say so
  *   plainly instead of implying them.
  * - Investors: thesis only. No round size, valuation, runway or use of funds.
@@ -25,11 +30,21 @@ export const PRODUCT_MATURITY: { name: string; href: string; maturity: Maturity;
   { name: "Hermes", href: "/platform/hermes", maturity: "Exploratory", note: "A scaffold for physical AI: every domain reads inconclusive today; no customer work." },
 ];
 
+type Person = {
+  name: string;
+  role: string;
+  focus: string;
+  bio?: string;
+  quote?: string;
+  portrait: { src: string; src2x: string; width: number; height: number };
+  writing?: { label: string; href: string };
+};
+
 export const COMPANY = {
   hero: {
     eyebrow: "Company",
     headline: "Built to Put *Evidence Behind Ambition.*",
-    lede: "Mythos exists to help people build, operate and govern AI with greater clarity about the authority and consequences those systems carry.",
+    lede: "Mythos AI Security exists to help people build, operate and govern AI with greater clarity about the authority and consequences those systems carry.",
   },
   mission: {
     eyebrow: "Why Mythos exists",
@@ -62,12 +77,29 @@ export const COMPANY = {
     title: "The people *behind the evidence.*",
     people: [
       {
+        name: "Brendan Flanigan",
+        role: "Co-founder and Chief Executive Officer",
+        focus: "Leadership and company direction.",
+        bio: "Served in the US Army as an Infantryman, then a Military Working Dog Handler. Has worked in business development and contract negotiations, and built, ran and sold a previous business. Studied software engineering, with independent study in AI architecture and business management, and was an early contributor to the beta system that became Mythos.",
+        quote: "The mission to protect does not end when the battlefield changes.",
+        portrait: { src: "/assets/people/brendan-flanigan-480.webp", src2x: "/assets/people/brendan-flanigan-960.webp", width: 480, height: 600 },
+      },
+      {
         name: "David Smith",
-        role: "Co-founder and Principal Software Engineer",
-        focus: "Enterprise software and AI deployment assurance.",
+        role: "Co-founder and Chief Operations Officer",
+        focus: "Product direction, software architecture, development and AI research.",
+        bio: "Full-stack engineer who has built enterprise applications for insurance organizations, municipal government and growing businesses, including role-based access, audit trails and data-governance workflows. Co-founded Mythos after seeing, through contract work, AI adoption outpace testing. Has shaped the architecture and product direction of Athena and Achilles, and built the assessment dashboards and reports that turn findings into remediation priorities. Holds a degree in Computer Science and is a disabled US Army veteran.",
+        portrait: { src: "/assets/people/david-smith-480.webp", src2x: "/assets/people/david-smith-960.webp", width: 480, height: 600 },
         writing: { label: "How to Red-Team an AI Agent", href: "/resources/how-to-red-team-ai-agents" },
       },
-    ],
+      {
+        name: "Shaquille Lyew",
+        role: "Chief Marketing Officer",
+        focus: "Market presence, customer relationships and business development.",
+        bio: "Over 12 years in sales, customer service and business development, including work with startups.",
+        portrait: { src: "/assets/people/shaquille-lyew-480.webp", src2x: "/assets/people/shaquille-lyew-960.webp", width: 480, height: 600 },
+      },
+    ] as Person[],
   },
   work: {
     eyebrow: "How we work",
@@ -95,7 +127,7 @@ export const INVESTORS = {
   hero: {
     eyebrow: "Investors",
     headline: "Building the Assurance Layer for *Operational AI.*",
-    lede: "As AI gains access to data, tools, processes and physical systems, organizations need independent proof that remains meaningful after change. Mythos is focused on making that assurance repeatable and commercially useful.",
+    lede: "As AI gains access to data, tools, processes and physical systems, organizations need independent proof that remains meaningful after change. Mythos AI Security is focused on making that assurance repeatable and commercially useful.",
   },
   category: {
     eyebrow: "The category",
@@ -167,7 +199,7 @@ export const PARTNERSHIPS = {
   hero: {
     eyebrow: "Partnerships",
     headline: "Build Trust *Together.*",
-    lede: "Mythos works toward relationships that improve AI release quality, technical assurance, customer evidence and responsible deployment.",
+    lede: "Mythos AI Security works toward relationships that improve AI release quality, technical assurance, customer evidence and responsible deployment.",
   },
   types: {
     eyebrow: "Kinds of partnership",

@@ -37,7 +37,7 @@ const GA_BOOTSTRAP_SCRIPT = `(function(){window.dataLayer=window.dataLayer||[];f
 
 /**
  * Organization + WebSite structured data (Launch Guide §17). Only verifiable
- * facts: no address, founders, social profiles or ratings.
+ * facts: no address, social profiles or ratings; founders as the owner named them.
  */
 const STRUCTURED_DATA = {
   "@context": "https://schema.org",
@@ -50,7 +50,10 @@ const STRUCTURED_DATA = {
       url: "https://www.mythosaisecurity.com/",
       logo: "https://www.mythosaisecurity.com/assets/brand/crest-512.png",
       email: "info@mythosaisecurity.com",
-      founder: { "@type": "Person", name: "David Smith", jobTitle: "Co-founder and Principal Software Engineer" },
+      founder: [
+        { "@type": "Person", name: "Brendan Flanigan", jobTitle: "Co-founder and Chief Executive Officer" },
+        { "@type": "Person", name: "David Smith", jobTitle: "Co-founder and Chief Operations Officer" },
+      ],
       description: "AI deployment assurance: mapping, testing and evidence for AI systems with real access and authority.",
     },
     {

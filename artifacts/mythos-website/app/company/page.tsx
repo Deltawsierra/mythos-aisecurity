@@ -100,22 +100,39 @@ export default function CompanyPage() {
         </Container>
       </section>
 
-      {/* People (owner-approved, 27 Oct) */}
+      {/* People (owner-approved, 27-28 Oct) */}
       <section data-surface="ivory" aria-labelledby="people-title" className="border-t border-rule pb-24 pt-20">
-        <Container className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
+        <Container>
           <SectionIntro id="people-title" eyebrow={c.people.eyebrow} title={<Accent text={c.people.title} />} caps />
-          <ul className="grid gap-3 sm:grid-cols-2" data-reveal-group>
+          <ul className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3" data-reveal-group>
             {c.people.people.map((p) => (
               <li key={p.name} className="border border-rule bg-panel p-6">
+                <img
+                  src={p.portrait.src}
+                  srcSet={`${p.portrait.src} 1x, ${p.portrait.src2x} 2x`}
+                  width={p.portrait.width}
+                  height={p.portrait.height}
+                  loading="lazy"
+                  alt={`Portrait of ${p.name}`}
+                  className="-mx-6 -mt-6 mb-5 block aspect-[4/5] h-auto w-[calc(100%+3rem)] max-w-none border-b border-rule object-cover object-[50%_20%]"
+                />
                 <p className="font-display text-2xl text-fg">{p.name}</p>
                 <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-accent">{p.role}</p>
                 <p className="mt-3 text-[15px] leading-relaxed text-fg-muted">{p.focus}</p>
-                <p className="mt-4 text-[14px] text-fg-muted">
-                  Writing:{" "}
-                  <Link href={p.writing.href} className="font-medium text-accent hover:underline">
-                    {p.writing.label}
-                  </Link>
-                </p>
+                {p.bio && <p className="mt-2 text-[15px] leading-relaxed text-fg-muted">{p.bio}</p>}
+                {p.quote && (
+                  <blockquote className="mt-4 border-l-2 border-accent/60 pl-4 font-display text-lg italic leading-snug text-fg">
+                    &ldquo;{p.quote}&rdquo;
+                  </blockquote>
+                )}
+                {p.writing && (
+                  <p className="mt-4 text-[14px] text-fg-muted">
+                    Writing:{" "}
+                    <Link href={p.writing.href} className="font-medium text-accent hover:underline">
+                      {p.writing.label}
+                    </Link>
+                  </p>
+                )}
               </li>
             ))}
           </ul>
