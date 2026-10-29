@@ -346,18 +346,23 @@ export interface PresenceMedia {
   engaged: string;
   /** Opaque card-shaped backdrop painted behind the transparent figure. */
   backdrop: string;
-  /** A still with no matching loop yet: the card never plays idle/engaged. */
-  still?: boolean;
-  /** object-position for a still wider than the card. */
+  /** object-position for art wider than the card (also the zoom origin). */
   position?: string;
+  /** Zoom on poster and loop together, so a padded frame's cut edge sits below the card. */
+  scale?: number;
 }
 
 /**
- * Owner half-body card art (28 Oct; 1122x1402 alpha, wider than the card).
- * Their presence loops still show the earlier art, so these cards stay still
- * until matching loops exist; `position` keeps each face and attribute in frame.
+ * Owner half-body card art and loops (29 Oct): 800x1000 VP9-alpha, 5 s at
+ * 20 fps, poster framed exactly as the loop. Wider than the card, so
+ * `position` keeps each face and attribute in frame; the figure's lower crop
+ * sits ~4% above the frame's bottom, so `scale` pushes it below the card edge.
  */
-const CARD_STILLS: Partial<Record<PresenceId, string>> = { hermes: "100% 0%", minotaur: "73% 0%", spine: "85% 0%" };
+const HALF_BODY: Partial<Record<PresenceId, { position: string; scale: number }>> = {
+  hermes: { position: "100% 0%", scale: 1.06 },
+  minotaur: { position: "73% 0%", scale: 1.06 },
+  spine: { position: "85% 0%", scale: 1.06 },
+};
 
 /**
  * 27 Oct "Current Presence" loops: source-locked figures where only light, motes and trails
@@ -365,11 +370,11 @@ const CARD_STILLS: Partial<Record<PresenceId, string>> = { hermes: "100% 0%", mi
  * so they are only ever cropped further in, never shown wider.
  */
 export const presence = (id: PresenceId): PresenceMedia => ({
-  poster: CARD_STILLS[id] ? `/assets/presence/${id}-card.webp` : `/assets/presence/${id}-poster.webp`,
+  poster: HALF_BODY[id] ? `/assets/presence/${id}-card.webp` : `/assets/presence/${id}-poster.webp`,
   idle: `/assets/presence/${id}-idle.webm`,
   engaged: `/assets/presence/${id}-engaged.webm`,
   backdrop: id in CHARACTER_MEDIA ? `/assets/presence/${id}-backdrop.webp` : "/assets/presence/team-backdrop.webp",
-  ...(CARD_STILLS[id] && { still: true, position: CARD_STILLS[id] }),
+  ...HALF_BODY[id],
 });
 
 /** The evaluator borrows White's art until it has its own. */

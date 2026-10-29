@@ -22,7 +22,7 @@ export function FamilyGrid() {
       {HOME_FAMILY.products.map((item) => {
         const project = PROJECTS.find((p) => p.id === item.id)!;
         const media = presence(item.id);
-        const live = motion && hovered === item.id && !media.still;
+        const live = motion && hovered === item.id;
         return (
           <li key={item.id}>
             <Link

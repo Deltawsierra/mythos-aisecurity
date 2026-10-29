@@ -30,6 +30,8 @@ export function usePresenceMotion() {
  * downloaded early). Fills its positioned parent.
  */
 export function PresenceFigure({ media, state, position }: { media: PresenceMedia; state: "idle" | "engaged" | null; position?: string }) {
+  // Poster and loop share one framing, so they always line up.
+  const frame = { objectPosition: position, transform: media.scale ? `scale(${media.scale})` : undefined, transformOrigin: position ?? "50% 0%" };
   const ref = useRef<HTMLSpanElement>(null);
   const [onScreen, setOnScreen] = useState(false);
   const [playing, setPlaying] = useState<string | null>(null);
@@ -50,12 +52,12 @@ export function PresenceFigure({ media, state, position }: { media: PresenceMedi
       <img src={media.backdrop} alt="" loading="lazy" className={fit} />
       <span aria-hidden="true" className="absolute inset-0 bg-charcoal/35" />
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={media.poster} alt="" loading="lazy" className={cn(fit, src && playing === src && "opacity-0")} style={{ objectPosition: position }} />
+      <img src={media.poster} alt="" loading="lazy" className={cn(fit, src && playing === src && "opacity-0")} style={frame} />
       {src && (
         <video
           key={src}
           className={fit}
-          style={{ objectPosition: position }}
+          style={frame}
           src={src}
           autoPlay
           muted
