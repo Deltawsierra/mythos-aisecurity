@@ -4,6 +4,7 @@ import { socialImage } from "@/lib/social";
 import { Container } from "@/components/ui/Container";
 import { PageMotion } from "@/components/motion/PageMotion";
 import { ScenicHero } from "@/components/scenic/ScenicHero";
+import { GuardianFigure } from "@/components/scenic/GuardianFigure";
 import { ClosingVista } from "@/components/scenic/ClosingVista";
 import { ArticleBody } from "@/components/articles/ArticleBody";
 import { Inline, plainText } from "@/components/articles/Inline";
@@ -62,6 +63,8 @@ export default function RedTeamAiAgentsPage() {
         primaryCta={{ label: "Request an Agent Assessment", href: "/contact" }}
         secondaryCta={{ label: "Get the Checklist", href: "#how-do-you-start-with-one-consequential-workflow" }}
         planes={scenePlanes(SCENES.achilles, "62% 50%")}
+        figure={<GuardianFigure id="achilles" className="absolute bottom-[9%] left-[56%] h-[80%]" />}
+        mobileFigure={<GuardianFigure id="achilles" small className="relative mx-auto h-[46svh]" />}
         into="ivory"
       />
 

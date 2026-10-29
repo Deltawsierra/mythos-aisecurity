@@ -170,15 +170,15 @@ export function scenePlanes(scene: SceneArt, position: string): HeroPlane[] {
 export const SCENES = {
   platform: art("scenes", "platform"),
   spine: art("scenes", "spine"),
-  // The painted original Achilles is replaced by the repaired A40 full-length Achilles (R4 head,
-  // owner approved 29 Oct), baked into the front layer, the flat art and a phone crop of it.
+  // The painted original Achilles is removed (his spot mirrored from the symmetric colonnade,
+  // owner approved 29 Oct); the repaired A40 Achilles stands as a separate figure on the page.
   achilles: (() => {
     const a = art("scenes", "achilles");
     return {
       ...a,
-      src: "/assets/scenes/achilles-a40-hero.webp",
-      phone: "/assets/scenes/achilles-a40-phone.webp",
-      layers: a.layers?.map(([src, motion], i) => [i === 2 ? "/assets/scenes/layers/achilles-a40-l2.webp" : src, motion] as const),
+      src: "/assets/scenes/achilles-clean-hero.webp",
+      phone: "/assets/scenes/achilles-clean-phone.webp",
+      layers: a.layers?.map(([src, motion], i) => [i === 2 ? "/assets/scenes/layers/achilles-clean-l2.webp" : src, motion] as const),
     };
   })(),
   minotaur: art("scenes", "minotaur"),
@@ -329,7 +329,7 @@ export const CHARACTER_MEDIA: Record<ProjectId, CharacterMedia> = {
   },
 };
 
-export type GuardianFigureId = "hermes" | "spine" | "minotaur";
+export type GuardianFigureId = "achilles" | "hermes" | "spine" | "minotaur";
 
 /**
  * Full-length guardian cut-outs (owner art, 28 Oct; alpha, trimmed, metadata
@@ -337,6 +337,8 @@ export type GuardianFigureId = "hermes" | "spine" | "minotaur";
  * 900px-tall rendition for phones.
  */
 export const GUARDIAN_FIGURES: Record<GuardianFigureId, ImageAsset & { small: string }> = {
+  // Repaired A40 Achilles (R4 head); 932 px tall at source, so the phone rendition is barely smaller.
+  achilles: { ...poster("/assets/characters/full/achilles-full.webp", 534, 932), small: "/assets/characters/full/achilles-full-900.webp" },
   hermes: { ...poster("/assets/characters/full/hermes-full.webp", 976, 1439), small: "/assets/characters/full/hermes-full-900.webp" },
   spine: { ...poster("/assets/characters/full/spine-full.webp", 954, 1523), small: "/assets/characters/full/spine-full-900.webp" },
   minotaur: { ...poster("/assets/characters/full/minotaur-full.webp", 806, 1600), small: "/assets/characters/full/minotaur-full-900.webp" },

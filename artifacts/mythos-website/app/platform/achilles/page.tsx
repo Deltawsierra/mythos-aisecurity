@@ -6,6 +6,7 @@ import { PageMotion } from "@/components/motion/PageMotion";
 import { SectionIntro } from "@/components/sections/SectionIntro";
 import { NextLinks, type NextLink } from "@/components/sections/NextLinks";
 import { ScenicHero } from "@/components/scenic/ScenicHero";
+import { GuardianFigure } from "@/components/scenic/GuardianFigure";
 import { Scene } from "@/components/scenic/Scene";
 import { ClosingVista } from "@/components/scenic/ClosingVista";
 import { GroupList } from "@/components/platform/GroupList";
@@ -62,6 +63,8 @@ export default function AchillesPage() {
         primaryCta={{ label: "Explore the Validation Method", href: "/platform/validation" }}
         secondaryCta={{ label: CTA.DEMO, href: CTA_LINKS.demo }}
         planes={scenePlanes(SCENES.achilles, "62% 50%")}
+        figure={<GuardianFigure id="achilles" className="absolute bottom-[9%] left-[56%] h-[80%]" />}
+        mobileFigure={<GuardianFigure id="achilles" small className="relative mx-auto h-[46svh]" />}
         into="ivory"
       />
 
