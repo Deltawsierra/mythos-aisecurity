@@ -83,7 +83,7 @@ export const QUOTE_RULES = [
 
 /** The three engagement offers (Master Inventory), kept distinct. Only the first has a public price. */
 export const MOTIONS = [
-  { id: "assessment", name: "Assessment", lede: "Tests and reports.", body: "The AI Workflow Assessment and Repair Retest: one workflow, one decision, with evidence and a retest of the agreed fixes.", price: "From USD 15,000" },
+  { id: "assessment", name: "Assessment", lede: "Tests and reports.", body: "One workflow and one decision, with the evidence behind each finding and a retest once the fixes are in.", price: "From USD 15,000" },
   { id: "release", name: "Release Assurance", lede: "A recommendation bound to an exact deployment.", body: "The deployment decision tied to the fingerprint, policy and environment it was made on, reopened when agreed changes happen.", price: "Quoted separately" },
   { id: "runtime", name: "Runtime Enforcement", lede: "Mediates supported paths.", body: "The Action Gate: policy as code, deny by default, permitting only the exact action approved, on supported paths.", price: "Quoted separately" },
 ] as const;
@@ -112,11 +112,11 @@ export const NOT_INCLUDED = [
 export const PRICING_FAQ = [
   {
     q: "What does USD 15,000 cover?",
-    a: "The starting scope: one named workflow in one authorized test environment, with one frozen configuration and model route, the outputs listed on this page, and one repair retest of the agreed fixes. A larger scope gets a higher fixed quote, agreed before testing.",
+    a: "The starting scope: one named workflow in one authorized test environment, with one frozen configuration and model route, the outputs listed on this page, and one repair retest. A larger scope gets a higher fixed quote, agreed before testing.",
   },
   {
     q: "Is the retest included?",
-    a: "Yes, one repair retest of the agreed fixes is included for the starting scope. Its scope and timing are set in your statement of work. Every finding stays in the report, and any finding not retested stays open. Further repair rounds are quoted separately.",
+    a: "Yes, one retest of the fixes you agree with us is included for the starting scope. Its scope and timing are set in your statement of work. Every finding stays in the report, and any finding not retested stays open. Further repair rounds are quoted separately.",
   },
   {
     q: "Are there overages?",

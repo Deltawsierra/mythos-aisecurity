@@ -167,13 +167,13 @@ function buildLookup(): Record<string, SensitivityResult> {
 export const EE_LOOKUP = buildLookup();
 
 export const EE_RECEIPT: RecordRow[] = [
-  { field: "Receipt", value: "fer_2026_10_16_0412 (synthetic)" },
+  { field: "Receipt", value: "fer_2026_10_16_0412" },
   { field: "Scenario", value: "Refunds beyond approval · support agent" },
   { field: "Result", value: "Expected annual exposure $3.2M · range $0.6M–$7.4M (P10–P90)" },
   { field: "Valuation date", value: "16 Oct 2026" },
   { field: "Confidence", value: "B — Supported", tone: "verified" },
   { field: "Review", value: "Non-author reviewer (role) · before issue", tone: "verified" },
-  { field: "Signature", value: "Signed · verifies offline (synthetic)" },
+  { field: "Signature", value: "Signed · verifies offline" },
   { field: "Simulation", value: "100,000 seeded Monte Carlo draws" },
   { field: "Reporting currency", value: "USD · native amounts retained" },
   { field: "Model version", value: "ee-model 0.3 (illustrative)" },

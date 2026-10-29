@@ -226,7 +226,7 @@ export default function HermesPage() {
               ))}
             </ol>
             <p className="mt-4 border-t border-rule pt-3 text-xs leading-relaxed text-fg-muted">
-              Not a safety case, a certification or a compliance statement. The safety case and every safety decision stay with your team.
+              Not a safety case or a compliance statement. The safety case and every safety decision stay with your team.
             </p>
           </figure>
         </Container>

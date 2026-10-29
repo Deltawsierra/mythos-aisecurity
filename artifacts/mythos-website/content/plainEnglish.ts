@@ -34,7 +34,7 @@ export const OVERVIEW = [
   },
   {
     title: "Attackers use AI too.",
-    body: "Attackers may use AI against your existing systems, even if your company does not use AI itself. It helps them find and exploit familiar weaknesses faster.",
+    body: "AI helps attackers find and exploit familiar weaknesses faster, so your existing systems are in scope whether or not you use AI yourself.",
   },
   {
     title: "Mythos AI Security tests, with permission, and shows the evidence.",
@@ -160,9 +160,9 @@ export const SITUATIONS: Situation[] = [
     id: "attackers",
     tag: "Even if you do not use AI",
     question: "Are your websites and software ready for attackers using AI?",
-    short: "This applies even if your company does not use AI.",
+    short: "Your existing websites and software are the target.",
     meaning:
-      "Attackers may use AI against your existing systems, even if your company does not use AI itself. AI helps them search for weaknesses and write attack tools faster, but the weaknesses they look for are mostly familiar ones: unpatched software, default passwords, websites that reveal more than they should. Patching, access controls and your existing security team matter as much as ever.",
+      "AI helps attackers search for weaknesses and write attack tools faster, but the weaknesses they look for are mostly familiar ones: unpatched software, default passwords, websites that reveal more than they should. Patching, access controls and your existing security team matter as much as ever.",
     example:
       "In a 2026 advisory, the US Cybersecurity and Infrastructure Security Agency (CISA) described attackers using AI to write attack scripts against industrial equipment that was reachable from the internet with default or weak passwords. The tool was new. The weakness was old.",
     examine:

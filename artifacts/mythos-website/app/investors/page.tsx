@@ -130,6 +130,7 @@ export default function InvestorsPage() {
       <ClosingVista
         from="ivory"
         title="Talk to us *about the thesis.*"
+        body="We will walk through the thesis, where each product stands today and what we are building next."
         primary={CONVERSATION}
         secondary={{ label: "About Mythos AI Security", href: "/company" }}
         vista="c"

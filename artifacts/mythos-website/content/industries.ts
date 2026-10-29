@@ -24,9 +24,9 @@ const sun = (position = "100% 0%") => ({ src: OLYMPUS_MEDIA.sunbeams, className:
 
 /** The Master Inventory's compliance map. Solution pages show only these plus a vertical pack (owner ruling, 26 Oct). */
 const MAPPED_CORE = [
-  { name: "NIST SP 800-53", status: "mapped" as const, note: "Findings are tagged to the controls they touch — never marked as satisfied." },
+  { name: "NIST SP 800-53", status: "mapped" as const, note: "Findings are tagged to the controls they touch." },
   { name: "OWASP Top 10 (2021)", status: "mapped" as const, note: "Web application risks, tagged to findings." },
-  { name: "OWASP Top 10 for LLM Applications (2025)", status: "mapped" as const, note: "Used as threat coverage for testing, not as a certificate." },
+  { name: "OWASP Top 10 for LLM Applications (2025)", status: "mapped" as const, note: "Used as threat coverage for testing." },
 ];
 
 export const INDUSTRIES: IndustryContent[] = [
@@ -80,7 +80,7 @@ export const INDUSTRIES: IndustryContent[] = [
       lede: "Evidence is organized so your security, model-risk and compliance teams can use it in their own reviews.",
       items: [
         ...MAPPED_CORE,
-        { name: "Financial services pack", status: "mapped", note: "Layered on the core map — evidence of gaps, never a certificate." },
+        { name: "Financial services pack", status: "mapped", note: "Banking and insurance controls, layered on the core map." },
       ],
     },
     proof: {
@@ -156,7 +156,7 @@ export const INDUSTRIES: IndustryContent[] = [
       lede: "Sector requirements are confirmed with your team during scoping. Mythos AI Security evidence supports those reviews; it does not establish compliance.",
       items: [
         ...MAPPED_CORE,
-        { name: "Healthcare pack", status: "mapped", note: "Layered on the core map — evidence of gaps, never a certificate." },
+        { name: "Healthcare pack", status: "mapped", note: "Healthcare and research controls, layered on the core map." },
       ],
     },
     proof: {
@@ -232,7 +232,7 @@ export const INDUSTRIES: IndustryContent[] = [
       lede: "Findings are tagged to the OWASP web and LLM lists and NIST SP 800-53. Supplier attestations stay supported, never verified, until technical evidence shows more.",
       items: [
         ...MAPPED_CORE,
-        { name: "General AI pack", status: "mapped", note: "Layered on the core map — evidence of gaps, never a certificate." },
+        { name: "General AI pack", status: "mapped", note: "AI governance controls, layered on the core map." },
       ],
     },
     proof: {
@@ -308,7 +308,7 @@ export const INDUSTRIES: IndustryContent[] = [
       lede: "Findings are mapped so evidence can be used in your reviews. None of this is a certification or a legal safe harbor.",
       items: [
         ...MAPPED_CORE,
-        { name: "General AI pack", status: "mapped", note: "Layered on the core map — evidence of gaps, never a certificate." },
+        { name: "General AI pack", status: "mapped", note: "AI governance controls, layered on the core map." },
         { name: "State AI and privacy requirements", status: "reference", note: "Identified with your counsel during scoping." },
       ],
     },
@@ -384,9 +384,9 @@ export const INDUSTRIES: IndustryContent[] = [
       title: "Referenced, *never implied.*",
       lede: "Evidence can support the reviews programs already run. It is not an authorization, an approval or an accreditation.",
       items: [
-        { name: "NIST SP 800-53", status: "mapped", note: "Findings are tagged to the controls they touch — never marked as satisfied." },
+        { name: "NIST SP 800-53", status: "mapped", note: "Findings are tagged to the controls they touch." },
         { name: "DoD Zero Trust", status: "mapped", note: "Findings are tagged to the relevant capabilities." },
-        { name: "Federal pack", status: "mapped", note: "Layered on the core map — evidence of gaps, never a certificate." },
+        { name: "Federal pack", status: "mapped", note: "Federal controls, layered on the core map." },
       ],
     },
     proof: {
@@ -459,10 +459,10 @@ export const INDUSTRIES: IndustryContent[] = [
     useCases: { title: "Scenarios for *operations.*", slugs: ["data-platform-cloud-ai-integration", "ai-agent-tools-actions", "partner-vendor-ai-integration", "ai-driven-vehicle-systems-hermes"] },
     controls: {
       title: "Referenced, *never certified.*",
-      lede: "Operational and safety standards that apply to you are identified during scoping. Mythos AI Security makes no safety certification.",
+      lede: "Operational and safety standards that apply to you are identified during scoping, so evidence can support the reviews they require.",
       items: [
         ...MAPPED_CORE,
-        { name: "General AI pack", status: "mapped", note: "Layered on the core map — evidence of gaps, never a certificate." },
+        { name: "General AI pack", status: "mapped", note: "AI governance controls, layered on the core map." },
         { name: "Your safety and OT security standards", status: "reference", note: "Identified with your team; physical safety stays with your safety owners." },
       ],
     },

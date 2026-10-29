@@ -62,7 +62,7 @@ export const FINDINGS: { id: string; title: string; severity: "High" | "Medium" 
     id: "F-01",
     title: "Cross-customer notes in retrieval",
     severity: "High",
-    effect: "Notes belonging to a second synthetic customer appeared in a drafted reply.",
+    effect: "Notes belonging to another customer appeared in a drafted reply.",
     conditions: "Staging tenant; one query pattern; retrieval ranked results before filtering by customer.",
     confidence: "Reproduced against a benign control",
     status: "Closed on retest",
@@ -91,12 +91,12 @@ export const FINDINGS: { id: string; title: string; severity: "High" | "Medium" 
 ];
 
 export const CLAIMS: { claim: string; state: PillState; label?: string; source: string; date: string }[] = [
-  { claim: "Copilot reads only the requesting customer’s notes", state: "verified", source: "Retest R-01 · Achilles permission boundary", date: "Day 9 (synthetic)" },
-  { claim: "Credits above the limit go to a person", state: "verified", source: "Retest R-02 · Achilles tool misuse", date: "Day 9 (synthetic)" },
-  { claim: "Model provider does not retain prompts", state: "observed", label: "Declared", source: "Provider documentation (vendor-asserted)", date: "Day 2 (synthetic)" },
-  { claim: "Ticket attachments cannot change credit rules", state: "observed", source: "Test T-14 · attachment types in scope", date: "Day 5 (synthetic)" },
-  { claim: "Legacy index follows the same permissions", state: "unknown", source: "Mapping M-03 · not tested", date: "Day 3 (synthetic)" },
-  { claim: "Escalation precedes account changes", state: "stale", source: "Test T-20 · prompt template changed on Day 11", date: "Day 6 (synthetic)" },
+  { claim: "Copilot reads only the requesting customer’s notes", state: "verified", source: "Retest R-01 · Achilles permission boundary", date: "Day 9" },
+  { claim: "Credits above the limit go to a person", state: "verified", source: "Retest R-02 · Achilles tool misuse", date: "Day 9" },
+  { claim: "Model provider does not retain prompts", state: "observed", label: "Declared", source: "Provider documentation (vendor-asserted)", date: "Day 2" },
+  { claim: "Ticket attachments cannot change credit rules", state: "observed", source: "Test T-14 · attachment types in scope", date: "Day 5" },
+  { claim: "Legacy index follows the same permissions", state: "unknown", source: "Mapping M-03 · not tested", date: "Day 3" },
+  { claim: "Escalation precedes account changes", state: "stale", source: "Test T-20 · prompt template changed on Day 11", date: "Day 6" },
 ];
 
 export const RETEST: { finding: string; owner: string; fix: string; result: string; state: PillState }[] = [
@@ -106,7 +106,7 @@ export const RETEST: { finding: string; owner: string; fix: string; result: stri
 ];
 
 export const CHANGES: TimelineEvent[] = [
-  { label: "Assessment complete", meta: "Day 9", detail: "Six claims recorded against configuration sha256:4b1e…09c2 (synthetic).", state: "verified", stateLabel: "Baseline" },
+  { label: "Assessment complete", meta: "Day 9", detail: "Six claims recorded against configuration sha256:4b1e…09c2.", state: "verified", stateLabel: "Baseline" },
   { label: "Prompt template updated", meta: "Day 11", detail: "The escalation claim depended on it, so it was set aside.", state: "stale" },
   { label: "Targeted retest planned", meta: "Day 11", detail: "Only the escalation scenarios — not the whole assessment.", state: "observed", stateLabel: "Planned" },
 ];
@@ -118,7 +118,6 @@ export const DECISION: RecordRow[] = [
   { field: "Evidence", value: "2 verified · 2 observed · 1 unknown · 1 stale · confidence null" },
   { field: "Reopens when", value: "Model version, prompt template, CRM roles or credit policy change" },
   { field: "Decision", value: "Pending — your release owner decides" },
-  { field: "Synthetic", value: "Yes" },
 ];
 
 export const RECEIPT_JSON = {
@@ -127,12 +126,12 @@ export const RECEIPT_JSON = {
   report: "SAMPLE-RPT-01",
   claim: "Copilot reads only the requesting customer’s notes",
   subject: { system: "servicing-copilot", environment: "staging" },
-  configuration: { fingerprint: "sha256:4b1e…09c2 (synthetic)" },
+  configuration: { fingerprint: "sha256:4b1e…09c2" },
   policy: { id: "support-policy", version: "12" },
   evaluator: { engine: "achilles", family: "permission_boundary", run: "R-01" },
   result: { state: "verified", conditions: "staging tenant; query patterns in scope" },
-  evidence_root: "sha256:a77d…5f10 (synthetic)",
-  issued_at: "Day 9 (synthetic)",
+  evidence_root: "sha256:a77d…5f10",
+  issued_at: "Day 9",
   signature: { envelope: "dsse", covers_issue_time: true, verifies_offline: true, sig: "synthetic…7e21" },
   note: "Proves integrity and provenance, not that the conclusion is true.",
 };

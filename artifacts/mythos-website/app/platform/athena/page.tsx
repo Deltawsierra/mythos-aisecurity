@@ -228,6 +228,7 @@ export default function AthenaPage() {
       <ClosingVista
         from="ivory"
         title="See your system *the way Athena does.*"
+        body="Start with one environment. Athena maps what your AI can reach before anything is tested."
         secondary={{ label: CTA.SAMPLE_REPORT, href: "/example-report" }}
         vista="a"
       />

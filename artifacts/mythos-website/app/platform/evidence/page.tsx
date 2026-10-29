@@ -151,6 +151,7 @@ export default function EvidencePage() {
       <ClosingVista
         from="parchment"
         title="See the evidence *behind your AI.*"
+        body="Bring one AI system, and we will show you what its evidence record would contain."
         secondary={{ label: "Explore the Platform", href: "/platform" }}
         vista="a"
       />

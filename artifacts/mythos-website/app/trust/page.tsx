@@ -165,7 +165,7 @@ export default function TrustPage() {
             </p>
             <p className="text-[15px] leading-relaxed text-fg-muted">
               Findings are advisory. Mythos AI Security does not guarantee it will find every weakness, and it does not certify an AI system as safe. Findings are mapped to the NIST
-              SP 800-53, OWASP, OWASP LLM and DoD Zero Trust controls they touch — evidence of gaps, never a certificate.
+              SP 800-53, OWASP, OWASP LLM and DoD Zero Trust controls they touch, as evidence of gaps.
             </p>
           </div>
         </Container>
@@ -219,6 +219,7 @@ export default function TrustPage() {
       <ClosingVista
         from="parchment"
         title="Start with *a written scope.*"
+        body="Tell us what you need reviewed, and we will send the scope, authorization and data terms before anything starts."
         secondary={{ label: "How Engagement Starts", href: "/engagement" }}
         vista="d"
       />

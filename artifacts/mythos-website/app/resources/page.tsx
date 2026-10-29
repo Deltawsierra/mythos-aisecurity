@@ -135,6 +135,7 @@ export default function ResourcesPage() {
       <ClosingVista
         from="ivory"
         title="Have a question *the library doesn’t answer?*"
+        body="Send us your question, and we will answer it or point you to the page that does."
         primary={{ label: "Request an Expert Conversation", href: "/contact?intent=general" }}
         secondary={{ label: "How Engagement Starts", href: "/engagement" }}
         vista="c"

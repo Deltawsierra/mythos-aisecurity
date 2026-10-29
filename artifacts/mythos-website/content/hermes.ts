@@ -74,7 +74,7 @@ export const HERMES_COPY = {
   outline: {
     eyebrow: "Safety-case support",
     title: "Evidence your *safety team can use.*",
-    lede: "Mythos AI Security does not write or certify safety cases. An assessment would hand your safety and engineering teams structured evidence — scope, conditions, gaps and findings — to use in their own.",
+    lede: "Mythos AI Security does not write safety cases. An assessment would hand your safety and engineering teams structured evidence — scope, conditions, gaps and findings — to use in their own.",
   },
 } as const;
 

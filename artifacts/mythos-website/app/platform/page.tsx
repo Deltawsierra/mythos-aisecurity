@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { socialImage } from "@/lib/social";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Accent } from "@/components/ui/Headline";
@@ -15,8 +16,6 @@ import { CycleStrip } from "@/components/platform/CycleStrip";
 import { AuthorityChain } from "@/components/platform/AuthorityChain";
 import { EvidenceStates } from "@/components/platform/EvidenceStates";
 import { CoveragePanel } from "@/components/platform/CoveragePanel";
-import { ExposurePreview } from "@/components/platform/ExposurePreview";
-import { ChangeFlow } from "@/components/platform/ChangeFlow";
 import { OutputsGrid } from "@/components/platform/OutputsGrid";
 import { ReportPreview } from "@/components/platform/ReportPreview";
 import { OVERVIEW } from "@/content/platformOverview";
@@ -126,10 +125,13 @@ export default function PlatformPage() {
       <section data-surface="parchment" aria-labelledby="economics-title" className="py-24 lg:py-28">
         <Container>
           <SectionIntro id="economics-title" eyebrow={o.economics.eyebrow} title={<Accent text={o.economics.title} />} lede={o.economics.lede} caps />
-          <div className="mt-12" data-reveal>
-            <ExposurePreview />
+          {/* The worked example lives on the Economic Exposure page (and in brief on Home). */}
+          <div className="mt-8">
+            <Link href="/platform/economic-exposure" className="group inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.2em] text-accent underline-offset-4 hover:underline">
+              See a worked exposure example
+              <ArrowRight size={14} aria-hidden="true" className="transition-transform group-hover:translate-x-0.5" />
+            </Link>
           </div>
-          <p className="mt-4 text-sm text-fg-muted">Illustrative scenario — synthetic data. Ranges, never a single exact number.</p>
         </Container>
       </section>
 
@@ -148,8 +150,12 @@ export default function PlatformPage() {
       >
         <Container>
           <SectionIntro id="continuous-title" align="center" eyebrow={o.continuous.eyebrow} title={<Accent text={o.continuous.title} />} lede={o.continuous.lede} caps />
-          <div className="mt-14">
-            <ChangeFlow />
+          {/* The step-by-step change loop lives on Continuous Assurance. */}
+          <div className="mt-10 text-center">
+            <Link href="/platform/continuous-assurance" className="group inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.2em] text-champagne underline-offset-4 hover:underline">
+              Walk through the change loop
+              <ArrowRight size={14} aria-hidden="true" className="transition-transform group-hover:translate-x-0.5" />
+            </Link>
           </div>
         </Container>
       </Scene>
@@ -197,6 +203,7 @@ export default function PlatformPage() {
       <ClosingVista
         from="parchment"
         title="See the whole system *on one of yours.*"
+        body="Pick one AI system, and we will show how mapping, testing and evidence fit together on it."
         vista="a"
       />
     </PageMotion>

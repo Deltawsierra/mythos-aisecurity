@@ -20,15 +20,12 @@
 import type { UseCaseContent } from "@/components/use-cases/types";
 import { OLYMPUS_MEDIA, USE_CASE_ART, scenePlanes } from "@/content/media";
 
-const LEDE =
-  "Mythos AI Security evaluates the authorized scope, actual pathways and relevant behaviors of this AI workflow, then records what was observed, what remains uncertain and what should be retested when the system changes.";
-
 const sun = { src: OLYMPUS_MEDIA.sunbeams, className: "-inset-[3%]", blend: "screen" as const, opacity: 0.45, position: "100% 0%", depth: 10 };
 /** G6 use-case plate n (0-based), with its phone composition; the headline sits on the quiet left wall. */
 const useCasePlates = (n: number) => scenePlanes(USE_CASE_ART[n], "60% 50%");
 
-const RECEIPT_FOOTER =
-  "Synthetic receipt for illustration. Receipts are signed and verify offline, so later changes are detectable. A receipt shows where a result came from — not that the conclusion is true.";
+// How receipts are signed and checked is explained once, on the Evidence page.
+const RECEIPT_FOOTER = "A receipt shows where a result came from, not that the conclusion is true.";
 
 const LIBRARY: UseCaseContent[] = [
   {
@@ -39,7 +36,7 @@ const LIBRARY: UseCaseContent[] = [
     metaDescription:
       "Can a support agent reach only the customer records and actions it is authorized to use? How Mythos AI Security maps, tests and keeps evidence for support AI.",
     question: "Can a support agent reach only the customer records and *actions it is authorized to use?*",
-    lede: LEDE,
+    lede: "Maps which customer records and actions a support agent can reach, then tests whether credits and escalations hold their limits when a ticket pushes against them.",
     image: "/assets/athena/athena-identity.webp",
     planes: useCasePlates(0),
     facets: { industry: ["financial-services-insurance", "ai-saas"], product: ["Athena", "Achilles", "SPINE"], risk: ["Data exposure", "Untrusted content", "Tool & action authority"] },
@@ -85,11 +82,10 @@ const LIBRARY: UseCaseContent[] = [
           { field: "Result", value: "Contradicted, then verified after fix", tone: "verified" },
           { field: "Subject", value: "Support agent · test tenant" },
           { field: "Evaluator", value: "Achilles · permission boundary" },
-          { field: "Configuration", value: "sha256:4b1e…09c2 (synthetic)" },
+          { field: "Configuration", value: "sha256:4b1e…09c2" },
           { field: "Policy version", value: "support-policy v12" },
           { field: "Reopens when", value: "CRM role or retrieval filter changes" },
-          { field: "Evidence root", value: "sha256:a77d…5f10 (synthetic)" },
-          { field: "Synthetic", value: "Yes" },
+          { field: "Evidence root", value: "sha256:a77d…5f10" },
         ],
         footer: RECEIPT_FOOTER,
       },
@@ -119,7 +115,7 @@ const LIBRARY: UseCaseContent[] = [
     metaDescription:
       "Will an internal RAG assistant respect source permissions when retrieval and prompts combine? How Mythos AI Security tests retrieval boundaries and keeps evidence.",
     question: "Will an internal assistant respect source permissions when *retrieval and prompts combine?*",
-    lede: LEDE,
+    lede: "Checks whether answers respect the permissions on the sources behind them, testing retrieval and prompts together rather than one at a time.",
     image: "/assets/athena/athena-data-lifecycle.webp",
     planes: useCasePlates(1),
     facets: { industry: ["regulated-enterprise", "healthcare-life-sciences", "public-sector-mission"], product: ["Athena", "Achilles", "SPINE"], risk: ["Data exposure", "Untrusted content", "Change & stale evidence"] },
@@ -164,11 +160,10 @@ const LIBRARY: UseCaseContent[] = [
           { field: "Result", value: "Verified for sources in scope", tone: "verified" },
           { field: "Subject", value: "Internal assistant · staging" },
           { field: "Evaluator", value: "Achilles · RAG leakage" },
-          { field: "Sources", value: "3 indexes (synthetic)" },
-          { field: "Configuration", value: "sha256:c03a…7e18 (synthetic)" },
+          { field: "Sources", value: "3 indexes" },
+          { field: "Configuration", value: "sha256:c03a…7e18" },
           { field: "Reopens when", value: "A source is added or permissions sync changes" },
-          { field: "Evidence root", value: "sha256:19be…d4a0 (synthetic)" },
-          { field: "Synthetic", value: "Yes" },
+          { field: "Evidence root", value: "sha256:19be…d4a0" },
         ],
         footer: RECEIPT_FOOTER,
       },
@@ -197,7 +192,7 @@ const LIBRARY: UseCaseContent[] = [
     metaDescription:
       "Can an AI agent perform a harmful action despite apparently approved tool permissions? How Mythos AI Security tests tool authority, approvals and observed effects.",
     question: "Can an AI agent cause a harmful action despite *apparently approved permissions?*",
-    lede: LEDE,
+    lede: "Maps the tools an agent can call and the approvals in front of them, then tests whether a harmful action can get through anyway.",
     image: "/assets/athena/athena-routes.webp",
     planes: useCasePlates(2),
     facets: { industry: ["ai-saas", "financial-services-insurance", "integrators-vendors"], product: ["Athena", "Achilles", "SPINE"], risk: ["Tool & action authority", "Identity & delegation", "Untrusted content"] },
@@ -243,9 +238,8 @@ const LIBRARY: UseCaseContent[] = [
           { field: "Attempted effect", value: "Grant admin role to a test user" },
           { field: "Observed effect", value: "Role granted in staging" },
           { field: "Evaluator", value: "Achilles · tool misuse" },
-          { field: "Identity", value: "svc-agent-staging (synthetic)" },
-          { field: "Evidence pack", value: "sha256:7f02…bb31 (synthetic)" },
-          { field: "Synthetic", value: "Yes" },
+          { field: "Identity", value: "svc-agent-staging" },
+          { field: "Evidence pack", value: "sha256:7f02…bb31" },
         ],
         footer: RECEIPT_FOOTER,
       },
@@ -273,7 +267,7 @@ const LIBRARY: UseCaseContent[] = [
     metaDescription:
       "Can evidence support a controlled, human-reviewed AI workflow? Mythos AI Security records what was tested, what is vendor-asserted and what was not measured.",
     question: "Can evidence support a controlled, *human-reviewed AI workflow?*",
-    lede: LEDE,
+    lede: "Records what was tested, what a vendor only asserts and what a person still decides, so reviewers can follow a controlled workflow step by step.",
     image: "/assets/evidence/policy-authority-chain.svg",
     planes: useCasePlates(3),
     facets: { industry: ["regulated-enterprise", "healthcare-life-sciences"], product: ["Athena", "Achilles", "SPINE"], risk: ["Evidence & audit", "Untrusted content", "Change & stale evidence"] },
@@ -320,7 +314,6 @@ const LIBRARY: UseCaseContent[] = [
           { field: "Mapped to", value: "NIST SP 800-53 (controls touched)" },
           { field: "Vendor claim", value: "Provider retention — vendor-asserted, capped" },
           { field: "Reopens when", value: "Policy version or reviewer roles change" },
-          { field: "Synthetic", value: "Yes" },
         ],
         footer: RECEIPT_FOOTER,
       },
@@ -348,7 +341,7 @@ const LIBRARY: UseCaseContent[] = [
     metaDescription:
       "What can a third-party AI tool reach once connected? How Mythos AI Security separates vendor claims from observed evidence and retests after vendor changes.",
     question: "What is the effective exposure of a third-party AI tool *once it is connected?*",
-    lede: LEDE,
+    lede: "Separates what a vendor says its AI can do from what it can actually reach once it is connected to your systems.",
     image: "/assets/athena/athena-surfaces.webp",
     planes: useCasePlates(4),
     facets: { industry: ["integrators-vendors", "financial-services-insurance", "manufacturing-critical-infrastructure"], product: ["Athena", "Achilles", "SPINE"], risk: ["Data exposure", "Identity & delegation", "Change & stale evidence"] },
@@ -394,7 +387,6 @@ const LIBRARY: UseCaseContent[] = [
           { field: "Model route", value: "Observed: primary + one fallback" },
           { field: "Subprocessors", value: "Vendor-asserted; not verified" },
           { field: "Reopens when", value: "Vendor route or model changes" },
-          { field: "Synthetic", value: "Yes" },
         ],
         footer: RECEIPT_FOOTER,
       },
@@ -422,7 +414,7 @@ const LIBRARY: UseCaseContent[] = [
     metaDescription:
       "What private context or delegated authority could an enterprise copilot expose? How Mythos AI Security assesses copilot reach through permissions and test accounts.",
     question: "What private context or delegated authority could *an enterprise copilot expose?*",
-    lede: LEDE,
+    lede: "Maps what a copilot can reach through the permissions it inherits, and tests where that reach goes further than anyone intended.",
     image: "/assets/athena/athena-personal-context.webp",
     planes: useCasePlates(5),
     facets: { industry: ["regulated-enterprise", "financial-services-insurance"], product: ["Athena", "Achilles", "SPINE"], risk: ["Data exposure", "Identity & delegation", "Untrusted content"] },
@@ -466,9 +458,8 @@ const LIBRARY: UseCaseContent[] = [
           { field: "Result", value: "Observed for test accounts", tone: "verified" },
           { field: "Subject", value: "Employee copilot · test accounts" },
           { field: "Evaluator", value: "Achilles · RAG leakage" },
-          { field: "Identities", value: "4 test accounts (synthetic)" },
+          { field: "Identities", value: "4 test accounts" },
           { field: "Reopens when", value: "Group membership or sharing policy changes" },
-          { field: "Synthetic", value: "Yes" },
         ],
         footer: RECEIPT_FOOTER,
       },
@@ -496,7 +487,7 @@ const LIBRARY: UseCaseContent[] = [
     metaDescription:
       "Can generated code or an agentic commit weaken production controls? How Mythos AI Security tests coding agents' boundaries in disposable repositories and pipelines.",
     question: "Can generated code or an agentic commit *weaken production controls?*",
-    lede: LEDE,
+    lede: "Tests, in a throwaway repository, whether a coding agent’s commits and pipeline access could weaken the controls that protect production.",
     image: "/assets/athena/athena-pipeline.webp",
     planes: useCasePlates(6),
     facets: { industry: ["ai-saas", "integrators-vendors"], product: ["Athena", "Achilles", "SPINE"], risk: ["Tool & action authority", "Untrusted content", "Change & stale evidence"] },
@@ -540,9 +531,8 @@ const LIBRARY: UseCaseContent[] = [
           { field: "Result", value: "Contradicted", tone: "contradicted" },
           { field: "Subject", value: "Coding agent · disposable repo" },
           { field: "Evaluator", value: "Achilles · tool misuse" },
-          { field: "Pipeline", value: "ci-workflow v4 (synthetic)" },
+          { field: "Pipeline", value: "ci-workflow v4" },
           { field: "Reopens when", value: "Branch rules or workflow files change" },
-          { field: "Synthetic", value: "Yes" },
         ],
         footer: RECEIPT_FOOTER,
       },
@@ -570,7 +560,7 @@ const LIBRARY: UseCaseContent[] = [
     metaDescription:
       "Can an AI recommendation cross into unauthorized execution? How Mythos AI Security tests where recommendation becomes action and keeps human decisions on record.",
     question: "Can an AI recommendation cross the boundary *into unauthorized execution?*",
-    lede: LEDE,
+    lede: "Tests the point where a recommendation could become an action nobody approved, and shows the evidence behind each boundary your team relies on.",
     image: "/assets/athena/athena-remediation.webp",
     planes: useCasePlates(7),
     facets: { industry: ["regulated-enterprise", "financial-services-insurance", "healthcare-life-sciences"], product: ["Athena", "Achilles", "SPINE"], risk: ["Tool & action authority", "Untrusted content", "Evidence & audit"] },
@@ -616,7 +606,6 @@ const LIBRARY: UseCaseContent[] = [
           { field: "Not measured", value: "2 (in the coverage manifest)" },
           { field: "Decision owner", value: "Your release owner (role)" },
           { field: "Reopens when", value: "Model version or threshold changes" },
-          { field: "Synthetic", value: "Yes" },
         ],
         footer: RECEIPT_FOOTER,
       },
@@ -644,7 +633,7 @@ const LIBRARY: UseCaseContent[] = [
     metaDescription:
       "Can a mission agent stay within restricted records and authorization limits? Acceptance and change evidence for mission AI, with no authorization claims.",
     question: "Can a mission-facing agent stay within restricted records and *authorization constraints?*",
-    lede: LEDE,
+    lede: "Maps the restricted records and authorizations a mission workflow touches, and tests the human approval points around them.",
     image: "/assets/evidence/deployment-decision-gate.svg",
     planes: useCasePlates(8),
     facets: { industry: ["public-sector-mission"], product: ["Athena", "Achilles", "SPINE"], risk: ["Data exposure", "Identity & delegation", "Evidence & audit"] },
@@ -685,12 +674,11 @@ const LIBRARY: UseCaseContent[] = [
         kind: "Acceptance record · synthetic",
         title: "Mission assistant v2.3",
         rows: [
-          { field: "Evaluated version", value: "assistant v2.3 · index 2026-10 (synthetic)" },
-          { field: "Roles tested", value: "5 (synthetic)" },
+          { field: "Evaluated version", value: "assistant v2.3 · index 2026-10" },
+          { field: "Roles tested", value: "5" },
           { field: "Result", value: "Verified after one fix", tone: "verified" },
           { field: "Mapped to", value: "DoD Zero Trust (capabilities touched)" },
           { field: "Reopens when", value: "Version, data or role mapping changes" },
-          { field: "Synthetic", value: "Yes" },
         ],
         footer: RECEIPT_FOOTER,
       },
@@ -718,7 +706,7 @@ const LIBRARY: UseCaseContent[] = [
     metaDescription:
       "Which service routes and credentials can AI workflows reach on a cloud data platform? How Mythos AI Security maps service identities and data boundaries.",
     question: "Which service routes and credentials can *model-and-data workflows reach?*",
-    lede: LEDE,
+    lede: "Maps which service identities and credentials model-and-data workflows can reach, working from the grants you supply, and tests the boundaries between them.",
     image: "/assets/athena/athena-cloud-posture.webp",
     planes: useCasePlates(9),
     facets: { industry: ["ai-saas", "public-sector-mission", "manufacturing-critical-infrastructure"], product: ["Athena", "Achilles", "SPINE"], risk: ["Identity & delegation", "Data exposure", "Change & stale evidence"] },
@@ -760,11 +748,10 @@ const LIBRARY: UseCaseContent[] = [
         title: "Workflow reads only the analytics datasets",
         rows: [
           { field: "Result", value: "Contradicted", tone: "contradicted" },
-          { field: "Identity", value: "svc-analytics-ai (synthetic)" },
+          { field: "Identity", value: "svc-analytics-ai" },
           { field: "Evaluator", value: "Achilles · permission boundary" },
           { field: "Grants supplied", value: "From the access export provided" },
           { field: "Reopens when", value: "Service grants or data sources change" },
-          { field: "Synthetic", value: "Yes" },
         ],
         footer: RECEIPT_FOOTER,
       },
@@ -840,7 +827,6 @@ const LIBRARY: UseCaseContent[] = [
           { field: "Decision", value: "Requires additional evidence" },
           { field: "Scope", value: "Simulation fixture only" },
           { field: "Domain logic", value: "Not implemented" },
-          { field: "Synthetic", value: "Yes" },
         ],
         footer: "Synthetic illustration of the current scaffold. Hermes makes no present claims about vehicle behavior.",
       },
@@ -908,7 +894,6 @@ const LIBRARY: UseCaseContent[] = [
         rows: [
           { field: "Status", value: "Research question", tone: "stale" },
           { field: "Offering", value: "None" },
-          { field: "Synthetic", value: "Yes" },
         ],
         footer: "An illustration of how an open question is recorded — not a deliverable.",
       },

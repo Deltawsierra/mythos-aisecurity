@@ -162,6 +162,7 @@ export default function CompanyPage() {
       <ClosingVista
         from="parchment"
         title="Put evidence *behind your next AI decision.*"
+        body="Tell us about the AI system you are responsible for, and we will suggest where an assessment should start."
         secondary={{ label: "Explore the Platform", href: "/platform" }}
         vista="c"
       />

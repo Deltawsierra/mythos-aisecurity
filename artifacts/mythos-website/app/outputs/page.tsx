@@ -138,6 +138,7 @@ export default function OutputsPage() {
       <ClosingVista
         from="parchment"
         title="Get evidence *you can act on.*"
+        body="Each engagement delivers the outputs your scope calls for, with what remains unknown stated plainly."
         secondary={{ label: "See the Example Report", href: "/example-report" }}
         vista="c"
       />

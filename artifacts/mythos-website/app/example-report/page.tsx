@@ -205,7 +205,7 @@ export default function ExampleReportPage() {
               </Part>
 
               <Part id="changes" n={7} title="Change history">
-                <EvidenceTimeline events={CHANGES} caption="Change ledger · synthetic" />
+                <EvidenceTimeline events={CHANGES} caption="Change ledger" />
               </Part>
 
               <Part id="exposure" n={8} title="Economic scenario">
@@ -217,7 +217,7 @@ export default function ExampleReportPage() {
               </Part>
 
               <Part id="decision" n={9} title="Deployment decision">
-                <RecordCard kind="Deployment decision · synthetic" title="Servicing copilot — pilot release" rows={DECISION} icon="/assets/evidence/deployment-decision-gate.svg" footer="Mythos AI Security recommends; accountable people decide. A missing decision never reads as Ready." />
+                <RecordCard kind="Deployment decision" title="Servicing copilot — pilot release" rows={DECISION} icon="/assets/evidence/deployment-decision-gate.svg" footer="Mythos AI Security recommends; accountable people decide. A missing decision never reads as Ready." />
               </Part>
 
               <Part id="appendix" n={10} title="Appendix">
@@ -232,6 +232,7 @@ export default function ExampleReportPage() {
       <ClosingVista
         from="ivory"
         title="Get this evidence *for your own system.*"
+        body="Your report would follow this structure, built from your own system, with every claim tied to evidence you can inspect."
         secondary={{ label: "How Engagement Starts", href: "/engagement" }}
         vista="c"
       />

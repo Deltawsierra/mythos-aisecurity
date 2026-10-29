@@ -185,6 +185,7 @@ export default function AchillesPage() {
       <ClosingVista
         from="parchment"
         title="Find out what your agents *can actually do.*"
+        body="Tell us which agents and tools matter most, and we will scope the boundaries Achilles should challenge first."
         primary={{ label: "Request an AI Workflow Assessment", href: CTA_LINKS.assessment }}
         secondary={{ label: "How Mythos AI Security Validates Itself", href: "/platform/validation" }}
         vista="a"

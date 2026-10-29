@@ -14,10 +14,7 @@ import { ClosingVista } from "@/components/scenic/ClosingVista";
 import { AssuranceGraph } from "@/components/platform/AssuranceGraph";
 import { EvidenceStates } from "@/components/platform/EvidenceStates";
 import { AuthorityChain } from "@/components/platform/AuthorityChain";
-import { ChangeFlow } from "@/components/platform/ChangeFlow";
-import { ExposurePreview } from "@/components/platform/ExposurePreview";
 import { DecisionStates, EvidenceLadder, PolicyEffects, ReceiptCard, UnknownCard } from "@/components/platform/SpineBlocks";
-import { ClaimInvalidation } from "@/components/home/ClaimInvalidation";
 import { AssuranceTeams } from "@/components/home/AssuranceTeams";
 import { SPINE_COPY } from "@/content/spine";
 import { BACKDROPS, OLYMPUS_MEDIA, SCENES, SPINE_CORE_MEDIA, scenePlanes } from "@/content/media";
@@ -170,8 +167,12 @@ export default function SpinePage() {
               </div>
             ))}
           </div>
-          <div className="mt-16">
-            <ChangeFlow />
+          {/* The step-by-step change loop lives on Continuous Assurance. */}
+          <div className="mt-10 text-center">
+            <Link href="/platform/continuous-assurance" className="group inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.2em] text-champagne underline-offset-4 hover:underline">
+              Walk through the change loop
+              <ArrowRight size={14} aria-hidden="true" className="transition-transform group-hover:translate-x-0.5" />
+            </Link>
           </div>
           <ul className="mx-auto mt-12 flex max-w-4xl flex-wrap justify-center gap-2" aria-label="What change intelligence works from">
             {c.change.drivers.map((driver) => (
@@ -220,12 +221,13 @@ export default function SpinePage() {
       <section data-surface="parchment" aria-labelledby="economics-title" className="pb-16 pt-24">
         <Container>
           <SectionIntro id="economics-title" eyebrow={c.economics.eyebrow} title={<Accent text={c.economics.title} />} lede={c.economics.lede} caps />
-          <div className="mt-12" data-reveal>
-            <ExposurePreview />
+          {/* The worked example lives on the Economic Exposure page (and in brief on Home). */}
+          <div className="mt-8">
+            <Link href="/platform/economic-exposure" className="group inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.2em] text-accent underline-offset-4 hover:underline">
+              See a worked exposure example
+              <ArrowRight size={14} aria-hidden="true" className="transition-transform group-hover:translate-x-0.5" />
+            </Link>
           </div>
-          <p className="mt-4 text-sm text-fg-muted">
-            Illustrative scenario — synthetic data. Sensitivity is shown apart from probability and evidence confidence; the business decision stays yours.
-          </p>
         </Container>
       </section>
 
@@ -262,16 +264,10 @@ export default function SpinePage() {
         </Container>
       </Scene>
 
-      {/* S09 */}
-      <section data-surface="parchment" aria-labelledby="revalidate-title" className="pb-16 pt-8">
+      {/* S09 — the revalidation demo is on Home; this section keeps only the next links. */}
+      <section data-surface="parchment" aria-labelledby="next-title" className="pb-16 pt-16">
         <Container>
-          <div className="grid gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:items-center">
-            <SectionIntro id="revalidate-title" eyebrow={c.revalidate.eyebrow} title={<Accent text={c.revalidate.title} />} lede={c.revalidate.lede} caps />
-            <div data-reveal>
-              <ClaimInvalidation />
-            </div>
-          </div>
-          <div className="mt-24">
+          <div>
             <SectionIntro id="next-title" eyebrow={c.next.eyebrow} title={c.next.title} />
             <NextLinks items={NEXT} />
           </div>
@@ -281,6 +277,7 @@ export default function SpinePage() {
       <ClosingVista
         from="parchment"
         title="See what SPINE *keeps true about your AI.*"
+        body="Bring a workflow that changes often, and we will show how its claims, evidence and decisions would stay current."
         secondary={{ label: "See Evidence & Receipts", href: "/platform/evidence" }}
         vista="a"
       />

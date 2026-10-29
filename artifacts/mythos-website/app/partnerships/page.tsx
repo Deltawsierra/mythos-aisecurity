@@ -111,6 +111,7 @@ export default function PartnershipsPage() {
       <ClosingVista
         from="parchment"
         title="Build trust *into what you deliver.*"
+        body="Tell us what you build or deliver and where independent evidence would help your customers."
         primary={DISCUSS}
         secondary={{ label: "About Mythos AI Security", href: "/company" }}
         vista="c"

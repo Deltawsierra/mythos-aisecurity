@@ -95,7 +95,7 @@ export default function StandardsPage() {
           <div>
             <SectionIntro id="mapped-title" eyebrow="Mapping built" title={<Accent text="Four frameworks, *touched not satisfied.*" />} caps />
             <p className="mt-6 text-[15px] leading-relaxed text-fg-muted">
-              A mapped control is one a finding touches — never one Mythos AI Security marks as satisfied. The map is evidence of gaps, not a certificate. Separately, Minotaur maps
+              A mapped control is one a finding touches — never one Mythos AI Security marks as satisfied. The map shows evidence of gaps. Separately, Minotaur maps
               its own benchmarks to 15 standards and 86 clauses, with no badges.
             </p>
           </div>
@@ -173,6 +173,7 @@ export default function StandardsPage() {
       <ClosingVista
         from="ivory"
         title="Evidence *your reviewers can map.*"
+        body="Tell us which frameworks your reviewers use, and we will show how findings would map to them."
         secondary={{ label: "Read the Glossary", href: "/glossary" }}
         vista="d"
       />

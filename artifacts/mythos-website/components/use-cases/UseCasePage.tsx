@@ -96,7 +96,7 @@ export function UseCasePage({ c, prev, next }: { c: UseCaseContent; prev?: UseCa
         className="pb-[clamp(10rem,15vw,15rem)] pt-[clamp(10rem,17vw,17rem)]"
       >
         <Container>
-          <SectionIntro id="approach-title" eyebrow="How Mythos AI Security tests it" title={<Accent text={c.approach.title} />} lede={c.approach.lede} caps />
+          <SectionIntro id="approach-title" eyebrow="How we test it" title={<Accent text={c.approach.title} />} lede={c.approach.lede} caps />
           <ol className="mt-12 grid gap-4 lg:grid-cols-3" data-reveal-group>
             {APPROACH.map((a) => (
               <li key={a.key} className="flex flex-col border border-rule bg-panel p-6">
@@ -192,7 +192,6 @@ export function UseCasePage({ c, prev, next }: { c: UseCaseContent; prev?: UseCa
       <ClosingVista
         from="parchment"
         title="Scope this workflow *with evidence.*"
-        body="A scoped assessment of one workflow: what it can reach, what it does under pressure, and what to retest when it changes."
         secondary={{ label: "All Use Cases", href: "/use-cases" }}
         vista="b"
       />

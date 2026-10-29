@@ -149,6 +149,7 @@ export default function ContinuousAssurancePage() {
       <ClosingVista
         from="parchment"
         title="Keep your evidence *as current as your AI.*"
+        body="Tell us how often your models, tools and permissions change, and we will scope what should be retested when they do."
         secondary={{ label: "Explore the Platform", href: "/platform" }}
         vista="a"
       />

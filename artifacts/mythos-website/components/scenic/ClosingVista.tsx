@@ -4,13 +4,13 @@ import { Button } from "@/components/ui/Button";
 import { Accent, plain } from "@/components/ui/Headline";
 import { Scene, type SceneLayer } from "@/components/scenic/Scene";
 import { CTA_LINKS } from "@/content/navigation";
-import { CANONICAL } from "@/content/platform";
 import { VISTAS } from "@/content/media";
 import { CTA, SITE_FULL_NAME } from "@/lib/constants";
 
 interface ClosingVistaProps {
   /** Headline; *starred* words take the gold accent. */
   title: string;
+  /** One page-specific line. No default: the footer already states the decision-support line on every page. */
   body?: string;
   primary?: { label: string; href: string };
   secondary?: { label: string; href: string };
@@ -29,7 +29,7 @@ interface ClosingVistaProps {
  */
 export function ClosingVista({
   title,
-  body = CANONICAL.decisionAuthority,
+  body,
   primary = { label: CTA.PRIMARY, href: CTA_LINKS.assessment },
   secondary = { label: CTA.DEMO, href: CTA_LINKS.demo },
   layers,
@@ -66,7 +66,7 @@ export function ClosingVista({
           >
             <Accent text={title} />
           </h2>
-          <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-ivory/90">{body}</p>
+          {body && <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-ivory/90">{body}</p>}
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <Button href={primary.href} variant="primary" size="lg" arrow>
               {primary.label}

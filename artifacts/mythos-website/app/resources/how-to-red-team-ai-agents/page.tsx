@@ -144,6 +144,7 @@ export default function RedTeamAiAgentsPage() {
         from="ivory"
         vista="b"
         title="Start with *one consequential workflow.*"
+        body="Pick the workflow with the most authority, and we will help you scope a first assessment around it."
         primary={{ label: "Request an Agent Assessment", href: "/contact" }}
         secondary={{ label: "See the Example Report", href: "/example-report" }}
       />

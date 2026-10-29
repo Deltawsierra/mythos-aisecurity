@@ -75,7 +75,7 @@ export function IndustryPage({ c }: { c: IndustryContent }) {
         className="pb-[clamp(10rem,15vw,15rem)] pt-[clamp(10rem,17vw,17rem)]"
       >
         <Container>
-          <SectionIntro id="capabilities-title" eyebrow="What Mythos AI Security does here" title={<Accent text={c.capabilities.title} />} lede={c.capabilities.lede} caps />
+          <SectionIntro id="capabilities-title" eyebrow="What we do here" title={<Accent text={c.capabilities.title} />} lede={c.capabilities.lede} caps />
           <ul className="mt-12 grid gap-4 lg:grid-cols-3" data-reveal-group>
             {c.capabilities.items.map((cap) => (
               <li key={cap.product} className="flex flex-col border border-rule bg-panel p-6">
@@ -110,7 +110,6 @@ export function IndustryPage({ c }: { c: IndustryContent }) {
               </li>
             ))}
           </ul>
-          <p className="mt-4 text-sm text-fg-muted">Expressed as hypotheses to measure in an engagement — not results from customers.</p>
         </Container>
       </section>
 
@@ -127,7 +126,6 @@ export function IndustryPage({ c }: { c: IndustryContent }) {
                 >
                   <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-accent">Use case {String(u.number).padStart(2, "0")}</span>
                   <span className="mt-2 font-display text-2xl leading-tight text-fg">{u.title}</span>
-                  <span className="mt-2 text-sm italic leading-relaxed text-fg-muted">“{u.question.replaceAll("*", "")}”</span>
                   <span className="mt-auto inline-flex items-center gap-1.5 pt-5 text-[13px] font-semibold text-accent">
                     Read the scenario
                     <ArrowRight size={13} aria-hidden="true" className="transition-transform group-hover:translate-x-0.5" />
@@ -160,10 +158,13 @@ export function IndustryPage({ c }: { c: IndustryContent }) {
                 </li>
               ))}
             </ul>
-            <p className="mt-4 flex items-start gap-2 text-sm text-fg-muted">
-              <BookOpenCheck size={16} aria-hidden="true" className="mt-0.5 shrink-0 text-accent" />
-              Evidence supports your reviews against these frameworks. Mythos AI Security does not certify compliance or issue attestations.
-            </p>
+            {/* Said once per page: skipped where the section already says it. */}
+            {!/certif/i.test(c.controls.title + c.controls.lede) && (
+              <p className="mt-4 flex items-start gap-2 text-sm text-fg-muted">
+                <BookOpenCheck size={16} aria-hidden="true" className="mt-0.5 shrink-0 text-accent" />
+                Evidence supports your reviews against these frameworks. Mythos AI Security does not certify compliance or issue attestations.
+              </p>
+            )}
           </div>
         </Container>
       </section>

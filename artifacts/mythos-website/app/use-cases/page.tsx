@@ -43,7 +43,7 @@ const FACETS: Facet[] = [
   { key: "risk", label: "Risk theme", options: RISK_THEMES.map((r) => ({ value: r, label: r })) },
 ];
 
-const FLOW = ["The question", "The workflow", "What can go wrong", "How Mythos AI Security tests it", "The evidence", "Scope limits"];
+const FLOW = ["The question", "The workflow", "What can go wrong", "How we test it", "The evidence", "Scope limits"];
 
 /** Use-case library — Launch Guide §10. */
 export default function UseCasesPage() {

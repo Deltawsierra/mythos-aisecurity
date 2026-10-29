@@ -164,6 +164,7 @@ export default function EngagementPage() {
       <ClosingVista
         from="parchment"
         title="Define the system. *Start with evidence.*"
+        body="Name one workflow and the decision it feeds. Scope, access and stop contacts are agreed in writing before any testing."
         secondary={{ label: "Trust Center", href: "/trust" }}
         vista="c"
       />
