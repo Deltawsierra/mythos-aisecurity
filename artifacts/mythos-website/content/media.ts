@@ -170,7 +170,17 @@ export function scenePlanes(scene: SceneArt, position: string): HeroPlane[] {
 export const SCENES = {
   platform: art("scenes", "platform"),
   spine: art("scenes", "spine"),
-  achilles: art("scenes", "achilles"),
+  // The painted original Achilles is replaced by the repaired A40 full-length Achilles (R4 head,
+  // owner approved 29 Oct), baked into the front layer, the flat art and a phone crop of it.
+  achilles: (() => {
+    const a = art("scenes", "achilles");
+    return {
+      ...a,
+      src: "/assets/scenes/achilles-a40-hero.webp",
+      phone: "/assets/scenes/achilles-a40-phone.webp",
+      layers: a.layers?.map(([src, motion], i) => [i === 2 ? "/assets/scenes/layers/achilles-a40-l2.webp" : src, motion] as const),
+    };
+  })(),
   minotaur: art("scenes", "minotaur"),
   economicExposure: art("scenes", "economic-exposure"),
   evidence: art("scenes", "evidence"),
