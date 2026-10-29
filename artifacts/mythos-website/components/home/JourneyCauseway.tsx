@@ -177,7 +177,9 @@ export function JourneyCauseway() {
         {buttons("rail")}
       </div>
 
-      <Container className="relative pb-12 lg:pb-14">
+      {/* From md up the stage card rides up onto the bridge arches (~63% down the scene), so it is
+          in view while the stages advance rather than arriving after them. */}
+      <Container className="relative z-10 pb-12 md:-mt-[min(20.5vw,394px)] lg:pb-14">
         <div id="journey-detail" aria-live="polite" className="mx-auto max-w-4xl">
           <div key={current.id} className="lc-fade grid gap-6 border border-rule bg-cream/90 p-6 shadow-[0_24px_50px_-36px_rgba(22,26,28,0.45)] sm:p-8 md:grid-cols-[1.3fr_1fr]">
             <div>
@@ -198,7 +200,8 @@ export function JourneyCauseway() {
               </div>
             </dl>
           </div>
-          <p className="mt-6 flex flex-wrap items-center justify-center gap-2 text-center text-sm text-fg-muted">
+          {/* Backed in ivory: on wide screens this line lands on the mist and waterfalls. */}
+          <p className="mx-auto mt-6 flex w-fit max-w-full flex-wrap items-center justify-center gap-2 bg-cream/85 px-4 py-2 text-center text-sm text-fg-muted backdrop-blur-sm">
             {HOME_JOURNEY.footnote}
             <Link href="#cycle-title" className="inline-flex items-center gap-1 font-semibold text-accent underline-offset-4 hover:underline">
               See the cycle

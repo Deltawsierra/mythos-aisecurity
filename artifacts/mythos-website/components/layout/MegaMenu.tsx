@@ -149,13 +149,15 @@ export function MegaMenu({
         />
       </button>
 
-      {/* Panel — the pt-3 bridge keeps the hover area contiguous. */}
+      {/* Panel — the pt-3 bridge keeps the hover area contiguous. A narrow panel hangs from its
+          trigger: -43px is the item text's inset (1px border + p-3 + px-3 + 10px dash + gap-2),
+          so the item names start directly under the trigger label at every width. */}
       <div
         id={panelId}
         onKeyDown={onPanelKeyDown}
         className={cn(
           "absolute top-full z-50 pt-3 transition-[opacity,transform,visibility] duration-200 ease-out",
-          wide ? "inset-x-0" : "right-0 w-80",
+          wide ? "inset-x-0" : "-left-[43px] w-80",
           open
             ? "visible translate-y-0 opacity-100"
             : "invisible pointer-events-none -translate-y-1 opacity-0",

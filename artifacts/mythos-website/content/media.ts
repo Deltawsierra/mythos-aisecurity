@@ -247,11 +247,11 @@ export const CAUSEWAY_MEDIA = {
     strengthen: "/assets/causeway/medallion-strengthen.svg",
   },
   halo: "/assets/causeway/medallion-halo.svg",
-  /** Medallion centres in canvas pixels (Batch 06/07 scene registration). */
+  /** Medallion centres in canvas pixels. Raised into the sky above the bridge (owner, 29 Oct; was y 666). */
   centers: [218, 620, 1024, 1428, 1830],
-  centerY: 666,
-  /** The gold energy path through the five centres. */
-  path: "M217 666 C345 605 489 710 620 666S894 611 1024 666S1289 713 1428 666S1704 621 1830 666",
+  centerY: 455,
+  /** The gold energy path through the five centres (the original wave, shifted up with them). */
+  path: "M217 455 C345 394 489 499 620 455S894 400 1024 455S1289 502 1428 455S1704 410 1830 455",
 } as const;
 
 export const CHALLENGE_MEDIA = {
@@ -287,6 +287,7 @@ export const CHARACTER_MEDIA: Record<ProjectId, CharacterMedia> = {
     poster: poster("/assets/characters/athena-poster.webp", 640, 1164),
     crop: { left: 1, top: 1 },
     face: { x: 52, y: 21, zoom: 3.2 },
+    medallion: "/assets/characters/medallions/athena.webp",
   },
   spine: {
     poster: poster("/assets/characters/spine-poster.webp", 631, 1164),
@@ -353,12 +354,13 @@ export interface PresenceMedia {
 }
 
 /**
- * Owner half-body card art and loops (29 Oct): 800x1000 VP9-alpha, 5 s at
+ * Owner half-body card art and loops (29 Oct; Athena added the same day): 800x1000 VP9-alpha, 5 s at
  * 20 fps, poster framed exactly as the loop. Wider than the card, so
  * `position` keeps each face and attribute in frame; the figure's lower crop
  * sits ~4% above the frame's bottom, so `scale` pushes it below the card edge.
  */
 const HALF_BODY: Partial<Record<PresenceId, { position: string; scale: number }>> = {
+  athena: { position: "68% 0%", scale: 1.06 },
   hermes: { position: "100% 0%", scale: 1.06 },
   minotaur: { position: "73% 0%", scale: 1.06 },
   spine: { position: "85% 0%", scale: 1.06 },
