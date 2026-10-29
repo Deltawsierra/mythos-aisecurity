@@ -36,6 +36,8 @@ export interface CharacterMedia {
   crop: MediaCrop;
   /** Where the face sits in the poster (% of width/height) and how far to zoom for a portrait medallion. */
   face: { x: number; y: number; zoom: number };
+  /** A ready-cropped square face (owner art, 28 Oct), used instead of `face` on the poster. */
+  medallion?: string;
 }
 
 export interface TeamMedia {
@@ -103,7 +105,8 @@ const LAYERED: Record<string, readonly number[]> = {
   "scenes/economic-exposure": [11, 18, 32],
   "scenes/evidence": [11, 18, 32],
   "scenes/continuous-assurance": [11, 32],
-  "scenes/hermes": [11, 18, 32],
+  // The front layer was the painted flying Hermes; the page now stands his full-length figure instead.
+  "scenes/hermes": [11, 18],
   "scenes/athena": [11, 32],
   "scenes/resources": [11, 32],
   "scenes/company": [11, 18, 32],
@@ -161,8 +164,8 @@ export function scenePlanes(scene: SceneArt, position: string): HeroPlane[] {
  * Final art collection (27 Oct 2026), approved in the art review: flattened
  * scene composites (declared ~1.6x upscales) at 1920x1080 with the studio's
  * own phone compositions, layered for desktop parallax where LAYERED lists
- * them. Achilles, Hermes and Athena are painted into their scenes, so those
- * pages drop their separate figures.
+ * them. Achilles and Athena are painted into their scenes, so those pages
+ * drop their separate figures; Hermes now stands as a separate figure.
  */
 export const SCENES = {
   platform: art("scenes", "platform"),
@@ -172,7 +175,8 @@ export const SCENES = {
   economicExposure: art("scenes", "economic-exposure"),
   evidence: art("scenes", "evidence"),
   continuousAssurance: art("scenes", "continuous-assurance"),
-  hermes: art("scenes", "hermes"),
+  // Flat tablet and phone art rebuilt from the two clean layers, without the painted Hermes.
+  hermes: { ...art("scenes", "hermes"), src: "/assets/scenes/hermes-clean-hero.webp", phone: "/assets/scenes/hermes-clean-phone.webp" },
   athena: art("scenes", "athena"),
   resources: art("scenes", "resources"),
   solutionsHub: art("scenes", "solutions-hub"),
@@ -289,6 +293,7 @@ export const CHARACTER_MEDIA: Record<ProjectId, CharacterMedia> = {
     emblem: "/assets/characters/emblems/spine-emblem.svg",
     crop: { left: 3.5, top: 1.5 },
     face: { x: 52, y: 19, zoom: 3.2 },
+    medallion: "/assets/characters/medallions/spine.webp",
   },
   achilles: {
     poster: poster("/assets/characters/achilles-poster.webp", 643, 1164),
@@ -300,6 +305,7 @@ export const CHARACTER_MEDIA: Record<ProjectId, CharacterMedia> = {
     poster: poster("/assets/characters/minotaur-poster.webp", 631, 1164),
     crop: { left: 5.5, top: 2 },
     face: { x: 64, y: 22, zoom: 3 },
+    medallion: "/assets/characters/medallions/minotaur.webp",
   },
   hermes: {
     poster: poster("/assets/characters/hermes-poster.webp", 655, 1164),
@@ -308,7 +314,21 @@ export const CHARACTER_MEDIA: Record<ProjectId, CharacterMedia> = {
     // His face is at the poster's right edge (~93% across), so the portrait
     // aligns right rather than centring it.
     face: { x: 100, y: 23, zoom: 3.4 },
+    medallion: "/assets/characters/medallions/hermes.webp",
   },
+};
+
+export type GuardianFigureId = "hermes" | "spine" | "minotaur";
+
+/**
+ * Full-length guardian cut-outs (owner art, 28 Oct; alpha, trimmed, metadata
+ * stripped): each stands in its own product page's hero. `small` is the
+ * 900px-tall rendition for phones.
+ */
+export const GUARDIAN_FIGURES: Record<GuardianFigureId, ImageAsset & { small: string }> = {
+  hermes: { ...poster("/assets/characters/full/hermes-full.webp", 976, 1439), small: "/assets/characters/full/hermes-full-900.webp" },
+  spine: { ...poster("/assets/characters/full/spine-full.webp", 954, 1523), small: "/assets/characters/full/spine-full-900.webp" },
+  minotaur: { ...poster("/assets/characters/full/minotaur-full.webp", 806, 1600), small: "/assets/characters/full/minotaur-full-900.webp" },
 };
 
 /** Team kit emblems (27 Oct): White, the "Ivory Evidence Oracle", serves the evaluator. */
@@ -326,7 +346,18 @@ export interface PresenceMedia {
   engaged: string;
   /** Opaque card-shaped backdrop painted behind the transparent figure. */
   backdrop: string;
+  /** A still with no matching loop yet: the card never plays idle/engaged. */
+  still?: boolean;
+  /** object-position for a still wider than the card. */
+  position?: string;
 }
+
+/**
+ * Owner half-body card art (28 Oct; 1122x1402 alpha, wider than the card).
+ * Their presence loops still show the earlier art, so these cards stay still
+ * until matching loops exist; `position` keeps each face and attribute in frame.
+ */
+const CARD_STILLS: Partial<Record<PresenceId, string>> = { hermes: "100% 0%", minotaur: "73% 0%", spine: "85% 0%" };
 
 /**
  * 27 Oct "Current Presence" loops: source-locked figures where only light, motes and trails
@@ -334,10 +365,11 @@ export interface PresenceMedia {
  * so they are only ever cropped further in, never shown wider.
  */
 export const presence = (id: PresenceId): PresenceMedia => ({
-  poster: `/assets/presence/${id}-poster.webp`,
+  poster: CARD_STILLS[id] ? `/assets/presence/${id}-card.webp` : `/assets/presence/${id}-poster.webp`,
   idle: `/assets/presence/${id}-idle.webm`,
   engaged: `/assets/presence/${id}-engaged.webm`,
   backdrop: id in CHARACTER_MEDIA ? `/assets/presence/${id}-backdrop.webp` : "/assets/presence/team-backdrop.webp",
+  ...(CARD_STILLS[id] && { still: true, position: CARD_STILLS[id] }),
 });
 
 /** The evaluator borrows White's art until it has its own. */

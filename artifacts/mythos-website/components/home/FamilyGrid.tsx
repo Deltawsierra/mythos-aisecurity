@@ -21,7 +21,8 @@ export function FamilyGrid() {
     <ul className="grid gap-x-4 gap-y-10 sm:grid-cols-2 lg:grid-cols-5" data-reveal-group>
       {HOME_FAMILY.products.map((item) => {
         const project = PROJECTS.find((p) => p.id === item.id)!;
-        const live = motion && hovered === item.id;
+        const media = presence(item.id);
+        const live = motion && hovered === item.id && !media.still;
         return (
           <li key={item.id}>
             <Link
@@ -33,7 +34,7 @@ export function FamilyGrid() {
               className="group block"
             >
               <span className="relative block aspect-[52/100] overflow-hidden border border-champagne/30 shadow-[0_30px_60px_-34px_rgba(0,0,0,0.9)] transition-[border-color,box-shadow,transform] duration-500 group-hover:-translate-y-1 group-hover:border-champagne/80 group-hover:shadow-[0_36px_70px_-30px_rgba(208,164,90,0.5)]">
-                <PresenceFigure media={presence(item.id)} state={live ? "engaged" : null} />
+                <PresenceFigure media={media} state={live ? "engaged" : null} position={media.position} />
                 <span aria-hidden="true" className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 55%, rgba(18,21,23,0.88) 100%)" }} />
                 {item.badge && (
                   <span className="absolute left-3 top-3 border border-champagne/50 bg-charcoal/75 px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.2em] text-champagne backdrop-blur-sm">

@@ -8,6 +8,7 @@ import { Accent } from "@/components/ui/Headline";
 import { PageMotion } from "@/components/motion/PageMotion";
 import { SectionIntro } from "@/components/sections/SectionIntro";
 import { ScenicHero } from "@/components/scenic/ScenicHero";
+import { GuardianFigure } from "@/components/scenic/GuardianFigure";
 import { Scene } from "@/components/scenic/Scene";
 import { ClosingVista } from "@/components/scenic/ClosingVista";
 import { PhysicalLoop } from "@/components/platform/PhysicalLoop";
@@ -60,6 +61,8 @@ export default function HermesPage() {
         primaryCta={{ label: "Discuss Physical AI Assurance", href: INQUIRY }}
         secondaryCta={{ label: "Explore the Platform", href: "/platform" }}
         planes={scenePlanes(SCENES.hermes, "60% 40%")}
+        figure={<GuardianFigure id="hermes" className="absolute bottom-[9%] right-[5%] h-[80%]" />}
+        mobileFigure={<GuardianFigure id="hermes" small className="relative mx-auto h-[46svh]" />}
         into="ivory"
       />
 

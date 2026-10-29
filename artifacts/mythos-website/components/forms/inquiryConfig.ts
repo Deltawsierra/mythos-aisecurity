@@ -1,13 +1,16 @@
 /**
- * Configuration for the Mythos contact inquiry flow (Phase 10G).
+ * Configuration for the Mythos contact inquiry flow (owner spec, 28 Oct).
  *
- * The contact form is a single controlled form whose selected `inquiryType`
- * drives the conditional fieldset, submit label, and confirmation copy. All of
- * that per-type content lives here so the form component stays readable.
+ * Each inquiry type loads its own short form: the questions, which are
+ * required, the main message prompt, the submit label and the confirmation.
+ * Name, email and optional phone are shared. A question with `showIf` appears
+ * only when another answer matches; a hidden question is neither required
+ * nor submitted. Answers are kept by field name, so switching types keeps
+ * whatever the visitor already typed (organization and message included).
  *
- * Every field posts to the single /api/inquiries endpoint with
- * `formType: "contact"`; the conditional field names below are accepted as
- * optional fields on the backend contact schema.
+ * Everything posts to /api/inquiries with `formType: "contact"`:
+ * `organization` and `message` travel as top-level fields and every other
+ * visible answer as a `details` question/answer pair.
  */
 
 export type InquiryValue =
@@ -19,41 +22,31 @@ export type InquiryValue =
   | "careers"
   | "general";
 
-export interface SelectField {
+export interface FormField {
+  /** State key and, for `organization`/`message`, the API field. */
   name: string;
   label: string;
-  placeholder: string;
-  options: string[];
-}
-
-export interface TextField {
-  name: string;
-  label: string;
+  kind: "text" | "url" | "textarea" | "select" | "radio" | "checkboxes" | "checkbox" | "date" | "time";
+  required?: boolean;
+  options?: string[];
   placeholder?: string;
-}
-
-export interface CheckboxField {
-  name: string;
-  /** Value submitted when checked (absent when unchecked). */
-  value: string;
-  label: string;
+  hint?: string;
+  /** Spans both columns (selects and short text sit two to a row otherwise). */
+  wide?: boolean;
+  /** Shown only when another field's answer is (anyOf) or is not (noneOf) one of these. */
+  showIf?: { field: string; anyOf?: string[]; noneOf?: string[] };
 }
 
 export interface InquiryDef {
   value: InquiryValue;
-  /** Selector title + submit-context label. */
+  /** Selector title. */
   label: string;
   /** Selector description. */
   description: string;
-  /** Conditional fieldset legend. */
-  detailsLegend: string;
-  /** Submit button label for this inquiry type. */
+  fields: FormField[];
   submitLabel: string;
   confirmHeading: string;
   confirmBody: string;
-  selects: SelectField[];
-  texts?: TextField[];
-  checkbox?: CheckboxField;
 }
 
 /** Maps a ?intent= query value to an inquiry type. */
@@ -70,303 +63,276 @@ export const INTENT_MAP: Record<string, InquiryValue> = {
   general: "general",
 };
 
-export const TIMELINE_OPTIONS = [
-  "As soon as possible",
-  "This month",
-  "This quarter",
-  "Exploring for later",
-  "Not sure yet",
-];
+const TIMEFRAME = ["As soon as possible", "Within a month", "Within a quarter", "Later this year", "Not sure"];
+
+const organization = (required: boolean): FormField => ({
+  name: "organization",
+  label: "Company / organization",
+  kind: "text",
+  required,
+  placeholder: required ? "Organization name" : "Optional",
+});
+
+const message = (label: string, required = true, placeholder?: string): FormField => ({
+  name: "message",
+  label,
+  kind: "textarea",
+  required,
+  wide: true,
+  placeholder,
+});
 
 export const INQUIRIES: InquiryDef[] = [
   {
     value: "assessment",
     label: "Request Assessment",
-    description:
-      "Start a scoped Mythos review for an AI assistant, agent, copilot, integration or workflow.",
-    detailsLegend: "Assessment details",
-    submitLabel: "Request Assessment",
+    description: "A scoped review of an AI assistant, agent, workflow or the system it runs in.",
+    fields: [
+      organization(true),
+      {
+        name: "assessTarget",
+        label: "What would you like assessed?",
+        kind: "select",
+        required: true,
+        options: ["AI assistant", "AI agent", "AI workflow / integration", "Business application / system", "Multiple systems", "Not sure"],
+      },
+      {
+        name: "stage",
+        label: "Current stage",
+        kind: "select",
+        required: true,
+        options: ["Planning", "Development", "Pilot", "Production", "Not sure"],
+      },
+      {
+        name: "agentAccess",
+        label: "What can it access or do?",
+        kind: "checkboxes",
+        wide: true,
+        options: ["Read data", "Change records", "Send messages", "Run code", "Not sure"],
+        showIf: { field: "assessTarget", anyOf: ["AI agent", "AI workflow / integration"] },
+      },
+      {
+        name: "testEnvironment",
+        label: "Is a separate testing environment available?",
+        kind: "radio",
+        wide: true,
+        options: ["Yes", "No", "Not sure"],
+        showIf: { field: "stage", anyOf: ["Production"] },
+      },
+      message("What does it do, and what would you like tested?", true, "A sentence or two is enough. Detailed inventory and scope come in the follow-up conversation."),
+      {
+        name: "concerns",
+        label: "Main concerns",
+        kind: "checkboxes",
+        wide: true,
+        options: ["Unauthorized access", "Data exposure", "Misuse of tools or actions", "Prompt injection", "Release readiness", "Other"],
+      },
+      {
+        name: "systemCount",
+        label: "Approximate number of systems or agents",
+        kind: "select",
+        options: ["1", "2–5", "6–20", "More than 20", "Not sure"],
+      },
+      { name: "timeframe", label: "Desired timeframe", kind: "select", options: TIMEFRAME },
+    ],
+    submitLabel: "Request an assessment",
     confirmHeading: "Assessment request received.",
     confirmBody:
-      "Mythos will review your inquiry and suggest a scoping conversation. Please don’t send credentials, code, logs or customer data — scope details are exchanged later under an agreement.",
-    selects: [
-      {
-        name: "aiSystemType",
-        label: "AI system type",
-        placeholder: "Select AI system type",
-        options: [
-          "Customer support AI agent",
-          "Internal knowledge / RAG assistant",
-          "AI agent with tools/actions",
-          "Regulated workflow assistant",
-          "Partner/vendor AI integration",
-          "Executive/employee copilot",
-          "Developer AI assistant",
-          "AI-powered decision support",
-          "Public sector / mission workflow",
-          "Data platform / cloud AI integration",
-          "Other / not sure",
-        ],
-      },
-      {
-        name: "deploymentStage",
-        label: "Deployment stage",
-        placeholder: "Select deployment stage",
-        options: [
-          "Idea / planning",
-          "Prototype",
-          "Internal sandbox",
-          "Staging",
-          "Limited pilot",
-          "Production",
-          "Expanding access",
-          "Post-incident / retest",
-          "Not sure",
-        ],
-      },
-      {
-        name: "primaryConcern",
-        label: "Primary concern",
-        placeholder: "Select primary concern",
-        options: [
-          "Data exposure",
-          "Prompt injection",
-          "Tool/action risk",
-          "RAG/retrieval boundaries",
-          "Model/provider route risk",
-          "Compliance / audit evidence",
-          "Vendor risk",
-          "Cloud/data platform access",
-          "Human approval / decision support",
-          "Not sure yet",
-        ],
-      },
-      {
-        name: "assessmentUrgency",
-        label: "Assessment urgency",
-        placeholder: "Select urgency",
-        options: [
-          "Immediate blocker",
-          "Before pilot",
-          "Before production",
-          "Before expanding access",
-          "After remediation",
-          "Exploratory",
-        ],
-      },
-    ],
-    checkbox: {
-      name: "ndaInterest",
-      value: "Can share more technical detail under NDA / scoped conversation",
-      label:
-        "I can share more technical detail under an appropriate NDA or scoped conversation.",
-    },
+      "Mythos will review what you sent and suggest a scoping conversation. Detailed systems, access and pricing scope are covered there, under an agreement where needed.",
   },
   {
     value: "demo",
     label: "Request Demo",
-    description:
-      "Request a private walkthrough of the Mythos assessment workflow, evidence outputs, and deployment decision path.",
-    detailsLegend: "Demo details",
-    submitLabel: "Request Demo",
-    confirmHeading: "Demo request received.",
-    confirmBody:
-      "Mythos will review your request and follow up about the appropriate walkthrough format.",
-    selects: [
+    description: "A private walkthrough of how an assessment runs and what it produces.",
+    fields: [
+      organization(true),
       {
-        name: "demoInterest",
-        label: "Demo interest",
-        placeholder: "Select demo interest",
-        options: [
-          "Athena assessment workflow",
-          "Achilles behavior validation",
-          "Use case walkthrough",
-          "Evidence pack / report outputs",
-          "Assessment process",
-          "Investor/product overview",
-          "Not sure",
-        ],
+        name: "demoFocus",
+        label: "What would you like to see?",
+        kind: "select",
+        required: true,
+        options: ["General overview", "Assessment process", "Findings and reports", "Remediation and retesting", "Other"],
       },
-      {
-        name: "demoAttendees",
-        label: "Who should attend",
-        placeholder: "Select attendees",
-        options: [
-          "Founder / executive",
-          "Security team",
-          "AI/product team",
-          "Engineering team",
-          "Compliance / risk team",
-          "Investor / partner team",
-          "Mixed group",
-        ],
-      },
-      {
-        name: "demoFormat",
-        label: "Preferred demo format",
-        placeholder: "Select format",
-        options: [
-          "Short intro walkthrough",
-          "Technical walkthrough",
-          "Executive overview",
-          "Investor overview",
-          "Not sure",
-        ],
-      },
+      { name: "jobTitle", label: "Job title", kind: "text", placeholder: "Optional" },
+      message("What are you hoping to learn?", false, "Optional"),
     ],
+    submitLabel: "Request a demo",
+    confirmHeading: "Demo request received.",
+    confirmBody: "Mythos will reply to arrange a walkthrough that covers what you asked to see.",
   },
   {
     value: "investor",
     label: "Investor Inquiry",
-    description:
-      "Start a conversation about the Mythos thesis, or ask what materials can be shared.",
-    detailsLegend: "Investor details",
-    submitLabel: "Request an Investor Conversation",
-    confirmHeading: "Investor inquiry received.",
-    confirmBody:
-      "Mythos will review your request and follow up about an introductory conversation. Please don’t send diligence files through this form.",
-    selects: [
+    description: "Start a conversation about the Mythos thesis.",
+    fields: [
       {
         name: "investorType",
         label: "Investor type",
-        placeholder: "Select investor type",
-        options: [
-          "VC / institutional investor",
-          "Angel investor",
-          "Strategic investor",
-          "Corporate venture",
-          "Family office",
-          "Other",
-        ],
+        kind: "select",
+        required: true,
+        options: ["Individual / angel", "Venture fund", "Corporate investor", "Family office", "Other"],
+      },
+      message("What would you like to discuss?"),
+      {
+        name: "firmName",
+        label: "Firm or fund name",
+        kind: "text",
+        placeholder: "Optional",
+        showIf: { field: "investorType", anyOf: ["Venture fund", "Corporate investor", "Family office", "Other"] },
       },
       {
-        name: "investorInterest",
-        label: "Interest",
-        placeholder: "Select interest",
-        options: [
-          "Investor materials",
-          "Intro call",
-          "Product roadmap",
-          "Market thesis",
-          "Strategic partnership",
-          "Other",
-        ],
+        name: "firmWebsite",
+        label: "Firm website",
+        kind: "url",
+        placeholder: "https://",
+        showIf: { field: "investorType", anyOf: ["Venture fund", "Corporate investor", "Family office", "Other"] },
       },
+      { name: "investmentFocus", label: "Investment focus or stage", kind: "text", placeholder: "Optional" },
+      { name: "introducedBy", label: "Who introduced you to Mythos?", kind: "text", placeholder: "Optional" },
     ],
-    texts: [
-      {
-        name: "fundName",
-        label: "Fund / firm name",
-        placeholder: "Fund or firm name",
-      },
-    ],
-    checkbox: {
-      name: "investorAck",
-      value: "Acknowledged — some information may be shared only after review",
-      label:
-        "I am requesting investor materials and understand some information may be shared only after appropriate review.",
-    },
+    submitLabel: "Send investor inquiry",
+    confirmHeading: "Investor inquiry received.",
+    confirmBody:
+      "Mythos will review your note and reply about an introductory conversation. Please don’t send financial documents through this form.",
   },
   {
     value: "partnership",
     label: "Partnership Inquiry",
-    description:
-      "Explore technical, channel, research, integration, or strategic partnership opportunities.",
-    detailsLegend: "Partnership details",
-    submitLabel: "Submit Partnership Inquiry",
-    confirmHeading: "Partnership inquiry received.",
-    confirmBody:
-      "Mythos will review the opportunity and determine the appropriate follow-up path.",
-    selects: [
+    description: "Technology, channel, research or strategic partnerships.",
+    fields: [
       {
         name: "partnershipType",
         label: "Partnership type",
-        placeholder: "Select partnership type",
-        options: [
-          "Technology integration",
-          "Cloud/data platform partnership",
-          "Compliance/GRC partnership",
-          "MSSP / consultancy channel",
-          "Research or standards collaboration",
-          "Insurance / broker evidence channel",
-          "Other",
-        ],
+        kind: "select",
+        required: true,
+        options: ["Technology / integration", "Channel / referral", "Research", "Strategic", "Other"],
       },
       {
-        name: "partnershipStage",
-        label: "Partnership stage",
-        placeholder: "Select partnership stage",
-        options: [
-          "Exploring",
-          "Specific opportunity",
-          "Existing customer need",
-          "Technical integration idea",
-          "Research concept",
-          "Other",
-        ],
+        name: "platform",
+        label: "Relevant platform or product",
+        kind: "text",
+        placeholder: "Optional",
+        showIf: { field: "partnershipType", anyOf: ["Technology / integration"] },
       },
+      {
+        name: "marketsServed",
+        label: "Customer types or markets served",
+        kind: "text",
+        placeholder: "Optional",
+        showIf: { field: "partnershipType", anyOf: ["Channel / referral"] },
+      },
+      {
+        name: "researchTopic",
+        label: "Research topic",
+        kind: "text",
+        placeholder: "Optional",
+        showIf: { field: "partnershipType", anyOf: ["Research"] },
+      },
+      {
+        name: "institution",
+        label: "Institution, if applicable",
+        kind: "text",
+        placeholder: "Optional",
+        showIf: { field: "partnershipType", anyOf: ["Research"] },
+      },
+      message("What partnership are you proposing?"),
+      organization(false),
+      { name: "orgWebsite", label: "Organization website", kind: "url", placeholder: "https://" },
+      { name: "projectLink", label: "Relevant product or project link", kind: "url", placeholder: "https://" },
+      { name: "timeframe", label: "Desired timeframe", kind: "select", options: TIMEFRAME },
     ],
+    submitLabel: "Discuss a partnership",
+    confirmHeading: "Partnership inquiry received.",
+    confirmBody: "Mythos will review the proposal and reply about the right next step.",
   },
   {
     value: "press",
     label: "Press Inquiry",
-    description: "Media requests — tell us your outlet, topic and deadline.",
-    detailsLegend: "Press details",
-    submitLabel: "Send Press Inquiry",
-    confirmHeading: "Press inquiry received.",
-    confirmBody:
-      "Mythos will review your request and reply to the address you gave. Please don’t send embargoed material through this form.",
-    selects: [
+    description: "Interviews, comment, company information or media assets.",
+    fields: [
+      { name: "independentJournalist", label: "I’m an independent journalist", kind: "checkbox", wide: true },
       {
-        name: "pressTopic",
-        label: "Topic",
-        placeholder: "Select a topic",
-        options: ["The company", "Products and approach", "AI assurance in general", "Speaking or events", "Other"],
+        name: "outlet",
+        label: "Publication / outlet",
+        kind: "text",
+        required: true,
+        placeholder: "Publication or outlet",
+        showIf: { field: "independentJournalist", noneOf: ["Yes"] },
+      },
+      {
+        name: "requestType",
+        label: "Request type",
+        kind: "select",
+        required: true,
+        options: ["Interview", "Comment or quote", "Company information", "Media assets", "Other"],
+      },
+      message("What is your story or request about?"),
+      { name: "profileLink", label: "Publication or professional profile link", kind: "url", placeholder: "https://" },
+      { name: "spokesperson", label: "Requested spokesperson", kind: "text", placeholder: "Optional" },
+      { name: "hasDeadline", label: "Do you have a deadline?", kind: "radio", wide: true, options: ["Yes", "No"] },
+      { name: "deadlineDate", label: "Deadline date", kind: "date", required: true, showIf: { field: "hasDeadline", anyOf: ["Yes"] } },
+      { name: "deadlineTime", label: "Time", kind: "time", showIf: { field: "hasDeadline", anyOf: ["Yes"] } },
+      {
+        name: "deadlineTimeZone",
+        label: "Time zone",
+        kind: "text",
+        placeholder: "e.g. ET, GMT+1",
+        showIf: { field: "hasDeadline", anyOf: ["Yes"] },
       },
     ],
-    texts: [{ name: "pressDeadline", label: "Deadline", placeholder: "When do you need a reply?" }],
+    submitLabel: "Send press inquiry",
+    confirmHeading: "Press inquiry received.",
+    confirmBody: "Mythos will reply to the address you gave, with your deadline in mind if you shared one.",
   },
   {
     value: "careers",
     label: "Careers",
-    description: "No roles are open right now — tell us what you would like to work on.",
-    detailsLegend: "Careers details",
-    submitLabel: "Send Note",
-    confirmHeading: "Note received.",
-    confirmBody:
-      "Thank you. There are no open roles right now; when one opens it will be listed on the Careers page with how to apply. Please don’t send a resume or ID documents.",
-    selects: [
+    description: "No roles are open right now. Tell us what you would like to work on.",
+    fields: [
       {
-        name: "careersInterest",
+        name: "careersArea",
         label: "Area of interest",
-        placeholder: "Select an area",
-        options: ["Engineering", "Research", "Security testing", "Product and design", "Go-to-market", "Other"],
+        kind: "select",
+        required: true,
+        options: ["Engineering", "AI / security research", "Product / design", "Operations", "Business development", "Other"],
       },
+      message("What would you like to work on, and what relevant experience would you bring?"),
+      { name: "profileLink", label: "LinkedIn, portfolio or GitHub link", kind: "url", placeholder: "https://" },
+      { name: "location", label: "Location or time zone", kind: "text", placeholder: "Optional" },
     ],
+    submitLabel: "Express interest",
+    confirmHeading: "Thanks for your interest.",
+    confirmBody:
+      "There are no current openings, and this is not an application for a specific role. When a role opens, it will be listed on the Careers page with how to apply.",
   },
   {
     value: "general",
     label: "General Inquiry",
-    description: "Contact Mythos about another topic.",
-    detailsLegend: "General details",
-    submitLabel: "Submit Inquiry",
-    confirmHeading: "Inquiry received.",
-    confirmBody: "Mythos will review your message and follow up if appropriate.",
-    selects: [
-      {
-        name: "topic",
-        label: "Topic",
-        placeholder: "Select a topic",
-        options: [
-          "General question",
-          "Website issue",
-          "Other",
-        ],
-      },
+    description: "Anything else.",
+    fields: [
+      organization(false),
+      { name: "subject", label: "Subject", kind: "text", placeholder: "Optional" },
+      message("How can we help?"),
     ],
+    submitLabel: "Send message",
+    confirmHeading: "Message received.",
+    confirmBody: "Mythos will read your message and reply if a response is needed.",
   },
 ];
 
 export function getInquiry(value: InquiryValue): InquiryDef {
   return INQUIRIES.find((i) => i.value === value) ?? INQUIRIES[0];
+}
+
+export type FormValues = Record<string, string | string[]>;
+
+/** Whether a field is shown for the current answers. */
+export function isVisible(field: FormField, values: FormValues): boolean {
+  if (!field.showIf) return true;
+  const raw = values[field.showIf.field];
+  const answers = Array.isArray(raw) ? raw : raw ? [raw] : [];
+  const { anyOf, noneOf } = field.showIf;
+  if (anyOf && !answers.some((a) => anyOf.includes(a))) return false;
+  if (noneOf && answers.some((a) => noneOf.includes(a))) return false;
+  return true;
 }

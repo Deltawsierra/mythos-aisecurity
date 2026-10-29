@@ -8,6 +8,7 @@ import { PageMotion } from "@/components/motion/PageMotion";
 import { SectionIntro } from "@/components/sections/SectionIntro";
 import { NextLinks, type NextLink } from "@/components/sections/NextLinks";
 import { ScenicHero } from "@/components/scenic/ScenicHero";
+import { GuardianFigure } from "@/components/scenic/GuardianFigure";
 import { Scene } from "@/components/scenic/Scene";
 import { ClosingVista } from "@/components/scenic/ClosingVista";
 import { AssuranceGraph } from "@/components/platform/AssuranceGraph";
@@ -71,8 +72,13 @@ export default function SpinePage() {
         primaryCta={{ label: "Explore the Evidence Model", href: "#claims-title" }}
         secondaryCta={{ label: CTA.DEMO, href: CTA_LINKS.demo }}
         planes={scenePlanes(SCENES.spine, "40% 50%")}
-        figure={<CoreFigure className="absolute right-[8%] top-[16%] w-[min(34vw,32rem)]" />}
-        mobileFigure={<CoreFigure className="relative mx-auto w-64" />}
+        figure={
+          <>
+            <CoreFigure className="absolute right-[24%] top-[14%] w-[min(22vw,21rem)]" />
+            <GuardianFigure id="spine" className="absolute bottom-[8%] right-[4%] h-[80%]" />
+          </>
+        }
+        mobileFigure={<GuardianFigure id="spine" small className="relative mx-auto h-[46svh]" />}
         into="ivory"
       />
 

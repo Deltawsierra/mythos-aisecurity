@@ -9,7 +9,7 @@ import { NextLinks, type NextLink } from "@/components/sections/NextLinks";
 import { ScenicHero } from "@/components/scenic/ScenicHero";
 import { Scene } from "@/components/scenic/Scene";
 import { ClosingVista } from "@/components/scenic/ClosingVista";
-import { CharacterNiche } from "@/components/scenic/CharacterNiche";
+import { GuardianFigure } from "@/components/scenic/GuardianFigure";
 import { LabyrinthCriteria } from "@/components/platform/LabyrinthCriteria";
 import { SafeTwinCards } from "@/components/platform/SafeTwinCards";
 import { ValidityCard } from "@/components/platform/ValidityCard";
@@ -69,8 +69,8 @@ export default function ValidationPage() {
         primaryCta={{ label: "Read the Methodology", href: "#labyrinth-title" }}
         secondaryCta={{ label: "Explore SPINE", href: "/platform/spine" }}
         planes={scenePlanes(SCENES.minotaur, "60% 50%")}
-        figure={<CharacterNiche project="minotaur" glow={EMBER} className="absolute bottom-[33%] right-[9%] h-[50%]" />}
-        mobileFigure={<CharacterNiche project="minotaur" glow={EMBER} className="relative mx-auto h-[44svh]" />}
+        figure={<GuardianFigure id="minotaur" glow={EMBER} className="absolute bottom-[10%] right-[9%] h-[78%]" />}
+        mobileFigure={<GuardianFigure id="minotaur" glow={EMBER} small className="relative mx-auto h-[46svh]" />}
         into="ivory"
       />
 

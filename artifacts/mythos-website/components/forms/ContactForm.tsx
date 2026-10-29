@@ -9,8 +9,10 @@ import { INTENT_EVENT } from "@/lib/intent";
 import {
   INQUIRIES,
   INTENT_MAP,
-  TIMELINE_OPTIONS,
   getInquiry,
+  isVisible,
+  type FormField,
+  type FormValues,
   type InquiryValue,
 } from "@/components/forms/inquiryConfig";
 
@@ -47,10 +49,166 @@ const inputClass =
 const legendClass =
   "mb-4 w-full border-b border-rule pb-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-accent";
 
+const groupLegendClass = "mb-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-fg-muted";
+
 type SubmitStatus = "idle" | "submitting" | "success" | "error";
+
+/**
+ * Eases its height to fit its content, so switching inquiry types or revealing
+ * a conditional question never snaps the form's size. The inner padding
+ * (offset by a negative margin) keeps focus rings clear of the clipping edge.
+ */
+function AutoHeight({ children }: { children: React.ReactNode }) {
+  const innerRef = useRef<HTMLDivElement>(null);
+  const [height, setHeight] = useState<number>();
+
+  useEffect(() => {
+    const el = innerRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(() => setHeight(el.offsetHeight));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  return (
+    <div
+      style={{ height }}
+      className="-m-1 overflow-hidden transition-[height] duration-300 ease-out motion-reduce:transition-none"
+    >
+      <div ref={innerRef} className="p-1">
+        {children}
+      </div>
+    </div>
+  );
+}
+
+/** One configured question, controlled by the shared answers. */
+function InquiryField({
+  field,
+  value,
+  onChange,
+}: {
+  field: FormField;
+  value: string | string[] | undefined;
+  onChange: (next: string | string[]) => void;
+}) {
+  const id = `contact-${field.name}`;
+  const text = typeof value === "string" ? value : "";
+  const list = Array.isArray(value) ? value : [];
+  const span = field.wide || field.kind === "textarea" ? "sm:col-span-2" : undefined;
+
+  if (field.kind === "checkboxes" || field.kind === "radio") {
+    const multiple = field.kind === "checkboxes";
+    return (
+      <fieldset className={cn("m-0 min-w-0 border-0 p-0", span)}>
+        <legend className={groupLegendClass}>
+          {field.label}
+          {field.required && (
+            <span className="ml-1 text-accent" aria-hidden="true">
+              *
+            </span>
+          )}
+        </legend>
+        <div className="flex flex-wrap gap-2">
+          {field.options?.map((opt) => {
+            const checked = multiple ? list.includes(opt) : text === opt;
+            return (
+              <label
+                key={opt}
+                className={cn(
+                  "flex cursor-pointer items-center gap-2 border px-3 py-2 text-sm transition-colors duration-150 focus-within:ring-2 focus-within:ring-accent/50",
+                  checked ? "border-accent bg-panel text-fg" : "border-rule text-fg/90 hover:border-accent/50",
+                )}
+              >
+                <input
+                  type={multiple ? "checkbox" : "radio"}
+                  name={field.name}
+                  value={opt}
+                  checked={checked}
+                  required={!multiple && field.required}
+                  onChange={() =>
+                    onChange(multiple ? (checked ? list.filter((v) => v !== opt) : [...list, opt]) : opt)
+                  }
+                  className="h-3.5 w-3.5 accent-bronze"
+                />
+                {opt}
+              </label>
+            );
+          })}
+        </div>
+      </fieldset>
+    );
+  }
+
+  if (field.kind === "checkbox") {
+    return (
+      <label
+        htmlFor={id}
+        className={cn("flex cursor-pointer items-center gap-3 text-sm text-fg", span)}
+      >
+        <input
+          id={id}
+          type="checkbox"
+          name={field.name}
+          checked={text === "Yes"}
+          onChange={(e) => onChange(e.target.checked ? "Yes" : "")}
+          className="h-4 w-4 shrink-0 accent-bronze"
+        />
+        {field.label}
+      </label>
+    );
+  }
+
+  return (
+    <Field label={field.label} id={id} required={field.required} className={span}>
+      {field.kind === "select" ? (
+        <select
+          id={id}
+          name={field.name}
+          value={text}
+          required={field.required}
+          onChange={(e) => onChange(e.target.value)}
+          className={cn(inputClass, "cursor-pointer")}
+        >
+          <option value="">Select one</option>
+          {field.options?.map((opt) => (
+            <option key={opt} value={opt}>
+              {opt}
+            </option>
+          ))}
+        </select>
+      ) : field.kind === "textarea" ? (
+        <textarea
+          id={id}
+          name={field.name}
+          rows={4}
+          maxLength={5000}
+          value={text}
+          required={field.required}
+          placeholder={field.placeholder}
+          onChange={(e) => onChange(e.target.value)}
+          className={cn(inputClass, "resize-none")}
+        />
+      ) : (
+        <input
+          id={id}
+          type={field.kind}
+          name={field.name}
+          maxLength={500}
+          value={text}
+          required={field.required}
+          placeholder={field.placeholder}
+          onChange={(e) => onChange(e.target.value)}
+          className={inputClass}
+        />
+      )}
+    </Field>
+  );
+}
 
 export function ContactForm() {
   const [inquiryType, setInquiryType] = useState<InquiryValue>("assessment");
+  const [values, setValues] = useState<FormValues>({});
   const [status, setStatus] = useState<SubmitStatus>("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const statusRef = useRef<HTMLDivElement>(null);
@@ -58,6 +216,9 @@ export function ContactForm() {
   const renderedAtRef = useRef<number | null>(null);
 
   const def = getInquiry(inquiryType);
+  const visibleFields = def.fields.filter((f) => isVisible(f, values));
+  const setValue = (name: string, next: string | string[]) => setValues((v) => ({ ...v, [name]: next }));
+  const text = (name: string) => (typeof values[name] === "string" ? (values[name] as string) : "");
 
   /* Record mount time for the server-side submit-time spam check. Done in an
      effect so nothing time-dependent is rendered during SSR/hydration. */
@@ -99,20 +260,25 @@ export function ContactForm() {
     e.preventDefault();
     if (status === "submitting") return;
 
-    const formData = new FormData(e.currentTarget);
-    const payload: Record<string, unknown> = Object.fromEntries(
-      formData.entries(),
-    );
-
-    // Combine first/last name into the backend `name` field.
-    const first = String(payload.firstName ?? "").trim();
-    const last = String(payload.lastName ?? "").trim();
-    payload.name = [first, last].filter(Boolean).join(" ");
-    delete payload.firstName;
-    delete payload.lastName;
-
-    payload.formType = "contact";
-    payload.inquiryType = inquiryType;
+    // Only the questions this inquiry type shows are sent; hidden answers stay
+    // in the browser so switching back restores them.
+    const details: { label: string; value: string }[] = [];
+    const payload: Record<string, unknown> = {
+      formType: "contact",
+      inquiryType,
+      name: text("name").trim(),
+      email: text("email").trim(),
+      company_website_confirm: String(new FormData(e.currentTarget).get("company_website_confirm") ?? ""),
+    };
+    if (text("phone").trim()) payload.phone = text("phone").trim();
+    for (const field of visibleFields) {
+      const raw = values[field.name];
+      const answer = (Array.isArray(raw) ? raw.join(", ") : (raw ?? "")).trim();
+      if (!answer) continue;
+      if (field.name === "organization" || field.name === "message") payload[field.name] = answer;
+      else details.push({ label: field.label, value: answer });
+    }
+    if (details.length) payload.details = details;
     if (renderedAtRef.current != null) {
       payload.renderedAt = renderedAtRef.current;
     }
@@ -226,200 +392,73 @@ export function ContactForm() {
         </div>
       </fieldset>
 
-      {/* Shared required fields ────────────────────────────── */}
+      {/* Shared details: kept when the inquiry type changes ─── */}
       <fieldset className="m-0 min-w-0 border-0 p-0">
         <legend className={legendClass}>Your details</legend>
-        <div className="flex flex-col gap-5">
-          <div className="grid gap-5 sm:grid-cols-2">
-            <Field label="First name" id="contact-first" required>
-              <input
-                id="contact-first"
-                type="text"
-                name="firstName"
-                autoComplete="given-name"
-                placeholder="First name"
-                required
-                className={inputClass}
-              />
-            </Field>
-            <Field label="Last name" id="contact-last" required>
-              <input
-                id="contact-last"
-                type="text"
-                name="lastName"
-                autoComplete="family-name"
-                placeholder="Last name"
-                required
-                className={inputClass}
-              />
-            </Field>
-          </div>
-
-          <div className="grid gap-5 sm:grid-cols-2">
-            <Field label="Work email" id="contact-email" required>
-              <input
-                id="contact-email"
-                type="email"
-                name="email"
-                autoComplete="email"
-                placeholder="you@organization.com"
-                required
-                className={inputClass}
-              />
-            </Field>
-            <Field label="Phone" id="contact-phone">
-              <input
-                id="contact-phone"
-                type="tel"
-                name="phone"
-                autoComplete="tel"
-                placeholder="Optional"
-                className={inputClass}
-              />
-            </Field>
-          </div>
-
-          <div className="grid gap-5 sm:grid-cols-2">
-            <Field label="Company / organization" id="contact-org" required>
-              <input
-                id="contact-org"
-                type="text"
-                name="organization"
-                autoComplete="organization"
-                placeholder="Organization name"
-                required
-                className={inputClass}
-              />
-            </Field>
-            <Field label="Role / title" id="contact-role" required>
-              <input
-                id="contact-role"
-                type="text"
-                name="role"
-                autoComplete="organization-title"
-                placeholder="Your role or title"
-                required
-                className={inputClass}
-              />
-            </Field>
-          </div>
-        </div>
-      </fieldset>
-
-      {/* Conditional fields ────────────────────────────────── */}
-      <fieldset className="m-0 min-w-0 border-0 p-0">
-        <legend className={legendClass}>{def.detailsLegend}</legend>
-        <div className="flex flex-col gap-5">
-          <div className="grid gap-5 sm:grid-cols-2">
-            {def.selects.map((field) => (
-              <Field
-                key={field.name}
-                label={field.label}
-                id={`contact-${field.name}`}
-              >
-                <select
-                  id={`contact-${field.name}`}
-                  name={field.name}
-                  defaultValue=""
-                  className={cn(inputClass, "cursor-pointer")}
-                >
-                  <option value="">{field.placeholder}</option>
-                  {field.options.map((opt) => (
-                    <option key={opt} value={opt}>
-                      {opt}
-                    </option>
-                  ))}
-                </select>
-              </Field>
-            ))}
-
-            {def.texts?.map((field) => (
-              <Field
-                key={field.name}
-                label={field.label}
-                id={`contact-${field.name}`}
-              >
-                <input
-                  id={`contact-${field.name}`}
-                  type="text"
-                  name={field.name}
-                  placeholder={field.placeholder}
-                  className={inputClass}
-                />
-              </Field>
-            ))}
-          </div>
-
-          {def.checkbox && (
-            <label
-              htmlFor={`contact-${def.checkbox.name}`}
-              className="flex cursor-pointer items-start gap-3 border border-rule bg-panel p-4 focus-within:ring-2 focus-within:ring-accent/50 focus-within:ring-offset-2"
-            >
-              <input
-                id={`contact-${def.checkbox.name}`}
-                type="checkbox"
-                name={def.checkbox.name}
-                value={def.checkbox.value}
-                className="mt-0.5 h-4 w-4 shrink-0 accent-bronze"
-              />
-              <span className="text-sm leading-relaxed text-fg-muted">
-                {def.checkbox.label}
-              </span>
-            </label>
-          )}
-        </div>
-      </fieldset>
-
-      {/* Message + optional context ────────────────────────── */}
-      <fieldset className="m-0 min-w-0 border-0 p-0">
-        <legend className={legendClass}>Message</legend>
-        <div className="flex flex-col gap-5">
-          <Field label="Message" id="contact-message" required>
-            <textarea
-              id="contact-message"
-              name="message"
-              rows={4}
+        <div className="grid gap-5 sm:grid-cols-2">
+          <Field label="Full name" id="contact-name" required className="sm:col-span-2">
+            <input
+              id="contact-name"
+              type="text"
+              name="name"
+              autoComplete="name"
+              placeholder="Full name"
+              maxLength={200}
               required
-              placeholder="In a sentence or two: what kind of AI system, and what decision you need to make. No architecture details, credentials or data."
-              className={cn(inputClass, "resize-none")}
+              value={text("name")}
+              onChange={(e) => setValue("name", e.target.value)}
+              className={inputClass}
             />
           </Field>
-
-          <div className="grid gap-5 sm:grid-cols-2">
-            <Field label="Company website" id="contact-website">
-              <input
-                id="contact-website"
-                type="url"
-                name="website"
-                autoComplete="url"
-                placeholder="https://"
-                className={inputClass}
-              />
-            </Field>
-            <Field label="Preferred timeline" id="contact-timeline">
-              <select
-                id="contact-timeline"
-                name="timeline"
-                defaultValue=""
-                className={cn(inputClass, "cursor-pointer")}
-              >
-                <option value="">Select a timeline</option>
-                {TIMELINE_OPTIONS.map((t) => (
-                  <option key={t} value={t}>
-                    {t}
-                  </option>
-                ))}
-              </select>
-            </Field>
-          </div>
+          <Field label="Email" id="contact-email" required>
+            <input
+              id="contact-email"
+              type="email"
+              name="email"
+              autoComplete="email"
+              placeholder="you@example.com"
+              required
+              value={text("email")}
+              onChange={(e) => setValue("email", e.target.value)}
+              className={inputClass}
+            />
+          </Field>
+          <Field label="Phone" id="contact-phone">
+            <input
+              id="contact-phone"
+              type="tel"
+              name="phone"
+              autoComplete="tel"
+              placeholder="Optional"
+              value={text("phone")}
+              onChange={(e) => setValue("phone", e.target.value)}
+              className={inputClass}
+            />
+          </Field>
         </div>
+      </fieldset>
+
+      {/* This inquiry type's own questions ────────────────── */}
+      <fieldset className="m-0 min-w-0 border-0 p-0">
+        <legend className={legendClass}>About your request</legend>
+        <AutoHeight>
+          <div className="grid gap-5 sm:grid-cols-2">
+            {visibleFields.map((field) => (
+              <InquiryField
+                key={field.name}
+                field={field}
+                value={values[field.name]}
+                onChange={(next) => setValue(field.name, next)}
+              />
+            ))}
+          </div>
+        </AutoHeight>
       </fieldset>
 
       {/* Submit ───────────────────────────────────────────── */}
       <div className="border-t border-rule pt-6">
         <p className="mb-5 border-l-2 border-accent/40 pl-4 text-xs leading-relaxed text-fg-muted">
-          Do not submit secrets, credentials, regulated records, private customer
-          data, or sensitive production material through this form.
+          Please don’t include passwords, API keys, customer records, or confidential technical details.
         </p>
         {status === "error" && errorMessage && (
           <p

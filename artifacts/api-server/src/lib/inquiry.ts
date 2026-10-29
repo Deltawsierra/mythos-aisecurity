@@ -31,15 +31,34 @@ export const CONTACT_INQUIRY_TYPES = [
   "other",
 ] as const;
 
+/**
+ * Per-inquiry answers from the contact form, as question/answer pairs in the
+ * order the visitor saw them. Each inquiry type asks its own questions, so
+ * the form sends the labels it showed rather than the server knowing every
+ * field; hidden questions are never sent.
+ */
+const detailsField = z
+  .array(
+    z.object({
+      label: z.string().trim().min(1).max(160),
+      value: z.string().trim().min(1).max(2000),
+    }),
+  )
+  .max(30)
+  .optional();
+
 const contactSchema = z.object({
   formType: z.literal("contact"),
   ...metaFields,
   inquiryType: z.enum(CONTACT_INQUIRY_TYPES),
   name: shortText,
   email: emailField,
-  organization: shortText,
-  role: shortText,
-  message: longText.min(1),
+  // Only some inquiry types ask for an organization or role, and the form
+  // decides which free-text answer is required.
+  organization: optionalText,
+  role: optionalText,
+  message: longText.optional(),
+  details: detailsField,
   phone: optionalText,
   website: optionalText,
   companySize: optionalText,
@@ -255,6 +274,7 @@ function rows(data: InquiryInput): Array<[string, string]> {
       ["Area of interest", data.careersInterest],
       // General
       ["Topic", data.topic],
+      ...(data.details ?? []).map((d): [string, string] => [d.label, d.value]),
       ["Message", data.message],
     );
   }
@@ -277,7 +297,7 @@ export interface BuiltEmail {
 export function buildEmail(data: InquiryInput): BuiltEmail {
   const prefix = subjectPrefix(data);
   const org = data.formType === "investor" ? data.firm : data.organization;
-  const subject = oneLine(`${prefix} ${data.name} — ${org}`).slice(0, 200);
+  const subject = oneLine(`${prefix} ${data.name}${org ? ` — ${org}` : ""}`).slice(0, 200);
   const fieldRows = rows(data);
   const label = formLabel(data.formType);
 
