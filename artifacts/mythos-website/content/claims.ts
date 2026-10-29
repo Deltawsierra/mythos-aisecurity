@@ -603,7 +603,7 @@ export const CLAIMS: Claim[] = [
   },
   {
     id: "company.author-named",
-    text: "David Smith, Co-founder and Chief Operations Officer: leads product direction, software architecture, development and AI research; full-stack and enterprise applications for insurance, municipal government and growing businesses (role-based access, audit trails, data governance); shaped Athena and Achilles and built assessment dashboards and reporting; Computer Science degree; disabled US Army veteran",
+    text: "David Smith, Co-founder and Chief Operating Officer: leads product direction, software architecture, development and AI research; full-stack and enterprise applications for insurance, municipal government and growing businesses (role-based access, audit trails, data governance); shaped Athena and Achilles and built assessment dashboards and reporting; Computer Science degree; disabled US Army veteran",
     status: "approved",
     source: "Owner ruling, 27 Oct 2026; owner-supplied bio and portrait, 28 Oct 2026",
     usedIn: ["/company", "/resources/how-to-red-team-ai-agents", "buyer packet p6"],

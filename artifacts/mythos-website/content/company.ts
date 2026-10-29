@@ -86,7 +86,7 @@ export const COMPANY = {
       },
       {
         name: "David Smith",
-        role: "Co-founder and Chief Operations Officer",
+        role: "Co-founder and Chief Operating Officer",
         focus: "Product direction, software architecture, development and AI research.",
         bio: "Full-stack engineer who has built enterprise applications for insurance organizations, municipal government and growing businesses, including role-based access, audit trails and data-governance workflows. Co-founded Mythos after seeing, through contract work, AI adoption outpace testing. Has shaped the architecture and product direction of Athena and Achilles, and built the assessment dashboards and reports that turn findings into remediation priorities. Holds a degree in Computer Science and is a disabled US Army veteran.",
         portrait: { src: "/assets/people/david-smith-480.webp", src2x: "/assets/people/david-smith-960.webp", width: 480, height: 600 },

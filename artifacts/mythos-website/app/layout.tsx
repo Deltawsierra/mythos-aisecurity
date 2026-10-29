@@ -52,7 +52,7 @@ const STRUCTURED_DATA = {
       email: "info@mythosaisecurity.com",
       founder: [
         { "@type": "Person", name: "Brendan Flanigan", jobTitle: "Co-founder and Chief Executive Officer" },
-        { "@type": "Person", name: "David Smith", jobTitle: "Co-founder and Chief Operations Officer" },
+        { "@type": "Person", name: "David Smith", jobTitle: "Co-founder and Chief Operating Officer" },
       ],
       description: "AI deployment assurance: mapping, testing and evidence for AI systems with real access and authority.",
     },

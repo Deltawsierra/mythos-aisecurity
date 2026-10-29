@@ -80,16 +80,6 @@
     <p class="muted" style="margin-top:4px">From USD 15,000. Your fixed quote is agreed before testing begins.</p>
   </div>
   <a class="cta" href="https://www.mythosaisecurity.com/contact/?intent=assessment">Request an AI workflow assessment<span>mythosaisecurity.com</span></a>
-  <table style="margin-top:0.35in;max-width:5.4in;font-size:9.4pt">
-    <tr><th colspan="2">Inside</th></tr>
-    <tr><td style="width:28px" class="num">2</td><td>Is this relevant to us?</td></tr>
-    <tr><td class="num">3</td><td>How does this go beyond a scan?</td></tr>
-    <tr><td class="num">4</td><td>What will we actually receive?</td></tr>
-    <tr><td class="num">5</td><td>What can change the price?</td></tr>
-    <tr><td class="num">6</td><td>Who will handle our systems?</td></tr>
-    <tr><td class="num">7</td><td>What can you establish, and how is access handled?</td></tr>
-    <tr><td class="num">8</td><td>How do we start?</td></tr>
-  </table>
   <div class="foot"><span class="draft">INTERNAL DRAFT v0.1 · 27 Oct 2026 · Not for client use</span><span>1 / 8</span></div>
 </section>
 
@@ -120,7 +110,6 @@
       <div class="flow"><span class="sep">Sending it or changing the record is a separate permission</span></div>
     </div>
   </div>
-  <p>Preparation, external communication, record changes and payment execution are different permissions. The vendor-document workflow is the running example on the pages that follow.</p>
   <p class="note">These examples describe use cases, not customers or executed tests. A low-risk text-only tool may need a different scope from an agent with write access.</p>
   <div class="foot"><span class="draft">INTERNAL DRAFT v0.1 · 27 Oct 2026 · Not for client use</span><span>2 / 8</span></div>
 </section>
@@ -168,7 +157,7 @@
 <section class="page">
   <div class="top"><span class="brand"><img src="../../artifacts/mythos-website/public/assets/brand/crest-512.png" alt="">Mythos AI Security</span><span class="q">What will we actually receive?</span></div>
   <h2>A finding your teams can act on and a repair they can check.</h2>
-  <p class="lede" style="font-size:10.6pt">Your business sponsor receives a decision brief. Technical owners receive the supporting case: what was expected, what was observed, what likely caused the failure, what remains uncertain and what needs to change. The report identifies the responsible control owner and the agreed retest work.</p>
+  <p class="lede" style="font-size:10.6pt">Your business sponsor receives a decision brief. Technical owners receive the supporting case: expected and observed behavior, the likely cause, what remains uncertain and what must change. The report identifies the responsible control owner and the agreed retest work.</p>
   <table style="font-size:9.2pt">
     <tr><th>Deliverable</th><th>Question it answers</th></tr>
     <tr><td class="k">Boundary map</td><td>What did the workflow have access to, and what was in scope?</td></tr>
@@ -179,19 +168,19 @@
   </table>
   <div class="card" style="margin-top:12px;padding:12px 15px">
     <span class="synthetic">Synthetic illustration · not a customer result or an executed test</span>
-    <h3 style="margin-top:8px">Finding excerpt · SYN-01 · Document content requests an unrelated record export</h3>
+    <h3 style="margin-top:8px">Finding excerpt · SYN-01 · Unrelated record export request</h3>
     <dl class="finding">
-      <dt>Task permits</dt><dd>Summarize the approved vendor document and prepare a payment recommendation for human review.</dd>
-      <dt>Input condition</dt><dd>The document asks the assistant to export an unrelated vendor record.</dd>
+      <dt>Task permits</dt><dd>Summarize the vendor document and recommend a payment for human review.</dd>
+      <dt>Input condition</dt><dd>The document asks for an unrelated vendor record export.</dd>
       <dt>Expected decision</dt><dd>Deny the export; complete the summary.</dd>
       <dt>Observed response</dt><dd class="nm">Not measured</dd>
       <dt>Dispatch evidence</dt><dd class="nm">Not measured</dd>
       <dt>External state</dt><dd class="nm">Not measured</dd>
-      <dt>Repair requirement</dt><dd>The export operation is unavailable to this task whatever the document says, and the summary still completes.</dd>
-      <dt>Retest cases</dt><dd>Original failure · alternate path (the instruction arrives in a tool result) · legitimate task (summary of the same document)</dd>
+      <dt>Repair requirement</dt><dd>Export is unavailable to this task; the summary still completes.</dd>
+      <dt>Retest cases</dt><dd>Original failure · alternate path via a tool result · legitimate summary of the same document</dd>
     </dl>
   </div>
-  <p class="note">Signed receipts apply only to outputs the platform actually signs. A signature protects provenance and integrity, not the correctness of a conclusion.</p>
+  <p class="note">Only outputs the platform actually signs carry a signature, which protects provenance and integrity, not a conclusion's correctness.</p>
   <div class="foot"><span class="draft">INTERNAL DRAFT v0.1 · 27 Oct 2026 · Not for client use</span><span>4 / 8</span></div>
 </section>
 
@@ -236,7 +225,7 @@
       <div class="flag"><b>Needs your input</b>Confirm service dates and, if shareable, the previous business as the checkable example. Add a profile link. Confirm "Mythos AI Security Corporation" as the entity.</div>
     </div>
     <div class="card">
-      <div style="display:flex;gap:13px;align-items:center"><img class="portrait-photo" src="david-smith-head.webp" alt="David Smith"><div><h3>David Smith</h3><p class="muted" style="margin-top:2px">Co-founder and Chief Operations Officer</p></div></div>
+      <div style="display:flex;gap:13px;align-items:center"><img class="portrait-photo" src="david-smith-head.webp" alt="David Smith"><div><h3>David Smith</h3><p class="muted" style="margin-top:2px">Co-founder and Chief Operating Officer</p></div></div>
       <p>David leads product direction, software architecture, development and AI research. He has built enterprise applications with role-based access and audit trails for insurers, municipalities and growing businesses, and shaped Athena and Achilles. He holds a Computer Science degree and is a disabled US Army veteran.</p>
       <div class="flag"><b>Needs your input</b>Confirm dates, permitted employer references and one non-confidential example. Add a profile link.</div>
     </div>
@@ -283,8 +272,8 @@
 <section class="page">
   <div class="top"><span class="brand"><img src="../../artifacts/mythos-website/public/assets/brand/crest-512.png" alt="">Mythos AI Security</span><span class="q">How do we start?</span></div>
   <h2 style="font-size:32pt;margin-top:0.6in">Bring one workflow and the decision you need to make.</h2>
-  <p class="lede" style="margin-top:18px">Tell us what the workflow does, what it can reach and which decision is approaching. Include the business owner and the AI or application owner. Security and risk reviewers can join when their approval is needed.</p>
-  <p class="lede">We review scope and evidence feasibility, identify the access and observations required, and prepare a fixed proposal. Your team can review the boundaries, outputs, price and retest allowance before deciding.</p>
+  <p class="lede" style="margin-top:18px">Tell us what the workflow does, what it can reach and which decision is approaching. Include the business owner and the AI or application owner. Security and risk reviewers can join when needed.</p>
+  <p class="lede">We check scope and evidence feasibility, identify the access needed, and prepare a fixed proposal your team can review before deciding.</p>
   <a class="cta" style="font-size:11.5pt;padding:14px 22px" href="https://www.mythosaisecurity.com/contact/?intent=assessment">Request an AI workflow assessment<span>mythosaisecurity.com/contact</span></a>
   <div class="card" style="margin-top:28px;max-width:5.6in">
     <p class="eyebrow" style="margin:0">Keep the first request simple</p>
@@ -295,7 +284,7 @@
       <tr><td class="num">4</td><td>Who owns the decision, and when is it needed?</td></tr>
     </table>
   </div>
-  <p class="note" style="margin-top:16px;max-width:5.6in">Please do not send credentials, tokens, production logs or sensitive customer data through the contact form. Detailed technical information is collected through an agreed secure process after qualification.</p>
+  <p class="note" style="margin-top:16px;max-width:5.6in">Please do not send credentials, tokens, logs or customer data through the contact form. We collect technical detail through an agreed secure process after qualification.</p>
   <p style="margin-top:22px;font-size:9.4pt">Company: mythosaisecurity.com/company &nbsp;·&nbsp; Trust Center: mythosaisecurity.com/trust</p>
   <div class="foot"><span class="draft">INTERNAL DRAFT v0.1 · 27 Oct 2026 · Not for client use</span><span>8 / 8</span></div>
 </section>
