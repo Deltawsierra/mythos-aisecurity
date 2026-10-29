@@ -31,7 +31,7 @@ import { BACKDROPS, OLYMPUS_MEDIA, SCENES, scenePlanes } from "@/content/media";
 export const metadata: Metadata = {
   title: "Hermes: Physical AI Assurance",
   description:
-    "Hermes extends Mythos' evidence approach to vehicles, fleets and over-the-air updates. A scaffold today: every domain reads inconclusive.",
+    "Hermes extends Mythos AI Security's evidence approach to vehicles, fleets and over-the-air updates. A scaffold today: every domain reads inconclusive.",
   alternates: { canonical: "/platform/hermes/" },
   ...socialImage("platform-hermes", "Physical AI Deserves Better Evidence — Mythos AI Security"),
 };

@@ -19,7 +19,7 @@ export default function NotFound() {
           Back to Home
         </Button>
         <Button href="/contact" variant="secondary" size="lg">
-          Contact Mythos
+          Contact Mythos AI Security
         </Button>
       </div>
     </LostPath>

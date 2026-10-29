@@ -32,7 +32,7 @@ const QUOTE = { label: "Request a Scoped Quote", href: "/contact?intent=assessme
 const PROOF: NextLink[] = [
   { eyebrow: "Example Report", title: "A synthetic report, section by section", href: "/example-report" },
   { eyebrow: "How Engagement Starts", title: "From inquiry to evidence", href: "/engagement" },
-  { eyebrow: "AI Risk in Plain English", title: "Is Mythos right for us?", href: "/ai-risk-explained" },
+  { eyebrow: "AI Risk in Plain English", title: "Is Mythos AI Security right for us?", href: "/ai-risk-explained" },
 ];
 
 /** Pricing — the AI Workflow Assessment and Repair Retest. */

@@ -17,7 +17,7 @@ export const PLAIN_ENGLISH_PDF = "/assets/downloads/mythos-board-ai-risk-questio
 
 /** The three ways into the page, by time available. */
 export const READING_LEVELS = [
-  { time: "1 minute", title: "The short version", body: "What Mythos does and why it matters, in five points.", href: "#overview" },
+  { time: "1 minute", title: "The short version", body: "What Mythos AI Security does and why it matters, in five points.", href: "#overview" },
   { time: "5 minutes", title: "Find your situation", body: "Nine common situations, each answered the same way.", href: "#situations" },
   { time: "For the board", title: "Questions to ask", body: "Twelve questions and one sentence to take into the meeting.", href: "#board" },
 ] as const;
@@ -37,7 +37,7 @@ export const OVERVIEW = [
     body: "Attackers may use AI against your existing systems, even if your company does not use AI itself. It helps them find and exploit familiar weaknesses faster.",
   },
   {
-    title: "Mythos tests, with permission, and shows the evidence.",
+    title: "Mythos AI Security tests, with permission, and shows the evidence.",
     body: "We agree in writing what to test, test it in an authorized environment, and explain what happened in plain language, with the records behind it and a list of what we did not check.",
   },
   {
@@ -208,7 +208,7 @@ export const STEPS = [
   { title: "Agree on one workflow", body: "Choose the AI workflow or system that matters most, and agree in writing what may be tested, how and when." },
   { title: "Test it", body: "We test within those limits in an authorized environment. Testing can be paused or stopped at any point, and nothing in our system can block a stop." },
   { title: "Explain the findings", body: "In plain English for leaders, with the technical detail and records for your team." },
-  { title: "Your team makes changes", body: "You decide what to fix and how. Mythos does not change your systems." },
+  { title: "Your team makes changes", body: "You decide what to fix and how. Mythos AI Security does not change your systems." },
   { title: "Retest the agreed fixes", body: "We repeat the checks. A finding closes only when the retest shows the failure no longer happens under the tested conditions." },
   { title: "Record what remains open", body: "Anything not fixed, not tested or not measurable is written down, so management can assign an owner." },
 ] as const;
@@ -280,7 +280,7 @@ export const BUYER_QUESTIONS: PlainFaq[] = [
   },
   {
     q: "Who performs the fixes?",
-    a: "Your team, or a supplier you choose. Mythos does not change your systems. We retest the agreed fixes and record whether the failure still happens.",
+    a: "Your team, or a supplier you choose. Mythos AI Security does not change your systems. We retest the agreed fixes and record whether the failure still happens.",
   },
   {
     q: "If the tests find nothing, does that mean we are completely safe?",
@@ -289,7 +289,7 @@ export const BUYER_QUESTIONS: PlainFaq[] = [
   },
   {
     q: "Does this replace our security provider, or certify that we comply?",
-    a: "No to both. Keep your access controls, software updates, backups and incident plans, and keep your existing provider. Mythos adds focused testing. Findings can be mapped to recognized frameworks, such as NIST SP 800-53 and the OWASP Top 10, which gives your auditors evidence. It is not a certificate and does not establish compliance on its own.",
+    a: "No to both. Keep your access controls, software updates, backups and incident plans, and keep your existing provider. Mythos AI Security adds focused testing. Findings can be mapped to recognized frameworks, such as NIST SP 800-53 and the OWASP Top 10, which gives your auditors evidence. It is not a certificate and does not establish compliance on its own.",
     link: { label: "Standards & mapping", href: "/standards" },
   },
   {
@@ -337,6 +337,6 @@ export const SOURCES = [
 /** The three opening questions under the hero, each linked to its answer. */
 export const OPENERS = [
   { q: "Do you use AI?", a: "Know what it can reach and do.", href: "#situation-recent" },
-  { q: "Can your AI change records, send messages or make payments?", a: "Yes or unsure? Have Mythos test those limits.", href: "#situation-actions" },
+  { q: "Can your AI change records, send messages or make payments?", a: "Yes or unsure? Have Mythos AI Security test those limits.", href: "#situation-actions" },
   { q: "Are your systems ready for attackers using AI?", a: "If you do not know, start here, even without AI of your own.", href: "#situation-attackers" },
 ] as const;

@@ -72,7 +72,7 @@ function Block({ block }: { block: ArticleBlock }) {
     case "fits":
       return (
         <aside className="mt-7 border-l-2 border-antique-gold bg-panel px-5 py-4">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-accent">Where Mythos fits</p>
+          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-accent">Where Mythos AI Security fits</p>
           <p className="mt-1.5 text-[15px] leading-relaxed text-fg">
             <Inline text={block.text} />
           </p>

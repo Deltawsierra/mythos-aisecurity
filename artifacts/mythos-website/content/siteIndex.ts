@@ -13,7 +13,7 @@ export interface IndexedPage {
  */
 export const SITE_INDEX: IndexedPage[] = (() => {
   const seen = new Set<string>();
-  const out: IndexedPage[] = [{ label: "Home", href: "/", group: "Mythos" }];
+  const out: IndexedPage[] = [{ label: "Home", href: "/", group: "Mythos AI Security" }];
   for (const group of FOOTER_NAV) {
     for (const item of group.items) {
       const href = item.href.split("?")[0];

@@ -20,13 +20,13 @@ export const HERMES_COPY = {
   hero: {
     eyebrow: "Hermes · physical AI assurance",
     headline: "Physical AI Deserves *Better Evidence.*",
-    lede: "As AI moves beyond the screen, assurance must consider sensing, perception, planning, control, human interaction and system behavior in the physical world. Hermes extends the Mythos evidence philosophy toward these environments.",
+    lede: "As AI moves beyond the screen, assurance must consider sensing, perception, planning, control, human interaction and system behavior in the physical world. Hermes extends the Mythos AI Security evidence philosophy toward these environments.",
     scope: "Physical AI horizon · a scaffold today. Every domain returns inconclusive. Hermes never certifies a vehicle.",
   },
   status: {
     eyebrow: "Where Hermes stands",
     title: "An honest *starting point.*",
-    lede: "Hermes is the newest part of Mythos: the vehicle and fleet assurance engine, a scaffold today.",
+    lede: "Hermes is the newest part of Mythos AI Security: the vehicle and fleet assurance engine, a scaffold today.",
     today: [
       "Four questions — can it perceive, decide, fail and change safely — across twelve domains",
       "The job API, readiness report and failsafe are built and tested; a stand-down revokes the vehicle connector credential",
@@ -74,7 +74,7 @@ export const HERMES_COPY = {
   outline: {
     eyebrow: "Safety-case support",
     title: "Evidence your *safety team can use.*",
-    lede: "Mythos does not write or certify safety cases. An assessment would hand your safety and engineering teams structured evidence — scope, conditions, gaps and findings — to use in their own.",
+    lede: "Mythos AI Security does not write or certify safety cases. An assessment would hand your safety and engineering teams structured evidence — scope, conditions, gaps and findings — to use in their own.",
   },
 } as const;
 

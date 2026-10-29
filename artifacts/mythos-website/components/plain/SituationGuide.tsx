@@ -5,7 +5,7 @@ import { OpenOnHash } from "./OpenOnHash";
 const PARTS: { key: "meaning" | "example" | "examine" | "evidence"; label: string }[] = [
   { key: "meaning", label: "What this means" },
   { key: "example", label: "For example (made up)" },
-  { key: "examine", label: "What Mythos would examine" },
+  { key: "examine", label: "What Mythos AI Security would examine" },
   { key: "evidence", label: "What you receive" },
 ];
 

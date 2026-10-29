@@ -21,7 +21,7 @@ import type { UseCaseContent } from "@/components/use-cases/types";
 import { OLYMPUS_MEDIA, USE_CASE_ART, scenePlanes } from "@/content/media";
 
 const LEDE =
-  "Mythos evaluates the authorized scope, actual pathways and relevant behaviors of this AI workflow, then records what was observed, what remains uncertain and what should be retested when the system changes.";
+  "Mythos AI Security evaluates the authorized scope, actual pathways and relevant behaviors of this AI workflow, then records what was observed, what remains uncertain and what should be retested when the system changes.";
 
 const sun = { src: OLYMPUS_MEDIA.sunbeams, className: "-inset-[3%]", blend: "screen" as const, opacity: 0.45, position: "100% 0%", depth: 10 };
 /** G6 use-case plate n (0-based), with its phone composition; the headline sits on the quiet left wall. */
@@ -37,7 +37,7 @@ const LIBRARY: UseCaseContent[] = [
     title: "Customer Support AI Agent",
     seoTitle: "Testing a Customer Support AI Agent",
     metaDescription:
-      "Can a support agent reach only the customer records and actions it is authorized to use? How Mythos maps, tests and keeps evidence for support AI.",
+      "Can a support agent reach only the customer records and actions it is authorized to use? How Mythos AI Security maps, tests and keeps evidence for support AI.",
     question: "Can a support agent reach only the customer records and *actions it is authorized to use?*",
     lede: LEDE,
     image: "/assets/athena/athena-identity.webp",
@@ -117,7 +117,7 @@ const LIBRARY: UseCaseContent[] = [
     title: "Internal Knowledge / RAG Assistant",
     seoTitle: "RAG Assistant Permission Testing",
     metaDescription:
-      "Will an internal RAG assistant respect source permissions when retrieval and prompts combine? How Mythos tests retrieval boundaries and keeps evidence.",
+      "Will an internal RAG assistant respect source permissions when retrieval and prompts combine? How Mythos AI Security tests retrieval boundaries and keeps evidence.",
     question: "Will an internal assistant respect source permissions when *retrieval and prompts combine?*",
     lede: LEDE,
     image: "/assets/athena/athena-data-lifecycle.webp",
@@ -195,7 +195,7 @@ const LIBRARY: UseCaseContent[] = [
     title: "AI Agent With Tools and Actions",
     seoTitle: "AI Agent Tool & Action Testing",
     metaDescription:
-      "Can an AI agent perform a harmful action despite apparently approved tool permissions? How Mythos tests tool authority, approvals and observed effects.",
+      "Can an AI agent perform a harmful action despite apparently approved tool permissions? How Mythos AI Security tests tool authority, approvals and observed effects.",
     question: "Can an AI agent cause a harmful action despite *apparently approved permissions?*",
     lede: LEDE,
     image: "/assets/athena/athena-routes.webp",
@@ -271,7 +271,7 @@ const LIBRARY: UseCaseContent[] = [
     title: "Regulated Workflow Assistant",
     seoTitle: "Evidence for Regulated AI Workflows",
     metaDescription:
-      "Can evidence support a controlled, human-reviewed AI workflow? Mythos records what was tested, what is vendor-asserted and what was not measured.",
+      "Can evidence support a controlled, human-reviewed AI workflow? Mythos AI Security records what was tested, what is vendor-asserted and what was not measured.",
     question: "Can evidence support a controlled, *human-reviewed AI workflow?*",
     lede: LEDE,
     image: "/assets/evidence/policy-authority-chain.svg",
@@ -346,7 +346,7 @@ const LIBRARY: UseCaseContent[] = [
     title: "Partner / Vendor AI Integration",
     seoTitle: "Third-Party AI Vendor Risk Testing",
     metaDescription:
-      "What can a third-party AI tool reach once connected? How Mythos separates vendor claims from observed evidence and retests after vendor changes.",
+      "What can a third-party AI tool reach once connected? How Mythos AI Security separates vendor claims from observed evidence and retests after vendor changes.",
     question: "What is the effective exposure of a third-party AI tool *once it is connected?*",
     lede: LEDE,
     image: "/assets/athena/athena-surfaces.webp",
@@ -420,7 +420,7 @@ const LIBRARY: UseCaseContent[] = [
     title: "Executive / Employee Copilot",
     seoTitle: "Enterprise Copilot Access Testing",
     metaDescription:
-      "What private context or delegated authority could an enterprise copilot expose? How Mythos assesses copilot reach through permissions and test accounts.",
+      "What private context or delegated authority could an enterprise copilot expose? How Mythos AI Security assesses copilot reach through permissions and test accounts.",
     question: "What private context or delegated authority could *an enterprise copilot expose?*",
     lede: LEDE,
     image: "/assets/athena/athena-personal-context.webp",
@@ -481,7 +481,7 @@ const LIBRARY: UseCaseContent[] = [
     limits: {
       title: "What this *does not cover.*",
       items: [
-        "Mythos does not read anyone’s mail or meetings.",
+        "Mythos AI Security does not read anyone’s mail or meetings.",
         "It does not find all oversharing — only what the scope and test accounts reach.",
         "It works from permissions and test accounts, not message content.",
       ],
@@ -494,7 +494,7 @@ const LIBRARY: UseCaseContent[] = [
     title: "Developer AI Assistant",
     seoTitle: "Coding Agent & AI Assistant Testing",
     metaDescription:
-      "Can generated code or an agentic commit weaken production controls? How Mythos tests coding agents' boundaries in disposable repositories and pipelines.",
+      "Can generated code or an agentic commit weaken production controls? How Mythos AI Security tests coding agents' boundaries in disposable repositories and pipelines.",
     question: "Can generated code or an agentic commit *weaken production controls?*",
     lede: LEDE,
     image: "/assets/athena/athena-pipeline.webp",
@@ -525,7 +525,7 @@ const LIBRARY: UseCaseContent[] = [
     },
     approach: {
       title: "In a disposable *environment.*",
-      lede: "A throwaway repository and pipeline with no production secrets. Mythos does not replace code review or code scanners.",
+      lede: "A throwaway repository and pipeline with no production secrets. Mythos AI Security does not replace code review or code scanners.",
       athena: ["Routes and the AI-BOM behind the assistant", "Secret-leak and software-composition checks on services in scope", "Where code and secrets can travel"],
       achilles: ["Output reaching a parser, query or command", "Instructions planted in repository content", "Tool misuse around commits and pipeline steps"],
       spine: ["Claims tied to the pipeline configuration tested", "A changed workflow file reopens them", "Findings dispatch to GitHub or Jira"],
@@ -556,7 +556,7 @@ const LIBRARY: UseCaseContent[] = [
       title: "What this *does not cover.*",
       items: [
         "Code quality and secure-coding review are not part of it.",
-        "Mythos does not collect repository or pipeline posture; it tests what is in scope.",
+        "Mythos AI Security does not collect repository or pipeline posture; it tests what is in scope.",
         "It complements code scanners and review — it does not replace them.",
       ],
     },
@@ -568,7 +568,7 @@ const LIBRARY: UseCaseContent[] = [
     title: "AI-Powered Decision Support",
     seoTitle: "AI Decision Support Boundary Testing",
     metaDescription:
-      "Can an AI recommendation cross into unauthorized execution? How Mythos tests where recommendation becomes action and keeps human decisions on record.",
+      "Can an AI recommendation cross into unauthorized execution? How Mythos AI Security tests where recommendation becomes action and keeps human decisions on record.",
     question: "Can an AI recommendation cross the boundary *into unauthorized execution?*",
     lede: LEDE,
     image: "/assets/athena/athena-remediation.webp",
@@ -630,7 +630,7 @@ const LIBRARY: UseCaseContent[] = [
       title: "What this *does not cover.*",
       items: [
         "Not a bias, fairness or lawfulness audit — partner with specialists for that.",
-        "Mythos is not an independent auditor.",
+        "Mythos AI Security is not an independent auditor.",
         "Business-impact figures are never presented as realized losses.",
       ],
     },
@@ -673,7 +673,7 @@ const LIBRARY: UseCaseContent[] = [
     },
     approach: {
       title: "Acceptance and *change evidence.*",
-      lede: "Usually alongside your integrator. Mythos is not an authorizing official and grants no authorization.",
+      lede: "Usually alongside your integrator. Mythos AI Security is not an authorizing official and grants no authorization.",
       athena: ["Effective access per role, from the configuration supplied", "Findings mapped to DoD Zero Trust and NIST SP 800-53"],
       achilles: ["Restricted-record access by the wrong role", "Retrieval leakage across case boundaries"],
       spine: ["Acceptance evidence bound to an exact configuration", "Changes after acceptance reopen the affected claims", "Private and air-gapped deployment are not offered"],
@@ -704,7 +704,7 @@ const LIBRARY: UseCaseContent[] = [
       title: "What this *does not cover.*",
       items: [
         "No authority to operate, accreditation or government approval.",
-        "No work requiring a clearance Mythos does not hold.",
+        "No work requiring a clearance Mythos AI Security does not hold.",
         "Today: a hosted control plane with remote assessment of approved targets.",
       ],
     },
@@ -716,7 +716,7 @@ const LIBRARY: UseCaseContent[] = [
     title: "Data Platform / Cloud AI Integration",
     seoTitle: "Cloud & Data Platform AI Access Mapping",
     metaDescription:
-      "Which service routes and credentials can AI workflows reach on a cloud data platform? How Mythos maps service identities and data boundaries.",
+      "Which service routes and credentials can AI workflows reach on a cloud data platform? How Mythos AI Security maps service identities and data boundaries.",
     question: "Which service routes and credentials can *model-and-data workflows reach?*",
     lede: LEDE,
     image: "/assets/athena/athena-cloud-posture.webp",
@@ -747,7 +747,7 @@ const LIBRARY: UseCaseContent[] = [
     },
     approach: {
       title: "Map the identities, *test the edges.*",
-      lede: "Mythos works from the identities and grants you supply; it does not collect them live.",
+      lede: "Mythos AI Security works from the identities and grants you supply; it does not collect them live.",
       athena: ["Effective access over the identities and grants supplied", "Data boundaries, routes and the AI-BOM", "Where logs and metadata enter model context"],
       achilles: ["Permission boundaries for the service identity", "Retrieval leakage across datasets"],
       spine: ["A new grant or data source reopens the claims", "What was not assessed reads Not measured, never green"],
@@ -795,7 +795,7 @@ const LIBRARY: UseCaseContent[] = [
     lede: "A strategic-horizon page. Hermes is a scaffold today: every domain returns inconclusive, so it is not a service available yet.",
     horizon: {
       label: "Strategic horizon",
-      guardrail: "Hermes is a scaffold with no customers, pilots or vehicle assessments. It never certifies a vehicle, and Mythos does not test live vehicles.",
+      guardrail: "Hermes is a scaffold with no customers, pilots or vehicle assessments. It never certifies a vehicle, and Mythos AI Security does not test live vehicles.",
     },
     image: "/assets/characters/emblems/hermes-emblem.svg",
     planes: useCasePlates(10),
@@ -894,7 +894,7 @@ const LIBRARY: UseCaseContent[] = [
     },
     approach: {
       title: "The machinery *that would apply.*",
-      lede: "General Mythos concepts — none of them assess quantum readiness.",
+      lede: "General Mythos AI Security concepts — none of them assess quantum readiness.",
       athena: ["Routes and provider profiles: where sensitive data travels"],
       achilles: ["No quantum-related testing exists"],
       spine: ["Declared versus verified evidence", "Unknowns recorded rather than assumed", "Change-triggered revalidation"],

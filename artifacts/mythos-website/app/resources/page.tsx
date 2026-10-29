@@ -13,7 +13,7 @@ import { OLYMPUS_MEDIA, SCENES, scenePlanes } from "@/content/media";
 export const metadata: Metadata = {
   title: "Resources: AI Assurance Library",
   description:
-    "A synthetic example report, deliverables, standards mapping, a glossary, use cases and how engagements work: the evidence and methods behind Mythos.",
+    "A synthetic example report, deliverables, standards mapping, a glossary, use cases and how engagements work: the evidence and methods behind Mythos AI Security.",
   alternates: { canonical: "/resources/" },
   ...socialImage("resources", "The Mythos Knowledge Archive — Mythos AI Security"),
 };
@@ -29,7 +29,7 @@ const SHELVES: { name: string; lede: string; items: { title: string; body: strin
     name: "Guides and checklists",
     lede: "Practical guidance, written and reviewed by the people building Mythos AI Security.",
     items: [
-      { title: "AI Risk, Explained in Plain English", body: "For readers with no technical background: nine common situations, what Mythos would examine, and twelve questions for the board.", href: "/ai-risk-explained", tag: "Start here" },
+      { title: "AI Risk, Explained in Plain English", body: "For readers with no technical background: nine common situations, what Mythos AI Security would examine, and twelve questions for the board.", href: "/ai-risk-explained", tag: "Start here" },
       { title: "Board Questions on AI Risk", body: "Twelve questions and one reusable sentence on one printable page. Free, no form.", href: "/assets/downloads/mythos-board-ai-risk-questions.pdf", tag: "PDF" },
       { title: "How to Red-Team an AI Agent", body: "What to test before an agent touches real systems: eight failure families, scoping, judging results and retesting.", href: "/resources/how-to-red-team-ai-agents", tag: "Guide" },
       { title: "Agent Red-Teaming Checklist", body: "The guide's eight steps on one printable page. Free, no form.", href: "/assets/downloads/mythos-ai-agent-red-teaming-checklist.pdf", tag: "PDF" },
@@ -42,7 +42,7 @@ const SHELVES: { name: string; lede: string; items: { title: string; body: strin
       { title: "Example Report", body: "A complete synthetic report for a fictional organization, section by section.", href: "/example-report", tag: "Synthetic" },
       { title: "Evidence & Receipts", body: "Inspect a synthetic receipt and the evidence behind a claim.", href: "/platform/evidence", tag: "Synthetic" },
       { title: "Continuous Assurance", body: "Watch a change set synthetic claims aside and plan a retest.", href: "/platform/continuous-assurance", tag: "Synthetic" },
-      { title: "What Mythos Produces", body: "Nine outputs, and how far along each one is.", href: "/outputs" },
+      { title: "What Mythos AI Security Produces", body: "Nine outputs, and how far along each one is.", href: "/outputs" },
     ],
   },
   {
@@ -51,7 +51,7 @@ const SHELVES: { name: string; lede: string; items: { title: string; body: strin
     items: [
       { title: "Standards & Control Mapping", body: "What is mapped, what is referenced and what is never certified.", href: "/standards" },
       { title: "AI Assurance Glossary", body: "Plain-English definitions, with planned things marked as planned.", href: "/glossary" },
-      { title: "Minotaur Methodology", body: "How Mythos tests its own methods.", href: "/platform/validation" },
+      { title: "Minotaur Methodology", body: "How Mythos AI Security tests its own methods.", href: "/platform/validation" },
       { title: "Trust Center", body: "Authorization, scope, evidence integrity and what is not built yet.", href: "/trust" },
     ],
   },
@@ -73,7 +73,7 @@ export default function ResourcesPage() {
     <PageMotion>
       <ScenicHero
         eyebrow="Resources"
-        headline="The Mythos *Knowledge Archive.*"
+        headline="The Mythos AI Security *Knowledge Archive.*"
         lede="Explore the evidence, methods and ideas behind assurance for operational AI."
         breadcrumbs={[{ label: "Home", href: "/" }]}
         current="Resources"

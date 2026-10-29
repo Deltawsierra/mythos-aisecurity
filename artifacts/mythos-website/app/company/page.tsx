@@ -16,7 +16,7 @@ import { BACKDROPS, OLYMPUS_MEDIA, SCENES, scenePlanes } from "@/content/media";
 export const metadata: Metadata = {
   title: "About Mythos: Principles & Products",
   description:
-    "Why Mythos exists, the principles behind its evidence, where each product stands today, and how Mythos works with the people it tests for.",
+    "Why Mythos AI Security exists, the principles behind its evidence, where each product stands today, and how Mythos AI Security works with the people it tests for.",
   alternates: { canonical: "/company/" },
   ...socialImage("company", "Built to Put Evidence Behind Ambition — Mythos AI Security"),
 };

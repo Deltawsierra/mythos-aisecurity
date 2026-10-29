@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "AI Assessment Deliverables & Outputs",
   description:
-    "The nine outputs of a Mythos engagement, from scope record and system map to receipts, retests and decision support, with how far along each one is.",
+    "The nine outputs of a Mythos AI Security engagement, from scope record and system map to receipts, retests and decision support, with how far along each one is.",
   alternates: { canonical: "/outputs/" },
   ...socialImage("outputs", "From Finding to Evidence to Decision — Mythos AI Security"),
 };
@@ -54,14 +54,14 @@ export default function OutputsPage() {
   return (
     <PageMotion>
       <ScenicHero
-        eyebrow="What Mythos Produces"
+        eyebrow="What Mythos AI Security Produces"
         headline="From Finding to Evidence *to Decision.*"
         lede="Every deliverable an AI assessment produces, what each one is for, and how far along it is today."
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Resources", href: "/resources" },
         ]}
-        current="What Mythos Produces"
+        current="What Mythos AI Security Produces"
         secondaryCta={{ label: "See the Example Report", href: "/example-report" }}
         planes={scenePlanes(SCENES.outputs, "55% 50%")}
         into="ivory"
@@ -123,7 +123,7 @@ export default function OutputsPage() {
             ]}
             visible={5}
             icon="/assets/evidence/deployment-decision-gate.svg"
-            footer="Synthetic example. Mythos recommends; accountable people decide."
+            footer="Synthetic example. Mythos AI Security recommends; accountable people decide."
           />
         </Container>
       </Scene>

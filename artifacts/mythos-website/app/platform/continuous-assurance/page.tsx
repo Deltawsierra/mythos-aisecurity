@@ -20,7 +20,7 @@ import { OLYMPUS_MEDIA, SCENES, scenePlanes } from "@/content/media";
 export const metadata: Metadata = {
   title: "Continuous AI Assurance & Revalidation",
   description:
-    "When an AI system's data, identity, model route, tools or policies change, Mythos finds the claims affected and targets the retest. No live monitoring.",
+    "When an AI system's data, identity, model route, tools or policies change, Mythos AI Security finds the claims affected and targets the retest. No live monitoring.",
   alternates: { canonical: "/platform/continuous-assurance/" },
   ...socialImage("platform-continuous-assurance", "When AI Changes, Your Evidence Should Respond — Mythos AI Security"),
 };

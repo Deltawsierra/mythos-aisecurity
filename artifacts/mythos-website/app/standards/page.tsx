@@ -13,7 +13,7 @@ import { BACKDROPS, OLYMPUS_MEDIA, SCENES, scenePlanes } from "@/content/media";
 export const metadata: Metadata = {
   title: "AI Control Mapping: NIST & OWASP LLM",
   description:
-    "Mythos findings map to NIST SP 800-53, OWASP Top 10, the OWASP LLM Top 10 and DoD Zero Trust. Where mapping ends and audit begins. Never a certificate.",
+    "Mythos AI Security findings map to NIST SP 800-53, OWASP Top 10, the OWASP LLM Top 10 and DoD Zero Trust. Where mapping ends and audit begins. Never a certificate.",
   alternates: { canonical: "/standards/" },
   ...socialImage("standards", "Mapped to Tests and Evidence — Never Certified — Mythos AI Security"),
 };
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 const LADDER = [
   { name: "Mapped", body: "Findings are tagged to the controls they touch, in four frameworks plus vertical packs. Evidence of gaps — self-reported, not audited.", Icon: Check, tone: "border-state-verified text-state-verified-ink" },
   { name: "Referenced", body: "Frameworks scoping draws on so evidence can support your own reviews. No mapping is claimed.", Icon: Minus, tone: "border-rule text-fg-muted" },
-  { name: "Certified", body: "Not offered. Mythos does not certify, attest or declare compliance with any framework.", Icon: Minus, tone: "border-state-contradicted text-state-contradicted-ink" },
+  { name: "Certified", body: "Not offered. Mythos AI Security does not certify, attest or declare compliance with any framework.", Icon: Minus, tone: "border-state-contradicted text-state-contradicted-ink" },
 ];
 
 const MAPPED = [
@@ -60,13 +60,13 @@ export default function StandardsPage() {
       <ScenicHero
         eyebrow="Standards & Control Mapping"
         headline="Mapped to Tests and Evidence — *Never Certified.*"
-        lede="How Mythos findings relate to security and AI frameworks, and exactly where mapping ends and audit responsibility begins."
+        lede="How Mythos AI Security findings relate to security and AI frameworks, and exactly where mapping ends and audit responsibility begins."
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Resources", href: "/resources" },
         ]}
         current="Standards"
-        secondaryCta={{ label: "What Mythos Produces", href: "/outputs" }}
+        secondaryCta={{ label: "What Mythos AI Security Produces", href: "/outputs" }}
         planes={scenePlanes(SCENES.standards, "55% 50%")}
         into="ivory"
       />
@@ -74,7 +74,7 @@ export default function StandardsPage() {
       {/* Ladder */}
       <section data-surface="ivory" aria-labelledby="ladder-title" className="pb-24 pt-10">
         <Container>
-          <SectionIntro id="ladder-title" eyebrow="Three different things" title={<Accent text="Mapping, reference, *certification.*" />} lede="Only the first is something Mythos does." caps />
+          <SectionIntro id="ladder-title" eyebrow="Three different things" title={<Accent text="Mapping, reference, *certification.*" />} lede="Only the first is something Mythos AI Security does." caps />
           <ol className="mt-12 grid gap-3 md:grid-cols-3" data-reveal-group>
             {LADDER.map(({ name, body, Icon, tone }) => (
               <li key={name} className="border border-rule bg-panel p-6">
@@ -95,7 +95,7 @@ export default function StandardsPage() {
           <div>
             <SectionIntro id="mapped-title" eyebrow="Mapping built" title={<Accent text="Four frameworks, *touched not satisfied.*" />} caps />
             <p className="mt-6 text-[15px] leading-relaxed text-fg-muted">
-              A mapped control is one a finding touches — never one Mythos marks as satisfied. The map is evidence of gaps, not a certificate. Separately, Minotaur maps
+              A mapped control is one a finding touches — never one Mythos AI Security marks as satisfied. The map is evidence of gaps, not a certificate. Separately, Minotaur maps
               its own benchmarks to 15 standards and 86 clauses, with no badges.
             </p>
           </div>
@@ -164,7 +164,7 @@ export default function StandardsPage() {
             <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-accent">Not listed, on purpose</p>
             <p className="mt-3 text-[15px] leading-relaxed text-fg">
               SOC 2, ISO/IEC 27001, PCI DSS, HIPAA, HITRUST, GDPR, CMMC and FedRAMP are not mapped. A supplier’s SOC 2 report can be recorded as a vendor-asserted claim,
-              which caps at supported — never as a Mythos result.
+              which caps at supported — never as a Mythos AI Security result.
             </p>
           </div>
         </Container>

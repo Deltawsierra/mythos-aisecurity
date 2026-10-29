@@ -254,7 +254,7 @@ export default function SpinePage() {
               <span className="block text-[10px] font-semibold uppercase tracking-[0.22em] text-champagne">Minotaur · validity</span>
               <span className="mt-1 block text-[15px] leading-relaxed text-fg">{c.teams.minotaur}</span>
               <span className="mt-2 inline-flex items-center gap-1.5 text-[13px] font-semibold text-champagne">
-                How Mythos validates itself
+                How Mythos AI Security validates itself
                 <ArrowRight size={13} aria-hidden="true" className="transition-transform group-hover:translate-x-0.5" />
               </span>
             </span>

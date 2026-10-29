@@ -24,7 +24,7 @@ export default function GlossaryPage() {
       <ScenicHero
         eyebrow="AI Assurance Glossary"
         headline="The Language of AI Assurance, *in Plain English.*"
-        lede="Definitions for the terms you will meet on this site and in a Mythos report. Where something is planned rather than built, the definition says so."
+        lede="Definitions for the terms you will meet on this site and in a Mythos AI Security report. Where something is planned rather than built, the definition says so."
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Resources", href: "/resources" },

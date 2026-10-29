@@ -206,7 +206,7 @@ export function CookieConsent() {
               Cookie settings
             </h2>
             <p className="mt-2 text-xs leading-relaxed text-fg-muted">
-              Choose which optional cookies Mythos may use. Necessary cookies are
+              Choose which optional cookies Mythos AI Security may use. Necessary cookies are
               always on. Read more in our{" "}
               <Link
                 href="/privacy"

@@ -68,7 +68,7 @@ export default function PrivacyPage() {
       <ScenicHero
         eyebrow="Legal"
         headline="Privacy & *Cookie Policy.*"
-        lede="How Mythos handles information submitted through this website, how cookies and analytics are used, and the choices you have."
+        lede="How Mythos AI Security handles information submitted through this website, how cookies and analytics are used, and the choices you have."
         breadcrumbs={[{ label: "Home", href: "/" }]}
         current="Privacy"
         primaryCta={{ label: "Contact Us", href: "/contact" }}

@@ -75,7 +75,7 @@ export function IndustryPage({ c }: { c: IndustryContent }) {
         className="pb-[clamp(10rem,15vw,15rem)] pt-[clamp(10rem,17vw,17rem)]"
       >
         <Container>
-          <SectionIntro id="capabilities-title" eyebrow="What Mythos does here" title={<Accent text={c.capabilities.title} />} lede={c.capabilities.lede} caps />
+          <SectionIntro id="capabilities-title" eyebrow="What Mythos AI Security does here" title={<Accent text={c.capabilities.title} />} lede={c.capabilities.lede} caps />
           <ul className="mt-12 grid gap-4 lg:grid-cols-3" data-reveal-group>
             {c.capabilities.items.map((cap) => (
               <li key={cap.product} className="flex flex-col border border-rule bg-panel p-6">
@@ -162,7 +162,7 @@ export function IndustryPage({ c }: { c: IndustryContent }) {
             </ul>
             <p className="mt-4 flex items-start gap-2 text-sm text-fg-muted">
               <BookOpenCheck size={16} aria-hidden="true" className="mt-0.5 shrink-0 text-accent" />
-              Evidence supports your reviews against these frameworks. Mythos does not certify compliance or issue attestations.
+              Evidence supports your reviews against these frameworks. Mythos AI Security does not certify compliance or issue attestations.
             </p>
           </div>
         </Container>

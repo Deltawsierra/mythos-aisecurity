@@ -134,14 +134,14 @@ export const SOLUTION_PAGES: SolutionPage[] = [
     navDescription: "Evidence that supports your customers' releases.",
     eyebrow: "Systems Integrators & AI Vendors",
     headline: "Evidence that travels with what you deliver.",
-    lede: "Use Mythos evidence to support customer releases, vendor-claim review, implementation validation and recurring customer assurance.",
+    lede: "Use Mythos AI Security evidence to support customer releases, vendor-claim review, implementation validation and recurring customer assurance.",
     startingPoint: "Release Assurance",
     built: true,
     plannedSections: [
       "Release and implementation validation",
       "Vendor-asserted versus verified evidence",
       "Recurring customer assurance",
-      "Partnering with Mythos",
+      "Partnering with Mythos AI Security",
     ],
   },
 ];

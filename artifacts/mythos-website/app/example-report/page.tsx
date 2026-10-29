@@ -46,14 +46,14 @@ export default function ExampleReportPage() {
       <ScenicHero
         eyebrow="Example Report"
         headline="See the Evidence Behind an AI *Deployment Decision.*"
-        lede="This synthetic sample shows the kinds of claims, findings, retest records and human-reviewed decisions a scoped Mythos engagement produces. No customer information is represented."
+        lede="This synthetic sample shows the kinds of claims, findings, retest records and human-reviewed decisions a scoped Mythos AI Security engagement produces. No customer information is represented."
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Resources", href: "/resources" },
         ]}
         current="Example Report"
         primaryCta={{ label: "Read the Report", href: "#cover" }}
-        secondaryCta={{ label: "What Mythos Produces", href: "/outputs" }}
+        secondaryCta={{ label: "What Mythos AI Security Produces", href: "/outputs" }}
         planes={[
           { src: "/assets/cta/cta-olympus-poster.avif", className: "-inset-[3%]", position: "60% 45%", depth: 6, priority: true },
           { src: OLYMPUS_MEDIA.sunbeams, className: "-inset-[3%]", blend: "screen", opacity: 0.4, position: "100% 0%", depth: 10 },
@@ -217,7 +217,7 @@ export default function ExampleReportPage() {
               </Part>
 
               <Part id="decision" n={9} title="Deployment decision">
-                <RecordCard kind="Deployment decision · synthetic" title="Servicing copilot — pilot release" rows={DECISION} icon="/assets/evidence/deployment-decision-gate.svg" footer="Mythos recommends; accountable people decide. A missing decision never reads as Ready." />
+                <RecordCard kind="Deployment decision · synthetic" title="Servicing copilot — pilot release" rows={DECISION} icon="/assets/evidence/deployment-decision-gate.svg" footer="Mythos AI Security recommends; accountable people decide. A missing decision never reads as Ready." />
               </Part>
 
               <Part id="appendix" n={10} title="Appendix">

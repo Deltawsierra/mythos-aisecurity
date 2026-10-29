@@ -348,7 +348,7 @@ export function ContactForm() {
 
       {/* Inquiry type selector ────────────────────────────── */}
       <fieldset className="m-0 min-w-0 border-0 p-0">
-        <legend className={legendClass}>How can Mythos help?</legend>
+        <legend className={legendClass}>How can Mythos AI Security help?</legend>
         <div
           role="radiogroup"
           aria-label="Inquiry type"
@@ -478,7 +478,7 @@ export function ContactForm() {
           {status === "submitting" ? "Sending…" : def.submitLabel}
         </Button>
         <p className="mt-3 text-xs text-fg-muted">
-          Inquiries are read by the Mythos team.
+          Inquiries are read by the Mythos AI Security team.
         </p>
       </div>
     </form>

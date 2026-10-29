@@ -16,7 +16,7 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Investors: The AI Assurance Layer",
   description:
-    "The thesis behind Mythos: deployment assurance as a category, one consequential workflow as the wedge, and evidence that survives change as the moat.",
+    "The thesis behind Mythos AI Security: deployment assurance as a category, one consequential workflow as the wedge, and evidence that survives change as the moat.",
   alternates: { canonical: "/investors/" },
   ...socialImage("investors", "Building the Assurance Layer for Operational AI — Mythos AI Security"),
 };
@@ -52,7 +52,7 @@ export default function InvestorsPage() {
               const ours = "ours" in item && item.ours;
               return (
                 <li key={item.name} className={cn("border p-6", ours ? "border-antique-gold bg-panel shadow-[0_30px_60px_-40px_rgba(22,26,28,0.55)]" : "border-rule")}>
-                  {ours && <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-accent">Where Mythos sits</span>}
+                  {ours && <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-accent">Where Mythos AI Security sits</span>}
                   <p className={cn("font-display text-2xl text-fg", ours && "mt-2")}>{item.name}</p>
                   <p className="mt-2 text-[15px] leading-relaxed text-fg-muted">{item.body}</p>
                 </li>
@@ -131,7 +131,7 @@ export default function InvestorsPage() {
         from="ivory"
         title="Talk to us *about the thesis.*"
         primary={CONVERSATION}
-        secondary={{ label: "About Mythos", href: "/company" }}
+        secondary={{ label: "About Mythos AI Security", href: "/company" }}
         vista="c"
       />
     </PageMotion>

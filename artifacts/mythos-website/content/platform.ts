@@ -13,14 +13,14 @@ import type { ProjectId } from "@/content/media";
 export const CANONICAL = {
   category: "AI Deployment Assurance",
   masterDescription:
-    "Mythos independently verifies what an AI system can access, what authority it has, how it behaves, what effects it can produce, what those effects could mean to the business, and whether the evidence supporting deployment is still valid.",
+    "Mythos AI Security independently verifies what an AI system can access, what authority it has, how it behaves, what effects it can produce, what those effects could mean to the business, and whether the evidence supporting deployment is still valid.",
   lifecycle: "Discover → Understand → Test → Prove → Revalidate",
   commercialUnit: "AI systems under assurance",
   evidencePhilosophy: "Unknown is better than false certainty.",
   remediationPhilosophy:
     "A fix is not complete until the original failure is retested.",
   decisionAuthority:
-    "Mythos provides evidence and decision support; customers retain final approval.",
+    "Mythos AI Security provides evidence and decision support; customers retain final approval.",
 } as const;
 
 export interface Project {
@@ -59,14 +59,14 @@ export const PROJECTS: Project[] = [
     id: "minotaur",
     name: "Minotaur",
     tagline: "Test Mythos",
-    role: "Validates Mythos' own methodology and release quality — the answer to who tests the tester.",
+    role: "Validates Mythos AI Security's own methodology and release quality — the answer to who tests the tester.",
     href: "/platform/validation",
   },
   {
     id: "hermes",
     name: "Hermes",
     tagline: "Assure Physical AI",
-    role: "Extends the Mythos assurance model into vehicles, fleets and other cyber-physical AI.",
+    role: "Extends the Mythos AI Security assurance model into vehicles, fleets and other cyber-physical AI.",
     href: "/platform/hermes",
   },
 ];
@@ -120,7 +120,7 @@ export const EVIDENCE_STATES: {
   meaning: string;
 }[] = [
   { id: "declared", name: "Declared", meaning: "Stated by the customer or a vendor; not yet observed." },
-  { id: "observed", name: "Observed", meaning: "Seen by Mythos in the running system." },
+  { id: "observed", name: "Observed", meaning: "Seen by Mythos AI Security in the running system." },
   { id: "verified", name: "Verified", meaning: "Confirmed by testing, with evidence behind it." },
   { id: "unknown", name: "Unknown", meaning: "Not enough evidence yet — never shown as a pass." },
   { id: "stale", name: "Stale", meaning: "Was verified, but a change means it must be revalidated." },
@@ -212,11 +212,11 @@ export const PLATFORM_PAGES: ScaffoldPage[] = [
     slug: "validation",
     href: "/platform/validation",
     built: true,
-    navLabel: "How Mythos Validates Itself",
+    navLabel: "How Mythos AI Security Validates Itself",
     navDescription: "Minotaur — who tests the tester.",
     eyebrow: "Minotaur",
     headline: "Who tests the tester?",
-    lede: "Athena tests the system. Achilles tests the AI. Minotaur tests Mythos — so our own results stay measurable, replayable and falsifiable.",
+    lede: "Athena tests the system. Achilles tests the AI. Minotaur tests Mythos AI Security — so our own results stay measurable, replayable and falsifiable.",
     plannedSections: [
       "Independent validation philosophy",
       "Validity Cards",
@@ -236,13 +236,13 @@ export const PLATFORM_PAGES: ScaffoldPage[] = [
     navDescription: "Assure Physical AI — vehicles, fleets and cyber-physical systems.",
     eyebrow: "Hermes",
     headline: "Assure Physical AI.",
-    lede: "Hermes extends the Mythos assurance model into vehicles, fleets and other cyber-physical AI, where a failure has physical consequences.",
+    lede: "Hermes extends the Mythos AI Security assurance model into vehicles, fleets and other cyber-physical AI, where a failure has physical consequences.",
     plannedSections: [
       "Why physical AI changes the consequence model",
       "Can it perceive, decide, fail and change safely?",
       "The current assurance foundation",
       "Domain architecture",
-      "How the Mythos model extends into Hermes",
+      "How the Mythos AI Security model extends into Hermes",
       "Physical and economic consequence",
       "Strategic partnerships",
     ],

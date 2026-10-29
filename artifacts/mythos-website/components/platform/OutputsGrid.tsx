@@ -32,7 +32,7 @@ export function OutputsGrid() {
         href="/outputs"
         className="group mt-8 inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.22em] text-accent transition-colors hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bronze/60"
       >
-        Everything Mythos produces
+        Everything Mythos AI Security produces
         <ArrowRight size={12} aria-hidden="true" className="transition-transform group-hover:translate-x-0.5" />
       </Link>
     </div>

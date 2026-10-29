@@ -23,7 +23,7 @@ export const EE_COPY = {
   chain: {
     eyebrow: "From evidence to consequence",
     title: "A verified effect, *followed to the business.*",
-    lede: "Exposure starts from something Mythos actually observed — never from a severity score with a dollar sign attached. Findings that enable the same loss cluster into one scenario, so nothing is counted twice. A scenario, not a forecast.",
+    lede: "Exposure starts from something Mythos AI Security actually observed — never from a severity score with a dollar sign attached. Findings that enable the same loss cluster into one scenario, so nothing is counted twice. A scenario, not a forecast.",
   },
   inputs: {
     eyebrow: "Inputs, sources and validity",
@@ -81,7 +81,7 @@ export const EE_SCENARIOS: ChainScenario[] = [
 
 export const EE_SOURCE_TYPES = [
   { name: "Customer provided", body: "Volumes, values and process facts you supply." },
-  { name: "Mythos observed", body: "Behavior and effects seen during testing." },
+  { name: "Mythos AI Security observed", body: "Behavior and effects seen during testing." },
   { name: "Calculated", body: "Derived from other inputs, with the method recorded." },
   { name: "Official public", body: "Published public statistics." },
   { name: "Industry benchmark", body: "Sector reference figures, used with care." },
@@ -197,7 +197,7 @@ export const EE_VALIDITY: RecordRow[] = [
 
 export const EE_FAQ = [
   {
-    q: "Does Mythos know what we would actually lose?",
+    q: "Does Mythos AI Security know what we would actually lose?",
     a: "No. Economic Exposure prices ranges under stated assumptions — P10, P50 and P90 from 100,000 seeded draws. It never predicts an exact loss, and it keeps single-event and annual loss apart.",
   },
   {
@@ -210,7 +210,7 @@ export const EE_FAQ = [
   },
   {
     q: "Where do the inputs come from?",
-    a: "From your data, what Mythos observed, public sources, benchmarks and named expert estimates — each labelled and graded. Public feeds are fixtures until keys and a licence review; breach figures are priors, never multipliers.",
+    a: "From your data, what Mythos AI Security observed, public sources, benchmarks and named expert estimates — each labelled and graded. Public feeds are fixtures until keys and a licence review; breach figures are priors, never multipliers.",
   },
   {
     q: "Can we trust a range that rests on estimates?",

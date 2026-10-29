@@ -46,7 +46,7 @@ export function ReportPreview() {
           style={{ transform: `rotate(${(i - 1) * 1.2}deg) translateY(${i === 1 ? -10 : 0}px)` }}
         >
           <div className="flex items-center justify-between border-b border-rule pb-2">
-            <span className="font-display text-sm uppercase tracking-[0.18em] text-fg">Mythos</span>
+            <span className="font-display text-sm uppercase tracking-[0.18em] text-fg">Mythos AI Security</span>
             <span className="border border-state-stale px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-[0.16em] text-state-stale-ink">
               Synthetic
             </span>

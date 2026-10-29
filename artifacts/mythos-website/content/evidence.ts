@@ -16,7 +16,7 @@ export const EVIDENCE_COPY = {
   hero: {
     eyebrow: "Evidence & Receipts",
     headline: "Proof You *Can Inspect.*",
-    lede: "A finding is useful when its scope, source, observed effect, version and decision context can be inspected. Mythos connects claims to the evidence needed to support or challenge them.",
+    lede: "A finding is useful when its scope, source, observed effect, version and decision context can be inspected. Mythos AI Security connects claims to the evidence needed to support or challenge them.",
   },
   problem: {
     eyebrow: "What you cannot safely assume",
@@ -130,7 +130,7 @@ export const EVIDENCE_CLAIMS: ExplorerClaim[] = [
 ];
 
 export const EVIDENCE_OUTPUTS = [
-  { name: "Assurance Receipt (signed)", status: "Available", body: "DSSE-signed; download it and verify offline, without asking Mythos." },
+  { name: "Assurance Receipt (signed)", status: "Available", body: "DSSE-signed; download it and verify offline, without asking Mythos AI Security." },
   { name: "Signed engine evidence packs", status: "Available", body: "Athena packs: Ed25519 with Merkle inclusion proofs, standalone verifier." },
   { name: "Findings dispatch", status: "Available", body: "To Jira, GitHub, ServiceNow and Splunk; a stop never waits on one." },
   { name: "Achilles evidence packs", status: "Available", body: "HMAC-anchored and redacted to content hashes in storage." },

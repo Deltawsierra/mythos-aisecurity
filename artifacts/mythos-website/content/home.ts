@@ -248,7 +248,7 @@ export const HOME_SECTORS = {
 export const HOME_PROOF = {
   eyebrow: "Buyer proof",
   headline: "Inspect the Evidence, *Not Just the Claim.*",
-  lede: "See what a Mythos review can produce: scope, findings, effect traces, claim status, remediation paths and decision support.",
+  lede: "See what a Mythos AI Security review can produce: scope, findings, effect traces, claim status, remediation paths and decision support.",
 } as const;
 
 /** H11 — the engagement path, from data/engagementSteps (titles shortened). */

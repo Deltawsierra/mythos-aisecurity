@@ -19,7 +19,7 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "AI Assurance Solutions by Industry",
   description:
-    "How Mythos applies AI assurance in financial services, healthcare, SaaS, regulated enterprise, the public sector, operations and partner delivery.",
+    "How Mythos AI Security applies AI assurance in financial services, healthcare, SaaS, regulated enterprise, the public sector, operations and partner delivery.",
   alternates: { canonical: "/solutions/" },
   ...socialImage("solutions", "AI Assurance for Real-World Impact — Mythos AI Security"),
 };
@@ -215,7 +215,7 @@ export default function SolutionsPage() {
             </ul>
             <p className="mt-4 flex items-start gap-2 text-sm text-fg-muted">
               <BookOpenCheck size={16} aria-hidden="true" className="mt-0.5 shrink-0 text-accent" />
-              Mapped findings tag the controls they touch; nothing is marked as satisfied. Mythos does not certify compliance or issue attestations.
+              Mapped findings tag the controls they touch; nothing is marked as satisfied. Mythos AI Security does not certify compliance or issue attestations.
             </p>
           </div>
         </Container>

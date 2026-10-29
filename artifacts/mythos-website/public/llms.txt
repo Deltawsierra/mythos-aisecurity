@@ -4,11 +4,11 @@
 
 Key facts, stated as on the site:
 
-- Products: Athena (discovery and exposure mapping), Achilles (adversarial testing of LLMs and agents), SPINE (the assurance system of record and deployment decision), Minotaur (Mythos' internal proving ground for its own tests), Hermes (vehicle and physical-AI assurance, a scaffold today) and Economic Exposure (prices a validated failure as a range, decision support only).
+- Products: Athena (discovery and exposure mapping), Achilles (adversarial testing of LLMs and agents), SPINE (the assurance system of record and deployment decision), Minotaur (Mythos AI Security's internal proving ground for its own tests), Hermes (vehicle and physical-AI assurance, a scaffold today) and Economic Exposure (prices a validated failure as a range, decision support only).
 - Engagements are kept distinct: an assessment that tests and reports, release assurance bound to an exact deployment, and runtime enforcement on supported paths.
 - Evidence: Assurance Receipts are signed and verify offline; a signed receipt proves where a result came from, not that the conclusion is correct. Findings close only on retest. Reports say what was not measured.
 - Mapping, never certification: findings are tagged to NIST SP 800-53, OWASP Top 10 (2021), OWASP Top 10 for LLM Applications (2025) and DoD Zero Trust, with vertical packs for healthcare, financial services, federal and general AI.
-- Every example on the site (findings, receipts, reports) is a labelled synthetic fixture. Mythos has no published customers.
+- Every example on the site (findings, receipts, reports) is a labelled synthetic fixture. Mythos AI Security has no published customers.
 
 ## Platform
 
@@ -16,7 +16,7 @@ Key facts, stated as on the site:
 - [SPINE](https://www.mythosaisecurity.com/platform/spine/): claims, evidence and the deployment decision
 - [Athena](https://www.mythosaisecurity.com/platform/athena/): what an AI system can reach
 - [Achilles](https://www.mythosaisecurity.com/platform/achilles/): adversarial testing of AI agents and LLM applications
-- [Minotaur](https://www.mythosaisecurity.com/platform/validation/): how Mythos validates its own tests
+- [Minotaur](https://www.mythosaisecurity.com/platform/validation/): how Mythos AI Security validates its own tests
 - [Evidence & Receipts](https://www.mythosaisecurity.com/platform/evidence/): signed, offline-verifiable records
 - [Continuous Assurance](https://www.mythosaisecurity.com/platform/continuous-assurance/): retesting when systems change
 - [Economic Exposure](https://www.mythosaisecurity.com/platform/economic-exposure/): failure cost as a range with sources

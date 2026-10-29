@@ -138,7 +138,7 @@ export const INQUIRIES: InquiryDef[] = [
     submitLabel: "Request an assessment",
     confirmHeading: "Assessment request received.",
     confirmBody:
-      "Mythos will review what you sent and suggest a scoping conversation. Detailed systems, access and pricing scope are covered there, under an agreement where needed.",
+      "Mythos AI Security will review what you sent and suggest a scoping conversation. Detailed systems, access and pricing scope are covered there, under an agreement where needed.",
   },
   {
     value: "demo",
@@ -158,12 +158,12 @@ export const INQUIRIES: InquiryDef[] = [
     ],
     submitLabel: "Request a demo",
     confirmHeading: "Demo request received.",
-    confirmBody: "Mythos will reply to arrange a walkthrough that covers what you asked to see.",
+    confirmBody: "Mythos AI Security will reply to arrange a walkthrough that covers what you asked to see.",
   },
   {
     value: "investor",
     label: "Investor Inquiry",
-    description: "Start a conversation about the Mythos thesis.",
+    description: "Start a conversation about the Mythos AI Security thesis.",
     fields: [
       {
         name: "investorType",
@@ -188,12 +188,12 @@ export const INQUIRIES: InquiryDef[] = [
         showIf: { field: "investorType", anyOf: ["Venture fund", "Corporate investor", "Family office", "Other"] },
       },
       { name: "investmentFocus", label: "Investment focus or stage", kind: "text", placeholder: "Optional" },
-      { name: "introducedBy", label: "Who introduced you to Mythos?", kind: "text", placeholder: "Optional" },
+      { name: "introducedBy", label: "Who introduced you to Mythos AI Security?", kind: "text", placeholder: "Optional" },
     ],
     submitLabel: "Send investor inquiry",
     confirmHeading: "Investor inquiry received.",
     confirmBody:
-      "Mythos will review your note and reply about an introductory conversation. Please don’t send financial documents through this form.",
+      "Mythos AI Security will review your note and reply about an introductory conversation. Please don’t send financial documents through this form.",
   },
   {
     value: "partnership",
@@ -243,7 +243,7 @@ export const INQUIRIES: InquiryDef[] = [
     ],
     submitLabel: "Discuss a partnership",
     confirmHeading: "Partnership inquiry received.",
-    confirmBody: "Mythos will review the proposal and reply about the right next step.",
+    confirmBody: "Mythos AI Security will review the proposal and reply about the right next step.",
   },
   {
     value: "press",
@@ -282,7 +282,7 @@ export const INQUIRIES: InquiryDef[] = [
     ],
     submitLabel: "Send press inquiry",
     confirmHeading: "Press inquiry received.",
-    confirmBody: "Mythos will reply to the address you gave, with your deadline in mind if you shared one.",
+    confirmBody: "Mythos AI Security will reply to the address you gave, with your deadline in mind if you shared one.",
   },
   {
     value: "careers",
@@ -316,7 +316,7 @@ export const INQUIRIES: InquiryDef[] = [
     ],
     submitLabel: "Send message",
     confirmHeading: "Message received.",
-    confirmBody: "Mythos will read your message and reply if a response is needed.",
+    confirmBody: "Mythos AI Security will read your message and reply if a response is needed.",
   },
 ];
 

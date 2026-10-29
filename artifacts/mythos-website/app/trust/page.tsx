@@ -13,7 +13,7 @@ import { BACKDROPS, OLYMPUS_MEDIA } from "@/content/media";
 export const metadata: Metadata = {
   title: "Trust Center: Authorization & Data",
   description:
-    "How Mythos handles authorization, test scope, evidence integrity and data: what's in place, what is not built yet, and which certifications it lacks.",
+    "How Mythos AI Security handles authorization, test scope, evidence integrity and data: what's in place, what is not built yet, and which certifications it lacks.",
   alternates: { canonical: "/trust/" },
   ...socialImage("trust", "Trust Requires More Than a Claim — Mythos AI Security"),
 };
@@ -65,7 +65,7 @@ const RESPONSIBILITIES = [
   "Provide access, contacts and any credentials through the agreed scoped process — never public forms.",
   "Back up systems and data, and keep recovery plans ready before testing.",
   "Keep an escalation contact available during testing windows, and tell your own incident team.",
-  "Keep deliverables for internal use unless Mythos agrees otherwise.",
+  "Keep deliverables for internal use unless Mythos AI Security agrees otherwise.",
 ];
 
 /** Trust Center — Launch Guide §14. */
@@ -97,8 +97,8 @@ export default function TrustPage() {
           <div>
             <SectionIntro id="scope-title" eyebrow="Authorization and scope" title={<Accent text="Nothing is tested *without written permission.*" />} caps />
             <p className="mt-6 text-[17px] leading-relaxed text-fg">
-              Mythos tests only systems you own or control, under your written authorization and a written Authorized Scope. Destructive testing happens only if you
-              approve it explicitly, in writing — and Mythos can pause work that has become unsafe or out of scope.
+              Mythos AI Security tests only systems you own or control, under your written authorization and a written Authorized Scope. Destructive testing happens only if you
+              approve it explicitly, in writing — and Mythos AI Security can pause work that has become unsafe or out of scope.
             </p>
           </div>
           <div className="border border-rule bg-panel p-7 lg:mt-10">
@@ -142,7 +142,7 @@ export default function TrustPage() {
         className="pb-[clamp(10rem,15vw,15rem)] pt-[clamp(10rem,17vw,17rem)]"
       >
         <Container className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
-          <SectionIntro id="designed-title" eyebrow="Designed, not yet built" title={<Accent text="What we will not *claim yet.*" />} lede="These are specified or planned. Until they ship, they are not part of how Mythos runs." caps />
+          <SectionIntro id="designed-title" eyebrow="Designed, not yet built" title={<Accent text="What we will not *claim yet.*" />} lede="These are specified or planned. Until they ship, they are not part of how Mythos AI Security runs." caps />
           <ul className="grid gap-2.5 sm:grid-cols-2" data-reveal-group>
             {DESIGNED.map((d) => (
               <li key={d} className="flex items-start gap-3 border border-rule bg-panel px-4 py-3.5 text-[15px] leading-relaxed text-fg">
@@ -161,10 +161,10 @@ export default function TrustPage() {
           <div className="grid gap-4 lg:pt-10">
             <p className="flex items-start gap-3 border-l-2 border-state-contradicted bg-panel px-5 py-4 text-[16px] leading-relaxed text-fg">
               <BadgeX size={20} aria-hidden="true" className="mt-0.5 shrink-0 text-state-contradicted-ink" />
-              Mythos does not hold SOC 2, ISO/IEC 27001, FedRAMP, CMMC, HITRUST or FIPS validation, has had no external audit, and does not certify customers’ compliance.
+              Mythos AI Security does not hold SOC 2, ISO/IEC 27001, FedRAMP, CMMC, HITRUST or FIPS validation, has had no external audit, and does not certify customers’ compliance.
             </p>
             <p className="text-[15px] leading-relaxed text-fg-muted">
-              Findings are advisory. Mythos does not guarantee it will find every weakness, and it does not certify an AI system as safe. Findings are mapped to the NIST
+              Findings are advisory. Mythos AI Security does not guarantee it will find every weakness, and it does not certify an AI system as safe. Findings are mapped to the NIST
               SP 800-53, OWASP, OWASP LLM and DoD Zero Trust controls they touch — evidence of gaps, never a certificate.
             </p>
           </div>
@@ -175,7 +175,7 @@ export default function TrustPage() {
       <section data-surface="parchment" aria-labelledby="shared-title" className="py-24">
         <Container className="grid gap-12 lg:grid-cols-2">
           <div>
-            <SectionIntro id="shared-title" eyebrow="Shared responsibility" title={<Accent text="What we ask *of you.*" />} lede="Mythos relies on your authorization and does not verify it independently — so these matter." caps />
+            <SectionIntro id="shared-title" eyebrow="Shared responsibility" title={<Accent text="What we ask *of you.*" />} lede="Mythos AI Security relies on your authorization and does not verify it independently — so these matter." caps />
             <ol className="mt-8 grid gap-2.5" data-reveal-group>
               {RESPONSIBILITIES.map((r, i) => (
                 <li key={r} className="flex gap-4 border border-rule bg-panel px-5 py-3.5 text-[15px] leading-relaxed text-fg">
@@ -196,7 +196,7 @@ export default function TrustPage() {
             <div className="border border-rule bg-panel p-7">
               <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-accent">This website’s forms</p>
               <p className="mt-3 text-[15px] leading-relaxed text-fg">
-                Submissions go to one Mythos inbox, are rate-limited and are not logged in production. Please don’t submit credentials, secrets or regulated data.
+                Submissions go to one Mythos AI Security inbox, are rate-limited and are not logged in production. Please don’t submit credentials, secrets or regulated data.
               </p>
             </div>
             <div className="border border-rule bg-panel p-7">

@@ -39,7 +39,7 @@ export const SPINE_COPY = {
   claims: {
     eyebrow: "The claim state machine",
     title: "Declared, observed and verified *are never merged.*",
-    lede: "What a team or vendor says, what Mythos sees running, and what testing proves stay separate truths. Confidence is the strength of the weakest evidence — never a probability.",
+    lede: "What a team or vendor says, what Mythos AI Security sees running, and what testing proves stay separate truths. Confidence is the strength of the weakest evidence — never a probability.",
     clocks: {
       title: "Two clocks, nothing overwritten",
       body: "SPINE keeps when a source saw a fact apart from when that fact was held current — so you can ask what was true on any date, and what was known at the time.",
@@ -112,7 +112,7 @@ export const SPINE_COPY = {
     eyebrow: "Assurance teams and validity",
     title: "Four roles, *one evidence loop.*",
     lede: "Red, blue, purple and evaluator are separate credentials, working inside defined, authorized scopes and feeding the same claims. Minotaur stands apart from all four, checking that the tests themselves are valid.",
-    minotaur: "Minotaur holds out scenarios, replays results and can hold a release on evidence quality. It is Mythos’ internal proving ground — not a fifth role and not a separate product.",
+    minotaur: "Minotaur holds out scenarios, replays results and can hold a release on evidence quality. It is Mythos AI Security’ internal proving ground — not a fifth role and not a separate product.",
   },
   revalidate: {
     eyebrow: "Revalidation",

@@ -183,7 +183,7 @@ export default function AchillesPage() {
         from="parchment"
         title="Find out what your agents *can actually do.*"
         primary={{ label: "Request an AI Workflow Assessment", href: CTA_LINKS.assessment }}
-        secondary={{ label: "How Mythos Validates Itself", href: "/platform/validation" }}
+        secondary={{ label: "How Mythos AI Security Validates Itself", href: "/platform/validation" }}
         vista="a"
       />
     </PageMotion>

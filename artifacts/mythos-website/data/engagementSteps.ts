@@ -35,7 +35,7 @@ export const ENGAGEMENT_STEPS: EngagementStep[] = [
   },
   {
     title: "Run the assessment",
-    body: "Mythos maps exposure, tests behavior, reviews controls, identifies weaknesses, and gathers evidence under the approved scope.",
+    body: "Mythos AI Security maps exposure, tests behavior, reviews controls, identifies weaknesses, and gathers evidence under the approved scope.",
     listLabel: "Assessment may include",
     items: [
       "Access mapping",
@@ -63,7 +63,7 @@ export const ENGAGEMENT_STEPS: EngagementStep[] = [
 ];
 
 export const ENGAGEMENT_NOTE =
-  "Mythos testing should be authorized, scoped, non-destructive, and controlled by the customer.";
+  "Mythos AI Security testing should be authorized, scoped, non-destructive, and controlled by the customer.";
 
 export interface EngagementType {
   title: string;

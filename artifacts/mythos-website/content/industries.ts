@@ -133,7 +133,7 @@ export const INDUSTRIES: IndustryContent[] = [
     },
     capabilities: {
       title: "Boundaries you *can evidence.*",
-      lede: "Mythos assesses AI workflows and their access. It does not assess clinical efficacy, medical devices or patient outcomes.",
+      lede: "Mythos AI Security assesses AI workflows and their access. It does not assess clinical efficacy, medical devices or patient outcomes.",
       items: [
         { product: "Athena", does: "Maps which records, research data and vendors an AI workflow can reach, and through which identities.", output: "Access map with unknowns listed" },
         { product: "Achilles", does: "Tests whether the workflow can be pushed past its permissions or into exposing data it shouldn’t.", output: "Observed findings with evidence" },
@@ -153,7 +153,7 @@ export const INDUSTRIES: IndustryContent[] = [
     useCases: { title: "Scenarios for *healthcare and research.*", slugs: ["internal-knowledge-rag-assistant", "regulated-workflow-assistant", "partner-vendor-ai-integration", "ai-powered-decision-support"] },
     controls: {
       title: "Your frameworks, *your decisions.*",
-      lede: "Sector requirements are confirmed with your team during scoping. Mythos evidence supports those reviews; it does not establish compliance.",
+      lede: "Sector requirements are confirmed with your team during scoping. Mythos AI Security evidence supports those reviews; it does not establish compliance.",
       items: [
         ...MAPPED_CORE,
         { name: "Healthcare pack", status: "mapped", note: "Layered on the core map — evidence of gaps, never a certificate." },
@@ -285,7 +285,7 @@ export const INDUSTRIES: IndustryContent[] = [
     },
     capabilities: {
       title: "Evidence for *every review.*",
-      lede: "Mythos supplies evidence and decision support. Whether a system meets a rule is a decision for your legal and compliance teams.",
+      lede: "Mythos AI Security supplies evidence and decision support. Whether a system meets a rule is a decision for your legal and compliance teams.",
       items: [
         { product: "Athena", does: "Maps what each AI system can reach, and which policies and owners apply to it.", output: "Inventory and access map" },
         { product: "Achilles", does: "Tests behavior around consequential decisions and approval boundaries.", output: "Findings with retest records" },
@@ -439,7 +439,7 @@ export const INDUSTRIES: IndustryContent[] = [
     },
     capabilities: {
       title: "Evidence for the *IT side of operations.*",
-      lede: "Mythos assesses AI workflows, data access and vendors — not live control systems, and not physical safety.",
+      lede: "Mythos AI Security assesses AI workflows, data access and vendors — not live control systems, and not physical safety.",
       items: [
         { product: "Athena", does: "Maps the data, systems and vendors an operational AI workflow can reach.", output: "Access and dependency map" },
         { product: "Achilles", does: "Tests the workflow’s permissions and recommendations in a test environment.", output: "Findings with evidence" },
@@ -459,7 +459,7 @@ export const INDUSTRIES: IndustryContent[] = [
     useCases: { title: "Scenarios for *operations.*", slugs: ["data-platform-cloud-ai-integration", "ai-agent-tools-actions", "partner-vendor-ai-integration", "ai-driven-vehicle-systems-hermes"] },
     controls: {
       title: "Referenced, *never certified.*",
-      lede: "Operational and safety standards that apply to you are identified during scoping. Mythos makes no safety certification.",
+      lede: "Operational and safety standards that apply to you are identified during scoping. Mythos AI Security makes no safety certification.",
       items: [
         ...MAPPED_CORE,
         { name: "General AI pack", status: "mapped", note: "Layered on the core map — evidence of gaps, never a certificate." },
@@ -516,7 +516,7 @@ export const INDUSTRIES: IndustryContent[] = [
     },
     capabilities: {
       title: "Evidence that *travels with delivery.*",
-      lede: "Roles, customer ownership and independence are agreed up front. Mythos does not attest to fixes it made itself.",
+      lede: "Roles, customer ownership and independence are agreed up front. Mythos AI Security does not attest to fixes it made itself.",
       items: [
         { product: "Athena", does: "Maps what the delivered system can reach, including connectors and model routes.", output: "Hand-off access map" },
         { product: "Achilles", does: "Tests permissions and behavior before hand-off, against the agreed scope.", output: "Release findings and retests" },
@@ -548,10 +548,10 @@ export const INDUSTRIES: IndustryContent[] = [
       lede: "How one engagement alongside a partner would run.",
       scenario: "An integrator is handing over an AI workflow that connects a customer’s CRM to a vendor model. The customer wants evidence of what was tested, by whom, and what happens after the vendor’s next update.",
       events: [
-        { label: "Roles agreed", meta: "integrator · customer · Mythos", detail: "Who tests, who fixes and who owns the evidence are written down.", state: "verified", stateLabel: "Scoped" },
+        { label: "Roles agreed", meta: "integrator · customer · Mythos AI Security", detail: "Who tests, who fixes and who owns the evidence are written down.", state: "verified", stateLabel: "Scoped" },
         { label: "Reach mapped", meta: "Athena", detail: "The connector’s token can read every CRM object, not just the ones in the design.", state: "observed" },
         { label: "Boundary tested", meta: "Achilles", detail: "A prompt routed through the workflow retrieves records outside its purpose.", state: "contradicted", stateLabel: "Finding" },
-        { label: "Fix retested", meta: "fixed by the integrator", detail: "Scopes narrowed; Mythos retests and records the result independently.", state: "verified" },
+        { label: "Fix retested", meta: "fixed by the integrator", detail: "Scopes narrowed; Mythos AI Security retests and records the result independently.", state: "verified" },
         { label: "Decision", meta: "the customer", detail: "Accepted at hand-off; retest scheduled for the vendor’s next model update.", state: "held", stateLabel: "Human decision" },
       ],
     },
@@ -564,7 +564,7 @@ export const INDUSTRIES: IndustryContent[] = [
         "How should roles and independence work between us and your customer?",
       ],
     },
-    closing: { title: "Deliver AI *with evidence attached.*", body: "Talk to us about how Mythos evidence could travel with what you deliver." },
+    closing: { title: "Deliver AI *with evidence attached.*", body: "Talk to us about how Mythos AI Security evidence could travel with what you deliver." },
     startingPoint: "Assessment of third-party AI vendor claims, through a delivery partner",
   },
 ];
@@ -578,7 +578,7 @@ export const SOLUTIONS_HUB = {
   hero: {
     eyebrow: "Solutions",
     headline: "AI Assurance for *Real-World Impact.*",
-    lede: "Every sector faces a different combination of sensitive data, delegated authority, change, operational consequence and audit obligations. Mythos applies evidence-backed assurance to those environments without promising one-size-fits-all safety.",
+    lede: "Every sector faces a different combination of sensitive data, delegated authority, change, operational consequence and audit obligations. Mythos AI Security applies evidence-backed assurance to those environments without promising one-size-fits-all safety.",
   },
   switcher: {
     eyebrow: "Choose your environment",

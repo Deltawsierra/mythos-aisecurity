@@ -47,7 +47,7 @@ export const COMPANY = {
     lede: "Mythos AI Security exists to help people build, operate and govern AI with greater clarity about the authority and consequences those systems carry.",
   },
   mission: {
-    eyebrow: "Why Mythos exists",
+    eyebrow: "Why Mythos AI Security exists",
     title: "Accountable AI, *through evidence.*",
     body: [
       "AI is moving from experimentation into operations. Assistants read records, agents call tools, and models change underneath the workflows that depend on them.",
@@ -63,7 +63,7 @@ export const COMPANY = {
       { name: "Unknown stays visible", body: "Where evidence is missing, the answer is “unknown” — never a quiet pass." },
       { name: "Every claim carries its source", body: "A conclusion points to the evidence, version and time it came from." },
       { name: "Weakest evidence sets the strength", body: "A claim is only as strong as the weakest evidence it rests on." },
-      { name: "People make high-risk decisions", body: "Mythos supplies evidence and decision support; accountable humans decide." },
+      { name: "People make high-risk decisions", body: "Mythos AI Security supplies evidence and decision support; accountable humans decide." },
       { name: "Validate the validator", body: "Our own methods are tested too — that is what Minotaur is for." },
     ],
   },
@@ -73,14 +73,14 @@ export const COMPANY = {
     lede: "One system for mapping, testing and keeping evidence current. Here is where each part stands today.",
   },
   people: {
-    eyebrow: "Who is building Mythos",
+    eyebrow: "Who is building Mythos AI Security",
     title: "The people *behind the evidence.*",
     people: [
       {
         name: "Brendan Flanigan",
         role: "Co-founder and Chief Executive Officer",
         focus: "Leadership and company direction.",
-        bio: "Served in the US Army as an Infantryman, then a Military Working Dog Handler. Has worked in business development and contract negotiations, and built, ran and sold a previous business. Studied software engineering, with independent study in AI architecture and business management, and was an early contributor to the beta system that became Mythos.",
+        bio: "Served in the US Army as an Infantryman, then a Military Working Dog Handler. Has worked in business development and contract negotiations, and built, ran and sold a previous business. Studied software engineering, with independent study in AI architecture and business management, and was an early contributor to the beta system that became Mythos AI Security.",
         quote: "The mission to protect does not end when the battlefield changes.",
         portrait: { src: "/assets/people/brendan-flanigan-480.webp", src2x: "/assets/people/brendan-flanigan-960.webp", width: 480, height: 600 },
       },
@@ -88,7 +88,7 @@ export const COMPANY = {
         name: "David Smith",
         role: "Co-founder and Chief Operating Officer",
         focus: "Product direction, software architecture, development and AI research.",
-        bio: "Full-stack engineer who has built enterprise applications for insurance organizations, municipal government and growing businesses, including role-based access, audit trails and data-governance workflows. Co-founded Mythos after seeing, through contract work, AI adoption outpace testing. Has shaped the architecture and product direction of Athena and Achilles, and built the assessment dashboards and reports that turn findings into remediation priorities. Holds a degree in Computer Science and is a disabled US Army veteran.",
+        bio: "Full-stack engineer who has built enterprise applications for insurance organizations, municipal government and growing businesses, including role-based access, audit trails and data-governance workflows. Co-founded Mythos AI Security after seeing, through contract work, AI adoption outpace testing. Has shaped the architecture and product direction of Athena and Achilles, and built the assessment dashboards and reports that turn findings into remediation priorities. Holds a degree in Computer Science and is a disabled US Army veteran.",
         portrait: { src: "/assets/people/david-smith-480.webp", src2x: "/assets/people/david-smith-960.webp", width: 480, height: 600 },
         writing: { label: "How to Red-Team an AI Agent", href: "/resources/how-to-red-team-ai-agents" },
       },
@@ -108,14 +108,14 @@ export const COMPANY = {
       { name: "Written scope", body: "Testing starts only after the systems, environments and exclusions are agreed in writing." },
       { name: "No destructive testing without approval", body: "Anything that could change or disrupt a system needs explicit, specific authorization." },
       { name: "Evidence, not guarantees", body: "We report what was tested, observed and left unknown within the agreed scope. We do not certify AI as safe." },
-      { name: "Independence stated up front", body: "If Mythos helped build a control, we say so before anyone relies on our test of it." },
+      { name: "Independence stated up front", body: "If Mythos AI Security helped build a control, we say so before anyone relies on our test of it." },
     ],
   },
   relationships: {
-    eyebrow: "Work with Mythos",
+    eyebrow: "Work with Mythos AI Security",
     title: "Other ways *to connect.*",
     items: [
-      { name: "Investors", body: "The thesis behind Mythos, and how to start a conversation.", href: "/investors" },
+      { name: "Investors", body: "The thesis behind Mythos AI Security, and how to start a conversation.", href: "/investors" },
       { name: "Partnerships", body: "How integrators, consultancies and researchers could work with us.", href: "/partnerships" },
       { name: "Careers", body: "What we are building and how roles will be posted.", href: "/careers" },
       { name: "Contact", body: "Start with a defined scope.", href: "/contact" },
@@ -132,7 +132,7 @@ export const INVESTORS = {
   category: {
     eyebrow: "The category",
     title: "Not AI for security. *Assurance for AI.*",
-    lede: "Three markets are often blurred together. Mythos sits in the third.",
+    lede: "Three markets are often blurred together. Mythos AI Security sits in the third.",
     items: [
       { name: "AI for cyber", body: "AI used to defend networks and run security operations." },
       { name: "Security of AI", body: "Protecting models and AI applications from attack and misuse." },
@@ -180,7 +180,7 @@ export const CAREERS = {
   },
   work: {
     eyebrow: "The work",
-    title: "What building Mythos *involves.*",
+    title: "What building Mythos AI Security *involves.*",
     items: [
       { name: "Mapping", body: "Working out what an AI system can actually reach — identities, data, tools and routes." },
       { name: "Adversarial testing", body: "Pushing AI workflows past their stated limits, safely and within scope." },
@@ -210,7 +210,7 @@ export const PARTNERSHIPS = {
       { name: "Managed security & governance firms", body: "A channel for customers who need recurring assurance. Referral and delivery terms are not yet defined.", status: "Planned" },
       { name: "Platform & identity vendors", body: "Technical interfaces that let assessments read the systems customers actually run.", status: "Open to conversations" },
       { name: "Research & standards work", body: "Contributing to shared methods and threat taxonomies. Participation is not endorsement.", status: "Open to conversations" },
-      { name: "Insurers & brokers", body: "Evidence that can inform underwriting conversations. Mythos is an evidence channel — never a certifier or an insurer.", status: "Open to conversations" },
+      { name: "Insurers & brokers", body: "Evidence that can inform underwriting conversations. Mythos AI Security is an evidence channel — never a certifier or an insurer.", status: "Open to conversations" },
     ],
   },
   rules: {
@@ -218,7 +218,7 @@ export const PARTNERSHIPS = {
     title: "Rules that keep *evidence honest.*",
     items: [
       "Implementing a control, verifying it and evaluating the verifier are separate roles.",
-      "If Mythos built or fixed something, we disclose that before testing it — and we keep negative results.",
+      "If Mythos AI Security built or fixed something, we disclose that before testing it — and we keep negative results.",
       "The team that wrote a fix cannot mark it independently verified.",
       "A partner can never turn a failed test into a pass.",
       "No fee depends on what the findings say.",

@@ -12,7 +12,7 @@ import { OLYMPUS_MEDIA, SCENES, scenePlanes } from "@/content/media";
 export const metadata: Metadata = {
   title: "Careers: Build Systems That Test AI",
   description:
-    "What building Mythos involves. No open roles right now; when one opens it will be listed here with its team, location, eligibility and how to apply.",
+    "What building Mythos AI Security involves. No open roles right now; when one opens it will be listed here with its team, location, eligibility and how to apply.",
   alternates: { canonical: "/careers/" },
   ...socialImage("careers", "Build the Systems That Test AI — Mythos AI Security"),
 };
@@ -33,7 +33,7 @@ export default function CareersPage() {
         ]}
         current="Careers"
         primaryCta={{ label: "See Open Roles", href: "#roles-title" }}
-        secondaryCta={{ label: "About Mythos", href: "/company" }}
+        secondaryCta={{ label: "About Mythos AI Security", href: "/company" }}
         planes={scenePlanes(SCENES.careers, "60% 50%")}
         compact
         into="ivory"

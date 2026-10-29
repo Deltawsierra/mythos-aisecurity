@@ -57,7 +57,7 @@ export function ReleaseGate({ scenarios }: { scenarios: GateScenario[] }) {
         <div className="mt-5 border-t border-rule pt-5">
           <StatePill state={o.state} label={o.label} />
           <p className="mt-3 font-display text-2xl leading-snug text-fg">{s.reason}</p>
-          <p className="mt-3 text-sm text-fg-muted">This governs Mythos’ own engine releases. Your deployment decision stays with your people.</p>
+          <p className="mt-3 text-sm text-fg-muted">This governs Mythos AI Security’ own engine releases. Your deployment decision stays with your people.</p>
         </div>
       </div>
     </div>

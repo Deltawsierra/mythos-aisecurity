@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 };
 
 const STEPS = [
-  { name: "We read your note", body: "Someone at Mythos reviews what kind of request it is and what you are trying to decide." },
+  { name: "We read your note", body: "Someone at Mythos AI Security reviews what kind of request it is and what you are trying to decide." },
   { name: "We suggest the right conversation", body: "Assessment, demo, investor, partnership or general — routed to the people who can answer." },
   { name: "Scope comes later, in writing", body: "Systems, goals and constraints are discussed in a scoping conversation, and anything sensitive is shared under an agreement." },
 ];

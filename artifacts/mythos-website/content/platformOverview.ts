@@ -6,7 +6,7 @@
 export const OVERVIEW = {
   /** Launch Guide R02 — Platform hero. No reference-plate metrics (10x, 80%, 100%). */
   hero: {
-    eyebrow: "The Mythos platform",
+    eyebrow: "The Mythos AI Security platform",
     headline: "AI Assurance from *Risk to Resilience.*",
     lede: "A single approach to understanding an AI system, testing its boundaries, recording proof, and keeping critical claims current as its models, data, tools and permissions change.",
   },
@@ -60,7 +60,7 @@ export const OVERVIEW = {
   authority: {
     eyebrow: "Authority and effect",
     title: "From the person accountable *to the effect that happened.*",
-    lede: "The commercial risk in agentic AI is not a clever prompt. It is an action nobody actually authorized. Mythos follows every link of the chain — and keeps the decision to permit apart from the effect that was observed.",
+    lede: "The commercial risk in agentic AI is not a clever prompt. It is an action nobody actually authorized. Mythos AI Security follows every link of the chain — and keeps the decision to permit apart from the effect that was observed.",
   },
   evidence: {
     eyebrow: "Evidence states and coverage",

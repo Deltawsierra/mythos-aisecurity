@@ -33,7 +33,7 @@ import { BACKDROPS, OLYMPUS_MEDIA, SCENES, scenePlanes } from "@/content/media";
 export const metadata: Metadata = {
   title: "Minotaur: Validating AI Security Tests",
   description:
-    "Minotaur is Mythos' internal proving ground: benchmarks with planted answers, decoys, Validity Cards and nine release gates. Every score is a floor.",
+    "Minotaur is Mythos AI Security's internal proving ground: benchmarks with planted answers, decoys, Validity Cards and nine release gates. Every score is a floor.",
   alternates: { canonical: "/platform/validation/" },
   ...socialImage("platform-validation", "Find What We Missed. Prove What We Test — Mythos AI Security"),
 };
@@ -65,7 +65,7 @@ export default function ValidationPage() {
           { label: "Home", href: "/" },
           { label: "Platform", href: "/platform" },
         ]}
-        current="How Mythos Validates Itself"
+        current="How Mythos AI Security Validates Itself"
         primaryCta={{ label: "Read the Methodology", href: "#labyrinth-title" }}
         secondaryCta={{ label: "Explore SPINE", href: "/platform/spine" }}
         planes={scenePlanes(SCENES.minotaur, "60% 50%")}

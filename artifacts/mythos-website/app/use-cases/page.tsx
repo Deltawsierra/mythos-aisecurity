@@ -18,7 +18,7 @@ import { BACKDROPS, CHALLENGE_MEDIA, OLYMPUS_MEDIA } from "@/content/media";
 export const metadata: Metadata = {
   title: "AI Use Cases: Deployment Risk Scenarios",
   description:
-    "Eleven AI workflows, from support agents to decision support: the question each raises, what can go wrong, how Mythos tests it. Every example is synthetic.",
+    "Eleven AI workflows, from support agents to decision support: the question each raises, what can go wrong, how Mythos AI Security tests it. Every example is synthetic.",
   alternates: { canonical: "/use-cases/" },
   ...socialImage("use-cases", "Where AI Deployment Risk Shows Up — Mythos AI Security"),
 };
@@ -43,7 +43,7 @@ const FACETS: Facet[] = [
   { key: "risk", label: "Risk theme", options: RISK_THEMES.map((r) => ({ value: r, label: r })) },
 ];
 
-const FLOW = ["The question", "The workflow", "What can go wrong", "How Mythos tests it", "The evidence", "Scope limits"];
+const FLOW = ["The question", "The workflow", "What can go wrong", "How Mythos AI Security tests it", "The evidence", "Scope limits"];
 
 /** Use-case library — Launch Guide §10. */
 export default function UseCasesPage() {

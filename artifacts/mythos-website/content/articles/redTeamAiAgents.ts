@@ -31,7 +31,7 @@ export const RED_TEAM_AI_AGENTS: Article = {
   "intro": [
     "Red-teaming an AI agent means testing, within an authorized scope, whether adversarial inputs can push its decisions or actions beyond approved boundaries. Examine the model alongside its tools, data access, permissions and approval controls. Compare expected decisions with independently observed outcomes, preserve the evidence, and retest repairs before expanding access.",
     "An agent that can issue refunds, send messages or change records needs a test plan for those consequences. A convincing refusal is useful evidence about a response. It does not establish that a backend action was prevented.",
-    "This guide explains how to red-team an AI agent around one consequential workflow. It covers eight useful failure families, responsible scoping, outcome verification and retesting. The refund example is entirely synthetic: its policy, amounts and illustrated outcomes are teaching material, not customer findings or measured Mythos results."
+    "This guide explains how to red-team an AI agent around one consequential workflow. It covers eight useful failure families, responsible scoping, outcome verification and retesting. The refund example is entirely synthetic: its policy, amounts and illustrated outcomes are teaching material, not customer findings or measured Mythos AI Security results."
   ],
   "sections": [
     {
@@ -265,7 +265,7 @@ export const RED_TEAM_AI_AGENTS: Article = {
         },
         {
           "type": "fits",
-          "text": "[Minotaur](/platform/validation) supports Mythos's internal adversarial validation. It is not a separate customer-facing red-team service."
+          "text": "[Minotaur](/platform/validation) supports Mythos AI Security's internal adversarial validation. It is not a separate customer-facing red-team service."
         }
       ]
     },
@@ -279,7 +279,7 @@ export const RED_TEAM_AI_AGENTS: Article = {
         },
         {
           "type": "p",
-          "text": "Signed records help detect changes to covered bytes and verify them under an accepted signing key. They do not prove the collector saw everything, the signer was authorized, or the conclusion is correct. [HTTP Message Signatures](https://www.rfc-editor.org/rfc/rfc9421.html) documents related coverage and verifier-policy concerns; it is not a claim that Mythos receipts implement that protocol."
+          "text": "Signed records help detect changes to covered bytes and verify them under an accepted signing key. They do not prove the collector saw everything, the signer was authorized, or the conclusion is correct. [HTTP Message Signatures](https://www.rfc-editor.org/rfc/rfc9421.html) documents related coverage and verifier-policy concerns; it is not a claim that Mythos AI Security receipts implement that protocol."
         },
         {
           "type": "p",
@@ -406,11 +406,11 @@ export const RED_TEAM_AI_AGENTS: Article = {
     },
     {
       "id": "how-does-mythos-help-you-do-this",
-      "heading": "How does Mythos help you do this?",
+      "heading": "How does Mythos AI Security help you do this?",
       "blocks": [
         {
           "type": "p",
-          "text": "Mythos combines system context with agent behavior testing so security, engineering and release owners can review the same evidence. The starting point is an agreed workflow, its intended authority and the decision the customer needs to make. Scope determines which integrations and effects can be examined."
+          "text": "Mythos AI Security combines system context with agent behavior testing so security, engineering and release owners can review the same evidence. The starting point is an agreed workflow, its intended authority and the decision the customer needs to make. Scope determines which integrations and effects can be examined."
         },
         {
           "type": "p",
@@ -422,7 +422,7 @@ export const RED_TEAM_AI_AGENTS: Article = {
         },
         {
           "type": "p",
-          "text": "[Minotaur](/platform/validation) checks Mythos's own testing: adversarial scenarios and known-answer cases challenge detection, scoring and remediation checks, so weaknesses in the assessment process surface before they reach your results. Passing its cases does not establish that every customer failure mode is covered."
+          "text": "[Minotaur](/platform/validation) checks Mythos AI Security's own testing: adversarial scenarios and known-answer cases challenge detection, scoring and remediation checks, so weaknesses in the assessment process surface before they reach your results. Passing its cases does not establish that every customer failure mode is covered."
         },
         {
           "type": "p",
@@ -434,7 +434,7 @@ export const RED_TEAM_AI_AGENTS: Article = {
         },
         {
           "type": "p",
-          "text": "Protection capabilities being added. Mythos is extending this work with action-bound permits; credential brokers; data, recipient and visible-exit controls; document and download intake; whole-agent containment; workflow and record authorization; cumulative work and spending budgets; connector admission and change control; verified-agent access lanes; persistent-memory and multi-agent provenance; verified revocation; and continuous authorized adversarial validation. These are additions in progress, not a claim that the complete bundle is available or validated today. Availability and enforcement depend on the integration and its acceptance evidence."
+          "text": "Protection capabilities being added. Mythos AI Security is extending this work with action-bound permits; credential brokers; data, recipient and visible-exit controls; document and download intake; whole-agent containment; workflow and record authorization; cumulative work and spending budgets; connector admission and change control; verified-agent access lanes; persistent-memory and multi-agent provenance; verified revocation; and continuous authorized adversarial validation. These are additions in progress, not a claim that the complete bundle is available or validated today. Availability and enforcement depend on the integration and its acceptance evidence."
         },
         {
           "type": "p",
@@ -484,7 +484,7 @@ export const RED_TEAM_AI_AGENTS: Article = {
     },
     {
       "q": "What does it cost?",
-      "a": "Mythos quotes after scoping. Identify the workflow, consequential actions, environment, evidence deliverables and retest expectations so the quote describes comparable work."
+      "a": "Mythos AI Security quotes after scoping. Identify the workflow, consequential actions, environment, evidence deliverables and retest expectations so the quote describes comparable work."
     }
   ],
   "sources": [

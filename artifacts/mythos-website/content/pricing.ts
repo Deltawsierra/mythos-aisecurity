@@ -32,7 +32,7 @@ export const STARTING_OFFER = {
   price: "USD 15,000",
   priceNote: "Starting price per engagement. A higher fixed quote applies when your scope goes beyond the starting scope.",
   statement:
-    "Before an AI workflow goes live, gets more access or takes on more authority, find out what it can reach, which actions it can take and what needs fixing. Mythos assesses one agreed deployment, explains the failures the evidence supports, sets out what a repair must achieve, and retests the agreed fixes, so your release owner decides with better evidence.",
+    "Before an AI workflow goes live, gets more access or takes on more authority, find out what it can reach, which actions it can take and what needs fixing. Mythos AI Security assesses one agreed deployment, explains the failures the evidence supports, sets out what a repair must achieve, and retests the agreed fixes, so your release owner decides with better evidence.",
   scope: [
     "One named workflow: one business purpose, with its branches listed",
     "One frozen configuration and one primary model route",
@@ -136,10 +136,10 @@ export const PRICING_FAQ = [
   },
   {
     q: "Do you certify AI as safe?",
-    a: "No. Mythos provides evidence, testing, findings and decision support within an agreed scope. It does not guarantee safety, guarantee a favorable finding, or issue a regulatory certification.",
+    a: "No. Mythos AI Security provides evidence, testing, findings and decision support within an agreed scope. It does not guarantee safety, guarantee a favorable finding, or issue a regulatory certification.",
   },
   {
     q: "What about private networks or physical AI?",
-    a: "Those need a feasibility and authorization discussion first. Private and air-gapped deployment are planned, not available. Physical AI work is exploratory, is not part of this offer, and Mythos does not promise vehicle safety certification.",
+    a: "Those need a feasibility and authorization discussion first. Private and air-gapped deployment are planned, not available. Physical AI work is exploratory, is not part of this offer, and Mythos AI Security does not promise vehicle safety certification.",
   },
 ];

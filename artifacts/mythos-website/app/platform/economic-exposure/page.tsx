@@ -60,7 +60,7 @@ export default function EconomicExposurePage() {
         ]}
         current="Economic Exposure"
         primaryCta={{ label: "Explore a Modeled Example", href: "#bands-title" }}
-        secondaryCta={{ label: "Speak to Mythos", href: INQUIRY }}
+        secondaryCta={{ label: "Speak to Mythos AI Security", href: INQUIRY }}
         planes={scenePlanes(SCENES.economicExposure, "60% 50%")}
         into="parchment"
       />
@@ -230,7 +230,7 @@ export default function EconomicExposurePage() {
         from="ivory"
         title="Discuss exposure *on one of your systems.*"
         body="A scoped conversation about one AI system: what was observed, what it could mean financially, and what we would need to say it with confidence."
-        primary={{ label: "Speak to Mythos", href: INQUIRY }}
+        primary={{ label: "Speak to Mythos AI Security", href: INQUIRY }}
         secondary={{ label: "See Financial Services", href: "/solutions/financial-services-insurance" }}
         vista="a"
       />

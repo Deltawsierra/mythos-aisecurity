@@ -111,7 +111,7 @@ export default function RedTeamAiAgentsPage() {
               <p className="mt-3 font-display text-2xl text-fg">{A.author.name}</p>
               <p className="mt-2 text-[15px] leading-relaxed text-fg-muted">{A.author.bio}</p>
               <Link href="/company" className="mt-3 inline-block text-[13px] font-semibold text-accent hover:underline">
-                About Mythos
+                About Mythos AI Security
               </Link>
             </section>
 

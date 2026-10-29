@@ -7,5 +7,5 @@ export const CTA = {
   INVESTOR: "Request Investor Materials",
   DEMO: "Get a Demo",
   SAMPLE_REPORT: "Inspect a Sample Report",
-  CONTACT: "Contact Mythos",
+  CONTACT: "Contact Mythos AI Security",
 } as const;

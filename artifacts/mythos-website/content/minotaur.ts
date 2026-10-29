@@ -23,10 +23,10 @@ export const MINOTAUR_COPY = {
    * unsupported (R&D plan §1.3); this keeps its rhythm but points inward.
    */
   hero: {
-    eyebrow: "Minotaur · how Mythos validates itself",
+    eyebrow: "Minotaur · how Mythos AI Security validates itself",
     headline: "Find What We Missed. *Prove What We Test.*",
-    lede: "Minotaur is Mythos’ internal proving ground. It measures Athena and Achilles against planted benchmarks whose answers are known in advance — and it is the release authority for every engine.",
-    scope: "Internal to Mythos — never sold, and not independent third-party validation.",
+    lede: "Minotaur is Mythos AI Security’ internal proving ground. It measures Athena and Achilles against planted benchmarks whose answers are known in advance — and it is the release authority for every engine.",
+    scope: "Internal to Mythos AI Security — never sold, and not independent third-party validation.",
   },
   why: {
     eyebrow: "Why assurance needs assurance",
@@ -86,7 +86,7 @@ export const MINOTAUR_COPY = {
   bridge: {
     eyebrow: "Keep going",
     title: "Where the method *shows up.*",
-    lede: "Minotaur’s work surfaces in the evidence other parts of Mythos produce — and in what we choose to publish about how we test.",
+    lede: "Minotaur’s work surfaces in the evidence other parts of Mythos AI Security produce — and in what we choose to publish about how we test.",
   },
 } as const;
 
@@ -150,7 +150,7 @@ export const MINOTAUR_CRITERIA: Criterion[] = [
 export const MINOTAUR_CENTRE: Criterion = {
   name: "The release decision",
   question: "Who decides?",
-  body: "For Mythos’ own engines, a signed nine-gate decision and a veto outside the score. For your deployment, named people decide, with the evidence and its limits in view.",
+  body: "For Mythos AI Security’ own engines, a signed nine-gate decision and a veto outside the score. For your deployment, named people decide, with the evidence and its limits in view.",
 };
 
 export const MINOTAUR_TWINS: TwinCase[] = [

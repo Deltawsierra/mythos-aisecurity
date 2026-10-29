@@ -33,7 +33,7 @@ export const COVER: RecordRow[] = [
   { field: "Environment", value: "Staging tenant with synthetic records" },
   { field: "In scope", value: "Copilot, retrieval over customer notes, credit tool up to its limit" },
   { field: "Excluded", value: "Production systems, payment rails, the model provider’s own infrastructure" },
-  { field: "Report owner", value: "Mythos assessment lead (role)" },
+  { field: "Report owner", value: "Mythos AI Security assessment lead (role)" },
   { field: "Synthetic", value: "Yes — no customer information is represented", tone: "verified" },
 ];
 

@@ -100,12 +100,12 @@ export const PRIMARY_NAV: NavNode[] = [
     match: ["/platform/athena", "/platform/spine", "/platform/achilles", "/platform/validation", "/platform/hermes"],
     columns: [
       {
-        heading: "The Mythos family",
+        heading: "The Mythos AI Security family",
         items: [
           ...PROJECTS.map((p) => ({
-            label: p.id === "minotaur" ? "Minotaur · How Mythos Validates Itself" : p.name,
+            label: p.id === "minotaur" ? "Minotaur · How Mythos AI Security Validates Itself" : p.name,
             href: p.href,
-            description: p.id === "minotaur" ? "Test Mythos — our internal proving ground." : `${p.tagline}.`,
+            description: p.id === "minotaur" ? "Test Mythos AI Security — our internal proving ground." : `${p.tagline}.`,
           })),
           {
             label: "Mythos Core",
@@ -183,7 +183,7 @@ export const PRIMARY_NAV: NavNode[] = [
         heading: "Learn and buy",
         items: [
           {
-            label: "Is Mythos Right for Us?",
+            label: "Is Mythos AI Security Right for Us?",
             href: "/ai-risk-explained",
             description: "AI risk in plain English, with questions for the board.",
           },
@@ -213,10 +213,10 @@ export const PRIMARY_NAV: NavNode[] = [
     match: ["/company", "/investors", "/careers", "/partnerships", "/contact"],
     columns: [
       {
-        heading: "Mythos",
+        heading: "Mythos AI Security",
         items: [
           {
-            label: "About Mythos",
+            label: "About Mythos AI Security",
             href: "/company",
             description: "Mission, principles and how we work.",
           },
@@ -285,7 +285,7 @@ export const FOOTER_NAV: FooterGroup[] = [
       { label: "Red-Teaming AI Agents", href: "/resources/how-to-red-team-ai-agents" },
       { label: "Use Cases", href: "/use-cases" },
       { label: "Example Report", href: "/example-report" },
-      { label: "What Mythos Produces", href: "/outputs" },
+      { label: "What Mythos AI Security Produces", href: "/outputs" },
       { label: "Standards & Control Mapping", href: "/standards" },
       { label: "Glossary", href: "/glossary" },
     ],
@@ -293,7 +293,7 @@ export const FOOTER_NAV: FooterGroup[] = [
   {
     label: "Company",
     items: [
-      { label: "About Mythos", href: "/company" },
+      { label: "About Mythos AI Security", href: "/company" },
       { label: "Investors", href: "/investors" },
       { label: "Careers", href: "/careers" },
       { label: "Partnerships", href: "/partnerships" },

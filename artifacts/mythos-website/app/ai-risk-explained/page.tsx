@@ -34,21 +34,21 @@ import {
 export const metadata: Metadata = {
   title: "AI Risk Explained in Plain English",
   description:
-    "What Mythos does, in plain English: the AI risks that matter to a business, how attackers use AI against ordinary systems, what testing shows, and questions for the board.",
+    "What Mythos AI Security does, in plain English: the AI risks that matter to a business, how attackers use AI against ordinary systems, what testing shows, and questions for the board.",
   alternates: { canonical: "/ai-risk-explained/" },
   ...socialImage("ai-risk-explained", "AI Risk, Explained in Plain English — Mythos AI Security"),
 };
 
-const TALK = { label: "Talk to Mythos", href: "/contact?intent=general" };
+const TALK = { label: "Talk to Mythos AI Security", href: "/contact?intent=general" };
 
 /** Is Mythos Right for Us? — the plain-English page for non-technical readers. */
 export default function AiRiskExplainedPage() {
   return (
     <PageMotion>
       <ScenicHero
-        eyebrow="Is Mythos Right for Us?"
+        eyebrow="Is Mythos AI Security Right for Us?"
         headline="AI Risk, *Explained in Plain English.*"
-        lede="What Mythos does, why it matters and what to ask, written for anyone, including board members who do not work in technology."
+        lede="What Mythos AI Security does, why it matters and what to ask, written for anyone, including board members who do not work in technology."
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Resources", href: "/resources" },
@@ -136,7 +136,7 @@ export default function AiRiskExplainedPage() {
             id="situations-title"
             eyebrow="The five-minute guide"
             title={<Accent text="Start with the question *closest to you.*" />}
-            lede="Each answer covers the same five things: what it means, an example, what Mythos would examine, what you receive and one question for the board. The examples are made up to explain the risk. They are not customer stories."
+            lede="Each answer covers the same five things: what it means, an example, what Mythos AI Security would examine, what you receive and one question for the board. The examples are made up to explain the risk. They are not customer stories."
             caps
           />
           <div className="mt-12">
@@ -211,7 +211,7 @@ export default function AiRiskExplainedPage() {
               id="tools-title"
               eyebrow="Behind the service"
               title={<Accent text="The two tools *doing the testing.*" />}
-              lede="Mythos names its tools after figures from Greek myth. You do not need to remember them; they are here so the names make sense when you see them elsewhere."
+              lede="Mythos AI Security names its tools after figures from Greek myth. You do not need to remember them; they are here so the names make sense when you see them elsewhere."
               caps
             />
             <ul className="mt-12 grid gap-6 md:grid-cols-2" data-reveal-group>
@@ -330,7 +330,7 @@ export default function AiRiskExplainedPage() {
           <div>
             <h2 className="font-display text-[2rem] leading-tight text-fg">Why these questions matter</h2>
             <p className="mt-3 text-[15px] leading-relaxed text-fg-muted">
-              These public sources explain general risks and testing principles. They do not endorse Mythos or prove its capabilities.
+              These public sources explain general risks and testing principles. They do not endorse Mythos AI Security or prove its capabilities.
             </p>
             <ul className="mt-6 grid gap-3">
               {SOURCES.map((s) => (

@@ -199,7 +199,7 @@ export function ProofSection() {
                 {CTA.SAMPLE_REPORT}
               </Button>
               <Button href="/outputs" variant="secondary" size="md">
-                What Mythos produces
+                What Mythos AI Security produces
               </Button>
             </div>
           </div>
@@ -240,7 +240,7 @@ export function EngageSection() {
         </ol>
         <div className="mt-12 flex flex-col gap-5 border-t border-rule pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="max-w-2xl text-sm leading-relaxed text-fg-muted">
-            {ENGAGEMENT_NOTE} Mythos supplies the evidence; your team keeps every decision.
+            {ENGAGEMENT_NOTE} Mythos AI Security supplies the evidence; your team keeps every decision.
           </p>
           <Button href={CTA_LINKS.assessment} variant="primary" size="md" arrow className="shrink-0">
             Request an Assessment

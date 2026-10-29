@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "AI Assurance Partnerships",
   description:
-    "How integrators, consultancies, platform vendors, researchers and insurers could work with Mythos, and the independence rules that keep evidence honest.",
+    "How integrators, consultancies, platform vendors, researchers and insurers could work with Mythos AI Security, and the independence rules that keep evidence honest.",
   alternates: { canonical: "/partnerships/" },
   ...socialImage("partnerships", "Build Trust Together — Mythos AI Security"),
 };
@@ -112,7 +112,7 @@ export default function PartnershipsPage() {
         from="parchment"
         title="Build trust *into what you deliver.*"
         primary={DISCUSS}
-        secondary={{ label: "About Mythos", href: "/company" }}
+        secondary={{ label: "About Mythos AI Security", href: "/company" }}
         vista="c"
       />
     </PageMotion>
