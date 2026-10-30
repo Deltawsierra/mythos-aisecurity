@@ -602,6 +602,14 @@ export const CLAIMS: Claim[] = [
     note: "Beyond the 26 Oct inventory's planned list. Forward wording only: in progress, not available or validated today; availability depends on the integration.",
   },
   {
+    id: "company.not-affiliated-anthropic",
+    text: "Mythos AI Security is an independent company and is not affiliated with Anthropic or its Claude Mythos models",
+    status: "approved",
+    source: "Owner ruling, 30 Oct 2026",
+    usedIn: ["site footer", "llms.txt", "/resources/what-frontier-ai-cyber-capabilities-mean-for-ai-agents"],
+    note: "Search for the brand name returns Anthropic's Claude Mythos coverage; this line removes the confusion. Names Anthropic only to say there is no link.",
+  },
+  {
     id: "company.author-named",
     text: "David Smith, Co-founder and Chief Operating Officer: leads product direction, software architecture, development and AI research; full-stack and enterprise applications for insurance, municipal government and growing businesses (role-based access, audit trails, data governance); shaped Athena and Achilles and built assessment dashboards and reporting; Computer Science degree; disabled US Army veteran",
     status: "approved",

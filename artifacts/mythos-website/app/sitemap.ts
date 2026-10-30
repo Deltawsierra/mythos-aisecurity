@@ -16,6 +16,7 @@ const STATIC_ROUTES = [
   "/use-cases",
   "/resources",
   "/resources/how-to-red-team-ai-agents",
+  "/resources/what-frontier-ai-cyber-capabilities-mean-for-ai-agents",
   "/ai-risk-explained",
   "/pricing",
   "/example-report",

@@ -5,6 +5,7 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 import { CookieConsent } from "@/components/consent/CookieConsent";
 import { AnalyticsBridge } from "@/components/seo/AnalyticsBridge";
 import { GA_MEASUREMENT_ID } from "@/lib/consentScripts";
+import { SOCIAL_PROFILES } from "@/lib/constants";
 import "./globals.css";
 
 const inter = Inter({
@@ -37,7 +38,8 @@ const GA_BOOTSTRAP_SCRIPT = `(function(){window.dataLayer=window.dataLayer||[];f
 
 /**
  * Organization + WebSite structured data (Launch Guide §17). Only verifiable
- * facts: no address, social profiles or ratings; founders as the owner named them.
+ * facts: no address or ratings; founders as the owner named them; sameAs lists only
+ * the official profiles in SOCIAL_PROFILES.
  */
 const STRUCTURED_DATA = {
   "@context": "https://schema.org",
@@ -50,6 +52,7 @@ const STRUCTURED_DATA = {
       url: "https://www.mythosaisecurity.com/",
       logo: "https://www.mythosaisecurity.com/assets/brand/crest-512.png",
       email: "info@mythosaisecurity.com",
+      sameAs: SOCIAL_PROFILES.map((p) => p.href),
       founder: [
         { "@type": "Person", name: "Brendan Flanigan", jobTitle: "Co-founder and Chief Executive Officer" },
         { "@type": "Person", name: "David Smith", jobTitle: "Co-founder and Chief Operating Officer" },

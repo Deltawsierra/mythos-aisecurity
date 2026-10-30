@@ -2,12 +2,15 @@
 
 > Mythos AI Security (mythosaisecurity.com) provides AI deployment assurance. It maps what an AI system can reach, tests what it does under adversarial pressure, and keeps signed evidence current as the system changes, so the accountable people can make the release decision. Mythos records, tests, measures and signs; it does not certify AI systems as safe or compliant.
 
+Mythos AI Security is an independent company. It is not affiliated with Anthropic or its Claude Mythos models.
+
 Key facts, stated as on the site:
 
 - Products: Athena (discovery and exposure mapping), Achilles (adversarial testing of LLMs and agents), SPINE (the assurance system of record and deployment decision), Minotaur (Mythos AI Security's internal proving ground for its own tests), Hermes (vehicle and physical-AI assurance, a scaffold today) and Economic Exposure (prices a validated failure as a range, decision support only).
 - Engagements are kept distinct: an assessment that tests and reports, release assurance bound to an exact deployment, and runtime enforcement on supported paths.
 - Evidence: Assurance Receipts are signed and verify offline; a signed receipt proves where a result came from, not that the conclusion is correct. Findings close only on retest. Reports say what was not measured.
 - Mapping, never certification: findings are tagged to NIST SP 800-53, OWASP Top 10 (2021), OWASP Top 10 for LLM Applications (2025) and DoD Zero Trust, with vertical packs for healthcare, financial services, federal and general AI.
+- Official LinkedIn page: https://www.linkedin.com/company/mythos-ai-security
 - Every example on the site (findings, receipts, reports) is a labelled synthetic fixture. Mythos AI Security has no published customers.
 
 ## Platform
@@ -25,6 +28,7 @@ Key facts, stated as on the site:
 ## Guides
 
 - [How to Red-Team an AI Agent](https://www.mythosaisecurity.com/resources/how-to-red-team-ai-agents/): what to test before an agent touches real systems, by David Smith (27 Oct 2026)
+- [What Frontier AI Cyber Capabilities Mean for the Agents You Deploy](https://www.mythosaisecurity.com/resources/what-frontier-ai-cyber-capabilities-mean-for-ai-agents/): what the 2026 frontier-model evaluations and incidents mean for deployed agents, with eight checks (30 Oct 2026)
 - [Agent red-teaming checklist (PDF)](https://www.mythosaisecurity.com/assets/downloads/mythos-ai-agent-red-teaming-checklist.pdf)
 
 ## Buying and trust

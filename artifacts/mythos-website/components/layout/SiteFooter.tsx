@@ -1,10 +1,11 @@
 import Link from "next/link";
+import { Linkedin } from "lucide-react";
 import { IntentLink } from "@/components/ui/IntentLink";
 import { Container } from "@/components/ui/Container";
 import { CookieSettingsButton } from "@/components/consent/CookieSettingsButton";
 import { FOOTER_NAV } from "@/content/navigation";
 import { CANONICAL } from "@/content/platform";
-import { SITE_FULL_NAME } from "@/lib/constants";
+import { NOT_AFFILIATED, SITE_FULL_NAME, SOCIAL_PROFILES } from "@/lib/constants";
 
 /**
  * The stable ground the world stands on (Launch Guide: footer clusters
@@ -89,10 +90,24 @@ export function SiteFooter() {
                 Privacy
               </IntentLink>
               <CookieSettingsButton className="cursor-pointer text-xs text-fg-muted transition-colors duration-200 hover:text-ivory" />
+              {SOCIAL_PROFILES.map((p) => (
+                <a
+                  key={p.href}
+                  href={p.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs text-fg-muted transition-colors duration-200 hover:text-ivory"
+                >
+                  <Linkedin size={13} aria-hidden="true" />
+                  {p.label}
+                  <span className="sr-only"> (opens in a new tab)</span>
+                </a>
+              ))}
             </nav>
           </div>
           <p className="font-display text-base italic text-champagne/80">{CANONICAL.evidencePhilosophy}</p>
         </div>
+        <p className="border-t border-ivory/10 py-5 text-[11px] leading-relaxed text-fg-muted/80">{NOT_AFFILIATED}</p>
       </Container>
     </footer>
   );

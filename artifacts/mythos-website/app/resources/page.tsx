@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 
 /*
  * Resources hub (Launch Guide §11). The hub curates only real pages: the
- * first guide (27 Oct) and its checklist, then the site's own reference
+ * guides (27 and 30 Oct) and the checklist, then the site's own reference
  * pages. No empty category tiles; guides live under /resources/<slug>.
  */
 
@@ -32,6 +32,7 @@ const SHELVES: { name: string; lede: string; items: { title: string; body: strin
       { title: "AI Risk, Explained in Plain English", body: "For readers with no technical background: nine common situations, what Mythos AI Security would examine, and twelve questions for the board.", href: "/ai-risk-explained", tag: "Start here" },
       { title: "Board Questions on AI Risk", body: "Twelve questions and one reusable sentence on one printable page. Free, no form.", href: "/assets/downloads/mythos-board-ai-risk-questions.pdf", tag: "PDF" },
       { title: "How to Red-Team an AI Agent", body: "What to test before an agent touches real systems: eight failure families, scoping, judging results and retesting.", href: "/resources/how-to-red-team-ai-agents", tag: "Guide" },
+      { title: "What Frontier AI Cyber Capabilities Mean for Your Agents", body: "What the 2026 evaluations and incidents show about capable AI, and eight checks to run before giving an agent more authority.", href: "/resources/what-frontier-ai-cyber-capabilities-mean-for-ai-agents", tag: "Guide" },
       { title: "Agent Red-Teaming Checklist", body: "The guide's eight steps on one printable page. Free, no form.", href: "/assets/downloads/mythos-ai-agent-red-teaming-checklist.pdf", tag: "PDF" },
     ],
   },
